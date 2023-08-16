@@ -7,10 +7,11 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"compile-sass": "node-sass sass/main.scss css/style.css -w",
+		"compile:sass": "node-sass public/sass/main.scss public/css/style.css -w",
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"node-sass": "^9.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
 	},
