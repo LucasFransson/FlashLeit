@@ -15,8 +15,7 @@ html {
 .card {
   perspective: 100rem;
   -moz-perspective: 100rem;
-  position: relative;
-  height: 52rem; }
+  position: relative; }
   .card__content {
     position: relative;
     height: 100%;
@@ -24,7 +23,8 @@ html {
   .card__side {
     font-size: 2.4rem;
     height: 50rem;
-    border-radius: 0.3rem;
+    width: 25rem;
+    border-radius: 1.5rem;
     overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
     backface-visibility: hidden;
@@ -36,7 +36,8 @@ html {
       background-color: #5b5bd6;
       position: fixed;
       top: 0;
-      left: 0; }
+      left: 0;
+      width: 100%; }
   .card:hover .card__side--front {
     transform: rotateY(-180deg); }
   .card:hover .card__side--back {
