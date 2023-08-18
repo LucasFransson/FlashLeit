@@ -35,16 +35,43 @@
 			width: 100%;
 		}
 	}
-	&:hover &__side--front {
+
+	&.is-flipped .card__side--front {
 		transform: rotateY(-180deg);
 	}
-	&:hover &__side--back {
+
+	&.is-flipped .card__side--back {
 		transform: rotateY(0);
 	}
 
+	// ANIMATION FOR FLIPPING ON HOVERING
+	// &:hover &__side--front {
+	// 	transform: rotateY(-180deg);
+	// }
+	// &:hover &__side--back {
+	// 	transform: rotateY(0);
+	// }
+
 	&__heading {
 		font-size: 3.2rem;
-		margin-bottom: 7rem;
-		margin-top: 3rem;
+		margin-bottom: 3rem;
 	}
+
+	&__text {
+		font-size: 2.4rem;
+	}
+
+	&__center {
+		padding: 2rem;
+		position: relative;
+		background-color: rgb(202, 104, 100);
+		height: 70%;
+		border-radius: 3rem 0.5rem 4.5rem 0.5rem;
+	}
+}
+
+.flip-button {
+	position: absolute;
+	top: 25rem;
+	left: 4.5rem;
 }

@@ -40,11 +40,23 @@ html {
       top: 0;
       left: 0;
       width: 100%; }
-  .card:hover .card__side--front {
+  .card.is-flipped .card__side--front {
     transform: rotateY(-180deg); }
-  .card:hover .card__side--back {
+  .card.is-flipped .card__side--back {
     transform: rotateY(0); }
   .card__heading {
     font-size: 3.2rem;
-    margin-bottom: 7rem;
-    margin-top: 3rem; }
+    margin-bottom: 3rem; }
+  .card__text {
+    font-size: 2.4rem; }
+  .card__center {
+    padding: 2rem;
+    position: relative;
+    background-color: #ca6864;
+    height: 70%;
+    border-radius: 3rem 0.5rem 4.5rem 0.5rem; }
+
+.flip-button {
+  position: absolute;
+  top: 25rem;
+  left: 4.5rem; }
