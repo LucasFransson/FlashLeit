@@ -46,15 +46,21 @@ html {
     transform: rotateY(0); }
   .card__heading {
     font-size: 3.2rem;
-    margin-bottom: 3rem; }
+    margin-bottom: 1rem; }
   .card__text {
     font-size: 2.4rem; }
+  .card__top {
+    border-bottom: 2px solid #000;
+    margin-bottom: 1.5rem; }
   .card__center {
     padding: 2rem;
     position: relative;
     background-color: #ca6864;
     height: 70%;
     border-radius: 3rem 0.5rem 4.5rem 0.5rem; }
+  .card__bottom {
+    border-top: 2px solid #000;
+    margin-top: 1.5rem; }
 
 .flip-button {
   position: absolute;
