@@ -31,15 +31,26 @@ html {
     backface-visibility: hidden;
     padding: 2rem 3rem;
     transition: all 0.6s cubic-bezier(1, -0.3, 0.1, 1); }
-    .card__side--front {
-      background-color: #ab312d; }
     .card__side--back {
       transform: rotateY(180deg);
-      background-color: #5b5bd6;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%; }
+    .card__side.azure {
+      background-image: linear-gradient(to bottom, #eafffe, #649392); }
+    .card__side.skyblue {
+      background-image: linear-gradient(to bottom, #6ed8f5, #655bf1); }
+    .card__side.navy {
+      background-image: linear-gradient(to bottom, #0e4b7f, #140b4a); }
+    .card__side.aquamarine {
+      background-image: linear-gradient(to bottom, #70faaa, #51b599); }
+    .card__side.malachite {
+      background-image: linear-gradient(to bottom, #25f947, #31ac44); }
+    .card__side.pink {
+      background-image: linear-gradient(to bottom, #ff9f9f, #bc3364); }
+    .card__side.gray {
+      background-image: linear-gradient(to bottom, #939293, #382b36); }
   .card.is-flipped .card__side--front {
     transform: rotateY(-180deg); }
   .card.is-flipped .card__side--back {
@@ -55,7 +66,7 @@ html {
   .card__center {
     padding: 2rem;
     position: relative;
-    background-color: #ca6864;
+    background-color: rgba(255, 255, 255, 0.2);
     height: 70%;
     border-radius: 3rem 0.5rem 4.5rem 0.5rem; }
   .card__bottom {
@@ -63,6 +74,4 @@ html {
     margin-top: 1.5rem; }
 
 .flip-button {
-  position: absolute;
-  top: 25rem;
-  left: 4.5rem; }
+  margin-top: 5rem; }

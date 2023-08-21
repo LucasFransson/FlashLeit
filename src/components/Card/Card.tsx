@@ -1,8 +1,24 @@
 // import React[useState]from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Card = () => {
 	const [isFlipped, setIsFlipped] = useState(false);
+	const [randomColorClass, setRandomColorClass] = useState('');
+
+	useEffect(() => {
+		const colorClasses = [
+			'azure',
+			'skyblue',
+			'navy',
+			'aquamarine',
+			'malachite',
+			'pink',
+			'gray',
+		];
+		const randomClass =
+			colorClasses[Math.floor(Math.random() * colorClasses.length)];
+		setRandomColorClass(randomClass);
+	}, []);
 
 	const handleFlipClick = () => {
 		setIsFlipped((prevIsFlipped) => !prevIsFlipped);
@@ -12,7 +28,7 @@ const Card = () => {
 		<div className={`card ${isFlipped ? 'is-flipped' : ''}`}>
 			<div className="card__content">
 				{/* FRONTSIDE */}
-				<div className="card__side card__side--front">
+				<div className={`card__side card__side--front ${randomColorClass}`}>
 					<div className="card__top">
 						Top<h1 className="card__heading">Q</h1>
 					</div>
@@ -30,7 +46,7 @@ const Card = () => {
 					</div>
 				</div>
 				{/* BACKSIDE */}
-				<div className="card__side card__side--back">
+				<div className={`card__side card__side--back ${randomColorClass}`}>
 					<div className="card__top">
 						Top<h1 className="card__heading">A</h1>
 					</div>

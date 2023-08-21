@@ -1,0 +1,57 @@
+// COLOR VARIABLES FOR FLASHCARDS
+
+$color-azure-light: #eafffe;
+$color-azure-dark: #649392;
+$color-gradient-azure: linear-gradient(
+	to bottom,
+	$color-azure-light,
+	$color-azure-dark
+);
+
+$color-skyblue-light: #6ed8f5;
+$color-skyblue-dark: #655bf1;
+$color-gradient-skyblue: linear-gradient(
+	to bottom,
+	$color-skyblue-light,
+	$color-skyblue-dark
+);
+
+$color-navy-light: #0e4b7f;
+$color-navy-dark: #140b4a;
+$color-gradient-navy: linear-gradient(
+	to bottom,
+	$color-navy-light,
+	$color-navy-dark
+);
+
+$color-pink-light: #ff9f9f;
+$color-pink-dark: #bc3364;
+$color-gradient-pink: linear-gradient(
+	to bottom,
+	$color-pink-light,
+	$color-pink-dark
+);
+
+$color-gray-light: #939293;
+$color-gray-dark: #382b36;
+$color-gradient-gray: linear-gradient(
+	to bottom,
+	$color-gray-light,
+	$color-gray-dark
+);
+
+$color-aquamarine-light: #70faaa;
+$color-aquamarine-dark: #51b599;
+$color-gradient-aqumarine: linear-gradient(
+	to bottom,
+	$color-aquamarine-light,
+	$color-aquamarine-dark
+);
+
+$color-malachite-light: #25f947;
+$color-malachite-dark: #31ac44;
+$color-gradient-malachite: linear-gradient(
+	to bottom,
+	$color-malachite-light,
+	$color-malachite-dark
+);
