@@ -1,4 +1,4 @@
-import Flashcard from './Flashcard';
+import Flashcard from './CardTypes';
 
 interface CardCollectionTypes {
 	Id: number;

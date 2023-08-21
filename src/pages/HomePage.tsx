@@ -42,7 +42,7 @@ import React from 'react';
 import Card from '../components/Card/Card';
 import useFetch from '../hooks/useFetch';
 import CardCollection from '../components/CardCollection/CardCollection';
-import Flashcard from '../types/Flashcard';
+import Flashcard from '../types/CardTypes';
 import CardCollectionTypes from '../types/CardCollection';
 
 // const HomePage = () => {

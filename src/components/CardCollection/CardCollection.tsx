@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import Card from '../Card/Card';
 import useFetch from '../../hooks/useFetch';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
+import CardProps from '../../types/CardTypes';
 
-interface Flashcard {
-	id: number;
-	question: string;
-	answer: string;
-}
+// interface Flashcard {
+// 	id: number;
+// 	question: string;
+// 	answer: string;
+// }
 
 interface CardCollectionProps {
-	cards: Flashcard[];
+	cards: CardProps[];
 }
 
 const CardCollection: React.FC<CardCollectionProps> = ({ cards }) => {
@@ -30,13 +31,14 @@ const CardCollection: React.FC<CardCollectionProps> = ({ cards }) => {
 			<h1>Flashcard App</h1>
 			{cards.length > 0 && cardIndex < cards.length && (
 				<Card
-					question={cards[cardIndex].Question}
-					correctAnswer={cards[cardIndex].CorrectAnswer}
-					wrongAnswer1={null} // You can add values if needed
-					wrongAnswer2={null}
-					wrongAnswer3={null}
-					collectionId={cards[cardIndex].id}
-					colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
+					Id={cards[cardIndex].Id}
+					Question={cards[cardIndex].Question}
+					CorrectAnswer={cards[cardIndex].CorrectAnswer}
+					WrongAnswer1={null} // You can add values if needed
+					WrongAnswer2={null}
+					WrongAnswer3={null}
+					CollectionId={cards[cardIndex].Id}
+					ColorClass={cardColors[cardIndex]} // Pass the random color class as a prop
 				/>
 			)}
 			<button
