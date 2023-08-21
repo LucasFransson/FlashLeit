@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import CardCollection from '../components/CardCollection/CardCollection';
 import CardProps from '../types/CardTypes';
