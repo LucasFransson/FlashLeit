@@ -1,8 +1,8 @@
+/////////////////////////////////////////////// FLASH CARD COMPONENT
 .card {
 	perspective: 100rem;
 	-moz-perspective: 100rem;
 	position: relative;
-	height: 52rem;
 
 	&__content {
 		position: relative;
@@ -12,10 +12,13 @@
 	&__side {
 		font-size: 2.4rem;
 		height: 50rem;
-		border-radius: 0.3rem;
+		width: 25rem;
+		border-radius: 1.5rem;
 		overflow: hidden;
 		box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
 		backface-visibility: hidden;
+
+		padding: 2rem 3rem;
 
 		transition: all 0.6s cubic-bezier(1, -0.3, 0.1, 1);
 
@@ -29,13 +32,55 @@
 			position: fixed;
 			top: 0;
 			left: 0;
+			width: 100%;
 		}
 	}
 
-	&:hover &__side--front {
+	&.is-flipped .card__side--front {
 		transform: rotateY(-180deg);
 	}
-	&:hover &__side--back {
+
+	&.is-flipped .card__side--back {
 		transform: rotateY(0);
 	}
+
+	// ANIMATION FOR FLIPPING ON HOVERING
+	// &:hover &__side--front {
+	// 	transform: rotateY(-180deg);
+	// }
+	// &:hover &__side--back {
+	// 	transform: rotateY(0);
+	// }
+
+	&__heading {
+		font-size: 3.2rem;
+		margin-bottom: 1rem;
+	}
+
+	&__text {
+		font-size: 2.4rem;
+	}
+
+	&__top {
+		border-bottom: 2px solid #000;
+		margin-bottom: 1.5rem;
+	}
+	&__center {
+		padding: 2rem;
+		position: relative;
+		background-color: rgb(202, 104, 100);
+		height: 70%;
+		border-radius: 3rem 0.5rem 4.5rem 0.5rem;
+	}
+
+	&__bottom {
+		border-top: 2px solid #000;
+		margin-top: 1.5rem;
+	}
+}
+
+.flip-button {
+	position: absolute;
+	top: 25rem;
+	left: 4.5rem;
 }

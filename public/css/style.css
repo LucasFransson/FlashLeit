@@ -3,7 +3,8 @@
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; }
+  box-sizing: inherit;
+  font-size: 1.6rem; }
 
 body {
   box-sizing: border-box; }
@@ -15,8 +16,7 @@ html {
 .card {
   perspective: 100rem;
   -moz-perspective: 100rem;
-  position: relative;
-  height: 52rem; }
+  position: relative; }
   .card__content {
     position: relative;
     height: 100%;
@@ -24,10 +24,12 @@ html {
   .card__side {
     font-size: 2.4rem;
     height: 50rem;
-    border-radius: 0.3rem;
+    width: 25rem;
+    border-radius: 1.5rem;
     overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
     backface-visibility: hidden;
+    padding: 2rem 3rem;
     transition: all 0.6s cubic-bezier(1, -0.3, 0.1, 1); }
     .card__side--front {
       background-color: #ab312d; }
@@ -36,8 +38,31 @@ html {
       background-color: #5b5bd6;
       position: fixed;
       top: 0;
-      left: 0; }
-  .card:hover .card__side--front {
+      left: 0;
+      width: 100%; }
+  .card.is-flipped .card__side--front {
     transform: rotateY(-180deg); }
-  .card:hover .card__side--back {
+  .card.is-flipped .card__side--back {
     transform: rotateY(0); }
+  .card__heading {
+    font-size: 3.2rem;
+    margin-bottom: 1rem; }
+  .card__text {
+    font-size: 2.4rem; }
+  .card__top {
+    border-bottom: 2px solid #000;
+    margin-bottom: 1.5rem; }
+  .card__center {
+    padding: 2rem;
+    position: relative;
+    background-color: #ca6864;
+    height: 70%;
+    border-radius: 3rem 0.5rem 4.5rem 0.5rem; }
+  .card__bottom {
+    border-top: 2px solid #000;
+    margin-top: 1.5rem; }
+
+.flip-button {
+  position: absolute;
+  top: 25rem;
+  left: 4.5rem; }
