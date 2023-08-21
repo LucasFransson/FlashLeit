@@ -4,10 +4,10 @@ import CardProps from '../../types/CardTypes';
 const Card: React.FC<CardProps> = ({
 	Question,
 	CorrectAnswer,
-	WrongAnswer1,
-	WrongAnswer2,
-	WrongAnswer3,
-	CollectionId,
+	// WrongAnswer1,
+	// WrongAnswer2,
+	// WrongAnswer3,
+	// CollectionId,
 	ColorClass,
 }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
