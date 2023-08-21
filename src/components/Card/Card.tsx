@@ -14,6 +14,11 @@ const Card = () => {
 			'malachite',
 			'pink',
 			'gray',
+			'lime',
+			'yellow',
+			'purple',
+			'lilac',
+			'maroon',
 		];
 		const randomClass =
 			colorClasses[Math.floor(Math.random() * colorClasses.length)];

@@ -1,0 +1,208 @@
+{
+	"CardCollections": [
+		{
+			"Id": 1,
+			"Name": "C# Questions",
+			"Cards": [
+				{
+					"id": 1,
+					"Question": "What framework is C# closely associated with?",
+					"CorrectAnswer": "C# is closely associated with the .NET framework.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 2,
+					"Question": "What keyword is used in C# to declare a constant value?",
+					"CorrectAnswer": "The \"const\" keyword is used to declare a constant value in C#.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 3,
+					"Question": "Which C# feature allows you to define a contract that classes must adhere to?",
+					"CorrectAnswer": "Interfaces allow you to define a contract that classes must adhere to in C#.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 4,
+					"Question": "What keyword in C# is used to handle exceptions?",
+					"CorrectAnswer": "The \"try-catch\" block is used to handle exceptions in C#.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 5,
+					"Question": "What C# feature allows you to execute a block of code repeatedly based on a condition?",
+					"CorrectAnswer": "Loops, such as \"for\", \"while\", and \"do-while\", allow you to execute a block of code repeatedly based on a condition.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 6,
+					"Question": "In C#, what is the base class from which all other classes inherit?",
+					"CorrectAnswer": "In C#, all classes inherit from the \"System.Object\" class.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 7,
+					"Question": "What keyword in C# is used to encapsulate and protect an object's state?",
+					"CorrectAnswer": "The \"encapsulation\" concept is implemented using \"private\" and \"protected\" access modifiers in C#.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 8,
+					"Question": "Which C# feature allows you to group related methods, properties, and events?",
+					"CorrectAnswer": "Classes and structs allow you to group related methods, properties, and events in C#.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 9,
+					"Question": "What is the entry point method of a C# console application?",
+					"CorrectAnswer": "The entry point method of a C# console application is Main().",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 10,
+					"Question": "What keyword is used in C# to inherit from a base class?",
+					"CorrectAnswer": "The : (colon) is used for inheritance, and the keyword base can be used to refer to the base class.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 11,
+					"Question": "What is the keyword for creating a new instance of an object in C#?",
+					"CorrectAnswer": "The new keyword is used to create a new instance of an object.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 12,
+					"Question": "What is the default access modifier for members of a class in C#?",
+					"CorrectAnswer": "The default access modifier for members of a class is private.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 13,
+					"Question": "How do you define a method that doesn't return a value in C#?",
+					"CorrectAnswer": "A method that doesn't return a value is defined using the void keyword.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 14,
+					"Question": "Which keyword is used to specify that a method or property is overridden in a derived class?",
+					"CorrectAnswer": "The override keyword is used to specify that a method or property is overridden.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 15,
+					"Question": "Which data type in C# is used to store a Unicode character?",
+					"CorrectAnswer": "The char data type is used to store a Unicode character.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 16,
+					"Question": "What is the C# keyword to specify a block of code that can be executed regardless of whether an exception is thrown?",
+					"CorrectAnswer": "The finally block is executed regardless of whether an exception is thrown.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 17,
+					"Question": "How do you define a multi-dimensional array in C#?",
+					"CorrectAnswer": "Multi-dimensional arrays in C# are defined using commas, e.g., int[,] arrayName.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 18,
+					"Question": "What is the C# structure that allows you to store key-value pairs?",
+					"CorrectAnswer": "The Dictionary<TKey, TValue> structure allows you to store key-value pairs.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 19,
+					"Question": "Which keyword is used to declare an abstract class or method in C#?",
+					"CorrectAnswer": "The abstract keyword is used to declare an abstract class or method.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 20,
+					"Question": "How do you concatenate strings in C#?",
+					"CorrectAnswer": "Strings can be concatenated using the + operator.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 21,
+					"Question": "Which C# feature allows you to define a method without specifying its implementation?",
+					"CorrectAnswer": "An interface allows you to define a method without specifying its implementation.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				},
+				{
+					"id": 22,
+					"Question": "What is the C# keyword to specify that a variable's value cannot be changed after it's set?",
+					"CorrectAnswer": "The readonly keyword specifies that a variable's value cannot be changed after it's set.",
+					"WrongAnswer1": null,
+					"WrongAnswer2": null,
+					"WrongAnswer3": null,
+					"CollectionId": 1
+				}
+			]
+		}
+	]
+}

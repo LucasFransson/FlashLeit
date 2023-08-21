@@ -58,6 +58,21 @@
 		&.gray {
 			background-image: $color-gradient-gray;
 		}
+		&.yellow {
+			background-image: $color-gradient-yellow;
+		}
+		&.lime {
+			background-image: $color-gradient-lime;
+		}
+		&.purple {
+			background-image: $color-gradient-purple;
+		}
+		&.lilac {
+			background-image: $color-gradient-lilac;
+		}
+		&.maroon {
+			background-image: $color-gradient-maroon;
+		}
 	}
 
 	// FLIP ANIMATION
@@ -81,10 +96,12 @@
 	&__heading {
 		font-size: 3.2rem;
 		margin-bottom: 1rem;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 	}
 
 	&__text {
 		font-size: 2.4rem;
+		text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
 	}
 	// TOP
 	&__top {
