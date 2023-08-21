@@ -55,3 +55,43 @@ $color-gradient-malachite: linear-gradient(
 	$color-malachite-light,
 	$color-malachite-dark
 );
+
+$color-lime-light: #e6fa9e;
+$color-lime-dark: #9fe674;
+$color-gradient-lime: linear-gradient(
+	to bottom,
+	$color-lime-light,
+	$color-lime-dark
+);
+
+$color-yellow-light: #faff31;
+$color-yellow-dark: #ffbe15;
+$color-gradient-yellow: linear-gradient(
+	to bottom,
+	$color-yellow-light,
+	$color-yellow-dark
+);
+
+$color-purple-light: #8e14eb;
+$color-purple-dark: #401586;
+$color-gradient-purple: linear-gradient(
+	to bottom,
+	$color-purple-light,
+	$color-purple-dark
+);
+
+$color-lilac-light: #b655ae;
+$color-lilac-dark: #994dc5;
+$color-gradient-lilac: linear-gradient(
+	to bottom,
+	$color-lilac-light,
+	$color-lilac-dark
+);
+
+$color-maroon-light: #c8261d;
+$color-maroon-dark: #751410;
+$color-gradient-maroon: linear-gradient(
+	to bottom,
+	$color-maroon-light,
+	$color-maroon-dark
+);
