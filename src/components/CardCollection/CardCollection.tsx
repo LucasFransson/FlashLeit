@@ -5,9 +5,10 @@ import CardProps from '../../types/CardTypes';
 
 interface CardCollectionProps {
 	cards: CardProps[];
+	name: string;
 }
 
-const CardCollection: React.FC<CardCollectionProps> = ({ cards }) => {
+const CardCollection: React.FC<CardCollectionProps> = ({ cards, name }) => {
 	// useState hook for managing current card index
 	const [cardIndex, setCardIndex] = useState(0);
 
@@ -24,8 +25,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({ cards }) => {
 	};
 
 	return (
-		<>
-			<h1>Flashcard App</h1>
+		<div className="card-collection">
+			<h1>{name}</h1>
 			{/* Check if there are any cards AND that the current card index is within bounds */}
 			{cards.length > 0 && cardIndex < cards.length && (
 				// Render the Card at cardIndex from the cards array
@@ -41,13 +42,28 @@ const CardCollection: React.FC<CardCollectionProps> = ({ cards }) => {
 					ColorClass={cardColors[cardIndex]} // Pass the random color class as a prop
 				/>
 			)}
-			<button
-				onClick={handleNextCard}
-				disabled={cardIndex === cards.length - 1} // if the Current Card is the last one, Disable the button
-			>
-				Next Card
-			</button>
-		</>
+			<p className="card-collection__counter">
+				<span>{cardIndex + 1}</span>/<span>{cards.length}</span>
+			</p>
+
+			<div>
+				{/* Div for Buttons */}
+				<button
+					className="button-next button-next--wrong"
+					onClick={handleNextCard}
+					disabled={cardIndex === cards.length - 1} // if the Current Card is the last one, Disable the button
+				>
+					Wrong
+				</button>
+				<button
+					className="button-next button-next--correct"
+					onClick={handleNextCard}
+					disabled={cardIndex === cards.length - 1} // if the Current Card is the last one, Disable the button
+				>
+					Correct
+				</button>
+			</div>
+		</div>
 	);
 };
 

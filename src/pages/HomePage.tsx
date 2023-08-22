@@ -10,15 +10,14 @@ const HomePage = () => {
 		CardCollectionTypes[]
 	>('http://localhost:7000/CardCollections', []);
 
+	const name = cardCollections.length > 0 ? cardCollections[0].Name : '';
 	// Extract and return the Cards from the first Card Collection (if cardCollections has any items), else return an empty array
 	const cards: CardProps[] =
 		cardCollections.length > 0 ? cardCollections[0].Cards : [];
 
 	return (
 		<div>
-			HomePage Top
-			<CardCollection cards={cards} />
-			HomePage Bottom
+			<CardCollection cards={cards} name={name} />
 		</div>
 	);
 };

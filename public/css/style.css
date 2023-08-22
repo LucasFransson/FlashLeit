@@ -52,7 +52,7 @@ html {
     .card__side.gray {
       background-image: linear-gradient(to bottom, #939293, #382b36); }
     .card__side.yellow {
-      background-image: linear-gradient(to bottom, #faff31, #ffbe15); }
+      background-image: linear-gradient(to bottom, #f6ea6a, #e1b533); }
     .card__side.lime {
       background-image: linear-gradient(to bottom, #e6fa9e, #9fe674); }
     .card__side.purple {
@@ -87,3 +87,12 @@ html {
 
 .flip-button {
   margin-top: 5rem; }
+
+.button-next--wrong {
+  background-image: linear-gradient(to bottom, #c8261d, #751410); }
+
+.button-next--correct {
+  background-image: linear-gradient(to bottom, #25f947, #31ac44); }
+
+.card-collection {
+  background-color: #939293; }

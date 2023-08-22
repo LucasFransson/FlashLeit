@@ -126,3 +126,16 @@
 .flip-button {
 	margin-top: 5rem;
 }
+
+.button-next {
+	&--wrong {
+		background-image: $color-gradient-maroon;
+	}
+	&--correct {
+		background-image: $color-gradient-malachite;
+	}
+}
+
+.card-collection {
+	background-color: $color-gray-light;
+}
