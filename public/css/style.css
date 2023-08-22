@@ -13,30 +13,69 @@ html {
   font-size: 62.5%;
   /* Is set to 62.5% using this formula : default font-size is 16px while We want 10px. 10/16 = 0.625 aka 62.5 % */ }
 
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottomLeft {
+  0% {
+    opacity: 0.8;
+    transform: translateY(70rem) translateX(-25rem) rotate(-90deg) skew(20deg, 5deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveOutBottomRight {
+  0% {
+    opacity: 0;
+    transform: translate(0); }
+  100% {
+    opacity: 0.8;
+    transform: translateY(20rem) translateX(-12rem) rotate(-90deg); } }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0); }
+  100% {
+    transform: rotate(360deg); } }
+
 .card {
   perspective: 100rem;
   -moz-perspective: 100rem;
   position: relative; }
   .card__content {
-    position: relative;
-    height: 100%;
-    transform-style: preserve-3d; }
+    transform-style: preserve-3d;
+    animation: moveInBottomLeft 0.7s cubic-bezier(0.72, 0.26, 0, 1.04); }
   .card__side {
-    font-size: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 55rem;
     width: 35rem;
     border-radius: 1.5rem;
     overflow: hidden;
-    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 3px 1rem 0.5rem rgba(0, 0, 0, 0.35);
     backface-visibility: hidden;
-    padding: 2rem 3rem;
     transition: all 0.6s cubic-bezier(1, -0.3, 0.1, 1); }
     .card__side--back {
       transform: rotateY(180deg);
       position: fixed;
       top: 0;
-      left: 0;
-      width: 100%; }
+      left: 0; }
     .card__side.azure {
       background-image: linear-gradient(to bottom, #eafffe, #649392); }
     .card__side.skyblue {
@@ -52,7 +91,7 @@ html {
     .card__side.gray {
       background-image: linear-gradient(to bottom, #939293, #382b36); }
     .card__side.yellow {
-      background-image: linear-gradient(to bottom, #faff31, #ffbe15); }
+      background-image: linear-gradient(to bottom, #f6ea6a, #e1b533); }
     .card__side.lime {
       background-image: linear-gradient(to bottom, #e6fa9e, #9fe674); }
     .card__side.purple {
@@ -67,23 +106,46 @@ html {
     transform: rotateY(0); }
   .card__heading {
     font-size: 3.2rem;
-    margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); }
   .card__text {
     font-size: 2.4rem;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65); }
   .card__top {
     border-bottom: 2px solid #000;
-    margin-bottom: 1.5rem; }
+    padding: 0.5rem 0;
+    padding-bottom: 1rem; }
   .card__center {
-    padding: 2rem;
-    position: relative;
+    padding: 1rem;
+    padding-top: 3rem;
+    margin-top: 1.5rem;
+    align-self: center;
     background-color: rgba(255, 255, 255, 0.2);
-    height: 70%;
-    border-radius: 3rem 0.5rem 4.5rem 0.5rem; }
+    width: 80%;
+    height: 75%;
+    border-radius: 4.5rem 0.5rem 6.5rem 0.5rem; }
   .card__bottom {
-    border-top: 2px solid #000;
-    margin-top: 1.5rem; }
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    border-top: 2px solid #000; }
+  .card__btn-flip {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2); }
+    .card__btn-flip:hover {
+      background-color: rgba(255, 255, 255, 0.25); }
 
-.flip-button {
-  margin-top: 5rem; }
+.button-next--wrong {
+  background-image: linear-gradient(to bottom, #c8261d, #751410); }
+
+.button-next--correct {
+  background-image: linear-gradient(to bottom, #25f947, #31ac44); }
+
+.card-collection {
+  background-color: #939293; }
+
+.loading {
+  width: 5rem;
+  height: 5rem;
+  background-image: linear-gradient(to bottom, #25f947, #31ac44);
+  animation: spin 5s infinite linear;
+  box-shadow: 0px 0px 1.5rem 0.2rem rgba(49, 172, 68, 0.5); }

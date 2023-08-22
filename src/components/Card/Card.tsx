@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import CardProps from '../../types/CardTypes';
 
 const Card: React.FC<CardProps> = ({
-	Question,
-	CorrectAnswer,
+	question,
+	correctAnswer,
 	// WrongAnswer1,
 	// WrongAnswer2,
 	// WrongAnswer3,
 	// CollectionId,
-	ColorClass,
+	colorClass,
 }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 
@@ -23,35 +23,34 @@ const Card: React.FC<CardProps> = ({
 		<div className={`card ${isFlipped ? 'is-flipped' : ''}`}>
 			<div className="card__content">
 				{/* FRONTSIDE */}
-				<div className={`card__side card__side--front ${ColorClass}`}>
+				<div className={`card__side card__side--front ${colorClass}`}>
 					<div className="card__top">
-						Top<h1 className="card__heading">Q</h1>
+						<p className="card__heading">QUESTION</p>
 					</div>
 					<div className="card__center">
-						<p className="card__text">{Question}</p>
-						<button className="flip-button" onClick={handleFlipClick}>
-							See Answer
-						</button>
+						<p className="card__text">{question}</p>
 					</div>
 					<div className="card__bottom">
-						<p>QUESTION</p>
-						Bottom
+						{/* <p>QUESTION</p> */}
+						<button className="card__btn-flip" onClick={handleFlipClick}>
+							<span>See Answer</span>
+						</button>
 					</div>
 				</div>
 				{/* BACKSIDE */}
-				<div className={`card__side card__side--back ${ColorClass}`}>
+				<div className={`card__side card__side--back ${colorClass}`}>
 					<div className="card__top">
-						Top<h1 className="card__heading">A</h1>
+						<p className="card__heading">ANSWER</p>
 					</div>
 					<div className="card__center">
-						<p className="card__text">{CorrectAnswer}</p>
-						<button className="flip-button" onClick={handleFlipClick}>
-							See Question
-						</button>
+						<p className="card__text">{correctAnswer}</p>
 					</div>
 					<div className="card__bottom">
-						<p>ANSWER</p>
-						Bottom
+						{/* <p>ANSWER</p> */}
+
+						<button className="card__btn-flip" onClick={handleFlipClick}>
+							<span>See Question</span>
+						</button>
 					</div>
 				</div>
 			</div>

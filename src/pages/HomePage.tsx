@@ -1,26 +1,39 @@
-import React, { useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import CardCollection from '../components/CardCollection/CardCollection';
-import CardProps from '../types/CardTypes';
 import CardCollectionTypes from '../types/CardCollectionTypes';
-
-const HomePage = () => {
-	// Fetch Card Collection from the server
-	const cardCollections: CardCollectionTypes[] = useFetch<
-		CardCollectionTypes[]
-	>('http://localhost:7000/CardCollections', []);
-
-	// Extract and return the Cards from the first Card Collection (if cardCollections has any items), else return an empty array
-	const cards: CardProps[] =
-		cardCollections.length > 0 ? cardCollections[0].Cards : [];
-
-	return (
-		<div>
-			HomePage Top
-			<CardCollection cards={cards} />
-			HomePage Bottom
-		</div>
+import LoadingIcon from '../components/LoadingIcon';
+function HomePage() {
+	// Try to Fetch Card Collection from the server
+	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
+		'http://localhost:7000/CardCollections',
+		[]
 	);
-};
+
+	let cardCollection: CardCollectionTypes | null = null;
+
+	if (!loading && data) {
+		cardCollection = data[0];
+	}
+	if (loading) {
+		return <LoadingIcon />;
+	}
+	if (error) {
+		return <div>Error: {error.message}</div>;
+	}
+
+	return <>{cardCollection && <CardCollection {...cardCollection} />}</>;
+}
+
+// const HomePage = () => {
+// 	// Fetch Card Collection from the server
+// 	const cardCollections: CardCollectionTypes[] = useFetch<
+// 		CardCollectionTypes[]
+// 	>('http://localhost:7000/CardCollections', []);
+// 	// console.log('Fetched Card Collections:', cardCollections);
+
+// 	const cardCollection = cardCollections[0];
+
+// 	return <>{cardCollection && <CardCollection {...cardCollection} />}</>;
+// };
 
 export default HomePage;
