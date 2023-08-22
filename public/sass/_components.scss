@@ -157,9 +157,30 @@
 }
 
 .loading {
+	perspective: 300rem;
 	width: 5rem;
 	height: 5rem;
 	background-image: $color-gradient-malachite;
-	animation: spin 5s infinite linear;
-	box-shadow: 0px 0px 1.5rem 0.2rem rgba($color-malachite-dark, 0.5);
+	// animation: spin 5s infinite linear;
+	animation: squareWalk 2.5s infinite cubic-bezier(0.85, 0.04, 0.07, 1.16);
+	box-shadow: 0px 0px 0.8rem 0.2rem rgba($color-malachite-dark, 0.5);
+	//box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+
+	&__background {
+		width: 10rem;
+		height: 10rem;
+		background-color: #241727;
+		//box-shadow: 0px 0px 1.5rem 0.2rem rgba(#2e1d31, 7);
+		box-shadow: 0 1px 6px 0.2rem rgba(95, 255, 42, 0.776),
+			0 1px 4px rgba(15, 7, 12, 0.24),
+			0px 0px 0.8rem 0.1rem rgba($color-malachite-dark, 0.5);
+		animation: spin 5s infinite linear;
+	}
+
+	// &__orbit {
+	// 	width: 1rem;
+	// 	height: 1rem;
+	// 	background-color: rgb(132, 241, 105);
+	// 	animation: orbit 2.2s infinite linear;
+	// }
 }

@@ -53,6 +53,24 @@ html {
   100% {
     transform: rotate(360deg); } }
 
+@keyframes orbit {
+  from {
+    transform: rotateY(0deg) translateX(120px); }
+  to {
+    transform: rotateY(360deg) translateX(120px); } }
+
+@keyframes squareWalk {
+  0% {
+    transform: translateX(0rem) translateY(0rem) rotate(0deg); }
+  25% {
+    transform: translateX(0.5rem) translateY(0rem) rotate(90deg); }
+  50% {
+    transform: translateX(0.5rem) translateY(0.5rem) rotate(90deg); }
+  75% {
+    transform: translateX(0rem) translateY(0.5rem) rotate(90deg); }
+  100% {
+    transform: translateX(0rem) translateY(0rem) rotate(90deg); } }
+
 .card {
   perspective: 100rem;
   -moz-perspective: 100rem;
@@ -144,8 +162,15 @@ html {
   background-color: #939293; }
 
 .loading {
+  perspective: 300rem;
   width: 5rem;
   height: 5rem;
   background-image: linear-gradient(to bottom, #25f947, #31ac44);
-  animation: spin 5s infinite linear;
-  box-shadow: 0px 0px 1.5rem 0.2rem rgba(49, 172, 68, 0.5); }
+  animation: squareWalk 2.5s infinite cubic-bezier(0.85, 0.04, 0.07, 1.16);
+  box-shadow: 0px 0px 0.8rem 0.2rem rgba(49, 172, 68, 0.5); }
+  .loading__background {
+    width: 10rem;
+    height: 10rem;
+    background-color: #241727;
+    box-shadow: 0 1px 6px 0.2rem rgba(95, 255, 42, 0.776), 0 1px 4px rgba(15, 7, 12, 0.24), 0px 0px 0.8rem 0.1rem rgba(49, 172, 68, 0.5);
+    animation: spin 5s infinite linear; }
