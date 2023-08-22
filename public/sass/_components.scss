@@ -8,6 +8,8 @@
 		position: relative;
 		height: 100%;
 		transform-style: preserve-3d;
+		animation: moveInBottomLeft 0.7s cubic-bezier(0.72, 0.26, 0, 1.04);
+		// animation: moveInBottomRight 0.8s cubic-bezier(0.72, 0.26, 0, 1.04);
 	}
 	// CARD SIDES
 	&__side {
@@ -16,7 +18,7 @@
 		width: 35rem;
 		border-radius: 1.5rem;
 		overflow: hidden;
-		box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+		box-shadow: 2px 3px 1rem 0.5rem rgba(0, 0, 0, 0.35);
 		backface-visibility: hidden;
 
 		padding: 2rem 3rem;

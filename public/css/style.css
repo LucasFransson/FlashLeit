@@ -13,6 +13,40 @@ html {
   font-size: 62.5%;
   /* Is set to 62.5% using this formula : default font-size is 16px while We want 10px. 10/16 = 0.625 aka 62.5 % */ }
 
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottomLeft {
+  0% {
+    opacity: 0.8;
+    transform: translateY(20rem) translateX(-12rem) rotate(-90deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveOutBottomRight {
+  0% {
+    opacity: 0;
+    transform: translate(0); }
+  100% {
+    opacity: 0.8;
+    transform: translateY(20rem) translateX(-12rem) rotate(-90deg); } }
+
 .card {
   perspective: 100rem;
   -moz-perspective: 100rem;
@@ -20,14 +54,15 @@ html {
   .card__content {
     position: relative;
     height: 100%;
-    transform-style: preserve-3d; }
+    transform-style: preserve-3d;
+    animation: moveInBottomLeft 0.7s cubic-bezier(0.72, 0.26, 0, 1.04); }
   .card__side {
     font-size: 2.4rem;
     height: 55rem;
     width: 35rem;
     border-radius: 1.5rem;
     overflow: hidden;
-    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 3px 1rem 0.5rem rgba(0, 0, 0, 0.35);
     backface-visibility: hidden;
     padding: 2rem 3rem;
     transition: all 0.6s cubic-bezier(1, -0.3, 0.1, 1); }
