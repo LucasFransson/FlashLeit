@@ -1,4 +1,4 @@
-// import React, { ComponentType, Suspense, useState, lazy } from 'react'; //TODO: Remove, only for testing loading state
+//import React, { ComponentType, Suspense, useState, lazy } from 'react'; //TODO: Remove, only for testing loading state
 import React, { Suspense, useState, lazy } from 'react';
 import LoadingIcon from './components/LoadingIcon';
 
@@ -14,7 +14,7 @@ import HomePage from './pages/HomePage';
 // 				import('./components/LazyLoadedComponent').then((module) =>
 // 					resolve({ default: module.default })
 // 				);
-// 			}, 3000)
+// 			}, 10000)
 // 		)
 // );
 

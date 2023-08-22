@@ -1,7 +1,7 @@
 import React from 'react';
 
 function LoadingIcon() {
-	return <div className="loading">Loading...</div>;
+	return <div className="loading"></div>;
 }
 
 export default LoadingIcon;

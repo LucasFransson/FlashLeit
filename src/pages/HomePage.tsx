@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import CardProps from '../types/CardTypes';
-
 import useFetch from '../hooks/useFetch';
 import CardCollection from '../components/CardCollection/CardCollection';
 import CardCollectionTypes from '../types/CardCollectionTypes';
-
+import LoadingIcon from '../components/LoadingIcon';
 function HomePage() {
 	// Try to Fetch Card Collection from the server
 	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
@@ -16,6 +13,12 @@ function HomePage() {
 
 	if (!loading && data) {
 		cardCollection = data[0];
+	}
+	if (loading) {
+		return <LoadingIcon />;
+	}
+	if (error) {
+		return <div>Error: {error.message}</div>;
 	}
 
 	return <>{cardCollection && <CardCollection {...cardCollection} />}</>;

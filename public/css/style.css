@@ -47,6 +47,12 @@ html {
     opacity: 0.8;
     transform: translateY(20rem) translateX(-12rem) rotate(-90deg); } }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0); }
+  100% {
+    transform: rotate(360deg); } }
+
 .card {
   perspective: 100rem;
   -moz-perspective: 100rem;
@@ -138,4 +144,8 @@ html {
   background-color: #939293; }
 
 .loading {
-  color: #31ac44; }
+  width: 5rem;
+  height: 5rem;
+  background-image: linear-gradient(to bottom, #25f947, #31ac44);
+  animation: spin 5s infinite linear;
+  box-shadow: 0px 0px 1.5rem 0.2rem rgba(49, 172, 68, 0.5); }
