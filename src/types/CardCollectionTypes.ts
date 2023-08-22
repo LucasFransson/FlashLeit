@@ -1,8 +1,8 @@
 import CardProps from './CardTypes';
 
-interface CardCollectionProps {
-	Id: number;
-	Name: string;
-	Cards: CardProps[];
+interface CardCollectionTypes {
+	id: number;
+	name: string;
+	cards: CardProps[];
 }
-export default CardCollectionProps;
+export default CardCollectionTypes;

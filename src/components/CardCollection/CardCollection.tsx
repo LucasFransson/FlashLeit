@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Card from '../Card/Card';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
-import CardProps from '../../types/CardTypes';
+import CardCollectionTypes from '../../types/CardCollectionTypes';
 
-interface CardCollectionProps {
-	cards: CardProps[];
-	name: string;
-}
+interface CardCollectionProps extends CardCollectionTypes {}
 
-const CardCollection: React.FC<CardCollectionProps> = ({ cards, name }) => {
+const CardCollection: React.FC<CardCollectionProps> = ({
+	cards = [],
+	name = 'Something Went Wrong',
+}) => {
 	// useState hook for managing current card index
 	const [cardIndex, setCardIndex] = useState(0);
 
@@ -23,7 +23,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({ cards, name }) => {
 			setCardIndex(cardIndex + 1);
 		}
 	};
-
+	console.log('Card Index:', cardIndex, 'Cards Length:', cards.length);
 	return (
 		<div className="card-collection">
 			<h1>{name}</h1>
@@ -32,14 +32,14 @@ const CardCollection: React.FC<CardCollectionProps> = ({ cards, name }) => {
 				// Render the Card at cardIndex from the cards array
 				<Card
 					key={cardIndex} // This Key Forces a re-mount of the Card Component, causing the useState hook to reset the components initial value, ensuring that the Card starts with the front side facing up
-					Id={cards[cardIndex].Id}
-					Question={cards[cardIndex].Question}
-					CorrectAnswer={cards[cardIndex].CorrectAnswer}
-					WrongAnswer1={null}
-					WrongAnswer2={null}
-					WrongAnswer3={null}
-					CollectionId={cards[cardIndex].Id}
-					ColorClass={cardColors[cardIndex]} // Pass the random color class as a prop
+					id={cards[cardIndex].id}
+					question={cards[cardIndex].question}
+					correctAnswer={cards[cardIndex].correctAnswer}
+					wrongAnswer1={null}
+					wrongAnswer2={null}
+					wrongAnswer3={null}
+					collectionId={cards[cardIndex].id} // Not correct? This is the card id not the collection id
+					colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
 				/>
 			)}
 			<p className="card-collection__counter">

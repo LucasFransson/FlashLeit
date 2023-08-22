@@ -1,1 +1,3 @@
-const RoutesConfig = () => {};
+function RoutesConfig() {}
+
+export default RoutesConfig;
