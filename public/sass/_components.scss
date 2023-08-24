@@ -6,8 +6,8 @@
 
 	&__content {
 		transform-style: preserve-3d;
-		animation: moveInBottomLeft 0.7s cubic-bezier(0.72, 0.26, 0, 1.04);
-
+		animation: moveInBottomLeft 0.8s cubic-bezier(0.72, 0.26, 0, 1.04);
+		// animation: moveInBottomLeft 0.7s linear;
 		// animation: moveInBottomRight 0.8s cubic-bezier(0.72, 0.26, 0, 1.04);
 	}
 	// CARD SIDES
@@ -15,6 +15,8 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		align-items: center;
+
 		height: 55rem;
 		width: 35rem;
 		border-radius: 1.5rem;
@@ -146,6 +148,8 @@
 .button-next {
 	&--wrong {
 		background-image: $color-gradient-maroon;
+		margin-right: 6rem;
+		margin-bottom: 6rem;
 	}
 	&--correct {
 		background-image: $color-gradient-malachite;
@@ -153,13 +157,187 @@
 }
 
 .card-collection {
-	background-color: $color-gray-light;
+	// background-color: $color-gray-light;
+	color: rgb(242, 242, 242);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__counter {
+		color: white;
+		margin: 1.5rem 0;
+	}
 }
 
 .loading {
+	perspective: 300rem;
 	width: 5rem;
 	height: 5rem;
 	background-image: $color-gradient-malachite;
-	animation: spin 5s infinite linear;
-	box-shadow: 0px 0px 1.5rem 0.2rem rgba($color-malachite-dark, 0.5);
+
+	// animation: spin 5s infinite linear;
+	// animation: squareWalk 2.5s infinite linear;
+	animation: squareWalk 2.5s infinite cubic-bezier(0.85, 0.04, 0.07, 1.16);
+	box-shadow: 0px 0px 0.8rem 0.2rem rgba($color-malachite-dark, 0.5);
+	//box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+
+	&__background {
+		width: 10rem;
+		height: 10rem;
+		background-color: #241727;
+		//box-shadow: 0px 0px 1.5rem 0.2rem rgba(#2e1d31, 7);
+		box-shadow: 0 1px 6px 0.2rem rgba(95, 255, 42, 0.776),
+			0 1px 4px rgba(15, 7, 12, 0.24),
+			0px 0px 0.8rem 0.1rem rgba($color-malachite-dark, 0.5);
+		animation: spin 5s infinite linear;
+	}
+
+	&__text {
+		padding-top: 5rem;
+		font-weight: 600;
+		letter-spacing: 0.6rem;
+		color: rgba($color-malachite-dark, 0.7);
+	}
+	// &__orbit {
+	// 	width: 1rem;
+	// 	height: 1rem;
+	// 	background-color: rgb(132, 241, 105);
+	// 	animation: orbit 2.2s infinite linear;
+	// }
+}
+
+.app {
+	// background-color: rgb(55, 27, 27);
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 0.5fr 0.5fr 8fr 1fr;
+}
+
+.header {
+	// background-color: yellow;
+	background-image: $color-gradient-malachite;
+	height: 5rem;
+	grid-column-start: 1;
+	grid-column-end: -1;
+}
+
+.navbar {
+	grid-column-start: 1;
+	grid-column-end: -1;
+	height: 5rem;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: stretch;
+	background-color: rgb(47, 75, 64);
+
+	&__item {
+		background-color: rgba(83, 122, 67, 0.4);
+		width: 17rem;
+		border: 1px solid rgba(0, 0, 0, 0.5);
+		border-bottom: 2px solid $color-malachite-dark;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgb(229, 229, 229);
+		cursor: pointer;
+
+		&:hover {
+			background-color: rgba(83, 122, 67, 0.8);
+		}
+		&--1 {
+		}
+	}
+}
+
+.footer {
+	// background-color: green;
+	color: white;
+	background-color: #131212;
+
+	grid-column-start: 1;
+	grid-column-end: -1;
+}
+
+.cardset-page {
+	// background-color: #241727;
+	grid-column-start: 1;
+	grid-column-end: -1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.home-page {
+	grid-column-start: 1;
+	grid-column-end: -1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.about-page {
+	grid-column-start: 1;
+	grid-column-end: -1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-editor {
+	color: white;
+	background-color: rgba(0, 255, 234, 0.17);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 0.5fr 3fr 0.5fr;
+	// display: flex;
+	// flex-direction: column;
+
+	&__text-input {
+		margin-top: 4rem; // TODO: Remove this and change to grid/flex
+		margin-left: 6rem; // TODO: Remove this
+		height: 40rem;
+		width: 20rem;
+	}
+
+	&--left {
+		background-color: rgba(255, 0, 0, 0.229);
+		grid-row-start: 2;
+
+		// flex: 1;
+	}
+
+	&--right {
+		background-color: rgba(0, 0, 255, 0.367);
+		grid-row-start: 2;
+		// flex: 1;
+	}
+
+	&__buttons {
+		grid-column-start: 1;
+		grid-column-end: -1;
+		grid-row-start: -1;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+
+		color: white;
+	}
+	&__btn {
+		color: white;
+
+		&--save {
+			background-color: green;
+		}
+		&--cancel {
+			background-color: red;
+		}
+	}
 }

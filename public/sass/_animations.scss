@@ -55,6 +55,51 @@
 	}
 }
 
+@keyframes orbit {
+	from {
+		transform: rotateY(0deg) translateX(120px);
+	}
+	to {
+		transform: rotateY(360deg) translateX(120px);
+	}
+}
+
+@keyframes squareWalk {
+	0% {
+		transform: translateX(0rem) translateY(0rem) rotate(0deg);
+	}
+	25% {
+		transform: translateX(0.5rem) translateY(0rem) rotate(90deg);
+	}
+	50% {
+		transform: translateX(0.5rem) translateY(0.5rem) rotate(90deg);
+	}
+	75% {
+		transform: translateX(0rem) translateY(0.5rem) rotate(90deg);
+	}
+	100% {
+		transform: translateX(0rem) translateY(0rem) rotate(90deg);
+	}
+}
+
+// @keyframes squareWalk {
+// 	0% {
+// 		transform: translateX(0rem) translateY(0rem) rotate(0deg);
+// 	}
+// 	25% {
+// 		transform: translateX(5rem) translateY(0rem) rotate(45deg);
+// 	}
+// 	50% {
+// 		transform: translateX(5rem) translateY(5rem) rotate(90deg);
+// 	}
+// 	75% {
+// 		transform: translateX(0rem) translateY(5rem) rotate(135deg);
+// 	}
+// 	100% {
+// 		transform: translateX(0rem) translateY(0rem) rotate(180deg);
+// 	}
+// }
+
 // @keyframes spin {
 // 	0% {
 // 		transform: rotate(0);

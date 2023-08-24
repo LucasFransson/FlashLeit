@@ -9,11 +9,10 @@
 
 body {
 	box-sizing: border-box;
+	background-color: #242424;
 }
 
 html {
 	font-size: 62.5%; //Same as font-size:10px
 	/* Is set to 62.5% using this formula : default font-size is 16px while We want 10px. 10/16 = 0.625 aka 62.5 % */
 }
-
-
