@@ -7,6 +7,7 @@ function LoadingIcon() {
 				{/* <div className="loading__orbit"></div> */}
 				<div className="loading"></div>
 			</div>
+			<span className="loading__text">LOADING...</span>
 		</>
 	);
 }

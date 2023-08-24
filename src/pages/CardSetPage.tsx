@@ -18,7 +18,12 @@ function CardSetPage() {
 		cardCollection = data[0];
 	}
 	if (loading) {
-		return <LoadingIcon />;
+		//TODO move loading down to ordinary return
+		return (
+			<div className="cardset-page">
+				<LoadingIcon />;
+			</div>
+		);
 	}
 	if (error) {
 		return <div>Error: {error.message}</div>;

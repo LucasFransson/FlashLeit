@@ -191,6 +191,12 @@
 		animation: spin 5s infinite linear;
 	}
 
+	&__text {
+		padding-top: 5rem;
+		font-weight: 600;
+		letter-spacing: 0.6rem;
+		color: rgba($color-malachite-dark, 0.7);
+	}
 	// &__orbit {
 	// 	width: 1rem;
 	// 	height: 1rem;
@@ -211,7 +217,7 @@
 .header {
 	// background-color: yellow;
 	background-image: $color-gradient-malachite;
-
+	height: 5rem;
 	grid-column-start: 1;
 	grid-column-end: -1;
 }
@@ -219,6 +225,7 @@
 .navbar {
 	grid-column-start: 1;
 	grid-column-end: -1;
+	height: 5rem;
 
 	display: flex;
 	flex-direction: row;
@@ -230,6 +237,12 @@
 		background-color: rgba(83, 122, 67, 0.4);
 		width: 17rem;
 		border: 1px solid rgba(0, 0, 0, 0.5);
+		border-bottom: 2px solid $color-malachite-dark;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgb(229, 229, 229);
 		cursor: pointer;
 
 		&:hover {
@@ -242,6 +255,7 @@
 
 .footer {
 	// background-color: green;
+	color: white;
 	background-color: #131212;
 
 	grid-column-start: 1;
@@ -274,4 +288,56 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+.card-editor {
+	color: white;
+	background-color: rgba(0, 255, 234, 0.17);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 0.5fr 3fr 0.5fr;
+	// display: flex;
+	// flex-direction: column;
+
+	&__text-input {
+		margin-top: 4rem; // TODO: Remove this and change to grid/flex
+		margin-left: 6rem; // TODO: Remove this
+		height: 40rem;
+		width: 20rem;
+	}
+
+	&--left {
+		background-color: rgba(255, 0, 0, 0.229);
+		grid-row-start: 2;
+
+		// flex: 1;
+	}
+
+	&--right {
+		background-color: rgba(0, 0, 255, 0.367);
+		grid-row-start: 2;
+		// flex: 1;
+	}
+
+	&__buttons {
+		grid-column-start: 1;
+		grid-column-end: -1;
+		grid-row-start: -1;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+
+		color: white;
+	}
+	&__btn {
+		color: white;
+
+		&--save {
+			background-color: green;
+		}
+		&--cancel {
+			background-color: red;
+		}
+	}
 }
