@@ -40,6 +40,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					wrongAnswer3={null}
 					collectionId={cards[cardIndex].id} // Not correct? This is the card id not the collection id
 					colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
+					lastReviewed={null} // Remove null
 				/>
 			)}
 			<p className="card-collection__counter">
