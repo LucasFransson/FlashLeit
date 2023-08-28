@@ -1,10 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
+import React from "react"
+import ReactDOM from "react-dom/client"
+import { PublicClientApplication } from "@azure/msal-browser"
+import App from "./App.tsx"
+import { msalConfig } from "./configs/msalConfig"
+import "./index.css"
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const msalInstance = new PublicClientApplication(msalConfig)
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<App />
+		<App instance={msalInstance} />
 	</React.StrictMode>
-);
+)
