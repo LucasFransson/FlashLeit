@@ -280,12 +280,30 @@
 .home-page {
 	grid-column-start: 1;
 	grid-column-end: -1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-around;
+	// display: flex;
+	// flex-direction: column;
+	// align-items: center;
+	// justify-content: space-around;
+	display: grid;
 
 	color: rgb(224, 224, 224);
+
+	&__section {
+		border: 2px solid green;
+	}
+
+	&__main {
+		border: 2px solid blue;
+		// background-color: blue;
+	}
+	&__aside {
+		border: 2px solid red;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		// background-color: red;
+	}
 }
 
 .about-page {
@@ -299,7 +317,7 @@
 
 .card-editor {
 	color: white;
-	background-color: rgba(0, 255, 234, 0.17);
+	background-color: rgba(0, 255, 234, 0.06);
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 0.5fr 3fr 0.5fr;
@@ -307,22 +325,28 @@
 	// flex-direction: column;
 
 	&__text-input {
-		margin-top: 4rem; // TODO: Remove this and change to grid/flex
-		margin-left: 6rem; // TODO: Remove this
+		// margin-top: 4rem; // TODO: Remove this and change to grid/flex
+		// margin-left: 6rem; // TODO: Remove this
 		height: 40rem;
 		width: 20rem;
 	}
 
 	&--left {
-		background-color: rgba(255, 0, 0, 0.229);
+		//background-color: rgba(255, 0, 0, 0.229);
 		grid-row-start: 2;
+		text-align: center;
+		border-radius: 1.5rem;
+		border: 2px solid $color-malachite-dark;
 
 		// flex: 1;
 	}
 
 	&--right {
-		background-color: rgba(0, 0, 255, 0.367);
+		//background-color: rgba(0, 0, 255, 0.367);
 		grid-row-start: 2;
+		text-align: center;
+		border-radius: 1.5rem;
+		border: 2px solid $color-malachite-dark;
 		// flex: 1;
 	}
 

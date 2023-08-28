@@ -243,11 +243,18 @@ html {
 .home-page {
   grid-column-start: 1;
   grid-column-end: -1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
   color: #e0e0e0; }
+  .home-page__section {
+    border: 2px solid green; }
+  .home-page__main {
+    border: 2px solid blue; }
+  .home-page__aside {
+    border: 2px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center; }
 
 .about-page {
   grid-column-start: 1;
@@ -259,21 +266,23 @@ html {
 
 .card-editor {
   color: white;
-  background-color: rgba(0, 255, 234, 0.17);
+  background-color: rgba(0, 255, 234, 0.06);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.5fr 3fr 0.5fr; }
   .card-editor__text-input {
-    margin-top: 4rem;
-    margin-left: 6rem;
     height: 40rem;
     width: 20rem; }
   .card-editor--left {
-    background-color: rgba(255, 0, 0, 0.229);
-    grid-row-start: 2; }
+    grid-row-start: 2;
+    text-align: center;
+    border-radius: 1.5rem;
+    border: 2px solid #31ac44; }
   .card-editor--right {
-    background-color: rgba(0, 0, 255, 0.367);
-    grid-row-start: 2; }
+    grid-row-start: 2;
+    text-align: center;
+    border-radius: 1.5rem;
+    border: 2px solid #31ac44; }
   .card-editor__buttons {
     grid-column-start: 1;
     grid-column-end: -1;

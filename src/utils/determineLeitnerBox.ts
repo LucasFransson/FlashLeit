@@ -26,7 +26,7 @@ import LeitnerBoxesTypes from '../types/LeitnerBoxesTypes';
 // 	Box3: CardTypes[];
 // };
 
-const determineBoxToStudy = (boxes: LeitnerBoxesTypes) => {
+export const determineBoxToStudy = (boxes: LeitnerBoxesTypes) => {
 	const currentDate = new Date();
 
 	const getLatestReviewDate = (box: CardTypes[]) => {
@@ -49,23 +49,22 @@ const determineBoxToStudy = (boxes: LeitnerBoxesTypes) => {
 	const box2LatestDate = getLatestReviewDate(boxes.Box2);
 	const box3LatestDate = getLatestReviewDate(boxes.Box3);
 
-
-    // Check if box1 should be studied ( if there is no cards in box1 with latest review date or last card reviewed was > 24 hour ago)
+	// Check if box1 should be studied ( if there is no cards in box1 with latest review date or last card reviewed was > 24 hour ago)
 	if (
 		!box1LatestDate ||
 		currentDate.getTime() - box1LatestDate.getTime() > 24 * 60 * 60 * 1000
 	) {
 		return 1;
 	}
-    // -||-
-	    // Check if box1 should be studied ( if there is no cards in box1 with latest review date or last card reviewed was > 24 hour ago)
+	// -||-
+	// Check if box1 should be studied ( if there is no cards in box1 with latest review date or last card reviewed was > 24 hour ago)
 	if (
 		!box2LatestDate ||
 		currentDate.getTime() - box2LatestDate.getTime() > 3 * 24 * 60 * 60 * 1000
 	) {
 		return 2;
 	}
-    // -||-
+	// -||-
 	if (
 		!box3LatestDate ||
 		currentDate.getTime() - box3LatestDate.getTime() > 7 * 24 * 60 * 60 * 1000

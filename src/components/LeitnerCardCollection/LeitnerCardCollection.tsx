@@ -3,6 +3,7 @@ import Card from '../Card/Card';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
 import CardCollectionTypes from '../../types/CardCollectionTypes';
 import LeitnerBoxesTypes from '../../types/LeitnerBoxesTypes';
+import { determineBoxToStudy } from '../../utils/determineLeitnerBox';
 
 // extend necessary props here
 interface LeitnerCardProps extends CardCollectionTypes {}
@@ -14,7 +15,7 @@ function LeitnerCardCollection() {
 		Box3: [],
 	});
 
-	return <></>;
+	return <>Leitner Card Collection</>;
 }
 
 export default LeitnerCardCollection;
