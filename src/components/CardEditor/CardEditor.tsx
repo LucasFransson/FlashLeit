@@ -31,7 +31,7 @@ function CardEditor() {
 					className="card-editor__btn card-editor__btn--save"
 					onClick={SaveChanges}
 				>
-					Discard Changes Save Changes
+					Save Changes
 				</button>
 			</div>
 		</div>

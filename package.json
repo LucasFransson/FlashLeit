@@ -18,6 +18,8 @@
 		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
+		"@azure/msal-browser": "^3.0.2",
+		"@azure/msal-react": "^2.0.2",
 		"@testing-library/jest-dom": "^6.0.1",
 		"@types/react": "^18.2.15",
 		"@types/react-dom": "^18.2.7",
