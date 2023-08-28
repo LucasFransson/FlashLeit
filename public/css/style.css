@@ -197,23 +197,23 @@ html {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.1fr 0.5fr 8fr 1fr; }
+  grid-template-rows: 0.2fr 0.8fr 8fr 1fr; }
 
 .header {
   background-image: linear-gradient(to bottom, #25f947, #31ac44);
-  height: 2rem;
   grid-column-start: 1;
   grid-column-end: -1; }
 
 .navbar {
-  grid-column-start: 1;
-  grid-column-end: -1;
-  height: 6rem;
+  grid-column: 1/-1;
+  grid-row: 2/2;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: stretch;
-  background-color: #110d10; }
+  background-color: #f1f4f2;
+  color: #373636;
+  border: 2px solid black; }
   .navbar__item {
     width: 17rem;
     border: 1px solid rgba(103, 100, 100, 0.768);
@@ -221,7 +221,6 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #e5e5e5;
     cursor: pointer; }
     .navbar__item:hover {
       background-color: rgba(82, 122, 67, 0.823); }
@@ -229,36 +228,27 @@ html {
 .footer {
   color: white;
   background-color: #110d10;
-  grid-column-start: 1;
-  grid-column-end: -1; }
+  grid-column: 1/-1; }
 
 .cardset-page {
-  grid-column-start: 1;
-  grid-column-end: -1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
+  grid-column: 1/-1; }
 
 .home-page {
-  grid-column-start: 1;
-  grid-column-end: -1;
+  grid-column: 1/-1;
   display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   color: #e0e0e0; }
-  .home-page__section {
-    border: 2px solid green; }
   .home-page__main {
-    border: 2px solid blue; }
+    background-color: #f1f4f2;
+    color: #373636; }
   .home-page__aside {
-    border: 2px solid red;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center; }
 
 .about-page {
-  grid-column-start: 1;
-  grid-column-end: -1;
+  grid-column: 1/-1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -266,23 +256,44 @@ html {
 
 .card-editor {
   color: white;
-  background-color: rgba(0, 255, 234, 0.06);
+  padding: 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.5fr 3fr 0.5fr; }
-  .card-editor__text-input {
+  grid-template-columns: 1fr 0.1fr 1fr;
+  grid-template-rows: 0.2fr 3fr 0.1fr 0.1fr;
+  border: 2px solid #31ac44; }
+  .card-editor-card--left {
+    grid-row-start: 2;
+    text-align: center;
+    border-radius: 1.5rem;
+    border: 2px solid #31ac44; }
+  .card-editor-card--right {
+    grid-row-start: 2;
+    grid-column-start: 3;
+    text-align: center;
+    border-radius: 1.5rem;
+    border: 2px solid #31ac44; }
+  .card-editor-card__top {
+    padding: 0.5rem 0;
+    padding-bottom: 1rem; }
+  .card-editor-card__heading {
+    font-size: 3.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); }
+  .card-editor-card__center {
+    padding: 3rem;
+    padding-top: 3rem;
+    margin-top: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4.5rem 0.5rem 6.5rem 0.5rem; }
+  .card-editor-card__text-input {
     height: 40rem;
-    width: 20rem; }
-  .card-editor--left {
-    grid-row-start: 2;
-    text-align: center;
-    border-radius: 1.5rem;
-    border: 2px solid #31ac44; }
-  .card-editor--right {
-    grid-row-start: 2;
-    text-align: center;
-    border-radius: 1.5rem;
-    border: 2px solid #31ac44; }
+    padding: 2rem;
+    font-size: 2.4rem;
+    border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65); }
+  .card-editor-card__bottom {
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem; }
   .card-editor__buttons {
     grid-column-start: 1;
     grid-column-end: -1;

@@ -209,36 +209,32 @@
 }
 
 .app {
-	// background-color: rgb(55, 27, 27);
 	width: 100vw;
 	height: 100vh;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 0.1fr 0.5fr 8fr 1fr;
+	grid-template-rows: 0.2fr 0.8fr 8fr 1fr;
 }
 
 .header {
-	// background-color: yellow;
 	background-image: $color-gradient-malachite;
-	height: 2rem;
 	grid-column-start: 1;
 	grid-column-end: -1;
 }
 
 .navbar {
-	grid-column-start: 1;
-	grid-column-end: -1;
-	height: 6rem;
+	grid-column: 1/-1;
+	grid-row: 2/2;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: stretch;
-	// background-color: rgb(47, 75, 64);
-	background-color: #110d10;
-
+	// background-color: #110d10;
+	background-color: rgb(241, 244, 242);
+	color: rgb(55, 54, 54);
+	border: 2px solid black;
 	&__item {
-		// background-color: rgba(83, 122, 67, 0.4);
 		width: 17rem;
 		border: 1px solid rgba(103, 100, 100, 0.768);
 		border-bottom: 5px solid $color-malachite-dark;
@@ -246,7 +242,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: rgb(229, 229, 229);
+		// color: rgb(229, 229, 229);
 		cursor: pointer;
 
 		&:hover {
@@ -258,57 +254,41 @@
 }
 
 .footer {
-	// background-color: green;
 	color: white;
-	// background-color: #131212;
 	background-color: #110d10;
-
-	grid-column-start: 1;
-	grid-column-end: -1;
+	grid-column: 1/-1;
 }
 
 .cardset-page {
-	// background-color: #241727;
-	grid-column-start: 1;
-	grid-column-end: -1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	grid-column: 1/-1;
 }
 
 .home-page {
-	grid-column-start: 1;
-	grid-column-end: -1;
-	// display: flex;
-	// flex-direction: column;
-	// align-items: center;
-	// justify-content: space-around;
+	grid-column: 1/-1;
 	display: grid;
-
+	grid-template-columns: 1fr 2fr 1fr;
 	color: rgb(224, 224, 224);
 
 	&__section {
-		border: 2px solid green;
+		// border: 2px solid green;
 	}
 
 	&__main {
-		border: 2px solid blue;
-		// background-color: blue;
+		// border: 2px solid blue;
+		background-color: rgb(241, 244, 242);
+		color: rgb(55, 54, 54);
 	}
 	&__aside {
-		border: 2px solid red;
+		// border: 2px solid red;
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
-		// background-color: red;
 	}
 }
 
 .about-page {
-	grid-column-start: 1;
-	grid-column-end: -1;
+	grid-column: 1/-1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -317,37 +297,56 @@
 
 .card-editor {
 	color: white;
-	background-color: rgba(0, 255, 234, 0.06);
+	padding: 2rem;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 0.5fr 3fr 0.5fr;
-	// display: flex;
-	// flex-direction: column;
+	grid-template-columns: 1fr 0.1fr 1fr;
+	grid-template-rows: 0.2fr 3fr 0.1fr 0.1fr;
+	border: 2px solid $color-malachite-dark;
+	// CARD
+	&-card {
+		&--left {
+			grid-row-start: 2;
+			text-align: center;
+			border-radius: 1.5rem;
+			border: 2px solid $color-malachite-dark;
+		}
 
-	&__text-input {
-		// margin-top: 4rem; // TODO: Remove this and change to grid/flex
-		// margin-left: 6rem; // TODO: Remove this
-		height: 40rem;
-		width: 20rem;
-	}
+		&--right {
+			grid-row-start: 2;
+			grid-column-start: 3;
+			text-align: center;
+			border-radius: 1.5rem;
+			border: 2px solid $color-malachite-dark;
+		}
 
-	&--left {
-		//background-color: rgba(255, 0, 0, 0.229);
-		grid-row-start: 2;
-		text-align: center;
-		border-radius: 1.5rem;
-		border: 2px solid $color-malachite-dark;
-
-		// flex: 1;
-	}
-
-	&--right {
-		//background-color: rgba(0, 0, 255, 0.367);
-		grid-row-start: 2;
-		text-align: center;
-		border-radius: 1.5rem;
-		border: 2px solid $color-malachite-dark;
-		// flex: 1;
+		&__top {
+			padding: 0.5rem 0;
+			padding-bottom: 1rem;
+		}
+		&__heading {
+			font-size: 3.2rem;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+		}
+		&__center {
+			padding: 3rem;
+			padding-top: 3rem;
+			margin-top: 1.5rem;
+			background-color: rgba(#fff, 0.2);
+			border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
+		}
+		&__text-input {
+			height: 40rem;
+			//width: 20rem;
+			padding: 2rem;
+			font-size: 2.4rem;
+			border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
+			text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
+		}
+		&__bottom {
+			padding: 1rem;
+			margin-top: 2rem;
+			margin-bottom: 0.5rem;
+		}
 	}
 
 	&__buttons {
