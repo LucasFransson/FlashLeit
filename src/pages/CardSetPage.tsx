@@ -31,7 +31,6 @@ function CardSetPage() {
 	return (
 		<div className="cardset-page">
 			{cardCollection && <CardCollection {...cardCollection} />}
-			<Link to={'/about'}>About</Link>
 		</div>
 	);
 }

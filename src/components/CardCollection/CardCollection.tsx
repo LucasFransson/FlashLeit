@@ -53,6 +53,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					className="button-next button-next--wrong"
 					onClick={handleNextCard}
 					disabled={cardIndex === cards.length - 1} // if the Current Card is the last one, Disable the button
+					// 	disabled={isFlipped} !
 				>
 					Wrong
 				</button>
