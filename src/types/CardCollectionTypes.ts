@@ -3,6 +3,6 @@ import CardProps from './CardTypes';
 interface CardCollectionTypes {
 	id: number;
 	name: string;
-	cards: CardProps[];
+	flashCards: CardProps[];
 }
 export default CardCollectionTypes;

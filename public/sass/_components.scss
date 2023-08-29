@@ -233,6 +233,7 @@
 	letter-spacing: 1.2rem;
 }
 
+// NAVBAR FLEXBOX
 .navbar {
 	grid-column: 1/-1;
 	grid-row: 2/2;
@@ -280,12 +281,78 @@
 	}
 }
 
+// BAD NAV GRID
+// .navbar {
+// 	grid-column: 1/-1;
+// 	// grid-row: 2/2;
+
+// 	display: grid;
+// 	grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+
+// 	// background-color: #110d10;
+// 	background-color: rgb(241, 244, 242);
+// 	color: rgb(55, 54, 54);
+// 	border: 2px solid black;
+// 	box-shadow: 0px 4px 1rem 2px rgba(0, 0, 0, 0.3);
+
+// 	&__item {
+// 		// width: 17rem;
+// 		border: 1px solid rgba(103, 100, 100, 0.768);
+// 		border-bottom: 5px solid $color-malachite-dark;
+
+// 		display: flex;
+// 		align-items: center;
+// 		justify-content: center;
+// 		// color: rgb(229, 229, 229);
+// 		cursor: pointer;
+
+// 		&-link {
+// 			color: #110d10;
+// 		}
+
+// 		&:hover {
+// 			background-color: rgba(189, 237, 172, 0.823);
+// 		}
+// 		&--0 {
+// 			grid-column: 1/7;
+// 			justify-self: flex-start;
+// 			margin-left: 8rem;
+
+// 			// margin-right: auto;
+// 			border: 0;
+// 			// color: #110d10;
+// 			&:hover {
+// 				background-color: unset;
+// 			}
+// 			@media (max-width: 117rem) {
+// 				// width: 100vw;
+// 				justify-self: center;
+// 				grid-column: 1/-1;
+// 			}
+// 		}
+// 		&--1 {
+// 			// grid-column-start: 7;
+// 		}
+// 	}
+// }
+
 .footer {
 	color: white;
 	background-color: #110d10;
-	border-top: 2px solid #000;
+	border-top: 5px solid $color-malachite-light;
 	grid-column: 1/-1;
-	margin-top: 2rem;
+	grid-row: 6/-1;
+	// margin-top: 2rem;
+}
+.footer-list {
+	// height: 6rem;
+	display: flex;
+	// background-color: red;
+	justify-content: space-around;
+	align-items: center;
+
+	&__item {
+	}
 }
 
 .cardset-page {
@@ -311,15 +378,16 @@
 	&__main {
 		background-color: rgb(241, 244, 242);
 		color: rgb(55, 54, 54);
+
 		// grid-column: span 2;
 		box-shadow: 1rem 0px 2rem 2px rgba(0, 0, 0, 0.4);
 	}
 	&__aside {
 		border: 1px solid rgb(241, 244, 242);
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		align-items: center;
+		// display: flex;
+		// flex-direction: column;
+		// justify-content: space-around;
+		// align-items: center;
 		box-shadow: -1rem 0px 2rem 2px rgba(0, 0, 0, 0.4);
 		// grid-column: span 2;
 		// width: 100vw;
@@ -374,6 +442,7 @@
 	&-card {
 		&--left {
 			grid-row-start: 2;
+			grid-column-start: 1/2;
 			text-align: center;
 			border-radius: 1.5rem;
 			border: 1px solid rgb(241, 244, 242);
@@ -381,7 +450,7 @@
 
 		&--right {
 			grid-row-start: 2;
-			grid-column-start: 3;
+			grid-column-start: 2/2;
 			text-align: center;
 			border-radius: 1.5rem;
 			border: 1px solid rgb(241, 244, 242);
@@ -398,7 +467,7 @@
 		&__center {
 			padding: 3rem;
 			padding-top: 3rem;
-			margin-top: 1.5rem;
+			// margin-top: 1.5rem;
 			background-color: rgba(#fff, 0.2);
 			border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
 		}
@@ -413,7 +482,7 @@
 		&__bottom {
 			padding: 1rem;
 			margin-top: 2rem;
-			margin-bottom: 0.5rem;
+			// margin-bottom: 0.5rem;
 		}
 	}
 
@@ -434,6 +503,11 @@
 		color: white;
 		box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
 		transition: all 0.15s linear;
+		&:disabled {
+			background-color: gray;
+			border: 2px solid black;
+			color: gainsboro;
+		}
 
 		&--save {
 			border: 2px solid green;
@@ -464,4 +538,6 @@
 
 .btn-login {
 	background-color: transparent;
+	width: 100%;
+	height: 100%;
 }

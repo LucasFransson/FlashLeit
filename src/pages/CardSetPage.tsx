@@ -6,9 +6,13 @@ import LoadingIcon from '../components/LoadingIcon';
 import { Link } from 'react-router-dom';
 
 function CardSetPage() {
-	// Try to Fetch Card Collection from the server
+	//Try to Fetch Card Collection from the server
+	// const { data, loading, error } = useFetch<CardCollectionTypes[]>(
+	// 	'http://localhost:7000/CardCollections',
+	// 	[]
+	// );
 	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
-		'http://localhost:7000/CardCollections',
+		'https://flashleit.azure-api.net/api/collections/1',
 		[]
 	);
 
@@ -30,7 +34,8 @@ function CardSetPage() {
 	}
 	return (
 		<div className="cardset-page">
-			{cardCollection && <CardCollection {...cardCollection} />}
+			{/* {cardCollection && <CardCollection {...cardCollection} />} */}
+			<CardCollection flashCards={data.flashCards} name={data.title} />
 		</div>
 	);
 }
