@@ -257,7 +257,11 @@ html {
   align-items: center; }
 
 .cardset-page {
-  grid-column: 1/-1; }
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
 
 .home-page {
   grid-column: 1/-1;
@@ -321,11 +325,13 @@ html {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 4.5rem 0.5rem 6.5rem 0.5rem; }
   .card-editor-card__text-input {
+    background-color: rgba(255, 255, 255, 0.3);
     height: 40rem;
     padding: 2rem;
     font-size: 2.4rem;
     border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65); }
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
+    cursor: default; }
   .card-editor-card__bottom {
     padding: 1rem;
     margin-top: 2rem; }
@@ -344,7 +350,8 @@ html {
     .card-editor__btn:disabled {
       background-color: gray;
       border: 2px solid black;
-      color: gainsboro; }
+      color: gainsboro;
+      cursor: not-allowed; }
     .card-editor__btn--save {
       border: 2px solid green;
       background-color: rgba(105, 235, 105, 0.2); }
@@ -366,3 +373,6 @@ html {
   background-color: transparent;
   width: 100%;
   height: 100%; }
+
+.user-collections {
+  color: white; }

@@ -65,7 +65,7 @@ function CardEditor() {
 					</div>
 					<div className="card-editor-card__center">
 						<p className="card-editor-card__text">
-							<input
+							<textarea
 								ref={questionInput}
 								className="card-editor-card__text-input"
 								onChange={() =>
@@ -74,7 +74,7 @@ function CardEditor() {
 											answerInput.current.value === ''
 									)
 								}
-							></input>
+							></textarea>
 						</p>
 					</div>
 					<div className="card-editor-card__bottom">
@@ -89,7 +89,7 @@ function CardEditor() {
 					<p className="card-editor-card__heading">ANSWER</p>
 				</div>
 				<div className="card-editor-card__center">
-					<input
+					<textarea
 						ref={answerInput}
 						className="card-editor-card__text-input"
 						onChange={() =>
@@ -98,7 +98,7 @@ function CardEditor() {
 									answerInput.current.value === ''
 							)
 						}
-					></input>
+					></textarea>
 				</div>
 				<div className="card-editor-card__bottom">{/* <p>ANSWER</p> */}</div>
 			</div>

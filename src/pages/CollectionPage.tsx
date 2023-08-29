@@ -2,15 +2,16 @@ import React from 'react';
 import useFetch from '../hooks/useFetch';
 import CardCollection from '../components/CardCollection/CardCollection';
 import CardCollectionTypes from '../types/CardCollectionTypes';
-import LoadingIcon from '../components/LoadingIcon';
+import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
 import { Link } from 'react-router-dom';
 
-function CardSetPage() {
+function CollectionPage() {
 	//Try to Fetch Card Collection from the server
 	// const { data, loading, error } = useFetch<CardCollectionTypes[]>(
 	// 	'http://localhost:7000/CardCollections',
-	// 	[]
+	// 	[
 	// );
+
 	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
 		'https://flashleit.azure-api.net/api/collections/1',
 		[]
@@ -40,4 +41,4 @@ function CardSetPage() {
 	);
 }
 
-export default CardSetPage;
+export default CollectionPage;

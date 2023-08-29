@@ -40,14 +40,18 @@ function Navbar() {
 			</div>
 			{/* Logged in */}
 			<AuthenticatedTemplate>
-				<div className="navbar__item navbar__item--1 ">Discover</div>
+				<div className="navbar__item navbar__item--1 ">
+					<Link to={'/collection'} className=" navbar__item-link">
+						Discover
+					</Link>
+				</div>
 				<div className="navbar__item navbar__item--2">
 					<Link to={'/edit'} className=" navbar__item-link">
 						Create Cards
 					</Link>
 				</div>
 				<div className="navbar__item navbar__item--3">
-					<Link to={'/cardset'} className=" navbar__item-link">
+					<Link to={'/collections'} className=" navbar__item-link">
 						Collections
 					</Link>
 				</div>
