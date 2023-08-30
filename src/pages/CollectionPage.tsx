@@ -4,6 +4,7 @@ import CardCollection from '../components/CardCollection/CardCollection';
 import CardCollectionTypes from '../types/CardCollectionTypes';
 import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
 import { Link } from 'react-router-dom';
+import CardList from '../components/CardList/CardList';
 
 function CollectionPage() {
 	//Try to Fetch Card Collection from the server
@@ -37,6 +38,7 @@ function CollectionPage() {
 		<div className="cardset-page">
 			{/* {cardCollection && <CardCollection {...cardCollection} />} */}
 			<CardCollection flashCards={data.flashCards} name={data.title} />
+			<CardList flashCards={data.flashCards} name={data.title} />
 		</div>
 	);
 }
