@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingIcon from '../components/LoadingIcon';
+import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
 
 const About = () => {
 	return (
