@@ -2,13 +2,19 @@ import React from 'react';
 import useFetch from '../hooks/useFetch';
 import CardCollection from '../components/CardCollection/CardCollection';
 import CardCollectionTypes from '../types/CardCollectionTypes';
-import LoadingIcon from '../components/LoadingIcon';
+import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
 import { Link } from 'react-router-dom';
+import CardList from '../components/CardList/CardList';
 
-function CardSetPage() {
-	// Try to Fetch Card Collection from the server
+function CollectionPage() {
+	//Try to Fetch Card Collection from the server
+	// const { data, loading, error } = useFetch<CardCollectionTypes[]>(
+	// 	'http://localhost:7000/CardCollections',
+	// 	[
+	// );
+
 	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
-		'http://localhost:7000/CardCollections',
+		'https://flashleit.azure-api.net/api/collections/1',
 		[]
 	);
 
@@ -30,9 +36,11 @@ function CardSetPage() {
 	}
 	return (
 		<div className="cardset-page">
-			{cardCollection && <CardCollection {...cardCollection} />}
+			{/* {cardCollection && <CardCollection {...cardCollection} />} */}
+			<CardCollection flashCards={data.flashCards} name={data.title} />
+			<CardList flashCards={data.flashCards} name={data.title} />
 		</div>
 	);
 }
 
-export default CardSetPage;
+export default CollectionPage;

@@ -1,15 +1,15 @@
 //import React, { ComponentType, Suspense, useState, lazy } from 'react'; //TODO: Remove, only for testing loading state
-import React, { Suspense, useState, lazy } from "react"
-import { BrowserRouter as Router } from "react-router-dom"
-import { MsalProvider } from "@azure/msal-react"
-import RoutesConfig from "./utils/RoutesConfig"
-import LoadingIcon from "./components/LoadingIcon"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
+import React, { Suspense, useState, lazy } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { MsalProvider } from '@azure/msal-react';
+import RoutesConfig from './configs/RoutesConfig';
+import LoadingIcon from './components/LoadingIcon/LoadingIcon';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Navbar from './components/Navbar/Navbar';
 
-import "./App.css"
-import "../public/css/style.css"
+import './App.css';
+import '../public/css/style.css';
 
 function App({ instance }) {
 	return (
@@ -27,7 +27,7 @@ function App({ instance }) {
 				</div>
 			</Router>
 		</MsalProvider>
-	)
+	);
 }
 
 // LAZY LOADED COMPONENT FOR TESTING
@@ -43,4 +43,4 @@ function App({ instance }) {
 // 		)
 // );
 
-export default App
+export default App;
