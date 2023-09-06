@@ -1,0 +1,110 @@
+.card-editor {
+	color: white;
+	padding: 0 5rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 1fr 10fr 1fr;
+	gap: 1rem;
+	border: 1px solid $color-malachite-dark;
+
+	// CARD
+	&-card {
+		&--left {
+			grid-row-start: 2;
+			grid-column-start: 1/2;
+			text-align: center;
+			border-radius: 1.5rem;
+			border: 1px solid rgb(241, 244, 242);
+		}
+
+		&--right {
+			grid-row-start: 2;
+			grid-column-start: 2/2;
+			text-align: center;
+			border-radius: 1.5rem;
+			border: 1px solid rgb(241, 244, 242);
+		}
+
+		&__top {
+			padding: 0.5rem 0;
+			padding-bottom: 1rem;
+		}
+		&__heading {
+			font-size: 3.2rem;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+		}
+		&__center {
+			padding: 3rem;
+			padding-top: 3rem;
+			// margin-top: 1.5rem;
+			background-color: rgba(#fff, 0.2);
+			border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
+		}
+		&__text-input {
+			background-color: rgba(255, 255, 255, 0.3);
+			height: 40rem;
+			//width: 20rem;
+			padding: 2rem;
+			font-size: 2.4rem;
+			border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
+			text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
+			cursor: default; // Change to custom because "text" cursor is so small
+			resize: none;
+		}
+		&__bottom {
+			padding: 1rem;
+			margin-top: 2rem;
+			// margin-bottom: 0.5rem;
+		}
+	}
+
+	&__buttons {
+		// grid-column-start: 1;
+		// grid-column-end: -1;
+		grid-row-start: 3;
+		grid-column: 1/4;
+
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+
+		color: white;
+	}
+	&__btn {
+		color: white;
+		box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
+		transition: all 0.15s linear;
+		&:disabled {
+			background-color: gray;
+			border: 2px solid black;
+			color: gainsboro;
+			cursor: not-allowed;
+		}
+
+		&--save {
+			border: 2px solid green;
+			background-color: rgba(105, 235, 105, 0.2);
+
+			&:hover {
+				background-color: green;
+				border: 2px solid transparent;
+			}
+			&:active {
+				background-color: rgb(42, 177, 42);
+			}
+		}
+		&--cancel {
+			border: 2px solid red;
+			background-color: rgba(255, 0, 0, 0.2);
+
+			&:hover {
+				background-color: red;
+				border: 2px solid transparent;
+			}
+			&:active {
+				background-color: rgb(249, 82, 82);
+			}
+		}
+	}
+}

@@ -17,8 +17,8 @@ function Navbar() {
 	};
 	const Logout = async () => {
 		try {
-			await instance.logoutPopup();
-			setIdToken("");
+			await instance.logoutRedirect();
+			setIdToken('');
 		} catch (error) {
 			console.error(error);
 		}
@@ -51,7 +51,11 @@ function Navbar() {
 						Collections
 					</Link>
 				</div>
-				<div className="navbar__item navbar__item--4">Statistics</div>
+				<div className="navbar__item navbar__item--5">
+					<Link to={'/userpage'} className="navbar__item-link">
+						User page
+					</Link>
+				</div>
 				<div className="navbar__item navbar__item--5">
 					<button type="button" onClick={() => Logout()} className="btn-login">
 						Logout

@@ -14,6 +14,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 function App({ instance }) {
+	//function App() {
 	return (
 		<MsalProvider instance={instance}>
 			<Provider store={store}>

@@ -1,0 +1,19 @@
+.footer {
+	color: white;
+	background-color: #110d10;
+	// border-top: 5px solid $color-malachite-light;
+	border-top: 5px solid #0e0b0d;
+	grid-column: 1/-1;
+	grid-row: 6/-1;
+	// margin-top: 2rem;
+}
+.footer-list {
+	// height: 6rem;
+	display: flex;
+	// background-color: red;
+	justify-content: space-around;
+	align-items: center;
+
+	&__item {
+	}
+}

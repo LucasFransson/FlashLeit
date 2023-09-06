@@ -15,6 +15,13 @@ html {
   font-size: 62.5%;
   /* Is set to 62.5% using this formula : default font-size is 16px while We want 10px. 10/16 = 0.625 aka 62.5 % */ }
 
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 0.8fr 8fr 1fr; }
+
 @keyframes moveInRight {
   0% {
     opacity: 0;
@@ -72,6 +79,88 @@ html {
     transform: translateX(0rem) translateY(0.5rem) rotate(90deg); }
   100% {
     transform: translateX(0rem) translateY(0rem) rotate(90deg); } }
+
+.btn-login {
+  background-color: transparent;
+  width: 100%;
+  height: 100%; }
+
+.card-editor {
+  color: white;
+  padding: 0 5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 10fr 1fr;
+  gap: 1rem;
+  border: 1px solid #31ac44; }
+  .card-editor-card--left {
+    grid-row-start: 2;
+    grid-column-start: 1/2;
+    text-align: center;
+    border-radius: 1.5rem;
+    border: 1px solid #f1f4f2; }
+  .card-editor-card--right {
+    grid-row-start: 2;
+    grid-column-start: 2/2;
+    text-align: center;
+    border-radius: 1.5rem;
+    border: 1px solid #f1f4f2; }
+  .card-editor-card__top {
+    padding: 0.5rem 0;
+    padding-bottom: 1rem; }
+  .card-editor-card__heading {
+    font-size: 3.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); }
+  .card-editor-card__center {
+    padding: 3rem;
+    padding-top: 3rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4.5rem 0.5rem 6.5rem 0.5rem; }
+  .card-editor-card__text-input {
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 40rem;
+    padding: 2rem;
+    font-size: 2.4rem;
+    border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
+    cursor: default;
+    resize: none; }
+  .card-editor-card__bottom {
+    padding: 1rem;
+    margin-top: 2rem; }
+  .card-editor__buttons {
+    grid-row-start: 3;
+    grid-column: 1/4;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: white; }
+  .card-editor__btn {
+    color: white;
+    box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
+    transition: all 0.15s linear; }
+    .card-editor__btn:disabled {
+      background-color: gray;
+      border: 2px solid black;
+      color: gainsboro;
+      cursor: not-allowed; }
+    .card-editor__btn--save {
+      border: 2px solid green;
+      background-color: rgba(105, 235, 105, 0.2); }
+      .card-editor__btn--save:hover {
+        background-color: green;
+        border: 2px solid transparent; }
+      .card-editor__btn--save:active {
+        background-color: #2ab12a; }
+    .card-editor__btn--cancel {
+      border: 2px solid red;
+      background-color: rgba(255, 0, 0, 0.2); }
+      .card-editor__btn--cancel:hover {
+        background-color: red;
+        border: 2px solid transparent; }
+      .card-editor__btn--cancel:active {
+        background-color: #f95252; }
 
 .card {
   perspective: 100rem;
@@ -172,6 +261,47 @@ html {
     color: white;
     margin: 1.5rem 0; }
 
+.card-list {
+  color: white;
+  border: 2px solid #8d8888;
+  overflow: scroll;
+  height: 60vh; }
+  .card-list__title {
+    font-size: 3rem; }
+  .card-list__item {
+    border: 1px solid white;
+    list-style: none;
+    padding: 0.5rem; }
+    .card-list__item--highlight {
+      color: blue; }
+
+.footer {
+  color: white;
+  background-color: #110d10;
+  border-top: 5px solid #0e0b0d;
+  grid-column: 1/-1;
+  grid-row: 6/-1; }
+
+.footer-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+
+.header {
+  background-image: linear-gradient(to bottom, #25f947, #31ac44);
+  grid-column-start: 1;
+  grid-column-end: -1; }
+
+.header-logo-text--main {
+  font-size: 3.6rem;
+  font-weight: 800;
+  letter-spacing: 0.3rem; }
+
+.header-logo-text--sub {
+  font-size: 2.4rem;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 1.2rem; }
+
 .loading {
   perspective: 300rem;
   width: 5rem;
@@ -190,28 +320,6 @@ html {
     font-weight: 600;
     letter-spacing: 0.6rem;
     color: rgba(49, 172, 68, 0.7); }
-
-.app {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 0.8fr 8fr 1fr; }
-
-.header {
-  background-image: linear-gradient(to bottom, #25f947, #31ac44);
-  grid-column-start: 1;
-  grid-column-end: -1; }
-
-.header-logo-text--main {
-  font-size: 3.6rem;
-  font-weight: 800;
-  letter-spacing: 0.3rem; }
-
-.header-logo-text--sub {
-  font-size: 2.4rem;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 1.2rem; }
 
 .navbar {
   grid-column: 1/-1;
@@ -244,17 +352,12 @@ html {
       .navbar__item--0:hover {
         background-color: unset; }
 
-.footer {
-  color: white;
-  background-color: #110d10;
-  border-top: 5px solid #25f947;
+.about-page {
   grid-column: 1/-1;
-  grid-row: 6/-1; }
-
-.footer-list {
   display: flex;
-  justify-content: space-around;
-  align-items: center; }
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
 
 .cardset-page {
   grid-column: 1/-1;
@@ -286,97 +389,6 @@ html {
       .home-page__main, .home-page__aside, .home-page__section {
         width: 100vw; } }
 
-.about-page {
-  grid-column: 1/-1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
-
-.card-editor {
-  color: white;
-  padding: 0 5rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr 10fr 1fr;
-  gap: 1rem;
-  border: 1px solid #31ac44; }
-  .card-editor-card--left {
-    grid-row-start: 2;
-    grid-column-start: 1/2;
-    text-align: center;
-    border-radius: 1.5rem;
-    border: 1px solid #f1f4f2; }
-  .card-editor-card--right {
-    grid-row-start: 2;
-    grid-column-start: 2/2;
-    text-align: center;
-    border-radius: 1.5rem;
-    border: 1px solid #f1f4f2; }
-  .card-editor-card__top {
-    padding: 0.5rem 0;
-    padding-bottom: 1rem; }
-  .card-editor-card__heading {
-    font-size: 3.2rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); }
-  .card-editor-card__center {
-    padding: 3rem;
-    padding-top: 3rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4.5rem 0.5rem 6.5rem 0.5rem; }
-  .card-editor-card__text-input {
-    background-color: rgba(255, 255, 255, 0.3);
-    height: 40rem;
-    padding: 2rem;
-    font-size: 2.4rem;
-    border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
-    cursor: default; }
-  .card-editor-card__bottom {
-    padding: 1rem;
-    margin-top: 2rem; }
-  .card-editor__buttons {
-    grid-row-start: 3;
-    grid-column: 1/4;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    color: white; }
-  .card-editor__btn {
-    color: white;
-    box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
-    transition: all 0.15s linear; }
-    .card-editor__btn:disabled {
-      background-color: gray;
-      border: 2px solid black;
-      color: gainsboro;
-      cursor: not-allowed; }
-    .card-editor__btn--save {
-      border: 2px solid green;
-      background-color: rgba(105, 235, 105, 0.2); }
-      .card-editor__btn--save:hover {
-        background-color: green;
-        border: 2px solid transparent; }
-      .card-editor__btn--save:active {
-        background-color: #2ab12a; }
-    .card-editor__btn--cancel {
-      border: 2px solid red;
-      background-color: rgba(255, 0, 0, 0.2); }
-      .card-editor__btn--cancel:hover {
-        background-color: red;
-        border: 2px solid transparent; }
-      .card-editor__btn--cancel:active {
-        background-color: #f95252; }
-
-.btn-login {
-  background-color: transparent;
-  width: 100%;
-  height: 100%; }
-
-.user-collections {
-  color: white; }
-
 .card-list {
   color: white;
   border: 2px solid #8d8888;
@@ -388,3 +400,5 @@ html {
     border: 1px solid white;
     list-style: none;
     padding: 0.5rem; }
+    .card-list__item--highlight {
+      color: blue; }
