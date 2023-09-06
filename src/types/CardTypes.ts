@@ -7,6 +7,7 @@ interface CardTypes {
 	wrongAnswer2: string | null;
 	wrongAnswer3: string | null;
 	collectionId: number;
+
 	colorClass: string | null;
 	lastReviewed: Date | null; // Check if Date is the correct type to use
 }
