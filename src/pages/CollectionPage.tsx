@@ -7,14 +7,7 @@ import { Link } from 'react-router-dom';
 import CardList from '../components/CardList/CardList';
 
 function CollectionPage() {
-	//Try to Fetch Card Collection from the server
-	// const { data, loading, error } = useFetch<CardCollectionTypes[]>(
-	// 	'http://localhost:7000/CardCollections',
-	// 	[
-	// );
-
 	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
-
 		'https://flashleit.azure-api.net/api/collections/8/user/62',
 
 		[]

@@ -3,13 +3,13 @@
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
-  font-size: 1.6rem; }
+  box-sizing: inherit; }
 
 body {
   box-sizing: border-box;
   background-color: #242424;
-  font-family: 'Poppins', sans-serif; }
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem; }
 
 html {
   font-size: 62.5%;
@@ -275,6 +275,22 @@ html {
     .card-list__item--highlight {
       color: blue; }
 
+.collection-preview {
+  background-color: #c7c4c4;
+  border: 2px solid black;
+  height: 30rem;
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3%;
+  transition: all 0.3s ease-out; }
+  .collection-preview:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05); }
+
 .footer {
   color: white;
   background-color: #110d10;
@@ -396,6 +412,12 @@ html {
     width: 2rem;
     fill: #404040; }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+  justify-items: center;
+  overflow: scroll; }
+
 .about-page {
   grid-column: 1/-1;
   display: flex;
@@ -433,16 +455,6 @@ html {
       .home-page__main, .home-page__aside, .home-page__section {
         width: 100vw; } }
 
-.card-list {
-  color: white;
-  border: 2px solid #8d8888;
-  overflow: scroll;
-  height: 60vh; }
-  .card-list__title {
-    font-size: 3rem; }
-  .card-list__item {
-    border: 1px solid white;
-    list-style: none;
-    padding: 0.5rem; }
-    .card-list__item--highlight {
-      color: blue; }
+.discover-page {
+  grid-column: 1/-1;
+  display: grid; }

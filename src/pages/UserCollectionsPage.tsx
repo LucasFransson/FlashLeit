@@ -1,5 +1,5 @@
 function UserCollectionsPage() {
-	return <div className="user-collections">ALL COLLECTIONS</div>;
+	return <div className="user-collections-page">ALL COLLECTIONS</div>;
 }
 
 export default UserCollectionsPage;

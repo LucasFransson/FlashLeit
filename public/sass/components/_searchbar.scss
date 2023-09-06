@@ -23,6 +23,7 @@
 		@include responsive(phone) {
 			width: 70%;
 		}
+        
 		&:focus {
 			outline: none;
 			width: 50%; // grow from 30 to 50% on focus

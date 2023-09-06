@@ -20,7 +20,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 		// Check if the current card is the last card
 		if (cardIndex < flashCards.length - 1) {
 			// Increment the card index to show the next card
-			setCardIndex(cardIndex + 1);
+			setCardIndex(cardIndex + 1); 
 		}
 	};
 	console.log('Card Index:', cardIndex, 'Cards Length:', flashCards.length);

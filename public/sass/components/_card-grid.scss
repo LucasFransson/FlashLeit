@@ -1,0 +1,9 @@
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+	justify-items: center;
+	overflow: scroll;
+
+	&__item {
+	}
+}

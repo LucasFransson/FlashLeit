@@ -1,18 +1,4 @@
-.card-list {
-	color: white;
-	border: 2px solid rgb(141, 136, 136);
-	overflow: scroll;
-	height: 60vh;
-	&__title {
-		font-size: 3rem;
-	}
-	&__item {
-		border: 1px solid white;
-		list-style: none;
-		padding: 0.5rem;
-
-		&--highlight {
-			color: blue;
-		}
-	}
+.discover-page {
+	grid-column: 1/-1;
+	display: grid;
 }

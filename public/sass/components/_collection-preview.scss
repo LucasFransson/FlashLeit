@@ -1,0 +1,20 @@
+.collection-preview {
+	background-color: rgb(199, 196, 196);
+	border: 2px solid black;
+	height: 30rem;
+	width: 30rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 3%;
+	transition: all 0.3s ease-out;
+
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.9);
+		transform: scale(1.05);
+	}
+	&__title {
+	}
+}

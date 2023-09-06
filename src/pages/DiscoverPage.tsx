@@ -3,14 +3,10 @@ import SearchBar from '../components/Searchbar/Searchbar';
 import CardGrid from '../components/CardGrid/CardGrid';
 import useFetch from '../hooks/useFetch';
 import CardCollection from '../components/CardCollection/CardCollection';
+import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
 
 function DiscoverPage() {
 	const [searchTerm, setSearchTerm] = useState('');
-	// const collections =
-	// 	useFetch(
-	// 		'https://flashleit.azure-api.net/api/collections',
-	// 		[] as Array<any>
-	// 	) || [];
 
 	const {
 		data: collections,
@@ -29,20 +25,17 @@ function DiscoverPage() {
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	}
-	// const filteredCollections = collections.filter((c) =>
-	// 	c.name.toLowerCase().includes(searchTerm.toLowerCase())
-	// );
 
 	const filteredCollections = Array.isArray(collections)
 		? collections.filter((c) =>
-				c.name.toLowerCase().includes(searchTerm.toLowerCase())
+				c.title.toLowerCase().includes(searchTerm.toLowerCase())
 		  )
 		: [];
 	return (
-		<>
+		<div className="discover-page">
 			<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-			<CardGrid items={filteredCollections} Component={CardCollection} />
-		</>
+			<CardGrid items={filteredCollections} Component={CollectionPreview} />
+		</div>
 	);
 }
 
