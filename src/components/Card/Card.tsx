@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import CardProps from '../../types/CardTypes';
 
 const Card: React.FC<CardProps> = ({
+	id,
+	collectionId,
 	question,
-	correctAnswer,
-	// WrongAnswer1,
-	// WrongAnswer2,
-	// WrongAnswer3,
-	// CollectionId,
+	answer,
+	leitnerIndex,
+	lastReviewed,
 	colorClass,
 }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
@@ -43,7 +43,7 @@ const Card: React.FC<CardProps> = ({
 						<p className="card__heading">ANSWER</p>
 					</div>
 					<div className="card__center">
-						<p className="card__text">{correctAnswer}</p>
+						<p className="card__text">{answer}</p>
 					</div>
 					<div className="card__bottom">
 						{/* <p>ANSWER</p> */}

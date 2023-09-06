@@ -44,7 +44,9 @@ function Navbar() {
 			{/* Logged in */}
 			<AuthenticatedTemplate>
 				<div className="navbar__item navbar__item--1 ">
-					<Link to={"/collection"} className=" navbar__item-link">
+
+					<Link to={'/discover'} className=" navbar__item-link">
+
 						Discover
 					</Link>
 				</div>
