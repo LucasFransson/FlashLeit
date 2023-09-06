@@ -6,8 +6,8 @@ import CardCollectionTypes from '../../types/CardCollectionTypes';
 interface CardCollectionProps extends CardCollectionTypes {}
 
 const CardCollection: React.FC<CardCollectionProps> = ({
+	title,
 	flashCards = [],
-	name = 'Something Went Wrong',
 }) => {
 	// useState hook for managing current card index
 	const [cardIndex, setCardIndex] = useState(0);
@@ -26,7 +26,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	console.log('Card Index:', cardIndex, 'Cards Length:', flashCards.length);
 	return (
 		<div className="card-collection">
-			<h1>{name}</h1>
+			<h1>{title}</h1>
 			{/* Check if there are any cards AND that the current card index is within bounds */}
 			{flashCards.length > 0 && cardIndex < flashCards.length && (
 				// Render the Card at cardIndex from the cards array
@@ -34,13 +34,11 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					key={cardIndex} // This Key Forces a re-mount of the Card Component, causing the useState hook to reset the components initial value, ensuring that the Card starts with the front side facing up
 					id={flashCards[cardIndex].id}
 					question={flashCards[cardIndex].question}
-					correctAnswer={flashCards[cardIndex].correctAnswer}
-					wrongAnswer1={null}
-					wrongAnswer2={null}
-					wrongAnswer3={null}
-					collectionId={flashCards[cardIndex].id} // Not correct? This is the card id not the collection id
+					answer={flashCards[cardIndex].answer}
+					collectionId={flashCards[cardIndex].collectionId} // Not correct? This is the card id not the collection id
+					leitnerIndex={flashCards[cardIndex].leitnerIndex}
+					lastReviewed={flashCards[cardIndex].lastReviewed} 
 					colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
-					lastReviewed={null} // Remove null
 				/>
 			)}
 			<p className="card-collection__counter">
