@@ -352,6 +352,50 @@ html {
       .navbar__item--0:hover {
         background-color: unset; }
 
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem; }
+  .search__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: #d9d9d9;
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    width: 40%;
+    margin-right: -3.5rem;
+    transition: all 0.2s; }
+    @media only screen and (max-width: 56.25em) {
+      .search__input {
+        width: 70%;
+        margin-bottom: 2rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .search__input {
+        width: 70%; } }
+    .search__input:focus {
+      outline: none;
+      width: 50%;
+      background-color: #d9d9d9; }
+    .search__input::placeholder {
+      font-weight: 100;
+      color: #404040; }
+  .search__input:focus + .search__button {
+    background-color: #d9d9d9; }
+  .search__button {
+    border: none;
+    background-color: #d9d9d9; }
+    .search__button:focus {
+      outline: none; }
+    .search__button:active {
+      transform: translateY(2px); }
+  .search__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: #404040; }
+
 .about-page {
   grid-column: 1/-1;
   display: flex;

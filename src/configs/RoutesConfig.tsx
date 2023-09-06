@@ -5,6 +5,7 @@ import AboutPage from '../pages/AboutPage';
 import EditCardPage from '../pages/EditCardPage';
 import UserCollectionsPage from '../pages/UserCollectionsPage';
 import UserPage from '../pages/UserPage';
+import DiscoverPage from '../pages/DiscoverPage';
 
 function RoutesConfig() {
 	return (
@@ -15,6 +16,7 @@ function RoutesConfig() {
 			<Route path="/edit" element={<EditCardPage />} />
 			<Route path="/collections" element={<UserCollectionsPage />} />
 			<Route path="/userpage" element={<UserPage />} />
+			<Route path="/discover" element={<DiscoverPage />} />
 		</Routes>
 	);
 }

@@ -14,7 +14,9 @@ function CollectionPage() {
 	// );
 
 	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
+
 		'https://flashleit.azure-api.net/api/collections/8/user/62',
+
 		[]
 	);
 
