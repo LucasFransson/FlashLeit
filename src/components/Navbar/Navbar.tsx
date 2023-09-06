@@ -1,19 +1,15 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import {
-	AuthenticatedTemplate,
-	UnauthenticatedTemplate,
-	useMsal,
-} from '@azure/msal-react';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 
 function Navbar() {
 	// TODO: Refactor login/logout to login button component
 	const { instance } = useMsal();
-	const [idToken, setIdToken] = useState('');
+	const [idToken, setIdToken] = useState("");
 
 	const Login = async () => {
 		try {
-			let { idToken } = await instance.loginPopup();
+			let { idToken } = await instance.loginRedirect();
 			setIdToken(idToken);
 		} catch (error) {
 			console.error(error);
@@ -22,7 +18,7 @@ function Navbar() {
 	const Logout = async () => {
 		try {
 			await instance.logoutPopup();
-			setIdToken('');
+			setIdToken("");
 		} catch (error) {
 			console.error(error);
 		}
@@ -31,7 +27,7 @@ function Navbar() {
 	return (
 		<div className="navbar">
 			<div className="navbar__item navbar__item--0">
-				<Link to={'/'}>
+				<Link to={"/"}>
 					<p className="navbar__item-link">
 						<span className="header-logo-text--main">FLASH</span>
 						<span className="header-logo-text--sub">LEIT</span>
@@ -41,17 +37,17 @@ function Navbar() {
 			{/* Logged in */}
 			<AuthenticatedTemplate>
 				<div className="navbar__item navbar__item--1 ">
-					<Link to={'/collection'} className=" navbar__item-link">
+					<Link to={"/collection"} className=" navbar__item-link">
 						Discover
 					</Link>
 				</div>
 				<div className="navbar__item navbar__item--2">
-					<Link to={'/edit'} className=" navbar__item-link">
+					<Link to={"/edit"} className=" navbar__item-link">
 						Create Cards
 					</Link>
 				</div>
 				<div className="navbar__item navbar__item--3">
-					<Link to={'/collections'} className=" navbar__item-link">
+					<Link to={"/collections"} className=" navbar__item-link">
 						Collections
 					</Link>
 				</div>
