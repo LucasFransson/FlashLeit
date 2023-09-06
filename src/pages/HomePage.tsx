@@ -9,12 +9,13 @@ import {
 function HomePage() {
 	// TODO: Refactor login/logout to login button component
 	const { instance } = useMsal();
-	const [idToken, setIdToken] = useState('');
+	//const [idToken, setIdToken] = useState('');
 
 	const Login = async () => {
 		try {
-			let { idToken } = await instance.loginPopup();
-			setIdToken(idToken);
+			await instance.loginRedirect();
+			// let { idToken } = await instance.loginRedirect();
+			//setIdToken(idToken);
 		} catch (error) {
 			console.error(error);
 		}
@@ -22,7 +23,7 @@ function HomePage() {
 	const Logout = async () => {
 		try {
 			await instance.logoutPopup();
-			setIdToken('');
+			//setIdToken('');
 		} catch (error) {
 			console.error(error);
 		}
