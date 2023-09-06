@@ -1,9 +1,31 @@
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useGetUserByIdQuery } from "../redux/api/apiSlice";
+import { RootState } from "../redux/store";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+
 function HomePage() {
+	// This prevents calling the api with userId = null on page render. Sets to "false" when userId gets the value from ID-Token.
+	const [skip, setSkip] = useState(true);
+	// Gets the userId from the store (global state)
+	const { userId } = useSelector((state: RootState) => state.userId);
+	// Makes an api for the user if its not already in the cache
+	const { data: authUser } = useGetUserByIdQuery(userId, { skip });
+
+	useEffect(() => {
+		if (userId != null) {
+			setSkip(false);
+		}
+	}, [userId]);
+
 	return (
 		<>
 			<div className="home-page">
 				<section className="home-page__section">Section</section>
-				<main className="home-page__main">Main</main>
+				<main className="home-page__main">
+					<AuthenticatedTemplate>Welcome, {authUser ? <p>User from Store: {authUser[0].userName}</p> : <p>User data is not available.</p>}</AuthenticatedTemplate>
+					<UnauthenticatedTemplate>Woop</UnauthenticatedTemplate>
+				</main>
 				<aside className="home-page__aside"></aside>
 			</div>
 		</>
