@@ -1,16 +1,24 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect } from "react";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { useDispatch } from "react-redux";
+import { setUserIdFromToken } from "../../redux/userIdSlice";
 
 function Navbar() {
-	// TODO: Refactor login/logout to login button component
 	const { instance } = useMsal();
-	const [idToken, setIdToken] = useState("");
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const account = instance.getAllAccounts()[0];
+
+		if (account != null) {
+			dispatch(setUserIdFromToken(account.idToken));
+		}
+	});
 
 	const Login = async () => {
 		try {
-			let { idToken } = await instance.loginRedirect();
-			setIdToken(idToken);
+			await instance.loginRedirect();
 		} catch (error) {
 			console.error(error);
 		}
@@ -18,7 +26,6 @@ function Navbar() {
 	const Logout = async () => {
 		try {
 			await instance.logoutRedirect();
-			setIdToken('');
 		} catch (error) {
 			console.error(error);
 		}
@@ -52,7 +59,7 @@ function Navbar() {
 					</Link>
 				</div>
 				<div className="navbar__item navbar__item--5">
-					<Link to={'/userpage'} className="navbar__item-link">
+					<Link to={"/userpage"} className="navbar__item-link">
 						User page
 					</Link>
 				</div>

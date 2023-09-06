@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getUserIdFromIdToken } from "../utils/getUserIdFromIdToken";
 
 interface UserIdState {
-	userId: number | undefined;
+	userId: number | null | undefined;
 }
 
 const initialState = {
-	userId: undefined,
+	userId: null,
 } as UserIdState;
 
 export const userIdSlice = createSlice({
