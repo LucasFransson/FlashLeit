@@ -12,6 +12,7 @@ import './App.css';
 import '../public/css/style.css';
 
 function App({ instance }) {
+	//function App() {
 	return (
 		<MsalProvider instance={instance}>
 			<Router>

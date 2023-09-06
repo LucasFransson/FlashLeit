@@ -13,7 +13,7 @@ function Navbar() {
 
 	const Login = async () => {
 		try {
-			let { idToken } = await instance.loginPopup();
+			let { idToken } = await instance.loginRedirect();
 			setIdToken(idToken);
 		} catch (error) {
 			console.error(error);
@@ -21,7 +21,7 @@ function Navbar() {
 	};
 	const Logout = async () => {
 		try {
-			await instance.logoutPopup();
+			await instance.logoutRedirect();
 			setIdToken('');
 		} catch (error) {
 			console.error(error);
