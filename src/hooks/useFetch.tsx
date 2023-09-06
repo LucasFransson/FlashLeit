@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 
 type FetchState<T> = {
+	[x: string]: any;
 	data: T | null;
 	loading: boolean;
 	error: Error | null;
