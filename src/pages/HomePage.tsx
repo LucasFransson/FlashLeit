@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useGetUserByIdQuery } from "../redux/api/apiSlice";
-import { RootState } from "../redux/store";
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useGetUserByIdQuery } from '../redux/api/apiSlice';
+import { RootState } from '../redux/store';
+import {
+	AuthenticatedTemplate,
+	UnauthenticatedTemplate,
+} from '@azure/msal-react';
 
 function HomePage() {
 	// This prevents calling the api with userId = null on page render. Sets to "false" when userId gets the value from ID-Token.
@@ -21,15 +24,34 @@ function HomePage() {
 	return (
 		<>
 			<div className="home-page">
-				<section className="home-page__section">Section</section>
+				{/* <section className="home-page__section">Section</section> */}
 				<main className="home-page__main">
-					<AuthenticatedTemplate>Welcome, {authUser ? <p>User from Store: {authUser[0].userName}</p> : <p>User data is not available.</p>}</AuthenticatedTemplate>
-					<UnauthenticatedTemplate>Woop</UnauthenticatedTemplate>
+					<div className="home-page__title">
+						<h1 className="home-page__title--head">FLASHLEIT</h1>
+						<h3 className="home-page__title--sub">
+							Master your studies, one{' '}
+							<span className="home-page__title--sub__span">Flash </span>at a
+							time
+						</h3>{' '}
+						<button className="btn-cta">GET STARTED</button>
+					</div>
 				</main>
-				<aside className="home-page__aside"></aside>
+				{/* <aside className="home-page__aside"></aside> */}
 			</div>
 		</>
 	);
 }
 
 export default HomePage;
+
+//<AuthenticatedTemplate>
+{
+	/* Welcome,{' '}
+						{authUser ? (
+							<p>User from Store: {authUser[0].userName}</p>
+						) : (
+							<p>User data is not available.</p>
+						)}
+					</AuthenticatedTemplate>
+					<UnauthenticatedTemplate>Woop</UnauthenticatedTemplate> */
+}
