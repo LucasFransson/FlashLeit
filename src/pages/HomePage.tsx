@@ -30,10 +30,10 @@ function HomePage() {
 						<h1 className="home-page__title--head">FLASHLEIT</h1>
 						<h3 className="home-page__title--sub">
 							Master your studies, one{' '}
-							<span className="home-page__title--sub__span">Flash </span>at a
-							time
+							<span className="home-page__title--sub__span">Flash </span>
+							at a time
 						</h3>{' '}
-						<button className="btn-cta">GET STARTED</button>
+						<button className="btn-cta btn-cta--animated">GET STARTED</button>
 					</div>
 				</main>
 				{/* <aside className="home-page__aside"></aside> */}

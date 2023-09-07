@@ -12,6 +12,20 @@
 	}
 }
 
+@keyframes moveInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-10rem);
+	}
+	80% {
+		transform: translateX(1rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
 @keyframes moveInBottom {
 	0% {
 		opacity: 0;
@@ -79,6 +93,27 @@
 	}
 	100% {
 		transform: translateX(0rem) translateY(0rem) rotate(90deg);
+	}
+}
+
+@keyframes fadeColor {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes changeColorToGreen {
+	0% {
+		color: rgb(245, 243, 243);
+	}
+	10% {
+		color: #59f372;
+	}
+	100% {
+		color: #59f372;
 	}
 }
 
