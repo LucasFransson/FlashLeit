@@ -12,7 +12,7 @@ function RoutesConfig() {
 		<Routes>
 			<Route path="/" element={<HomePage />} />
 			<Route path="/about" element={<AboutPage />} />
-			<Route path="/collection" element={<CardSetPage />} />
+			<Route path="/collection/:id" element={<CardSetPage />} />
 			<Route path="/edit" element={<EditCardPage />} />
 			<Route path="/collections" element={<UserCollectionsPage />} />
 			<Route path="/userpage" element={<UserPage />} />

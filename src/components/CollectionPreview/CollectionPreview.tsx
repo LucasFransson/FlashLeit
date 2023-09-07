@@ -1,5 +1,6 @@
 import React from 'react';
 import CardTypes from '../../types/CardTypes';
+import { useNavigate } from 'react-router-dom';
 
 interface CollectionPreviewTypes {
 	id: number;
@@ -13,6 +14,8 @@ interface CollectionPreviewTypes {
 	isPublic?: boolean;
 }
 
+
+
 const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 	id,
 	userId,
@@ -24,8 +27,15 @@ const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 	amountOfCompletedRuns,
 	isPublic,
 }) => {
+
+const navigate = useNavigate();
+
+const openCollection = (collectionId: number) => {
+	navigate(`/collection/${collectionId}`)
+}
+
 	return (
-		<div className="collection-preview">
+		<div className="collection-preview" onClick={() => openCollection(id)} >
 			<h2 className="collection-preview__title">{title}</h2>
 		</div>
 	);

@@ -17,6 +17,8 @@
 // 	);
 // }
 
+
+
 function CardGrid({ items, Component }) {
 	return (
 		<>

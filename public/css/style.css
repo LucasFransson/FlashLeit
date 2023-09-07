@@ -458,3 +458,8 @@ html {
 .discover-page {
   grid-column: 1/-1;
   display: grid; }
+
+.user-collections-page {
+  grid-column: 1/-1;
+  display: grid;
+}
