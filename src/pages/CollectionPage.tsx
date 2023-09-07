@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store'; 
 import useFetch from '../hooks/useFetch';
 import CardCollection from '../components/CardCollection/CardCollection';
 import CardCollectionTypes from '../types/CardCollectionTypes';
@@ -14,9 +16,10 @@ interface RouteParams {
 function CollectionPage() {
 
 	const { id } = useParams<RouteParams>();
+	const { userId } = useSelector((state: RootState) => state.userId);
 
 	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
-		`https://flashleit.azure-api.net/api/collections/${id}/user/60`,
+		`https://flashleit.azure-api.net/api/collections/${id}/user/${userId}`,
 
 		[]
 	);
