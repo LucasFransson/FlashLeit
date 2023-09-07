@@ -10,9 +10,13 @@
 		border: 1px solid white;
 		list-style: none;
 		padding: 0.5rem;
-
-		&--highlight {
-			color: blue;
-		}
+		color: black;
+		background-color: rgb(150, 151, 156);
 	}
+}
+
+.highlight {
+	background-color: rgb(175, 255, 252);
+	border: 3px solid rgb(124, 245, 241);
+	font-weight: 500;
 }

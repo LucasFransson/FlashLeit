@@ -274,12 +274,14 @@ a {
     .card__btn-flip:hover {
       background-color: rgba(255, 255, 255, 0.25); }
 
-.button-next--wrong {
-  background-color: #b33d47;
-  margin-right: 6rem; }
-
-.button-next--correct {
-  background-color: #50b950; }
+.button-next {
+  padding: 1rem 3rem;
+  border-radius: 0.8rem; }
+  .button-next--wrong {
+    background-color: #b33d47;
+    margin-right: 6rem; }
+  .button-next--correct {
+    background-color: #50b950; }
 
 .card-collection {
   color: #f2f2f2;
@@ -300,9 +302,14 @@ a {
   .card-list__item {
     border: 1px solid white;
     list-style: none;
-    padding: 0.5rem; }
-    .card-list__item--highlight {
-      color: blue; }
+    padding: 0.5rem;
+    color: black;
+    background-color: #96979c; }
+
+.highlight {
+  background-color: #affffc;
+  border: 3px solid #7cf5f1;
+  font-weight: 500; }
 
 .collection-preview {
   background-color: #c7c4c4;
