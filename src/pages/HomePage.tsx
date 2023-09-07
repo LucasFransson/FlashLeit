@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useGetUserByIdQuery } from '../redux/api/apiSlice';
+import { useGetUserByIdQuery } from '../redux/api/usersSlice';
 import { RootState } from '../redux/store';
 import {
 	AuthenticatedTemplate,
