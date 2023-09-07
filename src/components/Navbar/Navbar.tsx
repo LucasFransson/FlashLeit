@@ -8,12 +8,30 @@ function Navbar() {
 	const { instance } = useMsal();
 	const dispatch = useDispatch();
 
-	useEffect(() => {
+	const IdTokenHandler = async () => {
 		const account = instance.getAllAccounts()[0];
 
-		if (account != null) {
-			dispatch(setUserIdFromToken(account.idToken));
+		if (account == null) return;
+
+		if (account.idToken == undefined) {
+			const silentRequest = {
+				scopes: ["openid"],
+				account: account,
+			};
+
+			await instance.initialize();
+			await instance
+				.acquireTokenSilent(silentRequest)
+				.then(res => dispatch(setUserIdFromToken(res.idToken)))
+				.catch(error => console.log(error));
+			return;
 		}
+
+		dispatch(setUserIdFromToken(account.idToken));
+	};
+
+	useEffect(() => {
+		IdTokenHandler();
 	});
 
 	const Login = async () => {
@@ -44,9 +62,7 @@ function Navbar() {
 			{/* Logged in */}
 			<AuthenticatedTemplate>
 				<div className="navbar__item navbar__item--1 ">
-
-					<Link to={'/discover'} className=" navbar__item-link">
-
+					<Link to={"/discover"} className=" navbar__item-link">
 						Discover
 					</Link>
 				</div>
