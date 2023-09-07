@@ -19,6 +19,14 @@ function CollectionPage() {
 	const { userId } = useSelector((state: RootState) => state.userId);
 	// Initializing the CardIndex var for passing to child components
 	const [currentCardIndex, setCurrentCardIndex] = useState(0);
+	// Initializing the answerStatus var that handles the "Wrong/Correct" buttons for passing to child components
+	// const [answerStatus, setAnswerStatus] = useState<'correct' | 'wrong' | null>(
+	// 	null
+	// );
+
+	const [markedCards, setMarkedCards] = useState<{
+		[key: number]: 'correct' | 'wrong';
+	}>({});
 
 	// Fetching CardCollection with the passed CollectionID & UserID
 	const { data, loading, error } = useFetch<CardCollectionTypes[]>(
@@ -53,15 +61,19 @@ function CollectionPage() {
 				<>
 					<CardCollection
 						flashCards={data.flashCards}
-						name={data.title}
+						title={data.title}
 						cardIndex={currentCardIndex}
 						setCardIndex={setCurrentCardIndex}
+						// setAnswerStatus={setAnswerStatus}
+						setMarkedCards={setMarkedCards}
 						id={data.id}
 					/>
 					<CardList
 						flashCards={data.flashCards}
-						name={data.title}
+						title={data.title}
 						highlightedIndex={currentCardIndex}
+						// answerStatus={answerStatus}
+						markedCards={markedCards}
 					/>
 				</>
 			)}

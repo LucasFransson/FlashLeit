@@ -307,9 +307,15 @@ a {
     background-color: #96979c; }
 
 .highlight {
-  background-color: #affffc;
-  border: 3px solid #7cf5f1;
+  background-color: #e8fafa;
+  border: 3px solid #d5fcfb;
   font-weight: 500; }
+
+.card-list__item--correct {
+  background-color: #a1f4a1; }
+
+.card-list__item--wrong {
+  background-color: #f48b8b; }
 
 .collection-preview {
   background-color: #c7c4c4;

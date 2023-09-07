@@ -16,7 +16,15 @@
 }
 
 .highlight {
-	background-color: rgb(175, 255, 252);
-	border: 3px solid rgb(124, 245, 241);
+	background-color: rgb(232, 250, 250);
+	border: 3px solid rgb(213, 252, 251);
 	font-weight: 500;
+}
+
+.card-list__item--correct {
+	background-color: rgb(161, 244, 161); // or any other styling
+}
+
+.card-list__item--wrong {
+	background-color: rgb(244, 139, 139); // or any other styling
 }

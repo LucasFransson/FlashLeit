@@ -7,6 +7,10 @@ import { useUpdateCollection } from '../../utils/collectionAmountsIncrementer';
 interface CardCollectionProps extends CardCollectionTypes {
 	cardIndex: number;
 	setCardIndex: (index: number) => void;
+	setMarkedCards: React.Dispatch<
+		React.SetStateAction<{ [key: number]: 'correct' | 'wrong' }>
+	>;
+	// setAnswerStatus: (status: string) => void;
 }
 
 const CardCollection: React.FC<CardCollectionProps> = ({
@@ -14,6 +18,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	title,
 	cardIndex,
 	setCardIndex,
+	// setAnswerStatus,
+	setMarkedCards,
 	flashCards = [],
 }) => {
 	// useState hook for managing current card index
@@ -28,14 +34,20 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
 			updateCollectionsCounter(id, 'IncrementIncorrectAnswers');
+			// setAnswerStatus('correct');
+			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'correct' }));
 		} else {
 			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
+			// setAnswerStatus('wrong');
+			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'wrong' }));
 		}
 
 		// Check if the current card is the last card
 		if (cardIndex < flashCards.length - 1) {
 			// Increment the card index to show the next card
 			setCardIndex(cardIndex + 1);
+		} else {
+			console.log('Finished answering all cards!');
 		}
 	};
 
@@ -66,7 +78,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				<button
 					className="btn button-next button-next--wrong"
 					onClick={() => handleNextCard(false)}
-					disabled={cardIndex === flashCards.length - 1} // if the Current Card is the last one, Disable the button
+					//disabled={cardIndex === flashCards.length} // if the Current Card is the last one, Disable the button
 					// 	disabled={isFlipped} !
 				>
 					Wrong
@@ -74,7 +86,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				<button
 					className="button-next button-next--correct"
 					onClick={() => handleNextCard(true)}
-					disabled={cardIndex === flashCards.length - 1} // if the Current Card is the last one, Disable the button
+					//disabled={cardIndex === flashCards.length} // if the Current Card is the last one, Disable the button
 				>
 					Correct
 				</button>
