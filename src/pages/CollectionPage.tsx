@@ -43,7 +43,7 @@ function CollectionPage() {
 	return (
 		<div className="cardset-page">
 			{/* {cardCollection && <CardCollection {...cardCollection} />} */}
-			<CardCollection flashCards={data.flashCards} name={data.title} />
+			<CardCollection flashCards={data.flashCards} name={data.title} id={data.id} />
 			<CardList flashCards={data.flashCards} name={data.title} />
 		</div>
 	);

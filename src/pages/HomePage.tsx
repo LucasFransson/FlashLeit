@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useGetUserByIdQuery } from '../redux/api/apiSlice';
+import { useGetUserByIdQuery } from '../redux/api/usersSlice';
 import { RootState } from '../redux/store';
 import {
 	AuthenticatedTemplate,
@@ -44,14 +44,14 @@ function HomePage() {
 
 export default HomePage;
 
-//<AuthenticatedTemplate>
+{/* <AuthenticatedTemplate>
 {
-	/* Welcome,{' '}
+	Welcome,{' '}
 						{authUser ? (
 							<p>User from Store: {authUser[0].userName}</p>
 						) : (
 							<p>User data is not available.</p>
 						)}
 					</AuthenticatedTemplate>
-					<UnauthenticatedTemplate>Woop</UnauthenticatedTemplate> */
-}
+					<UnauthenticatedTemplate>Woop</UnauthenticatedTemplate>
+} */}

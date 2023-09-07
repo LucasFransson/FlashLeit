@@ -2,21 +2,34 @@ import React, { useState } from 'react';
 import Card from '../Card/Card';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
 import CardCollectionTypes from '../../types/CardCollectionTypes';
+import { useUpdateCollection } from '../../utils/collectionAmountsIncrementer';
+
 
 interface CardCollectionProps extends CardCollectionTypes {}
 
 const CardCollection: React.FC<CardCollectionProps> = ({
+	id,
 	title,
 	flashCards = [],
 }) => {
 	// useState hook for managing current card index
 	const [cardIndex, setCardIndex] = useState(0);
 
+	const updateCollectionsCounter = useUpdateCollection(); 
+
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
 
 	// Function for handling/switching to the next card
-	const handleNextCard = () => {
+	const handleNextCard = (isCorrect: boolean) => {
+
+		if (isCorrect) {
+			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
+
+		} else {
+			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
+		}
+
 		// Check if the current card is the last card
 		if (cardIndex < flashCards.length - 1) {
 			// Increment the card index to show the next card
@@ -49,7 +62,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				{/* Div for Buttons */}
 				<button
 					className="button-next button-next--wrong"
-					onClick={handleNextCard}
+					onClick={() => handleNextCard(false)}
 					disabled={cardIndex === flashCards.length - 1} // if the Current Card is the last one, Disable the button
 					// 	disabled={isFlipped} !
 				>
@@ -57,7 +70,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				</button>
 				<button
 					className="button-next button-next--correct"
-					onClick={handleNextCard}
+					onClick={() => handleNextCard(true)}
 					disabled={cardIndex === flashCards.length - 1} // if the Current Card is the last one, Disable the button
 				>
 					Correct
