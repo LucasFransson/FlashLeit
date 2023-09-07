@@ -34,17 +34,17 @@ function DiscoverPage() {
 	return (
 		<div className="discover-page">
 			<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-			<CardGrid items={filteredCollections} Component={CollectionPreview} />
+			{/* <CardGrid items={filteredCollections} Component={CollectionPreview} /> */}
+			<CardGrid
+				items={filteredCollections}
+				Component={CollectionPreview}
+				linkPrefix="collection"
+			/>
 		</div>
 	);
 }
 
 export default DiscoverPage;
-
-// const burgers = useFetch('http://localhost:7000/burgers', []);
-// 	const filteredBurgers = burgers.filter((burger) =>
-// 		burger.name.toLowerCase().includes(searchTerm.toLowerCase())
-// 	);
 
 // 	return (
 // 		<>
