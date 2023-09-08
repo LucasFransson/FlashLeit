@@ -24,8 +24,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	const handleNextCard = (isCorrect: boolean) => {
 
 		if (isCorrect) {
-			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
-
+			updateCollectionsCounter(id, "IncrementCorrectAnswers");
 		} else {
 			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
 		}

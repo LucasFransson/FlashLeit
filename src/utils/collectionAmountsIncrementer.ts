@@ -9,8 +9,5 @@ export const useUpdateCollection = () => {
     mutate({id: id, category: category});
   }
 
-
   return updateCollectionCounter;
-
-
 }

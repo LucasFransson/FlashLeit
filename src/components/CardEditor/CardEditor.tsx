@@ -21,9 +21,6 @@ function CardEditor() {
 			// question: 'Test Post Question',
 			question: questionValue,
 			correctAnswer: answerValue,
-			wrongAnswer1: null,
-			wrongAnswer2: null,
-			wrongAnswer3: null,
 			collectionId: 1, // TODO: Replace with {id}
 		};
 

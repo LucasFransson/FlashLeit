@@ -1,9 +1,10 @@
+import CardCollectionTypes from "../../types/CardCollectionTypes";
 import { apiSlice } from "./apiSlice";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
-		getCollectionsByUserId: builder.query({
-			query: id => `api/collections/${id}`,
+		getCollectionsByUserId: builder.query<CardCollectionTypes[], number>({
+			query: id => `api/collections/user/${id}`,
 		}),
 		getCollectionByIdAndUserId: builder.query({
 			query: args => {
