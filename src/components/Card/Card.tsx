@@ -12,9 +12,6 @@ const Card: React.FC<CardProps> = ({
 }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 
-	// const handleFlipClick = () => {
-	// 	setIsFlipped((prevIsFlipped) => !prevIsFlipped);
-	// };
 	const handleFlipClick = () => {
 		setIsFlipped(!isFlipped);
 	};
