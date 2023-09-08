@@ -27,6 +27,14 @@ link,
 a {
   text-decoration: none; }
 
+@media only screen and (max-height: 56.25em) {
+  html {
+    font-size: 7px; } }
+
+@media only screen and (max-height: 37.5em) {
+  html {
+    font-size: 3px; } }
+
 @keyframes moveInRight {
   0% {
     opacity: 0;
@@ -274,12 +282,14 @@ a {
     .card__btn-flip:hover {
       background-color: rgba(255, 255, 255, 0.25); }
 
-.button-next--wrong {
-  background-color: #b33d47;
-  margin-right: 6rem; }
-
-.button-next--correct {
-  background-color: #50b950; }
+.button-next {
+  padding: 1rem 3rem;
+  border-radius: 0.8rem; }
+  .button-next--wrong {
+    background-color: #b33d47;
+    margin-right: 6rem; }
+  .button-next--correct {
+    background-color: #50b950; }
 
 .card-collection {
   color: #f2f2f2;
@@ -300,9 +310,20 @@ a {
   .card-list__item {
     border: 1px solid white;
     list-style: none;
-    padding: 0.5rem; }
-    .card-list__item--highlight {
-      color: blue; }
+    padding: 0.5rem;
+    color: black;
+    background-color: #96979c; }
+
+.highlight {
+  background-color: #e8fafa;
+  border: 3px solid #d5fcfb;
+  font-weight: 500; }
+
+.card-list__item--correct {
+  background-color: #a1f4a1; }
+
+.card-list__item--wrong {
+  background-color: #f48b8b; }
 
 .collection-preview {
   background-color: #c7c4c4;
