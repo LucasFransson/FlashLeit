@@ -27,6 +27,14 @@ link,
 a {
   text-decoration: none; }
 
+@media only screen and (max-height: 56.25em) {
+  html {
+    font-size: 7px; } }
+
+@media only screen and (max-height: 37.5em) {
+  html {
+    font-size: 3px; } }
+
 @keyframes moveInRight {
   0% {
     opacity: 0;
