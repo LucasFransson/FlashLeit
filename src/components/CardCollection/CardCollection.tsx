@@ -33,9 +33,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
-			updateCollectionsCounter(id, 'IncrementIncorrectAnswers');
-			// setAnswerStatus('correct');
 			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'correct' }));
+			updateCollectionsCounter(id, "IncrementCorrectAnswers");
 		} else {
 			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
 			// setAnswerStatus('wrong');
