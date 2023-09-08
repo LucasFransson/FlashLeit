@@ -4,37 +4,52 @@ import { getRandomColorClass } from '../../utils/getRandomColorClass';
 import CardCollectionTypes from '../../types/CardCollectionTypes';
 import { useUpdateCollection } from '../../utils/collectionAmountsIncrementer';
 
-
-interface CardCollectionProps extends CardCollectionTypes {}
+interface CardCollectionProps extends CardCollectionTypes {
+	cardIndex: number;
+	setCardIndex: (index: number) => void;
+	setMarkedCards: React.Dispatch<
+		React.SetStateAction<{ [key: number]: 'correct' | 'wrong' }>
+	>;
+	// setAnswerStatus: (status: string) => void;
+}
 
 const CardCollection: React.FC<CardCollectionProps> = ({
 	id,
 	title,
+	cardIndex,
+	setCardIndex,
+	// setAnswerStatus,
+	setMarkedCards,
 	flashCards = [],
 }) => {
 	// useState hook for managing current card index
-	const [cardIndex, setCardIndex] = useState(0);
+	// const [cardIndex, setCardIndex] = useState(0);
 
-	const updateCollectionsCounter = useUpdateCollection(); 
+	const updateCollectionsCounter = useUpdateCollection();
 
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
 
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
-
 		if (isCorrect) {
+			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'correct' }));
 			updateCollectionsCounter(id, "IncrementCorrectAnswers");
 		} else {
-			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
+			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
+			// setAnswerStatus('wrong');
+			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'wrong' }));
 		}
 
 		// Check if the current card is the last card
 		if (cardIndex < flashCards.length - 1) {
 			// Increment the card index to show the next card
-			setCardIndex(cardIndex + 1); 
+			setCardIndex(cardIndex + 1);
+		} else {
+			console.log('Finished answering all cards!');
 		}
 	};
+
 	console.log('Card Index:', cardIndex, 'Cards Length:', flashCards.length);
 	return (
 		<div className="card-collection">
@@ -49,7 +64,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					answer={flashCards[cardIndex].answer}
 					collectionId={flashCards[cardIndex].collectionId} // Not correct? This is the card id not the collection id
 					leitnerIndex={flashCards[cardIndex].leitnerIndex}
-					lastReviewed={flashCards[cardIndex].lastReviewed} 
+					lastReviewed={flashCards[cardIndex].lastReviewed}
 					colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
 				/>
 			)}
@@ -60,9 +75,9 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			<div>
 				{/* Div for Buttons */}
 				<button
-					className="button-next button-next--wrong"
+					className="btn button-next button-next--wrong"
 					onClick={() => handleNextCard(false)}
-					disabled={cardIndex === flashCards.length - 1} // if the Current Card is the last one, Disable the button
+					//disabled={cardIndex === flashCards.length} // if the Current Card is the last one, Disable the button
 					// 	disabled={isFlipped} !
 				>
 					Wrong
@@ -70,7 +85,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				<button
 					className="button-next button-next--correct"
 					onClick={() => handleNextCard(true)}
-					disabled={cardIndex === flashCards.length - 1} // if the Current Card is the last one, Disable the button
+					//disabled={cardIndex === flashCards.length} // if the Current Card is the last one, Disable the button
 				>
 					Correct
 				</button>
