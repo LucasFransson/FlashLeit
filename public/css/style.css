@@ -534,6 +534,3 @@ a {
       animation: moveInBottom 0.5s ease-out 0.75s;
       animation-fill-mode: backwards; }
 
-.discover-page {
-  grid-column: 1/-1;
-  display: grid; }

@@ -34,8 +34,10 @@ function EditCardPage() {
 	if(error) return <div>Error: {error.status} {JSON.stringify(error.data)}</div>;
 	return (
 		<>
-			<CollectionSelector collections={data} onCollectionChange={handleCollectionChange}/>
-			<CardEditor />
+			<div className='edit-card-page'>
+				<CollectionSelector collections={data} onCollectionChange={handleCollectionChange}/>
+				<CardEditor />
+			</div>
 		</>
 	);
 }

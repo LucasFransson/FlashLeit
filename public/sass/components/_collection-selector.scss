@@ -1,0 +1,36 @@
+.collection-selector {
+  color: white;
+	padding: 0 5rem;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 10fr 1fr;
+	gap: 1rem;
+	border: 1px solid $color-malachite-dark;
+  
+  .collection-selector__selector {
+    background-color: rgba(105, 235, 105, 0.2);
+    box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
+    border: 2px solid green;
+    padding: 1rem 4rem;
+    margin: 0.5rem;
+    border-radius: 2px;
+  }
+
+  .collection-selector__option {
+    
+  }
+
+  .collection-selector__buttons {
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .collection-selector__btn {
+    border: 2px solid green;
+    background-color: rgba(105, 235, 105, 0.2);
+    padding: 1rem;
+    border-radius: 2px;
+    box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
+  }
+}

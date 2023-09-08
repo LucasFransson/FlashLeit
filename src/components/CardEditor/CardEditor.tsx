@@ -44,7 +44,9 @@ function CardEditor() {
 	};
 
 	// Consider moving to Util for reusability
-	const DiscardChanges = () => {};
+	const DiscardChanges = () => {
+		ClearInputFields();
+	};
 	const SaveChanges = () => {
 		PostCard();
 		ClearInputFields();
