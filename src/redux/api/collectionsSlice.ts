@@ -1,3 +1,4 @@
+import CardCollectionTypes from "../../types/CardCollectionTypes";
 import { apiSlice } from "./apiSlice";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
