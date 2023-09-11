@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 // //function CardGrid({ items, Component, linkPrefix }) {
 
-function CardGrid({ items, Component, linkPrefix, onCardClick }) {
+function CardGrid({ items, Component, linkPrefix, onCardClick, styleClass }) {
 	return (
 		<div className="grid-container">
 			{items.map((item) => (
-				<div className="grid-container__item" key={item.id}>
+				<div className={`grid-container__item ${styleClass}`} key={item.id}>
 					{linkPrefix ? (
 						<Link
 							to={`/${linkPrefix}/${item.id}`}
@@ -14,7 +14,10 @@ function CardGrid({ items, Component, linkPrefix, onCardClick }) {
 							<Component {...item} />
 						</Link>
 					) : (
-						<div onClick={() => onCardClick && onCardClick(item)}>
+						<div
+							className="card-editor__item"
+							onClick={() => onCardClick && onCardClick(item)}
+						>
 							<Component {...item} />
 						</div>
 					)}

@@ -362,20 +362,56 @@ a {
   background-color: #f48b8b; }
 
 .collection-preview {
-  background-color: #c7c4c4;
-  border: 2px solid black;
-  height: 30rem;
+  border: 0.1rem solid black;
+  height: 38rem;
   width: 30rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
   cursor: pointer;
-  border-radius: 3%;
-  transition: all 0.3s ease-out; }
+  border-radius: 2rem;
+  transition: all 0.3s ease-out;
+  color: white;
+  box-shadow: 0.2rem 1rem 3rem 1rem rgba(0, 0, 0, 0.5); }
   .collection-preview:hover {
     background-color: rgba(255, 255, 255, 0.9);
-    transform: scale(1.05); }
+    transform: scale(1.05);
+    border: 0.3rem solid white;
+    box-shadow: 0.2rem 1rem 2rem 0.3rem rgba(255, 255, 255, 0.1); }
+  .collection-preview:hover .collection-preview__title {
+    border: 0.5rem solid #f8fbf8; }
+  .collection-preview__title {
+    width: 70%;
+    border: 0.5rem solid rgba(0, 0, 0, 0.1);
+    border-radius: 1.5rem;
+    padding: 1rem;
+    transition: all 0.3s ease-out; }
+  .collection-preview.azure {
+    background-image: linear-gradient(to bottom, #eafffe, #649392); }
+  .collection-preview.skyblue {
+    background-image: linear-gradient(to bottom, #6ed8f5, #655bf1); }
+  .collection-preview.navy {
+    background-image: linear-gradient(to bottom, #0e4b7f, #140b4a); }
+  .collection-preview.aquamarine {
+    background-image: linear-gradient(to bottom, #70faaa, #51b599); }
+  .collection-preview.malachite {
+    background-image: linear-gradient(to bottom, #25f947, #31ac44); }
+  .collection-preview.pink {
+    background-image: linear-gradient(to bottom, #ff9f9f, #bc3364); }
+  .collection-preview.gray {
+    background-image: linear-gradient(to bottom, #939293, #382b36); }
+  .collection-preview.yellow {
+    background-image: linear-gradient(to bottom, #f6ea6a, #e1b533); }
+  .collection-preview.lime {
+    background-image: linear-gradient(to bottom, #e6fa9e, #9fe674); }
+  .collection-preview.purple {
+    background-image: linear-gradient(to bottom, #8e14eb, #401586); }
+  .collection-preview.lilac {
+    background-image: linear-gradient(to bottom, #b655ae, #994dc5); }
+  .collection-preview.maroon {
+    background-image: linear-gradient(to bottom, #c8261d, #751410); }
 
 .footer {
   color: white;
@@ -503,9 +539,13 @@ a {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
   justify-items: center;
-  overflow: scroll; }
+  overflow: scroll;
+  padding: 3rem 2rem;
+  gap: 4rem 0; }
+  .grid-container__item {
+    cursor: pointer; }
 
 .collection-selector {
   color: white;
@@ -633,3 +673,39 @@ a {
   grid-column: 1/-1;
   grid-row: 3/-1;
   display: grid; }
+
+.azure {
+  background-image: linear-gradient(to bottom, #eafffe, #649392); }
+
+.skyblue {
+  background-image: linear-gradient(to bottom, #6ed8f5, #655bf1); }
+
+.navy {
+  background-image: linear-gradient(to bottom, #0e4b7f, #140b4a); }
+
+.aquamarine {
+  background-image: linear-gradient(to bottom, #70faaa, #51b599); }
+
+.malachite {
+  background-image: linear-gradient(to bottom, #25f947, #31ac44); }
+
+.pink {
+  background-image: linear-gradient(to bottom, #ff9f9f, #bc3364); }
+
+.gray {
+  background-image: linear-gradient(to bottom, #939293, #382b36); }
+
+.yellow {
+  background-image: linear-gradient(to bottom, #f6ea6a, #e1b533); }
+
+.lime {
+  background-image: linear-gradient(to bottom, #e6fa9e, #9fe674); }
+
+.purple {
+  background-image: linear-gradient(to bottom, #8e14eb, #401586); }
+
+.lilac {
+  background-image: linear-gradient(to bottom, #b655ae, #994dc5); }
+
+.maroon {
+  background-image: linear-gradient(to bottom, #c8261d, #751410); }

@@ -3,6 +3,7 @@
 function SearchBar({ searchTerm, setSearchTerm }) {
 	return (
 		<form className="search">
+			<div className="aquamarine">test</div>
 			<input
 				type="text"
 				className="search__input"
@@ -11,7 +12,7 @@ function SearchBar({ searchTerm, setSearchTerm }) {
 				onChange={(e) => setSearchTerm(e.target.value)}
 			/>
 			{/* <SearchIcon className="search__icon" /> */}
-			<button className="search__button"></button>
+			<button className="search__button "></button>
 		</form>
 	);
 }
