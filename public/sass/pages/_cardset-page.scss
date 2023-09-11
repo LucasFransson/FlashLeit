@@ -1,7 +1,13 @@
 .cardset-page {
 	grid-column: 1/-1;
+
+	grid-row: 3/6;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: center;
+	// justify-content: space-between;
+
+	// display: grid;
+	// grid-template-columns: repeat(1fr, 4);
+	// grid-template-rows: repeat(1fr, 4);
 }

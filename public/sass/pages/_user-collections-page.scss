@@ -1,4 +1,9 @@
-.discover-page {
+.user-collections-page {
 	grid-column: 1/-1;
-	display: grid;
+	// display: grid;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	// grid-template-columns: repeat(1fr, 4);
+	// grid-template-rows: repeat(1fr, 4);
 }

@@ -1,26 +1,68 @@
 .button-next {
 	padding: 1rem 3rem;
 	border-radius: 0.8rem;
+	cursor: pointer;
+	width: 12rem;
+	height: 4rem;
+	text-transform: uppercase;
+	color: white;
+	transition: all 0.3s ease-out;
+
+	font-weight: 800;
 	&--wrong {
-		background-color: rgb(179, 61, 71);
+		background-color: rgb(216, 83, 83);
+		border: 2px solid rgb(179, 61, 71);
 		// background-image: $color-gradient-maroon;
 		margin-right: 6rem;
 		// margin-bottom: 6rem;
+
+		&:hover {
+			background-color: rgb(223, 55, 55);
+		}
 	}
 	&--correct {
-		background-color: rgb(80, 185, 80);
+		background-color: rgb(108, 210, 108);
+		border: 2px solid rgb(80, 185, 80);
 		// background-image: $color-gradient-malachite;
+		&:hover {
+			background-color: rgb(80, 237, 80);
+		}
 	}
 }
 
 .card-collection {
 	// background-color: $color-gray-light;
+	// background-color: rgba(255, 255, 255, 0.27);
+	// border-top:2px solid $color-malachite-dark;
+	// TODO:Refactor cardset
+	height: 100%;
+	flex-basis: 40%;
+	margin-left: auto;
+
 	color: rgb(242, 242, 242);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+
 	&__counter {
 		color: white;
-		margin: 1.5rem 0;
+		// margin: 0.5rem 0;
+		font-size: 2.4rem;
+		margin-bottom: 1.5rem;
 	}
+	&__title {
+		width: 100%;
+		text-align: center;
+		text-transform: uppercase;
+		border-bottom: 8px solid $color-malachite-light;
+		margin-top: -7rem;
+		margin-bottom: 2rem;
+		font-size: 5.2rem;
+	}
+	&__buttons {
+		margin-top: 2rem;
+	}
+	// grid-column: 2/4; // TODO: Refactor Cardset page
+	// grid-row: 3/5; // TODO: Refactor Cardset page
 }
