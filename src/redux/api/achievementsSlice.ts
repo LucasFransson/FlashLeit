@@ -7,6 +7,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 		}),
 		getAchievementsByUserId: builder.query({
 			query: userId => `api/achievements/${userId}`,
+			providesTags: (result, error, userId) => [{ type: "Achievements", id: userId }],
 		}),
 		addAchievementToUser: builder.mutation({
 			query: ({ userId, achievementId }) => {
@@ -16,6 +17,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 					body: achievementId,
 				};
 			},
+			invalidatesTags: (result, error, userId) => [{ type: "Achievements", id: userId }],
 		}),
 	}),
 });
