@@ -3,7 +3,6 @@
 function SearchBar({ searchTerm, setSearchTerm }) {
 	return (
 		<form className="search">
-			<div className="aquamarine">test</div>
 			<input
 				type="text"
 				className="search__input"

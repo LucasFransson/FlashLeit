@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 // //function CardGrid({ items, Component, linkPrefix }) {
 
-function CardGrid({ items, Component, linkPrefix, onCardClick, styleClass }) {
+// function CardGrid({ items, Component, linkPrefix, onCardClick, styleClass }) {
+function CardGrid({ items, Component, linkPrefix, onCardClick }) {
 	return (
 		<div className="grid-container">
 			{items.map((item) => (
-				<div className={`grid-container__item ${styleClass}`} key={item.id}>
+				// <div className={`grid-container__item ${styleClass}`} key={item.id}>
+				<div className="grid-container__item" key={item.id}>
 					{linkPrefix ? (
 						<Link
 							to={`/${linkPrefix}/${item.id}`}

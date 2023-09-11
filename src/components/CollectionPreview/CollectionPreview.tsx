@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CardTypes from '../../types/CardTypes';
+import ColorClassContext from '../../context/ColorClassContext';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
 
 interface CollectionPreviewTypes {
@@ -29,15 +30,27 @@ const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 	cardCount,
 	colorClass,
 }) => {
+	console.log(cardCount);
+
+	if (colorClass == null) {
+		colorClass = useContext(ColorClassContext);
+	}
+
 	return (
-		<div className={`collection-preview  ${colorClass}`}>
-			<h2 className="collection-preview__title">{title}</h2>
-			<p>Cards: {cardCount} </p>
-		</div>
+		<>
+			<div className={`collection-preview ${colorClass}`}>
+				<h2 className="collection-preview__title">{title}</h2>
+				<p>Cards: {cardCount} </p>
+			</div>
+		</>
 	);
 };
 
 export default CollectionPreview;
+
+// if (colorClass == null) {
+// 	colorClass = useContext(ColorClassContext);
+// }
 
 // Generate random color classes for each card
 // const cardColors = collections.map(() => getRandomColorClass());

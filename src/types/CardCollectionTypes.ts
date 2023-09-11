@@ -8,5 +8,6 @@ interface CardCollectionTypes {
 	amountOfCorrectAnswers: number;
 	amountOfIncorrectAnswers: number;
 	amountOfCompletedRuns: number;
+	cardCount: number;
 }
 export default CardCollectionTypes;

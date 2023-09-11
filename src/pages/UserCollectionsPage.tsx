@@ -4,12 +4,13 @@ import CardGrid from '../components/CardGrid/CardGrid';
 import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
 import { useEffect, useState } from 'react';
 import { useGetCollectionsByUserIdQuery } from '../redux/api/collectionsSlice';
+
 import { getRandomColorClass } from '../utils/getRandomColorClass';
+import ColorClassContext from '../context/ColorClassContext';
 
 function UserCollectionsPage() {
 	const { userId } = useSelector((state: RootState) => state.userId);
 	const [skip, setSkip] = useState(true);
-	const [colClass, setColClass] = useState<string | null>(null);
 
 	const {
 		data: collections,
@@ -17,17 +18,13 @@ function UserCollectionsPage() {
 		isError,
 	} = useGetCollectionsByUserIdQuery(userId, { skip });
 
+	console.log(collections);
+
 	useEffect(() => {
 		if (userId != null) {
 			setSkip(false);
 		}
 	}, [userId]);
-
-	useEffect(() => {
-		if (!colClass) {
-			setColClass(getRandomColorClass()); // Assign a color class only once when the component loads
-		}
-	}, [colClass]);
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -36,22 +33,57 @@ function UserCollectionsPage() {
 	if (isError) {
 		return <div>Error: Something went wrong!</div>;
 	}
-
-	// const colClass = getRandomColorClass();
-	// console.log(colClass);
-
+	const colorClass = getRandomColorClass();
 	return (
 		<div className="user-collections-page">
-			{collections && (
-				<CardGrid
-					items={collections}
-					Component={CollectionPreview}
-					linkPrefix={'collection'}
-					styleClass={colClass}
-				></CardGrid>
-			)}
+			<ColorClassContext.Provider value={colorClass}>
+				{collections && (
+					<CardGrid
+						items={collections}
+						Component={CollectionPreview}
+						linkPrefix={'collection'}
+					></CardGrid>
+				)}
+			</ColorClassContext.Provider>
 		</div>
 	);
 }
 
 export default UserCollectionsPage;
+
+// const coloredCollections = collections.map(collection => ({
+// 	...collection,
+// 	colorClass: getRandomColorClass()
+// }));
+
+// const colorClass = getRandomColorClass();
+
+// 	return (
+// 		<div className="user-collections-page">
+// 			<ColorClassContext.Provider value={colorClass}>
+// 				{collections && (
+// 					<CardGrid
+// 						items={collections}
+// 						Component={CollectionPreview}
+// 						linkPrefix={'collection'}
+// 					></CardGrid>
+// 				)}
+// 			</ColorClassContext.Provider>
+// 		</div>
+// 	);
+
+// const colorClass = getRandomColorClass();
+// // console.log(colorClass);
+{
+	/* <ColorClassContext.Provider value={colorClass}> */
+}
+{
+	/* </ColorClassContext.Provider> */
+}
+// const [colClass, setColClass] = useState<string | null>(null);
+
+// useEffect(() => {
+// 	if (!colClass) {
+// 		setColClass(getRandomColorClass()); // Assign a color class only once when the component loads
+// 	}
+// }, [colClass]);
