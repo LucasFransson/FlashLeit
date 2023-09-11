@@ -32,7 +32,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 		deleteCard: builder.mutation<void, CardTypes>({
 			query: card => {
 				return {
-					url: `api/cards`,
+					url: `api/cards/`,
 					method: "DELETE",
 					body: card,
 				};

@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import CollectionSelector from '../components/CollectionSelector/CollectionSelector';
 import { useGetCollectionsByUserIdQuery, useGetCollectionByIdAndUserIdQuery } from '../redux/api/collectionsSlice';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDeleteCard } from '../utils/cardEditor';
 import CardGrid from '../components/CardGrid/CardGrid';
 import Card from '../components/Card/Card';
 import CardTypes from '../types/CardTypes';
@@ -22,6 +23,9 @@ function EditCardPage() {
 
 	// useState to hold the cards of the currently selected collection:
 	const [flashCards, setFlashCards] = useState<CardTypes[] | null>([]);
+
+	// Delete card from utility folder:
+	const deleteCard = useDeleteCard();
 
 	// API call for getting all the users collections:
 	const { 
@@ -61,6 +65,23 @@ function EditCardPage() {
 		setSelectedCard(selectedCard);	
 	}
 
+	const deleteSelectedCard = (selectedCard: CardTypes) => {
+
+		const cardDetails: CardTypes = {
+			id: selectedCard.id,
+			collectionId: selectedCard.collectionId,
+			userId: userId,
+			answer: selectedCard.answer,
+			question: selectedCard.question,
+			leitnerIndex: 1,
+			lastReviewed: null,
+			colorClass: null
+		};
+		
+		deleteCard(cardDetails);
+
+	}
+
 	if(collectionLoading) return <LoadingIcon />;
 	if(collectionError) return <div>Error: {collectionError.staus} {JSON.stringify(collectionError.data)}</div>;
 
@@ -70,7 +91,7 @@ function EditCardPage() {
 	return (
 		<div className='create-edit-page'>
 			<CollectionSelector className='' collections={collectionData} onCollectionChange={handleCollectionChange}/>
-			<CardGrid items={flashCards} Component={Card} onCardClick={selectCard}/>
+			<CardGrid items={flashCards} Component={Card} onCardClick={selectCard} onDeleteClick={deleteSelectedCard}/>
 			<CardEditor card={selectedCard} userId={userId} collectionId={selectedCollectionId}/>
 		</div>
 	);

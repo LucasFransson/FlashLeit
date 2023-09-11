@@ -1,4 +1,4 @@
-import { useAddCardMutation, useUpdateCardMutation } from "../redux/api/cardsSlice";
+import { useAddCardMutation, useDeleteCardMutation, useUpdateCardMutation } from "../redux/api/cardsSlice";
 import CardTypes from "../types/CardTypes";
 
 export const useAddCard = () => {
@@ -20,4 +20,14 @@ export const useUpdateCard = () => {
   }
 
   return updateCard;
+}
+
+export const useDeleteCard = () => {
+  const [mutate] = useDeleteCardMutation();
+
+  const deleteCard = (card: CardTypes) => {
+    mutate(card);
+  }
+
+  return deleteCard;
 }

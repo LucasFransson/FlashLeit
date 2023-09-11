@@ -57,8 +57,6 @@ function CardEditor({card, userId, collectionId}) {
 
 			ClearInputFields();
 		}
-
-
 	};
 
 
