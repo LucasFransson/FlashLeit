@@ -17,15 +17,17 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 					body: card,
 				};
 			},
+			invalidatesTags: (result, error, card) => [{type: 'Collection', id: card.collectionId}]
 		}),
 		updateCard: builder.mutation<void, CardTypes>({
 			query: card => {
 				return {
-					url: `api/cards/${card.id}`,
+					url: `api/cards/${card.userId}`,
 					method: "PUT",
 					body: card,
 				};
 			},
+			invalidatesTags: (result, error, card) => [{ type: 'Collection', id: card.collectionId}]
 		}),
 		deleteCard: builder.mutation<void, number>({
 			query: id => {

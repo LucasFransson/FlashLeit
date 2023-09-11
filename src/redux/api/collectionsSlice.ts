@@ -16,6 +16,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 					url: `api/collections/${collectionId}/user/${userId}`,
 				};
 			},
+			providesTags: (result, error, args) => [{ type: 'Collection', id: args.collectionId}]
 		}),
 		addCollection: builder.mutation<void, CardCollectionTypes>({
 			query: collection => {

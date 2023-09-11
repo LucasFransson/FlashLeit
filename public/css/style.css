@@ -129,7 +129,9 @@ a {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 10fr 1fr;
   gap: 1rem;
-  border: 1px solid #31ac44; }
+  border: 1px solid #31ac44;
+  grid-column-start: 2;
+  grid-column-end: 2; }
   .card-editor-card--left {
     grid-row-start: 2;
     grid-column-start: 1/2;
@@ -471,6 +473,33 @@ a {
   justify-items: center;
   overflow: scroll; }
 
+.collection-selector {
+  color: white;
+  padding: 0 5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 10fr 1fr;
+  gap: 1rem;
+  border: 1px solid #31ac44;
+  grid-column-start: 1;
+  grid-column-end: 2; }
+  .collection-selector .collection-selector__selector {
+    background-color: rgba(105, 235, 105, 0.2);
+    box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
+    border: 2px solid green;
+    padding: 1rem 4rem;
+    margin: 0.5rem;
+    border-radius: 2px; }
+  .collection-selector .collection-selector__buttons {
+    display: flex;
+    justify-content: center; }
+  .collection-selector .collection-selector__btn {
+    border: 2px solid green;
+    background-color: rgba(105, 235, 105, 0.2);
+    padding: 1rem;
+    border-radius: 2px;
+    box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4); }
+
 .about-page {
   grid-column: 1/-1;
   display: flex;
@@ -484,6 +513,11 @@ a {
   flex-direction: row;
   align-items: center;
   justify-content: center; }
+
+.create-edit-page {
+  display: grid;
+  grid-column: 1/-1;
+  grid-template-columns: 2fr 2fr; }
 
 .home-page {
   grid-column: 1/-1;
@@ -555,3 +589,6 @@ a {
       animation: moveInBottom 0.5s ease-out 0.75s;
       animation-fill-mode: backwards; }
 
+.discover-page {
+  grid-column: 1/-1;
+  display: grid; }
