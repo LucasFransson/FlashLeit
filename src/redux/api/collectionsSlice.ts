@@ -1,4 +1,6 @@
 import CardCollectionTypes from "../../types/CardCollectionTypes";
+import CardTypes from "../../types/CardTypes";
+import { getRandomColorClass } from "../../utils/getRandomColorClass";
 import { apiSlice } from "./apiSlice";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
@@ -6,17 +8,25 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 		getAllCollections: builder.query<CardCollectionTypes[] | null, void>({
 			query: () => "api/collections",
 		}),
-		getCollectionsByUserId: builder.query<CardCollectionTypes[] | null, number>({
+		getCollectionsByUserId: builder.query<CardCollectionTypes[] | null, number | null | undefined>({
 			query: id => `api/collections/user/${id}`,
 		}),
-		getCollectionByIdAndUserId: builder.query<CardCollectionTypes[] | null, { collectionId: number; userId: number }>({
+		getCollectionByIdAndUserId: builder.query<CardCollectionTypes, { collectionId: number; userId: number }>({
 			query: args => {
 				const { collectionId, userId } = args;
 				return {
 					url: `api/collections/${collectionId}/user/${userId}`,
 				};
 			},
-			providesTags: (result, error, args) => [{ type: 'Collection', id: args.collectionId}]
+			providesTags: (result, error, args) => [{ type: "Collection", id: args.collectionId }],
+			transformResponse: (response: CardCollectionTypes) => {
+				const modifiedFlashCards = response.flashCards.map((item: CardTypes) => ({
+					...item,
+					colorClass: getRandomColorClass(),
+				}));
+
+				return { ...response, flashCards: modifiedFlashCards };
+			},
 		}),
 		addCollection: builder.mutation<void, CardCollectionTypes>({
 			query: collection => {

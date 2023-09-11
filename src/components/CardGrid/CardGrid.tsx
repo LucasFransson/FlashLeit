@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 // //function CardGrid({ items, Component, linkPrefix }) {
 
-// function CardGrid({ items, Component, linkPrefix, onCardClick, styleClass }) {
-function CardGrid({ items, Component, linkPrefix, onCardClick }) {
+function CardGrid({
+	items,
+	Component,
+	linkPrefix,
+	onCardClick,
+	onDeleteClick,
+}) {
 	return (
 		<div className="grid-container">
 			{items.map((item) => (
@@ -16,12 +21,20 @@ function CardGrid({ items, Component, linkPrefix, onCardClick }) {
 							<Component {...item} />
 						</Link>
 					) : (
-						<div
-							className="card-editor__item"
-							onClick={() => onCardClick && onCardClick(item)}
-						>
-							<Component {...item} />
-						</div>
+						<>
+							<button
+								onClick={() => onDeleteClick && onDeleteClick(item)}
+								className="card-editor__item--delete"
+							>
+								X
+							</button>
+							<div
+								onClick={() => onCardClick && onCardClick(item)}
+								className="card-editor__item"
+							>
+								<Component {...item} />
+							</div>
+						</>
 					)}
 				</div>
 			))}
