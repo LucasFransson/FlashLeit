@@ -17,7 +17,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 					body: card,
 				};
 			},
-			invalidatesTags: (result, error, card) => [{type: 'Collection', id: card.collectionId}]
+			invalidatesTags: (result, error, card) => [{ type: "Collection", id: card.collectionId }],
 		}),
 		updateCard: builder.mutation<void, CardTypes>({
 			query: card => {
@@ -27,15 +27,17 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 					body: card,
 				};
 			},
-			invalidatesTags: (result, error, card) => [{ type: 'Collection', id: card.collectionId}]
+			invalidatesTags: (result, error, card) => [{ type: "Collection", id: card.collectionId }],
 		}),
-		deleteCard: builder.mutation<void, number>({
-			query: id => {
+		deleteCard: builder.mutation<void, CardTypes>({
+			query: card => {
 				return {
-					url: `api/cards/${id}`,
+					url: `api/cards`,
 					method: "DELETE",
+					body: card,
 				};
 			},
+			invalidatesTags: (result, error, card) => [{ type: "Collection", id: card.collectionId }],
 		}),
 	}),
 });
