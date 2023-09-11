@@ -212,7 +212,8 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    text-align: center;
     height: 55rem;
     width: 35rem;
     border-radius: 1.5rem;
@@ -280,35 +281,68 @@ a {
     border-top: 2px solid #000; }
   .card__btn-flip {
     background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.2); }
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 1rem 2rem;
+    border-radius: 1.5rem;
+    cursor: pointer; }
     .card__btn-flip:hover {
       background-color: rgba(255, 255, 255, 0.25); }
 
 .button-next {
   padding: 1rem 3rem;
-  border-radius: 0.8rem; }
+  border-radius: 0.8rem;
+  cursor: pointer;
+  width: 12rem;
+  height: 4rem;
+  text-transform: uppercase;
+  color: white;
+  transition: all 0.3s ease-out;
+  font-weight: 800; }
   .button-next--wrong {
-    background-color: #b33d47;
+    background-color: #d85353;
+    border: 2px solid #b33d47;
     margin-right: 6rem; }
+    .button-next--wrong:hover {
+      background-color: #df3737; }
   .button-next--correct {
-    background-color: #50b950; }
+    background-color: #6cd26c;
+    border: 2px solid #50b950; }
+    .button-next--correct:hover {
+      background-color: #50ed50; }
 
 .card-collection {
+  height: 100%;
+  flex-basis: 40%;
+  margin-left: auto;
   color: #f2f2f2;
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  justify-content: center; }
   .card-collection__counter {
     color: white;
-    margin: 1.5rem 0; }
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem; }
+  .card-collection__title {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 8px solid #25f947;
+    margin-top: -7rem;
+    margin-bottom: 2rem;
+    font-size: 5.2rem; }
+  .card-collection__buttons {
+    margin-top: 2rem; }
 
 .card-list {
   color: white;
-  border: 2px solid #8d8888;
+  border: 7px solid #25f947;
   overflow: scroll;
-  height: 60vh; }
+  height: 85%;
+  flex-basis: 30%; }
   .card-list__title {
-    font-size: 3rem; }
+    font-size: 3rem;
+    text-align: center; }
   .card-list__item {
     border: 1px solid white;
     list-style: none;
@@ -509,10 +543,10 @@ a {
 
 .cardset-page {
   grid-column: 1/-1;
+  grid-row: 3/6;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center; }
+  align-items: center; }
 
 .create-edit-page {
   display: grid;
@@ -589,6 +623,13 @@ a {
       animation: moveInBottom 0.5s ease-out 0.75s;
       animation-fill-mode: backwards; }
 
+.user-collections-page {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
 .discover-page {
   grid-column: 1/-1;
+  grid-row: 3/-1;
   display: grid; }
