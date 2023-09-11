@@ -1,10 +1,13 @@
 .card-list {
 	color: white;
-	border: 2px solid rgb(141, 136, 136);
+	border: 7px solid $color-malachite-light;
 	overflow: scroll;
-	height: 60vh;
+	// height: 60vh;
+	height: 85%;
+	flex-basis: 30%;
 	&__title {
 		font-size: 3rem;
+		text-align: center;
 	}
 	&__item {
 		border: 1px solid white;
@@ -13,6 +16,8 @@
 		color: black;
 		background-color: rgb(150, 151, 156);
 	}
+	// grid-row: 2 / span 4; // TODO: Refactor cardset page
+	// grid-column: 4; // TODO: Refactor cardset page
 }
 
 .highlight {
