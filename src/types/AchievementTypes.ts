@@ -4,4 +4,5 @@ interface AchievementTypes {
 	description: string;
 	userId: number;
 }
+
 export default AchievementTypes;

@@ -6,7 +6,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 		getAllCollections: builder.query<CardCollectionTypes[] | null, void>({
 			query: () => "api/collections",
 		}),
-		getCollectionsByUserId: builder.query<CardCollectionTypes[] | null, number>({
+		getCollectionsByUserId: builder.query<CardCollectionTypes[] | null, number | null | undefined>({
 			query: id => `api/collections/user/${id}`,
 		}),
 		getCollectionByIdAndUserId: builder.query<CardCollectionTypes[] | null, { collectionId: number; userId: number }>({
@@ -16,7 +16,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 					url: `api/collections/${collectionId}/user/${userId}`,
 				};
 			},
-			providesTags: (result, error, args) => [{ type: 'Collection', id: args.collectionId}]
+			providesTags: (result, error, args) => [{ type: "Collection", id: args.collectionId }],
 		}),
 		addCollection: builder.mutation<void, CardCollectionTypes>({
 			query: collection => {
