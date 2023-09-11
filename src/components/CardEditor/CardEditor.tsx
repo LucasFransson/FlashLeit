@@ -1,54 +1,67 @@
-import { useRef, useState, useEffect } from 'react';
-function CardEditor() {
-	const questionInput = useRef();
-	const answerInput = useRef();
+import { useState, useEffect } from 'react';
+import { useAddCardMutation } from '../../redux/api/cardsSlice';
+import { useAddCard, useUpdateCard } from '../../utils/cardEditor';
+import CardTypes from '../../types/CardTypes';
+
+function CardEditor({card, userId, collectionId}) {
+
+	// const [id, setCardId] = useState(card.id);
+	// const [collectionId, setCollectionId] = useState(card.collectionId);
+	const [question, setQuestionInput] = useState(card.question);
+	const [answer, setAnswerInput] = useState(card.answer);
+	
+
 	const [areInputsEmpty, setAreInputsEmpty] = useState(true);
 
+	const addCard = useAddCard();
+	const updateCard = useUpdateCard();
+
 	useEffect(() => {
-		setAreInputsEmpty(
-			!questionInput.current ||
-				questionInput.current.value === '' ||
-				!answerInput.current ||
-				answerInput.current.value === ''
-		);
-	}, []);
+		setAreInputsEmpty(!question || !answer);
+	}, [question, answer]);
 
-	const PostCard = async () => {
-		const questionValue = questionInput.current.value;
-		const answerValue = answerInput.current.value;
+	useEffect(() => {
+		setQuestionInput(card.question);
+		setAnswerInput(card.answer);
+	}, [card]);
 
-		const dataToSubmit = {
-			// question: 'Test Post Question',
-			question: questionValue,
-			correctAnswer: answerValue,
-			collectionId: 1, // TODO: Replace with {id}
-		};
-
-		const postResult = await fetch(
-			'https://flashleit.azure-api.net/api/cards',
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(dataToSubmit),
-			}
-		);
-		const resultInJson = await postResult.json();
-		console.log(resultInJson);
-	};
 
 	const ClearInputFields = () => {
-		questionInput.current.value = '';
-		answerInput.current.value = '';
+		setQuestionInput('');
+		setAnswerInput('');
 	};
 
 	// Consider moving to Util for reusability
-	const DiscardChanges = () => {};
-	const SaveChanges = () => {
-		PostCard();
+	const DiscardChanges = () => {
 		ClearInputFields();
 	};
+	const SaveChanges = () => {
+		
+		const cardDetails: CardTypes = {
+			id: card.id,
+			collectionId: collectionId,
+			userId: userId,
+			question: question,
+			answer: answer,
+			leitnerIndex: 1,
+			lastReviewed: null,
+			colorClass: null
+		}
+
+		if(card.id === 0) {
+			addCard(cardDetails);
+
+			ClearInputFields();
+		} else {
+			updateCard(cardDetails);
+
+			ClearInputFields();
+		}
+
+
+	};
+
+
 
 	return (
 		<div className="card-editor">
@@ -63,14 +76,12 @@ function CardEditor() {
 					<div className="card-editor-card__center">
 						<p className="card-editor-card__text">
 							<textarea
-								ref={questionInput}
+								value={question}
 								className="card-editor-card__text-input"
-								onChange={() =>
-									setAreInputsEmpty(
-										questionInput.current.value === '' ||
-											answerInput.current.value === ''
-									)
-								}
+								onChange={(e) => {
+									setQuestionInput(e.target.value);
+									setAreInputsEmpty(e.target.value === '' || answer === '');
+								}}
 							></textarea>
 						</p>
 					</div>
@@ -87,14 +98,12 @@ function CardEditor() {
 				</div>
 				<div className="card-editor-card__center">
 					<textarea
-						ref={answerInput}
+						value={answer}
 						className="card-editor-card__text-input"
-						onChange={() =>
-							setAreInputsEmpty(
-								questionInput.current.value === '' ||
-									answerInput.current.value === ''
-							)
-						}
+						onChange={(e) => {
+							setAnswerInput(e.target.value);
+							setAreInputsEmpty(question === '' || e.target.value === '');
+						}}
 					></textarea>
 				</div>
 				<div className="card-editor-card__bottom">{/* <p>ANSWER</p> */}</div>
@@ -111,10 +120,7 @@ function CardEditor() {
 				</button>
 				<button
 					className="card-editor__btn card-editor__btn--save"
-					// onClick={SaveChanges}
 					onClick={SaveChanges}
-					// onClick={() => PostCard() || ClearInputFields()}
-					// onClick={[PostCard(), ClearInputFields()]}
 					disabled={areInputsEmpty}
 				>
 					Save Changes

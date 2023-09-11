@@ -1,14 +1,15 @@
+import CardTypes from "../../types/CardTypes";
 import { apiSlice } from "./apiSlice";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
-		getAllCards: builder.query({
-			query: () => "api/cards/",
+		getAllCards: builder.query<CardTypes[] | null, void>({
+			query: () => "api/cards",
 		}),
-		getCardById: builder.query({
+		getCardById: builder.query<CardTypes[] | null, number>({
 			query: id => `api/cards/${id}`,
 		}),
-		addCard: builder.mutation({
+		addCard: builder.mutation<void, CardTypes>({
 			query: card => {
 				return {
 					url: "api/cards",
@@ -16,17 +17,19 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 					body: card,
 				};
 			},
+			invalidatesTags: (result, error, card) => [{type: 'Collection', id: card.collectionId}]
 		}),
-		updateCard: builder.mutation({
+		updateCard: builder.mutation<void, CardTypes>({
 			query: card => {
 				return {
-					url: `api/cards/${card.id}`,
+					url: `api/cards/${card.userId}`,
 					method: "PUT",
 					body: card,
 				};
 			},
+			invalidatesTags: (result, error, card) => [{ type: 'Collection', id: card.collectionId}]
 		}),
-		deleteCard: builder.mutation({
+		deleteCard: builder.mutation<void, number>({
 			query: id => {
 				return {
 					url: `api/cards/${id}`,

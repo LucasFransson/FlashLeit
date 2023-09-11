@@ -2,6 +2,7 @@
 interface CardTypes {
 	id: number;
 	collectionId: number;
+	userId: number;
 	question: string;
 	answer: string;
 	leitnerIndex: number;
