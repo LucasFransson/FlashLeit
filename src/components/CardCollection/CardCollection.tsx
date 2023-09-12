@@ -26,6 +26,9 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	// const [cardIndex, setCardIndex] = useState(0);
 	const updateCollectionsCounter = useUpdateCollection();
 
+	// state for tracking card animation
+	const [animateOut, setAnimateOut] = useState(false);
+
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
 
@@ -40,16 +43,27 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'wrong' }));
 		}
 
-		// Check if the current card is the last card
-		if (cardIndex < flashCards.length - 1) {
-			// Increment the card index to show the next card
-			setCardIndex(cardIndex + 1);
-		} else {
-			console.log('Finished answering all cards!');
-		}
+		setAnimateOut(true);
+
+		setTimeout(() => {
+			setAnimateOut(false);
+			if (cardIndex < flashCards.length - 1) {
+				// Check if the current card is the last card
+				setCardIndex(cardIndex + 1); // Increment the card index to show the next card
+			} else {
+				console.log('Finished answering all cards!');
+			}
+		}, 800); // ms animation time
+
+		// // Check if the current card is the last card
+		// if (cardIndex < flashCards.length - 1) {
+		// 	// Increment the card index to show the next card
+		// 	setCardIndex(cardIndex + 1);
+		// } else {
+		// 	console.log('Finished answering all cards!');
+		// }
 	};
 
-	console.log('Card Index:', cardIndex, 'Cards Length:', flashCards.length);
 	return (
 		<div className="card-collection">
 			<div className="card-collection__heading">
@@ -70,6 +84,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					leitnerIndex={flashCards[cardIndex].leitnerIndex}
 					lastReviewed={flashCards[cardIndex].lastReviewed}
 					colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
+					animateOut={animateOut} // pass the animateOut state as a prop
 				/>
 			)}
 
