@@ -90,7 +90,7 @@ function EditCardPage() {
 
 	return (
 		<div className='create-edit-page'>
-			<CollectionSelector className='' collections={collectionData} onCollectionChange={handleCollectionChange}/>
+			<CollectionSelector collections={collectionData} onCollectionChange={handleCollectionChange}/>
 			<CardGrid items={flashCards} Component={Card} onCardClick={selectCard} onDeleteClick={deleteSelectedCard}/>
 			<CardEditor card={selectedCard} userId={userId} collectionId={selectedCollectionId}/>
 		</div>

@@ -511,23 +511,62 @@ a {
   color: white;
   padding: 0 5rem;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr 10fr 1fr;
   gap: 1rem;
   border: 1px solid #31ac44;
   grid-column-start: 1;
   grid-column-end: 2; }
-  .collection-selector .collection-selector__selector {
+  .collection-selector__toggler-switch {
+    position: relative;
+    display: inline-block;
+    width: 6em;
+    height: 3em; }
+  .collection-selector__toggler-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0; }
+  .collection-selector__toggler-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0c151e;
+    transition: .5s;
+    -webkit-transition: .5s;
+    border-radius: 6em; }
+  .collection-selector__toggler-slider:before {
+    position: absolute;
+    content: "";
+    height: 2.6em;
+    width: 2.6em;
+    left: 0.25em;
+    bottom: 0.20em;
+    background-color: green;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    border-radius: 50%; }
+  .collection-selector input:checked + .collection-selector__toggler-slider {
+    background-color: aquamarine; }
+    .collection-selector input:checked + .collection-selector__toggler-slider:before {
+      -webkit-transform: translateX(2.8em);
+      transform: translateX(2.8em);
+      -ms-transform: translateX(2.8em); }
+  .collection-selector input:focus + .collection-selector__toggler-slider {
+    box-shadow: 0 0 2px green; }
+  .collection-selector__selector {
     background-color: rgba(105, 235, 105, 0.2);
     box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
     border: 2px solid green;
     padding: 1rem 4rem;
     margin: 0.5rem;
     border-radius: 2px; }
-  .collection-selector .collection-selector__buttons {
+  .collection-selector__buttons {
     display: flex;
     justify-content: center; }
-  .collection-selector .collection-selector__btn {
+  .collection-selector__btn {
     border: 2px solid green;
     background-color: rgba(105, 235, 105, 0.2);
     padding: 1rem;
