@@ -1,5 +1,48 @@
+// "DARK" Theme
 .discover-page {
 	grid-column: 1/-1;
 	grid-row: 3/-1;
 	display: grid;
+	overflow: scroll;
+}
+
+//"LIGHT" Theme
+.discover-page {
+	grid-column: 1/-1;
+	grid-row: 3/-1;
+	// display: grid;
+	overflow: scroll;
+	border: 3px solid rgb(41, 39, 39);
+	margin-top: 3rem;
+	margin-inline: 5rem;
+	background-color: mix($color-dark-primary-1, $color-white-1, 10%);
+
+	&__top {
+		// margin-bottom: 3rem;
+
+		// margin-inline: 5rem;
+		height: 15vh;
+		// padding-bottom: 5rem;
+		background-image: $color-gradient-green-primary;
+		// border: 2px solid rgb(41, 39, 39);
+	}
+	&__bottom {
+		// min-height: 100vh;
+		padding-top: 3rem;
+		// background-color: $color-white-1;
+		// background-color: mix($color-dark-primary-1, $color-white-1, 10%);
+		padding-bottom: 20rem;
+		// border: 2px solid rgb(41, 39, 39);
+	}
+
+	& .grid-container {
+		&__item {
+		}
+		& .collection-preview {
+			box-shadow: 0rem 0.5rem 1.5rem 1rem rgba(118, 107, 107, 0.25);
+			border: unset;
+			// border: 2px solid transparent;
+			// border: 3px solid rgba(192, 189, 189, 0.898);
+		}
+	}
 }

@@ -8,9 +8,12 @@
 	justify-content: flex-start;
 	align-items: stretch;
 	// background-color: #110d10;
-	background-color: rgb(241, 244, 242);
-	color: rgb(55, 54, 54);
+	// background-color: rgb(241, 244, 242);
+	// color: rgb(55, 54, 54);
+	background-image: $color-gradient-black;
+	color: $color-green-primary-light;
 	border: 2px solid black;
+	border-bottom: 0.5rem solid black;
 	box-shadow: 0px 4px 1rem 2px rgba(0, 0, 0, 0.3);
 
 	&__item {
@@ -26,6 +29,7 @@
 
 		&-link {
 			color: #110d10;
+			color: $color-green-primary-light;
 		}
 
 		&:hover {
@@ -38,8 +42,9 @@
 			margin-right: auto;
 			border: 0;
 			// color: #110d10;
+			color: $color-white-1;
 			&:hover {
-				background-color: unset;
+				// background-color: unset;
 			}
 		}
 		&--1 {
