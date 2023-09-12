@@ -4,15 +4,16 @@
 	flex-direction: row;
 	justify-content: end;
 
-	// padding: 0 5rem;
-	// display: grid;
-	// grid-template-columns: 1fr;
-	// grid-template-rows: 1fr 10fr 1fr;
-	// gap: 1rem;
-	// border: 1px solid $color-malachite-dark;
-	// grid-column-start: 1;
-	// grid-column-end: 2;
-
+	color: white;
+	padding: 0 5rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 1fr 1fr 10fr 1fr;
+	gap: 1rem;
+	border: 1px solid $color-malachite-dark;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  
 	&__title {
 		text-transform: uppercase;
 		text-align: center;
