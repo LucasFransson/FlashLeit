@@ -130,20 +130,22 @@ function EditCardPage() {
 					onCollectionChange={handleCollectionChange}
 				/>
 			</div>
-			<div className="create-edit-page__card-grid">
-				<CardGrid
-					items={flashCards}
-					Component={Card}
-					onCardClick={selectCard}
-					onDeleteClick={deleteSelectedCard}
-				/>
-			</div>
-			<div className="create-edit-page__card-editor">
-				<CardEditor
-					card={selectedCard}
-					userId={userId}
-					collectionId={selectedCollectionId}
-				/>
+			<div className="create-edit-page__wrapper">
+				<div className="create-edit-page__card-grid">
+					<CardGrid
+						items={flashCards}
+						Component={Card}
+						onCardClick={selectCard}
+						onDeleteClick={deleteSelectedCard}
+					/>
+				</div>
+				<div className="create-edit-page__card-editor">
+					<CardEditor
+						card={selectedCard}
+						userId={userId}
+						collectionId={selectedCollectionId}
+					/>
+				</div>
 			</div>
 		</div>
 	);

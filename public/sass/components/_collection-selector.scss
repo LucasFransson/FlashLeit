@@ -16,7 +16,7 @@
 	&__title {
 		text-transform: uppercase;
 		text-align: center;
-		flex-basis: 75%;
+		flex: 0 51%;
 		letter-spacing: 0.4rem;
 		font-size: 5rem;
 		align-self: center;
@@ -28,7 +28,7 @@
 		border: 2px solid green;
 		padding: 1rem 3rem;
 		// margin: 0.5rem;
-		margin: 1rem;
+		// margin: 1rem;
 		border-radius: 2px;
 		color: black;
 		font-weight: 500;

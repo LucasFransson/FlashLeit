@@ -5,6 +5,8 @@
 	display: grid;
 	grid-template-columns: 0.5fr 2fr 2fr 0.5fr;
 	grid-template-rows: repeat(5, 1fr);
+	background-color: $color-dark-primary-1;
+	// margin-inline: 15rem;
 	// grid-template-rows: 0.2fr 9fr 1.2fr;
 	//grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
 	// gap: 5rem;

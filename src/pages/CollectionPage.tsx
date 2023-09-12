@@ -59,7 +59,7 @@ function CollectionPage() {
 			{/* {cardCollection && <CardCollection {...cardCollection} />} */}
 			{data && (
 				<>
-					<div className="cardset-page__left">Left side</div>
+					{/* <div className="cardset-page__left">Left side</div> */}
 					<CardCollection
 						flashCards={data.flashCards}
 						title={data.title}
