@@ -14,11 +14,8 @@ import CardGrid from '../components/CardGrid/CardGrid';
 import CardGridTypes from '../types/CardGridTypes';
 import Card from '../components/Card/Card';
 import CardTypes from '../types/CardTypes';
-<<<<<<< HEAD
 import AnimationClassContext from '../context/AnimationContext';
-=======
 import Toggler from '../components/Toggler/Toggler';
->>>>>>> a13c1c9513cb0d496129dc77e709f7dc7cf6285d
 
 function EditCardPage() {
 	// useState to hold the selected card:
@@ -49,7 +46,6 @@ function EditCardPage() {
 	// useState to hold the cards of the currently selected collection:
 	const [flashCards, setFlashCards] = useState<CardTypes[] | null>([]);
 
-
 	// useState for skip:
 	const [skip, setSkip] = useState(true);
 
@@ -68,14 +64,16 @@ function EditCardPage() {
 		data: cardsData,
 		error: cardsError,
 		isLoading: cardsLoading,
-	} = useGetCollectionByIdAndUserIdQuery({
-		collectionId: selectedCollectionId,
-		userId: userId
-	}, {skip});
+	} = useGetCollectionByIdAndUserIdQuery(
+		{
+			collectionId: selectedCollectionId,
+			userId: userId,
+		},
+		{ skip }
+	);
 
 	// useEffect to set the selected collection after API call:
 	useEffect(() => {
-
 		if (collectionData?.length > 0) {
 			setSelectedCollectionId(collectionData[0].id);
 		}
@@ -89,7 +87,7 @@ function EditCardPage() {
 	}, [cardsData]);
 
 	// useEffect to set skip:
-		useEffect(() => {
+	useEffect(() => {
 		if (selectedCollectionId != null) {
 			setSkip(false);
 		}
@@ -97,7 +95,7 @@ function EditCardPage() {
 
 	const handleToggle = (toggleChange: boolean) => {
 		setIsChecked(toggleChange);
-	}
+	};
 
 	// Update the selected collection:
 	const handleCollectionChange = (collectionId: number) => {
@@ -135,7 +133,7 @@ function EditCardPage() {
 
 	const collectionAdded = () => {
 		setIsChecked(false);
-	}
+	};
 
 	if (collectionLoading) return <LoadingIcon />;
 	if (collectionError)
@@ -154,15 +152,12 @@ function EditCardPage() {
 		);
 
 	return (
-
-
-				// <AnimationClassContext.Provider value="fade-in">
+		// <AnimationClassContext.Provider value="fade-in">
 		<div className="create-edit-page">
 			<div className="create-edit-page__collection-selector">
-				
-				{collectionData && collectionData.length > 0 && !isChecked ?  (
+				{collectionData && collectionData.length > 0 && !isChecked ? (
 					<>
-						<Toggler onToggle={handleToggle} isChecked={isChecked}/>
+						<Toggler onToggle={handleToggle} isChecked={isChecked} />
 						<CollectionSelector
 							className=""
 							collections={collectionData}
@@ -185,20 +180,20 @@ function EditCardPage() {
 									collectionId={selectedCollectionId}
 								/>
 							</div>
-			</div>
+						</div>
 					</>
 				) : collectionData && collectionData.length > 0 && isChecked ? (
 					<>
-						<Toggler onToggle={handleToggle} isChecked={isChecked}/>
-						<AddCollection userId={userId} collectionAdded={collectionAdded}/>
+						<Toggler onToggle={handleToggle} isChecked={isChecked} />
+						<AddCollection userId={userId} collectionAdded={collectionAdded} />
 					</>
 				) : (
 					<>
-						<AddCollection userId={userId} collectionAdded={collectionAdded}/>
+						<AddCollection userId={userId} collectionAdded={collectionAdded} />
 					</>
 				)}
 			</div>
-		{/* </AnimationClassContext.Provider> */}
+			{/* </AnimationClassContext.Provider> */}
 		</div>
 	);
 }
