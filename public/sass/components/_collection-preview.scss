@@ -1,20 +1,75 @@
 .collection-preview {
-	background-color: rgb(199, 196, 196);
-	border: 2px solid black;
-	height: 30rem;
+	// background-color: rgb(199, 196, 196);
+	border: 0.1rem solid black;
+	height: 38rem;
 	width: 30rem;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-around;
 	align-items: center;
 	text-align: center;
 	cursor: pointer;
-	border-radius: 3%;
+	border-radius: 2rem;
 	transition: all 0.3s ease-out;
+	color: white;
+	box-shadow: 0.2rem 1rem 3rem 1rem rgba(0, 0, 0, 0.5);
 
 	&:hover {
 		background-color: rgba(255, 255, 255, 0.9);
 		transform: scale(1.05);
+		border: 0.3rem solid white;
+		// box-shadow: 0.2rem 2px 1rem 0.5rem rgba(161, 161, 161, 0.902);
+		box-shadow: 0.2rem 1rem 2rem 0.3rem rgba(255, 255, 255, 0.1);
+	}
+	&:hover &__title {
+		border: 0.5rem solid rgb(248, 251, 248);
 	}
 	&__title {
+		//background-color: rgba(111, 106, 106, 0.1);
+		// background-color: mix(red, black, 25%);
+		// background-color: darken(red, 30%);
+		width: 70%;
+		border: 0.5rem solid rgba(0, 0, 0, 0.1);
+		border-radius: 1.5rem;
+		padding: 1rem;
+		transition: all 0.3s ease-out;
+	}
+
+	// COLOR VARIATIONS
+	&.azure {
+		background-image: $color-gradient-azure;
+	}
+	&.skyblue {
+		background-image: $color-gradient-skyblue;
+	}
+	&.navy {
+		background-image: $color-gradient-navy;
+	}
+	&.aquamarine {
+		background-image: $color-gradient-aqumarine;
+	}
+	&.malachite {
+		background-image: $color-gradient-malachite;
+	}
+	&.pink {
+		background-image: $color-gradient-pink;
+	}
+	&.gray {
+		background-image: $color-gradient-gray;
+	}
+	&.yellow {
+		background-image: $color-gradient-yellow;
+	}
+	&.lime {
+		background-image: $color-gradient-lime;
+	}
+	&.purple {
+		background-image: $color-gradient-purple;
+	}
+	&.lilac {
+		background-image: $color-gradient-lilac;
+	}
+	&.maroon {
+		background-image: $color-gradient-maroon;
 	}
 }

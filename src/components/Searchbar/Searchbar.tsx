@@ -11,7 +11,7 @@ function SearchBar({ searchTerm, setSearchTerm }) {
 				onChange={(e) => setSearchTerm(e.target.value)}
 			/>
 			{/* <SearchIcon className="search__icon" /> */}
-			<button className="search__button"></button>
+			<button className="search__button "></button>
 		</form>
 	);
 }
