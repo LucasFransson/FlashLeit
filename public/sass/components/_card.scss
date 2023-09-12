@@ -3,11 +3,29 @@
 	-moz-perspective: 100rem;
 	position: relative;
 
+	&.animate-out {
+		// animation: dropCard 400ms cubic-bezier(0.35, 0.05, 0.36, 1) forwards;
+		// animation: throwCard 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+		// animation: discardCard 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+	}
+	&.animate-correct {
+		//animation: correctAnswer 0.5s forwards;
+		animation: subtleCorrectAnswer 0.5s forwards,
+			discardCardRight 0.8s 0.5s forwards;
+	}
+	&.animate-wrong {
+		//animation: wrongAnswer 0.5s forwards;
+		animation: wrongAnswer 0.5s forwards, discardCardLeft 0.8s 0.5s forwards;
+	}
+
 	&__content {
 		transform-style: preserve-3d;
-		animation: moveInBottomLeft 0.8s cubic-bezier(0.72, 0.26, 0, 1.04);
-		// animation: moveInBottomLeft 0.7s linear;
-		// animation: moveInBottomRight 0.8s cubic-bezier(0.72, 0.26, 0, 1.04);
+		// animation: moveInBottomLeft 0.8s cubic-bezier(0.72, 0.26, 0, 1.04);
+
+		animation: moveInBottomLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+		// animation: correctAnswer 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+		// animation: livelyCorrectAnswer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)forwards;
+		// animation: subduedCorrectCard 1s ease-in-out forwards;
 	}
 	// CARD SIDES
 	&__side {
@@ -22,10 +40,17 @@
 		border-radius: 1.5rem;
 
 		overflow: hidden;
-		box-shadow: 2px 3px 1rem 0.5rem rgba(0, 0, 0, 0.35);
+		//box-shadow: 2px 3px 1rem 0.5rem rgba(0, 0, 0, 0.35);
+		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15); // Initial shadow for the card
 		backface-visibility: hidden;
 
-		transition: all 0.6s cubic-bezier(1, -0.3, 0.1, 1);
+		// transition: all 0.6s cubic-bezier(1, -0.3, 0.1, 1);
+		transition: transform 0.6s cubic-bezier(1, -0.3, 0.1, 1),
+			box-shadow 0.3s ease-in-out;
+
+		&:hover {
+			box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.22); // Increased and lightened shadow for a pronounced lift
+		}
 
 		// FRONT
 		&--front {
@@ -80,18 +105,17 @@
 	// FLIP ANIMATION
 	&.is-flipped .card__side--front {
 		transform: rotateY(-180deg);
+		// animation: flipFront 0.6s cubic-bezier(1, -0.3, 0.1, 1) forwards;
+
+		// box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.3); // Receding shadow for the front
+		// box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2); // Deeper shadow during the flipping action
 	}
 
 	&.is-flipped .card__side--back {
 		transform: rotateY(0);
+		//  animation: flipBack 0.6s cubic-bezier(1, -0.3, 0.1, 1) backwards;
+		// box-shadow: 5px -5px 20px rgba(0, 0, 0, 0.3); // Advancing shadow for the back
 	}
-	// ANIMATION FOR FLIPPING ON HOVERING
-	// &:hover &__side--front {
-	// 	transform: rotateY(-180deg);
-	// }
-	// &:hover &__side--back {
-	// 	transform: rotateY(0);
-	// }
 
 	// TEXT
 	&__heading {

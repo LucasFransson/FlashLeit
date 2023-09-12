@@ -34,3 +34,15 @@
 .maroon {
 	background-image: $color-gradient-maroon;
 }
+
+.text-with-stroke {
+	// color: white; // Text color
+	// font-size: 24px;
+	text-shadow: -1px -1px 0 rgba(0, 0, 0, 1),
+		// Top-left shadow
+		1px -1px 0 #000,
+		// Top-right shadow
+		-1px 1px 0 #000,
+		// Bottom-left shadow
+		1px 1px 0 #000; // Bottom-right shadow
+}

@@ -26,30 +26,52 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	// const [cardIndex, setCardIndex] = useState(0);
 	const updateCollectionsCounter = useUpdateCollection();
 
+	// state for tracking card animation for "Dropping card" / unmounting
+	const [animateOut, setAnimateOut] = useState(false);
+	// state for tracking card animation for Wrong or Correct btn
+	const [animationType, setAnimationType] = useState<
+		'correct' | 'wrong' | null
+	>(null);
+
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
 
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
+			setAnimationType('correct');
 			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'correct' }));
 			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
 		} else {
+			setAnimationType('wrong');
 			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
 			// setAnswerStatus('wrong');
 			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'wrong' }));
 		}
 
-		// Check if the current card is the last card
-		if (cardIndex < flashCards.length - 1) {
-			// Increment the card index to show the next card
-			setCardIndex(cardIndex + 1);
-		} else {
-			console.log('Finished answering all cards!');
-		}
+		setAnimateOut(true);
+
+		setTimeout(() => {
+			setAnimateOut(false);
+			setAnimationType(null);
+			if (cardIndex < flashCards.length - 1) {
+				// Check if the current card is the last card
+				setCardIndex(cardIndex + 1); // Increment the card index to show the next card
+			} else {
+				console.log('Finished answering all cards!');
+			}
+		}, 1300); // ms animation time
+
+		// // Check if the current card is the last card
+		// if (cardIndex < flashCards.length - 1) {
+		// 	// Increment the card index to show the next card
+		// 	setCardIndex(cardIndex + 1);
+		// } else {
+		// 	console.log('Finished answering all cards!');
+		// }
 	};
 
-	console.log('Card Index:', cardIndex, 'Cards Length:', flashCards.length);
+	console.log(animationType);
 	return (
 		<div className="card-collection">
 			<div className="card-collection__heading">
@@ -70,6 +92,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					leitnerIndex={flashCards[cardIndex].leitnerIndex}
 					lastReviewed={flashCards[cardIndex].lastReviewed}
 					colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
+					animateOut={animateOut} // pass the animateOut state as a prop
+					animationType={animationType} // oass the animation type state as prop
 				/>
 			)}
 

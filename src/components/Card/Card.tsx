@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import CardProps from '../../types/CardTypes';
+import CardTypes from '../../types/CardTypes';
+
+interface CardProps extends CardTypes {
+	animateOut?: boolean;
+	animationType?: string;
+}
 
 const Card: React.FC<CardProps> = ({
 	id,
@@ -9,6 +14,8 @@ const Card: React.FC<CardProps> = ({
 	leitnerIndex,
 	lastReviewed,
 	colorClass,
+	animateOut,
+	animationType,
 }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 
@@ -17,7 +24,19 @@ const Card: React.FC<CardProps> = ({
 	};
 
 	return (
-		<div className={`card ${isFlipped ? 'is-flipped' : ''}`}>
+		// <div className={`card ${isFlipped ? 'is-flipped' : ''}`}>
+		// <div
+		// 	className={`card ${isFlipped ? 'is-flipped' : ''} ${
+		// 		animateOut ? 'animate-out' : ''
+		// 	}`}
+		// >
+		<div
+			className={`card ${isFlipped ? 'is-flipped' : ''} ${
+				animateOut ? 'animate-out' : ''
+			} ${animationType === 'correct' ? 'animate-correct' : ''} ${
+				animationType === 'wrong' ? 'animate-wrong' : ''
+			}`}
+		>
 			<div className="card__content">
 				{/* FRONTSIDE */}
 				<div className={`card__side card__side--front ${colorClass}`}>
