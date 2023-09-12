@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { useAddCardMutation } from '../../redux/api/cardsSlice';
 import { useAddCard, useUpdateCard } from '../../utils/cardEditor';
 import CardTypes from '../../types/CardTypes';
+import { getRandomColorClass } from '../../utils/getRandomColorClass';
 
-function CardEditor({card, userId, collectionId}) {
-
+function CardEditor({ card, userId, collectionId }) {
 	// const [id, setCardId] = useState(card.id);
 	// const [collectionId, setCollectionId] = useState(card.collectionId);
 	const [question, setQuestionInput] = useState(card.question);
 	const [answer, setAnswerInput] = useState(card.answer);
-	
 
 	const [areInputsEmpty, setAreInputsEmpty] = useState(true);
 
@@ -25,7 +24,6 @@ function CardEditor({card, userId, collectionId}) {
 		setAnswerInput(card.answer);
 	}, [card]);
 
-
 	const ClearInputFields = () => {
 		setQuestionInput('');
 		setAnswerInput('');
@@ -36,7 +34,6 @@ function CardEditor({card, userId, collectionId}) {
 		ClearInputFields();
 	};
 	const SaveChanges = () => {
-		
 		const cardDetails: CardTypes = {
 			id: card.id,
 			collectionId: collectionId,
@@ -45,10 +42,10 @@ function CardEditor({card, userId, collectionId}) {
 			answer: answer,
 			leitnerIndex: 1,
 			lastReviewed: null,
-			colorClass: null
-		}
+			colorClass: getRandomColorClass(), // Changed from null to rnd color function // Lucas
+		};
 
-		if(card.id === 0) {
+		if (card.id === 0) {
 			addCard(cardDetails);
 
 			ClearInputFields();
@@ -58,8 +55,6 @@ function CardEditor({card, userId, collectionId}) {
 			ClearInputFields();
 		}
 	};
-
-
 
 	return (
 		<div className="card-editor">

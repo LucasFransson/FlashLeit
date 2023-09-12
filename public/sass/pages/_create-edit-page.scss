@@ -1,9 +1,102 @@
 .create-edit-page {
-  display: grid;
-  grid-column: 1/-1;
-  grid-template-columns: 2fr 2fr;
+	// display: grid;
+	grid-column: 1/-1;
+	grid-row: 3/3;
+	overflow: scroll;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	// align-items: center;
 
+	&__collection-selector {
+		// background-color: rgba(255, 166, 0, 0.04);
+		// text-align: center;
 
+		margin-top: auto;
+		// justify-self: end;
+		// margin-right: auto;
+		// text-align: end;
+		flex-basis: 50%;
+	}
+
+	&__card-grid {
+		flex-basis: 50.1%; // TODO: Fix this stupid hack
+		height: 70vh;
+		.grid-container {
+			background-color: rgba(212, 207, 207, 0.251);
+			color: white;
+			padding: 1rem 5rem;
+			display: grid;
+			gap: 1rem 0;
+			grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+
+			&__item {
+				transition: opacity 0.5s, transform 0.5s;
+				z-index: 1;
+				&:hover {
+					z-index: 2;
+					opacity: 1;
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+
+	&__card-grid {
+		margin-right: auto;
+		.card {
+			// transform: scale(0.5455);
+			&__content {
+				font-size: calc(1rem * 0.5);
+			}
+
+			&__side {
+				height: 31rem;
+				width: 20rem;
+				// width: calc(35rem * 0.5455);
+				border-radius: calc(1.5rem * 0.5);
+				box-shadow: calc(2px * 0.5) calc(3px * 0.5) calc(1rem * 0.5)
+					calc(0.5rem * 0.5) rgba(0, 0, 0, 0.35);
+			}
+
+			&__heading {
+				font-size: calc(3.2rem * 0.5);
+			}
+
+			&__text {
+				padding: calc(2rem * 0.5);
+				font-size: calc(2.4rem * 0.5);
+			}
+
+			&__top {
+				padding-bottom: calc(1rem * 0.5);
+			}
+
+			&__center {
+				padding: calc(1rem * 0.5);
+				padding-top: calc(3rem * 0.5);
+				margin-top: calc(1.5rem * 0.5);
+				border-radius: calc(4.5rem * 0.5) calc(0.5rem * 0.5) calc(6.5rem * 0.5)
+					calc(0.5rem * 0.5);
+			}
+
+			&__bottom {
+				margin-top: calc(2rem * 0.5);
+				margin-bottom: calc(0.5rem * 0.5);
+			}
+
+			&__btn-flip {
+				padding: calc(1rem * 0.5) calc(2rem * 0.5);
+				border-radius: calc(1.5rem * 0.5);
+			}
+		}
+	}
+
+	&__card-editor {
+		margin-right: auto;
+	}
+
+	//   grid-template-columns: 2fr 2fr;
 
 	// &__card-editor-item {
 	// 	position: relative;
@@ -16,5 +109,8 @@
 	// 	background-color: aqua;
 	// 	color: red;
 	// }
-
 }
+
+// .create-edit-page__card-grid &.grid-container {
+// 	background-color: red !important;
+// }

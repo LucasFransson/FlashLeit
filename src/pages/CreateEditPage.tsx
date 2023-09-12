@@ -123,22 +123,28 @@ function EditCardPage() {
 
 	return (
 		<div className="create-edit-page">
-			<CollectionSelector
-				className=""
-				collections={collectionData}
-				onCollectionChange={handleCollectionChange}
-			/>
-			<CardGrid
-				items={flashCards}
-				Component={Card}
-				onCardClick={selectCard}
-				onDeleteClick={deleteSelectedCard}
-			/>
-			<CardEditor
-				card={selectedCard}
-				userId={userId}
-				collectionId={selectedCollectionId}
-			/>
+			<div className="create-edit-page__collection-selector">
+				<CollectionSelector
+					className=""
+					collections={collectionData}
+					onCollectionChange={handleCollectionChange}
+				/>
+			</div>
+			<div className="create-edit-page__card-grid">
+				<CardGrid
+					items={flashCards}
+					Component={Card}
+					onCardClick={selectCard}
+					onDeleteClick={deleteSelectedCard}
+				/>
+			</div>
+			<div className="create-edit-page__card-editor">
+				<CardEditor
+					card={selectedCard}
+					userId={userId}
+					collectionId={selectedCollectionId}
+				/>
+			</div>
 		</div>
 	);
 }

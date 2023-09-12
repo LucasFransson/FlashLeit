@@ -4,10 +4,11 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: 1fr 10fr 1fr;
-	gap: 1rem;
+
+	// gap: 1rem;
 	border: 1px solid $color-malachite-dark;
-	grid-column-start: 2;
-	grid-column-end: 2;
+	// grid-column-start: 2;
+	// grid-column-end: 2;
 
 	// CARD
 	&-card {
