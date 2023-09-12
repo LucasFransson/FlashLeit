@@ -20,6 +20,21 @@
 	margin: 0 5rem;
 	margin-top: 3rem;
 
+	& .collection-selector {
+		&__wrapper {
+			order: 1;
+			display: flex;
+			flex-direction: column;
+			// justify-content: center;
+			align-items: start;
+		}
+		&__title {
+			order: 2;
+		}
+		&__selector {
+			// order: 1;
+		}
+	}
 	&__collection-selector {
 		// background-color: rgba(255, 166, 0, 0.04);
 		// text-align: center;
@@ -28,11 +43,16 @@
 		// justify-self: end;
 		// margin-right: auto;
 		// text-align: end;
-		max-height: 10rem;
+		// max-height: min((8rem) 10rem);
+		height: min((8rem), 10rem);
+		text-align: center;
 		flex-basis: 100%;
 		margin-bottom: 1rem;
 
 		background-image: $color-gradient-green-primary;
+
+		&--label {
+		}
 	}
 
 	&__wrapper {

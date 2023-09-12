@@ -20,7 +20,7 @@ html {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.1fr 0.8fr 8fr 0.8fr; }
+  grid-template-rows: 0.1fr 0.4fr 8fr 0.5fr; }
 
 button,
 link,
@@ -546,7 +546,7 @@ a {
   .collection-selector__title {
     text-transform: uppercase;
     text-align: center;
-    flex-basis: 75%;
+    flex: 0 51%;
     letter-spacing: 0.4rem;
     font-size: 5rem;
     align-self: center; }
@@ -555,7 +555,6 @@ a {
     box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
     border: 2px solid green;
     padding: 1rem 3rem;
-    margin: 1rem;
     border-radius: 2px;
     color: black;
     font-weight: 500;
@@ -613,8 +612,16 @@ a {
   border: 3px solid #0d0d0d;
   margin: 0 5rem;
   margin-top: 3rem; }
+  .create-edit-page .collection-selector__wrapper {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start; }
+  .create-edit-page .collection-selector__title {
+    order: 2; }
   .create-edit-page__collection-selector {
-    max-height: 10rem;
+    height: 8rem;
+    text-align: center;
     flex-basis: 100%;
     margin-bottom: 1rem;
     background-image: linear-gradient(to bottom right, #a7f68c, #0f9d62); }
