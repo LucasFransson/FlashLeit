@@ -100,3 +100,11 @@ $color-gradient-maroon: linear-gradient(
 	$color-maroon-light,
 	$color-maroon-dark
 );
+
+$color-black-light: #181818;
+$color-black-dark: #0d0d0d;
+$color-gradient-black: linear-gradient(
+	to bottom,
+	$color-black-light,
+	$color-black-dark
+);

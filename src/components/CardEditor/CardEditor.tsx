@@ -59,7 +59,7 @@ function CardEditor({ card, userId, collectionId }) {
 	return (
 		<div className="card-editor">
 			{/* Left Side */}
-			<div className="card-editor-card--left">
+			<div className="card-editor-card card-editor-card--left">
 				{/* <p className="card-editor__heading">Question</p> */}
 				<div className="card-editor-card__content">
 					{/* FRONTSIDE */}
@@ -85,7 +85,7 @@ function CardEditor({ card, userId, collectionId }) {
 			</div>
 			{/* Right Side */}
 			{/* <div className={`card-editor-card--right ${colorClass}`}> */}
-			<div className="card-editor-card--right ">
+			<div className="card-editor-card card-editor-card--right ">
 				<div className="card-editor-card__top">
 					<p className="card-editor-card__heading">ANSWER</p>
 				</div>

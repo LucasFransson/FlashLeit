@@ -124,49 +124,37 @@ a {
 
 .card-editor {
   color: white;
-  padding: 0 5rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr 10fr 1fr;
-  border: 1px solid #31ac44; }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
   .card-editor-card--left {
-    grid-row-start: 2;
-    grid-column-start: 1/2;
     text-align: center;
     border-radius: 1.5rem;
-    border: 1px solid #f1f4f2; }
+    flex-basis: 45%;
+    height: 65rem; }
   .card-editor-card--right {
-    grid-row-start: 2;
-    grid-column-start: 2/2;
     text-align: center;
     border-radius: 1.5rem;
-    border: 1px solid #f1f4f2; }
-  .card-editor-card__top {
-    padding: 0.5rem 0;
-    padding-bottom: 1rem; }
+    flex-basis: 45%; }
   .card-editor-card__heading {
     font-size: 3.2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); }
   .card-editor-card__center {
-    padding: 3rem;
-    padding-top: 3rem;
-    background-color: rgba(255, 255, 255, 0.2);
+    padding: 3rem 0;
     border-radius: 4.5rem 0.5rem 6.5rem 0.5rem; }
   .card-editor-card__text-input {
     background-color: rgba(255, 255, 255, 0.3);
-    height: 40rem;
+    height: 50rem;
+    width: 85%;
     padding: 2rem;
     font-size: 2.4rem;
     border-radius: 4.5rem 0.5rem 6.5rem 0.5rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.65);
     cursor: default;
     resize: none; }
-  .card-editor-card__bottom {
-    padding: 1rem;
-    margin-top: 2rem; }
   .card-editor__buttons {
-    grid-row-start: 3;
-    grid-column: 1/4;
+    flex-basis: 100%;
+    height: 5rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -175,7 +163,10 @@ a {
   .card-editor__btn {
     color: white;
     box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
-    transition: all 0.15s linear; }
+    transition: all 0.15s linear;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    margin-top: 2rem; }
     .card-editor__btn:disabled {
       background-color: gray;
       border: 2px solid black;
@@ -561,7 +552,7 @@ a {
     box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
     border: 2px solid green;
     padding: 1rem 3rem;
-    margin: 1rem 0;
+    margin: 1rem;
     border-radius: 2px;
     color: black;
     font-weight: 500;
@@ -599,15 +590,18 @@ a {
   overflow: scroll;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  background-image: linear-gradient(to bottom, #424141, #393636); }
   .create-edit-page__collection-selector {
+    background-image: linear-gradient(to bottom, #181818, #0d0d0d);
     margin-top: auto;
     flex-basis: 50%; }
   .create-edit-page__card-grid {
     flex-basis: 50.1%;
-    height: 70vh; }
+    margin-top: auto; }
     .create-edit-page__card-grid .grid-container {
-      background-color: rgba(212, 207, 207, 0.251);
+      background-image: linear-gradient(to bottom, #181818, #0d0d0d);
+      height: 100%;
       color: white;
       padding: 1rem 5rem;
       display: grid;
@@ -648,7 +642,22 @@ a {
       padding: calc(1rem * 0.5) calc(2rem * 0.5);
       border-radius: calc(1.5rem * 0.5); }
   .create-edit-page__card-editor {
-    margin-right: auto; }
+    margin-right: auto;
+    box-shadow: 0.4rem 0.4rem 2rem 0.5rem rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    border-bottom: unset;
+    padding-top: 3rem;
+    border-radius: 2.5rem 2.5rem 0 0;
+    background-image: linear-gradient(to bottom, #181818, #0d0d0d); }
+  .create-edit-page .card-editor-card {
+    background-image: linear-gradient(to bottom, #181818, #0d0d0d);
+    border: 1px solid black;
+    box-shadow: 0.4rem 0.4rem 1rem 0.5rem rgba(0, 0, 0, 0.5);
+    padding: 0 3rem; }
+    .create-edit-page .card-editor-card__center {
+      background-color: #202020; }
+    .create-edit-page .card-editor-card__text-input {
+      background-color: rgba(238, 243, 243, 0.958); }
 
 .home-page {
   grid-column: 1/-1;

@@ -7,11 +7,16 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	// align-items: center;
+	background-image: linear-gradient(
+		to bottom,
+		rgb(66, 65, 65),
+		rgb(57, 54, 54)
+	);
 
 	&__collection-selector {
 		// background-color: rgba(255, 166, 0, 0.04);
 		// text-align: center;
-
+		background-image: $color-gradient-black;
 		margin-top: auto;
 		// justify-self: end;
 		// margin-right: auto;
@@ -21,9 +26,13 @@
 
 	&__card-grid {
 		flex-basis: 50.1%; // TODO: Fix this stupid hack
-		height: 70vh;
+		margin-top: auto;
+		// height: 75vh;
 		.grid-container {
-			background-color: rgba(212, 207, 207, 0.251);
+			// background-color: rgba(212, 207, 207, 0.251);
+			background-image: $color-gradient-black;
+			height: 100%;
+
 			color: white;
 			padding: 1rem 5rem;
 			display: grid;
@@ -94,6 +103,38 @@
 
 	&__card-editor {
 		margin-right: auto;
+		// background-color: rgb(17, 18, 18);
+		box-shadow: 0.4rem 0.4rem 2rem 0.5rem rgba(0, 0, 0, 0.5);
+		border: 1px solid black;
+		border-bottom: unset;
+		padding-top: 3rem;
+		border-radius: 2.5rem 2.5rem 0 0;
+		background-image: $color-gradient-black;
+		// background-image: $color-gradient-gray;
+
+		// height: 100%;
+		// margin-top: -7rem;
+
+		// &-card {
+		// 	background-color: red;
+		// }
+	}
+
+	& .card-editor-card {
+		// background-color: rgb(14, 13, 13);
+		// background-image: $color-gradient-purple;
+		background-image: $color-gradient-black;
+		border: 1px solid black;
+		box-shadow: 0.4rem 0.4rem 1rem 0.5rem rgba(0, 0, 0, 0.5);
+		padding: 0 3rem;
+
+		&__center {
+			// background-color: lighten($color-purple-light, 3%);
+			background-color: lighten($color-black-light, 3%);
+		}
+		&__text-input {
+			background-color: rgba(238, 243, 243, 0.958);
+		}
 	}
 
 	//   grid-template-columns: 2fr 2fr;
