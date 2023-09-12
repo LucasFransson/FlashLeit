@@ -1,9 +1,143 @@
 .create-edit-page {
-  display: grid;
-  grid-column: 1/-1;
-  grid-template-columns: 2fr 2fr;
+	// display: grid;
+	grid-column: 1/-1;
+	grid-row: 3/3;
+	overflow: scroll;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	// align-items: center;
+	background-image: linear-gradient(
+		to bottom,
+		rgb(66, 65, 65),
+		rgb(57, 54, 54)
+	);
 
+	&__collection-selector {
+		// background-color: rgba(255, 166, 0, 0.04);
+		// text-align: center;
+		background-image: $color-gradient-black;
+		margin-top: auto;
+		// justify-self: end;
+		// margin-right: auto;
+		// text-align: end;
+		flex-basis: 50%;
+	}
 
+	&__card-grid {
+		flex-basis: 50.1%; // TODO: Fix this stupid hack
+		margin-top: auto;
+		// height: 75vh;
+		.grid-container {
+			// background-color: rgba(212, 207, 207, 0.251);
+			background-image: $color-gradient-black;
+			height: 100%;
+
+			color: white;
+			padding: 1rem 5rem;
+			display: grid;
+			gap: 1rem 0;
+			grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+
+			&__item {
+				transition: opacity 0.5s, transform 0.5s;
+				z-index: 1;
+				&:hover {
+					z-index: 2;
+					opacity: 1;
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+
+	&__card-grid {
+		margin-right: auto;
+		.card {
+			// transform: scale(0.5455);
+			&__content {
+				font-size: calc(1rem * 0.5);
+			}
+
+			&__side {
+				height: 31rem;
+				width: 20rem;
+				// width: calc(35rem * 0.5455);
+				border-radius: calc(1.5rem * 0.5);
+				box-shadow: calc(2px * 0.5) calc(3px * 0.5) calc(1rem * 0.5)
+					calc(0.5rem * 0.5) rgba(0, 0, 0, 0.35);
+			}
+
+			&__heading {
+				font-size: calc(3.2rem * 0.5);
+			}
+
+			&__text {
+				padding: calc(2rem * 0.5);
+				font-size: calc(2.4rem * 0.5);
+			}
+
+			&__top {
+				padding-bottom: calc(1rem * 0.5);
+			}
+
+			&__center {
+				padding: calc(1rem * 0.5);
+				padding-top: calc(3rem * 0.5);
+				margin-top: calc(1.5rem * 0.5);
+				border-radius: calc(4.5rem * 0.5) calc(0.5rem * 0.5) calc(6.5rem * 0.5)
+					calc(0.5rem * 0.5);
+			}
+
+			&__bottom {
+				margin-top: calc(2rem * 0.5);
+				margin-bottom: calc(0.5rem * 0.5);
+			}
+
+			&__btn-flip {
+				padding: calc(1rem * 0.5) calc(2rem * 0.5);
+				border-radius: calc(1.5rem * 0.5);
+			}
+		}
+	}
+
+	&__card-editor {
+		margin-right: auto;
+		// background-color: rgb(17, 18, 18);
+		box-shadow: 0.4rem 0.4rem 2rem 0.5rem rgba(0, 0, 0, 0.5);
+		border: 1px solid black;
+		border-bottom: unset;
+		padding-top: 3rem;
+		border-radius: 2.5rem 2.5rem 0 0;
+		background-image: $color-gradient-black;
+		// background-image: $color-gradient-gray;
+
+		// height: 100%;
+		// margin-top: -7rem;
+
+		// &-card {
+		// 	background-color: red;
+		// }
+	}
+
+	& .card-editor-card {
+		// background-color: rgb(14, 13, 13);
+		// background-image: $color-gradient-purple;
+		background-image: $color-gradient-black;
+		border: 1px solid black;
+		box-shadow: 0.4rem 0.4rem 1rem 0.5rem rgba(0, 0, 0, 0.5);
+		padding: 0 3rem;
+
+		&__center {
+			// background-color: lighten($color-purple-light, 3%);
+			background-color: lighten($color-black-light, 3%);
+		}
+		&__text-input {
+			background-color: rgba(238, 243, 243, 0.958);
+		}
+	}
+
+	//   grid-template-columns: 2fr 2fr;
 
 	// &__card-editor-item {
 	// 	position: relative;
@@ -16,5 +150,8 @@
 	// 	background-color: aqua;
 	// 	color: red;
 	// }
-
 }
+
+// .create-edit-page__card-grid &.grid-container {
+// 	background-color: red !important;
+// }
