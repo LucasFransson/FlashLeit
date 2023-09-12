@@ -68,6 +68,7 @@ function CollectionPage() {
 						// setAnswerStatus={setAnswerStatus}
 						setMarkedCards={setMarkedCards}
 						id={data.id}
+						animationOnRendering="draw"
 					/>
 					<CardList
 						flashCards={data.flashCards}

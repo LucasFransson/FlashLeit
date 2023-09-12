@@ -1,24 +1,35 @@
 import { Link } from 'react-router-dom';
-// //function CardGrid({ items, Component, linkPrefix }) {
+import CardGridTypes from '../../types/CardGridTypes';
 
-function CardGrid({
+const CardGrid: React.FC<CardGridTypes> = ({
 	items,
 	Component,
 	linkPrefix,
 	onCardClick,
 	onDeleteClick,
-}) {
+	// animationOnRendering,
+	...restProps
+}) => {
 	return (
 		<div className="grid-container">
 			{items.map((item) => (
 				// <div className={`grid-container__item ${styleClass}`} key={item.id}>
-				<div className="grid-container__item" key={item.id}>
+				<div
+					// className={`grid-container__item ${animationOnRendering}`}
+					className={`grid-container__item ${restProps.animationOnRendering}`}
+					key={item.id}
+				>
 					{linkPrefix ? (
 						<Link
 							to={`/${linkPrefix}/${item.id}`}
 							onClick={() => onCardClick && onCardClick(item)}
 						>
-							<Component {...item} />
+							<Component
+								{...item}
+								// animationOnRendering={animationOnRendering}
+								animationOnRendering={restProps.animationOnRendering}
+							/>
+							{/* <Component {...item} /> */}
 						</Link>
 					) : (
 						<>
@@ -30,9 +41,15 @@ function CardGrid({
 							</button>
 							<div
 								onClick={() => onCardClick && onCardClick(item)}
-								className="card-editor__item"
+								className={`card-editor__item ${restProps.animationOnRendering}`}
+								//className={`card-editor__item ${animationOnRendering}`}
 							>
-								<Component {...item} />
+								<Component
+									{...item}
+									animationOnRendering={restProps.animationOnRendering}
+									//animationOnRendering={animationOnRendering}
+								/>
+								{/* <Component {...item} /> */}
 							</div>
 						</>
 					)}
@@ -40,7 +57,7 @@ function CardGrid({
 			))}
 		</div>
 	);
-}
+};
 
 export default CardGrid;
 

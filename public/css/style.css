@@ -54,7 +54,7 @@ a {
     transform: rotateY(180deg);
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15); } }
 
-@keyframes drawCard {
+@keyframes draw-fade-in {
   0% {
     opacity: 0;
     transform: scale(0.95); }
@@ -313,13 +313,16 @@ a {
   perspective: 100rem;
   -moz-perspective: 100rem;
   position: relative; }
+  .card.animate-render-draw {
+    animation: moveInBottomLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  .card.animate-render-fade-in {
+    animation: draw-fade-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
   .card.animate-correct {
     animation: subtleCorrectAnswer 0.5s forwards, discardCardRight 0.8s 0.5s forwards; }
   .card.animate-wrong {
     animation: wrongAnswer 0.5s forwards, discardCardLeft 0.8s 0.5s forwards; }
   .card__content {
-    transform-style: preserve-3d;
-    animation: moveInBottomLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+    transform-style: preserve-3d; }
   .card__side {
     display: flex;
     flex-direction: column;

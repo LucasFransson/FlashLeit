@@ -10,11 +10,14 @@ import {
 import { useEffect, useState } from 'react';
 import { useDeleteCard } from '../utils/cardEditor';
 import CardGrid from '../components/CardGrid/CardGrid';
+import CardGridTypes from '../types/CardGridTypes';
 import Card from '../components/Card/Card';
 import CardTypes from '../types/CardTypes';
+import AnimationClassContext from '../context/AnimationContext';
 
 function EditCardPage() {
 	// useState to hold the selected card:
+
 	const [selectedCard, setSelectedCard] = useState<CardTypes>({
 		id: 0,
 		collectionId: 0,
@@ -24,6 +27,7 @@ function EditCardPage() {
 		leitnerIndex: 1,
 		lastReviewed: null,
 		colorClass: null,
+		animationOnRendering: 'fade-in',
 	});
 
 	// Retrieve the UserId:
@@ -122,32 +126,35 @@ function EditCardPage() {
 		);
 
 	return (
-		<div className="create-edit-page">
-			<div className="create-edit-page__collection-selector">
-				<CollectionSelector
-					className=""
-					collections={collectionData}
-					onCollectionChange={handleCollectionChange}
-				/>
-			</div>
-			<div className="create-edit-page__wrapper">
-				<div className="create-edit-page__card-grid">
-					<CardGrid
-						items={flashCards}
-						Component={Card}
-						onCardClick={selectCard}
-						onDeleteClick={deleteSelectedCard}
+		<AnimationClassContext.Provider value="fade-in">
+			<div className="create-edit-page">
+				<div className="create-edit-page__collection-selector">
+					<CollectionSelector
+						className=""
+						collections={collectionData}
+						onCollectionChange={handleCollectionChange}
 					/>
 				</div>
-				<div className="create-edit-page__card-editor">
-					<CardEditor
-						card={selectedCard}
-						userId={userId}
-						collectionId={selectedCollectionId}
-					/>
+				<div className="create-edit-page__wrapper">
+					<div className="create-edit-page__card-grid">
+						<CardGrid
+							items={flashCards}
+							Component={Card}
+							onCardClick={selectCard}
+							onDeleteClick={deleteSelectedCard}
+							animationOnRendering={'fade-in'}
+						/>
+					</div>
+					<div className="create-edit-page__card-editor">
+						<CardEditor
+							card={selectedCard}
+							userId={userId}
+							collectionId={selectedCollectionId}
+						/>
+					</div>
 				</div>
 			</div>
-		</div>
+		</AnimationClassContext.Provider>
 	);
 }
 

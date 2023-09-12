@@ -10,6 +10,7 @@ interface CardCollectionProps extends CardCollectionTypes {
 	setMarkedCards: React.Dispatch<
 		React.SetStateAction<{ [key: number]: 'correct' | 'wrong' }>
 	>;
+	animationOnRendering: 'draw' | 'fade-in';
 	// setAnswerStatus: (status: string) => void;
 }
 
@@ -20,6 +21,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	setCardIndex,
 	// setAnswerStatus,
 	setMarkedCards,
+	animationOnRendering,
 	flashCards = [],
 }) => {
 	// useState hook for managing current card index
@@ -71,7 +73,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 		// }
 	};
 
-	console.log(animationType);
+	console.log(animationOnRendering);
 	return (
 		<div className="card-collection">
 			<div className="card-collection__heading">
@@ -94,6 +96,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
 					animateOut={animateOut} // pass the animateOut state as a prop
 					animationType={animationType} // oass the animation type state as prop
+					animationOnRendering={animationOnRendering}
 				/>
 			)}
 
