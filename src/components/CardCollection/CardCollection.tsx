@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Card from '../Card/Card';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
 import CardCollectionTypes from '../../types/CardCollectionTypes';
-import { useUpdateCollection } from '../../utils/collectionAmountsIncrementer';
+import { useUpdateCollection } from '../../utils/collectionUtility';
 
 interface CardCollectionProps extends CardCollectionTypes {
 	cardIndex: number;
