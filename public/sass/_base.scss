@@ -8,7 +8,10 @@
 
 body {
 	box-sizing: border-box;
-	background-color: #242424;
+	// DARK THEME
+	// background-color: #242424;
+	// LIGHT THEME
+	background-color: $color-white-1;
 	font-family: 'Poppins', sans-serif;
 	font-size: 1.6rem;
 }
@@ -23,7 +26,7 @@ html {
 	height: 100vh;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 0.2fr 0.8fr 8fr 0.8fr;
+	grid-template-rows: 0.1fr 0.4fr 8fr 0.5fr;
 }
 
 button,

@@ -31,23 +31,30 @@ const CollectionSelector: React.FC<CollectionSelectorProps> = ({
 
 	return (
 		<div className="collection-selector">
-			<h1 className="collection-selector__title">{selectedTitle}</h1>
+			<>
+				<h1 className="collection-selector__title">{selectedTitle}</h1>
+			</>
 			{collections && collections.length > 0 ? (
-				<select
-					className="collection-selector__selector"
-					onChange={handleSelectChange}
-					value={collections.find((col) => col.title === selectedTitle)?.id}
-				>
-					{collections.map((collection) => (
-						<option
-							className="collection-selector__option"
-							key={collection.id}
-							value={collection.id}
-						>
-							{collection.title}
-						</option>
-					))}
-				</select>
+				<div className="collection-selector__wrapper">
+					<label className="collection-selector__wrapper--label">
+						Collection:{' '}
+					</label>
+					<select
+						className="collection-selector__selector"
+						onChange={handleSelectChange}
+						value={collections.find((col) => col.title === selectedTitle)?.id}
+					>
+						{collections.map((collection) => (
+							<option
+								className="collection-selector__option"
+								key={collection.id}
+								value={collection.id}
+							>
+								{collection.title}
+							</option>
+						))}
+					</select>
+				</div>
 			) : (
 				<div className="">
 					<p>You don't have any collections..</p>

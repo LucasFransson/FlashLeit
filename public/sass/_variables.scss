@@ -1,3 +1,6 @@
+$color-white-1: #f6f2f2;
+$color-dark-primary-1: #242424;
+
 $color-gray-light-1: #d9d9d9;
 $color-gray-dark-1: #404040;
 $color-gray-dark-2: #6a6d70;
@@ -59,6 +62,15 @@ $color-gradient-malachite: linear-gradient(
 	$color-malachite-light,
 	$color-malachite-dark
 );
+
+$color-green-primary-light: #a7f68c;
+$color-green-primary-dark: #0f9d62;
+$color-gradient-green-primary: linear-gradient(
+	to bottom right,
+	$color-green-primary-light,
+	$color-green-primary-dark
+);
+
 $color-gradient-green-dark: linear-gradient(to bottom, #3ec555, #2a8c38);
 
 $color-lime-light: #e6fa9e;

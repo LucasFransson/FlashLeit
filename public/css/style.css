@@ -7,7 +7,7 @@
 
 body {
   box-sizing: border-box;
-  background-color: #242424;
+  background-color: #f6f2f2;
   font-family: 'Poppins', sans-serif;
   font-size: 1.6rem; }
 
@@ -20,7 +20,7 @@ html {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 0.8fr 8fr 0.8fr; }
+  grid-template-rows: 0.1fr 0.4fr 8fr 0.5fr; }
 
 button,
 link,
@@ -120,7 +120,10 @@ a {
 .btn-login {
   background-color: transparent;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  cursor: pointer;
+  font-size: 1.8rem;
+  border: transparent; }
 
 .card-editor {
   color: white;
@@ -299,9 +302,6 @@ a {
       background-color: #50ed50; }
 
 .card-collection {
-  height: 100%;
-  flex-basis: 40%;
-  margin-left: auto;
   color: #f2f2f2;
   display: flex;
   flex-direction: column;
@@ -311,13 +311,14 @@ a {
     color: white;
     font-size: 2.4rem;
     margin-bottom: 1.5rem; }
-  .card-collection__title {
+  .card-collection__heading {
+    border-bottom: 8px solid #25f947;
     width: 100%;
+    margin-top: -12rem;
+    margin-bottom: 2rem; }
+  .card-collection__heading--title {
     text-align: center;
     text-transform: uppercase;
-    border-bottom: 8px solid #25f947;
-    margin-top: -7rem;
-    margin-bottom: 2rem;
     font-size: 5.2rem; }
   .card-collection__buttons {
     margin-top: 2rem; }
@@ -429,7 +430,8 @@ a {
 .header-logo-text--sub {
   font-size: 2.4rem;
   font-family: 'Inter', sans-serif;
-  letter-spacing: 1.2rem; }
+  letter-spacing: 1.2rem;
+  color: #f6f2f2; }
 
 .loading {
   perspective: 300rem;
@@ -457,9 +459,10 @@ a {
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
-  background-color: #f1f4f2;
-  color: #373636;
+  background-image: linear-gradient(to bottom, #181818, #0d0d0d);
+  color: #a7f68c;
   border: 2px solid black;
+  border-bottom: 0.5rem solid black;
   box-shadow: 0px 4px 1rem 2px rgba(0, 0, 0, 0.3); }
   .navbar__item {
     width: 17rem;
@@ -470,16 +473,16 @@ a {
     justify-content: center;
     cursor: pointer; }
     .navbar__item-link {
-      color: #110d10; }
+      color: #110d10;
+      color: #a7f68c; }
     .navbar__item:hover {
-      background-color: rgba(189, 237, 172, 0.823); }
+      background-color: rgba(196, 254, 175, 0.4); }
     .navbar__item--0 {
       justify-self: flex-start;
       margin-left: 8rem;
       margin-right: auto;
-      border: 0; }
-      .navbar__item--0:hover {
-        background-color: unset; }
+      border: 0;
+      color: #f6f2f2; }
 
 .search {
   display: flex;
@@ -543,7 +546,7 @@ a {
   .collection-selector__title {
     text-transform: uppercase;
     text-align: center;
-    flex-basis: 75%;
+    flex: 0 51%;
     letter-spacing: 0.4rem;
     font-size: 5rem;
     align-self: center; }
@@ -552,7 +555,6 @@ a {
     box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
     border: 2px solid green;
     padding: 1rem 3rem;
-    margin: 1rem;
     border-radius: 2px;
     color: black;
     font-weight: 500;
@@ -582,7 +584,22 @@ a {
   grid-row: 3/6;
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  margin-inline: 5rem;
+  margin-top: 3rem;
+  border: 3px solid #242424;
+  background-color: #e1dddd; }
+  .cardset-page .card-collection {
+    flex-basis: 70%;
+    height: 100%; }
+    .cardset-page .card-collection__heading {
+      color: #242424; }
+    .cardset-page .card-collection__counter {
+      color: #242424;
+      font-weight: 600; }
+  .cardset-page .card-list {
+    flex-basis: 30%;
+    background-image: linear-gradient(to bottom, #9f9c9c, #272626); }
 
 .create-edit-page {
   grid-column: 1/-1;
@@ -591,17 +608,29 @@ a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-image: linear-gradient(to bottom, #424141, #393636); }
+  background-color: #d5d1d1;
+  border: 3px solid #0d0d0d;
+  margin: 0 5rem;
+  margin-top: 3rem; }
+  .create-edit-page .collection-selector__wrapper {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start; }
+  .create-edit-page .collection-selector__title {
+    order: 2; }
   .create-edit-page__collection-selector {
-    background-image: linear-gradient(to bottom, #181818, #0d0d0d);
-    margin-top: auto;
-    flex-basis: 50%; }
+    height: 8rem;
+    text-align: center;
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+    background-image: linear-gradient(to bottom right, #a7f68c, #0f9d62); }
+  .create-edit-page__wrapper {
+    flex-basis: 100%;
+    display: flex; }
   .create-edit-page__card-grid {
-    flex-basis: 50.1%;
-    margin-top: auto; }
+    flex-basis: 50%; }
     .create-edit-page__card-grid .grid-container {
-      background-image: linear-gradient(to bottom, #181818, #0d0d0d);
-      height: 100%;
       color: white;
       padding: 1rem 5rem;
       display: grid;
@@ -643,12 +672,8 @@ a {
       border-radius: calc(1.5rem * 0.5); }
   .create-edit-page__card-editor {
     margin-right: auto;
-    box-shadow: 0.4rem 0.4rem 2rem 0.5rem rgba(0, 0, 0, 0.5);
-    border: 1px solid black;
     border-bottom: unset;
-    padding-top: 3rem;
-    border-radius: 2.5rem 2.5rem 0 0;
-    background-image: linear-gradient(to bottom, #181818, #0d0d0d); }
+    border-radius: 2.5rem 2.5rem 0 0; }
   .create-edit-page .card-editor-card {
     background-image: linear-gradient(to bottom, #181818, #0d0d0d);
     border: 1px solid black;
@@ -657,7 +682,7 @@ a {
     .create-edit-page .card-editor-card__center {
       background-color: #202020; }
     .create-edit-page .card-editor-card__text-input {
-      background-color: rgba(238, 243, 243, 0.958); }
+      background-color: #f6f2f2; }
 
 .home-page {
   grid-column: 1/-1;
@@ -666,6 +691,7 @@ a {
   display: grid;
   grid-template-columns: 0.5fr 2fr 2fr 0.5fr;
   grid-template-rows: repeat(5, 1fr);
+  background-color: #242424;
   color: #e0e0e0; }
   .home-page__main {
     grid-column-start: 2;
@@ -738,7 +764,26 @@ a {
 .discover-page {
   grid-column: 1/-1;
   grid-row: 3/-1;
-  display: grid; }
+  display: grid;
+  overflow: scroll; }
+
+.discover-page {
+  grid-column: 1/-1;
+  grid-row: 3/-1;
+  overflow: scroll;
+  border: 3px solid #292727;
+  margin-top: 3rem;
+  margin-inline: 5rem;
+  background-color: #e1dddd; }
+  .discover-page__top {
+    height: 15vh;
+    background-image: linear-gradient(to bottom right, #a7f68c, #0f9d62); }
+  .discover-page__bottom {
+    padding-top: 3rem;
+    padding-bottom: 20rem; }
+  .discover-page .grid-container .collection-preview {
+    box-shadow: 0rem 0.5rem 1.5rem 1rem rgba(118, 107, 107, 0.25);
+    border: unset; }
 
 .azure {
   background-image: linear-gradient(to bottom, #eafffe, #649392); }

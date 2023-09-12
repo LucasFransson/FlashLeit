@@ -52,7 +52,9 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	console.log('Card Index:', cardIndex, 'Cards Length:', flashCards.length);
 	return (
 		<div className="card-collection">
-			<h1 className="card-collection__title">{title}</h1>
+			<div className="card-collection__heading">
+				<h1 className="card-collection__heading--title">{title}</h1>
+			</div>
 			<p className="card-collection__counter">
 				<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
 			</p>
