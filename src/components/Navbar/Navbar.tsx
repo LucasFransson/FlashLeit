@@ -58,38 +58,40 @@ function Navbar() {
 			<div className="navbar__item navbar__item--0">
 				<Link to={'/'}>
 					<p className="navbar__item-link">
-						<span className="header-logo-text--main">FLASH</span>
-						<span className="header-logo-text--sub">LEIT</span>
+						<span className="header-logo-text--main text-with-stroke">
+							FLASH
+						</span>
+						<span className="header-logo-text--sub text-with-stroke">LEIT</span>
 					</p>
 				</Link>
 			</div>
 			{/* Logged in */}
 			<AuthenticatedTemplate>
-				<div className="navbar__item navbar__item--1 ">
+				<div className="navbar__item navbar__item--1 text-with-stroke">
 					<Link to={'/discover'} className=" navbar__item-link">
 						Discover
 					</Link>
 				</div>
-				<div className="navbar__item navbar__item--2">
+				<div className="navbar__item navbar__item--2 text-with-stroke">
 					<Link to={'/edit'} className=" navbar__item-link">
 						Create Cards
 					</Link>
 				</div>
-				<div className="navbar__item navbar__item--3">
+				<div className="navbar__item navbar__item--3 text-with-stroke">
 					<Link to={'/collections'} className=" navbar__item-link">
 						Collections
 					</Link>
 				</div>
-				<div className="navbar__item navbar__item--4">
+				<div className="navbar__item navbar__item--4 text-with-stroke">
 					<Link to={'/userpage'} className="navbar__item-link">
 						User page
 					</Link>
 				</div>
-				<div className="navbar__item navbar__item--5">
+				<div className="navbar__item navbar__item--5 text-with-stroke">
 					<button
 						type="button"
 						onClick={() => Logout()}
-						className="navbar__item-link btn-login"
+						className="navbar__item-link btn-login text-with-stroke"
 					>
 						Logout
 					</button>
