@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
-import { useDispatch } from "react-redux";
-import { setUserIdFromToken } from "../../redux/userIdSlice";
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import {
+	AuthenticatedTemplate,
+	UnauthenticatedTemplate,
+	useMsal,
+} from '@azure/msal-react';
+import { useDispatch } from 'react-redux';
+import { setUserIdFromToken } from '../../redux/userIdSlice';
 
 function Navbar() {
 	const { instance } = useMsal();
@@ -15,15 +19,15 @@ function Navbar() {
 
 		if (account.idToken == undefined) {
 			const silentRequest = {
-				scopes: ["openid"],
+				scopes: ['openid'],
 				account: account,
 			};
 
 			await instance.initialize();
 			await instance
 				.acquireTokenSilent(silentRequest)
-				.then(res => dispatch(setUserIdFromToken(res.idToken)))
-				.catch(error => console.log(error));
+				.then((res) => dispatch(setUserIdFromToken(res.idToken)))
+				.catch((error) => console.log(error));
 			return;
 		}
 
@@ -52,7 +56,7 @@ function Navbar() {
 	return (
 		<div className="navbar">
 			<div className="navbar__item navbar__item--0">
-				<Link to={"/"}>
+				<Link to={'/'}>
 					<p className="navbar__item-link">
 						<span className="header-logo-text--main">FLASH</span>
 						<span className="header-logo-text--sub">LEIT</span>
@@ -62,27 +66,31 @@ function Navbar() {
 			{/* Logged in */}
 			<AuthenticatedTemplate>
 				<div className="navbar__item navbar__item--1 ">
-					<Link to={"/discover"} className=" navbar__item-link">
+					<Link to={'/discover'} className=" navbar__item-link">
 						Discover
 					</Link>
 				</div>
 				<div className="navbar__item navbar__item--2">
-					<Link to={"/edit"} className=" navbar__item-link">
+					<Link to={'/edit'} className=" navbar__item-link">
 						Create Cards
 					</Link>
 				</div>
 				<div className="navbar__item navbar__item--3">
-					<Link to={"/collections"} className=" navbar__item-link">
+					<Link to={'/collections'} className=" navbar__item-link">
 						Collections
 					</Link>
 				</div>
-				<div className="navbar__item navbar__item--5">
-					<Link to={"/userpage"} className="navbar__item-link">
+				<div className="navbar__item navbar__item--4">
+					<Link to={'/userpage'} className="navbar__item-link">
 						User page
 					</Link>
 				</div>
 				<div className="navbar__item navbar__item--5">
-					<button type="button" onClick={() => Logout()} className="btn-login">
+					<button
+						type="button"
+						onClick={() => Logout()}
+						className="navbar__item-link btn-login"
+					>
 						Logout
 					</button>
 				</div>
@@ -90,7 +98,11 @@ function Navbar() {
 			{/* Not Logged in */}
 			<UnauthenticatedTemplate>
 				<div className="navbar__item navbar__item--5">
-					<button type="button" onClick={() => Login()} className="btn-login">
+					<button
+						type="button"
+						onClick={() => Login()}
+						className="navbar__item-link btn-login"
+					>
 						Login
 					</button>
 				</div>

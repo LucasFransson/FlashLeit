@@ -36,9 +36,9 @@
 	// border-top:2px solid $color-malachite-dark;
 	// TODO:Refactor cardset
 
-	height: 100%;
-	flex-basis: 40%;
-	margin-left: auto;
+	// height: 100%;
+	// flex-basis: 40%;
+	// margin-left: auto;
 
 	color: rgb(242, 242, 242);
 	display: flex;
@@ -52,13 +52,19 @@
 		font-size: 2.4rem;
 		margin-bottom: 1.5rem;
 	}
-	&__title {
+	&__heading {
+		border-bottom: 8px solid $color-malachite-light;
 		width: 100%;
+		margin-top: -12rem;
+		margin-bottom: 2rem;
+	}
+	&__heading--title {
+		// width: 100%;
 		text-align: center;
 		text-transform: uppercase;
-		border-bottom: 8px solid $color-malachite-light;
-		margin-top: -7rem;
-		margin-bottom: 2rem;
+		// border-bottom: 8px solid $color-malachite-light;
+		// margin-top: -7rem;
+		// margin-bottom: 2rem;
 		font-size: 5.2rem;
 	}
 	&__buttons {
