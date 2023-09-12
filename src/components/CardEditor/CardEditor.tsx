@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAddCardMutation } from '../../redux/api/cardsSlice';
-import { useAddCard, useUpdateCard } from '../../utils/cardEditor';
+import { useAddCard, useUpdateCard } from '../../utils/cardUtility';
 import CardTypes from '../../types/CardTypes';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
 

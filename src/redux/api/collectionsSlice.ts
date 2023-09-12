@@ -13,6 +13,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 			number | null | undefined
 		>({
 			query: (id) => `api/collections/user/${id}`,
+			providesTags: () => [{type: 'UserCollections'}]
 		}),
 		getCollectionByIdAndUserId: builder.query<
 			CardCollectionTypes,
@@ -46,6 +47,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 					body: collection,
 				};
 			},
+			invalidatesTags: () => [{ type: 'UserCollections' }],
 		}),
 		CloneCollection: builder.mutation<
 			void,
