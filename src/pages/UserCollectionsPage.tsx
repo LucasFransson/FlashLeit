@@ -7,16 +7,23 @@ import { useGetCollectionsByUserIdQuery } from '../redux/api/collectionsSlice';
 
 import { getRandomColorClass } from '../utils/getRandomColorClass';
 import ColorClassContext from '../context/ColorClassContext';
+import useFetch from '../hooks/useFetch';
 
 function UserCollectionsPage() {
 	const { userId } = useSelector((state: RootState) => state.userId);
-	const [skip, setSkip] = useState(true);
 
+	const [skip, setSkip] = useState(true);
 	const {
 		data: collections,
 		isLoading,
 		isError,
 	} = useGetCollectionsByUserIdQuery(userId, { skip });
+
+	// const {
+	// 	data: collections,
+	// 	isLoading,
+	// 	isError,
+	// } = useFetch(`https://flashleit.azure-api.net/api/collections/user/${userId}`,[]as Array<any>)
 
 	console.log(collections);
 
