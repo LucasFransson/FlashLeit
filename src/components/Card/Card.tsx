@@ -3,6 +3,7 @@ import CardTypes from '../../types/CardTypes';
 
 interface CardProps extends CardTypes {
 	animateOut?: boolean;
+	animationType?: string;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -14,6 +15,7 @@ const Card: React.FC<CardProps> = ({
 	lastReviewed,
 	colorClass,
 	animateOut,
+	animationType,
 }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 
@@ -23,9 +25,16 @@ const Card: React.FC<CardProps> = ({
 
 	return (
 		// <div className={`card ${isFlipped ? 'is-flipped' : ''}`}>
+		// <div
+		// 	className={`card ${isFlipped ? 'is-flipped' : ''} ${
+		// 		animateOut ? 'animate-out' : ''
+		// 	}`}
+		// >
 		<div
 			className={`card ${isFlipped ? 'is-flipped' : ''} ${
 				animateOut ? 'animate-out' : ''
+			} ${animationType === 'correct' ? 'animate-correct' : ''} ${
+				animationType === 'wrong' ? 'animate-wrong' : ''
 			}`}
 		>
 			<div className="card__content">

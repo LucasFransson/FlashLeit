@@ -119,7 +119,7 @@ a {
     opacity: 0.5;
     transform: rotate(-15deg) translateY(10rem); } }
 
-@keyframes throwCard {
+@keyframes throwCardRight {
   0% {
     opacity: 1;
     transform: translate(0); }
@@ -130,7 +130,7 @@ a {
     opacity: 0;
     transform: translateY(-70rem) translateX(25rem) rotate(90deg) skew(-20deg, -5deg); } }
 
-@keyframes discardCard {
+@keyframes discardCardRight {
   0% {
     opacity: 1;
     transform: rotate(0) translateY(0); }
@@ -140,6 +140,17 @@ a {
   100% {
     opacity: 0;
     transform: translateY(-20rem) translateX(30rem) rotate(90deg) skew(20deg, 5deg); } }
+
+@keyframes discardCardLeft {
+  0% {
+    opacity: 1;
+    transform: rotate(0) translateY(0); }
+  30% {
+    opacity: 0.8;
+    transform: rotate(15deg) translateY(10rem); }
+  100% {
+    opacity: 0;
+    transform: translateY(-20rem) translateX(-30rem) rotate(-90deg) skew(20deg, 5deg); } }
 
 @keyframes moveInRight {
   0% {
@@ -302,8 +313,10 @@ a {
   perspective: 100rem;
   -moz-perspective: 100rem;
   position: relative; }
-  .card.animate-out {
-    animation: discardCard 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+  .card.animate-correct {
+    animation: subtleCorrectAnswer 0.5s forwards, discardCardRight 0.8s 0.5s forwards; }
+  .card.animate-wrong {
+    animation: wrongAnswer 0.5s forwards, discardCardLeft 0.8s 0.5s forwards; }
   .card__content {
     transform-style: preserve-3d;
     animation: moveInBottomLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); }

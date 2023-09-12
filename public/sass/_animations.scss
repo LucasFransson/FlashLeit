@@ -123,7 +123,7 @@
 	}
 }
 
-@keyframes throwCard {
+@keyframes throwCardRight {
 	0% {
 		opacity: 1;
 		transform: translate(0);
@@ -140,7 +140,7 @@
 	}
 }
 
-@keyframes discardCard {
+@keyframes discardCardRight {
 	0% {
 		opacity: 1;
 		// transform: translate(0);
@@ -156,6 +156,23 @@
 		opacity: 0;
 		transform: translateY(-20rem) translateX(30rem) rotate(90deg)
 			skew(20deg, 5deg); // Throw away to the right
+	}
+}
+
+@keyframes discardCardLeft {
+	0% {
+		opacity: 1;
+		transform: rotate(0) translateY(0);
+	}
+	30% {
+		opacity: 0.8;
+		transform: rotate(15deg) translateY(10rem); // Positive rotation for left wind up
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-20rem) translateX(-30rem) rotate(-90deg)
+			// Negative values for leftward motion
+			skew(20deg, 5deg); // Throw away to the left
 	}
 }
 
