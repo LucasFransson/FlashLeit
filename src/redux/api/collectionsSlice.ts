@@ -86,15 +86,16 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 		}),
 		deleteCollection: builder.mutation<
 			void,
-			{ collectonId: number; userId: number }
+			{ collectionId: number; userId: number }
 		>({
-			query: ({ collectonId, userId }) => {
+			query: ({ collectionId, userId }) => {
 				return {
-					url: `api/collections/${collectonId}`,
+					url: `api/collections/${collectionId}/?userId=${userId}`,
 					method: 'DELETE',
-					body: userId,
+					body: JSON.stringify({userId: userId}),
 				};
 			},
+			invalidatesTags: () => [{ type: 'UserCollections'}], 
 		}),
 	}),
 });

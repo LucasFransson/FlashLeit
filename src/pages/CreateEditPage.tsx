@@ -14,6 +14,7 @@ import CardGrid from '../components/CardGrid/CardGrid';
 import Card from '../components/Card/Card';
 import CardTypes from '../types/CardTypes';
 import Toggler from '../components/Toggler/Toggler';
+import { useDeleteCollection } from '../utils/collectionUtility';
 
 function EditCardPage() {
 	// useState to hold the selected card:
@@ -48,6 +49,9 @@ function EditCardPage() {
 
 	// Delete card from utility folder:
 	const deleteCard = useDeleteCard();
+
+	// Delete collections from utility folder:
+	const deleteCollection = useDeleteCollection();
 
 	// API call for getting all the users collections:
 	const {
@@ -123,10 +127,21 @@ function EditCardPage() {
 			colorClass: null,
 		};
 
-		deleteCard(cardDetails);
+		if(flashCards?.length <= 1){
+			// --- TODO --- Error handeling: (1) Show error modal? (2) Show modal explaining that continuing to delete last card will delete the entire collection?
+			
+			deleteCollection(selectedCollectionId, userId);
+		} else {
+			deleteCard(cardDetails);
+		}
+
+
 	};
 
 	const collectionAdded = () => {
+
+		// --- TODO --- Show success modal?
+
 		setIsChecked(false);
 	}
 
