@@ -39,6 +39,12 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 				return { ...response, flashCards: modifiedFlashCards };
 			},
 		}),
+		getAuthoredCollections: builder.query<
+		CardCollectionTypes [] | null,
+		 {userId: number}>({
+			query: (userId) => `api/collections/author/${userId}`,
+			providesTags: () => [{type: 'UserCollections'}]
+		 }),
 		addCollection: builder.mutation<void, CardCollectionTypes>({
 			query: (collection) => {
 				return {
@@ -104,6 +110,7 @@ export const {
 	useGetAllCollectionsQuery,
 	useGetCollectionsByUserIdQuery,
 	useGetCollectionByIdAndUserIdQuery,
+	useGetAuthoredCollectionsQuery,
 	useAddCollectionMutation,
 	useCloneCollectionMutation,
 	useUpdateCollectionMutation,
