@@ -7,7 +7,8 @@ export const apiSlice = createApi({
 		baseUrl: "https://flashleit.azure-api.net/",
 		credentials: "include",
 		prepareHeaders: (headers, { getState }) => {
-			const idToken = (getState() as RootState).idToken;
+			const idToken = (getState() as RootState).idToken.idToken;
+
 			if (idToken) {
 				headers.set("authorization", `Bearer ${idToken}`);
 			}
