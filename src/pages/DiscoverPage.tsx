@@ -12,18 +12,8 @@ function DiscoverPage() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [coloredCollections, setColoredCollections] = useState<any[]>([]);
 
-	// const {
-	// 	data: collections,
-	// 	loading,
-	// 	error,
-	// } = useFetch(
-	// 	'https://flashleit.azure-api.net/api/collections',
-	// 	[] as Array<any>
-	// );
 
 	const { data: collections, isLoading, isError, error } = useGetAllCollectionsQuery();
-
-	console.log(collections);
 
 	useEffect(() => {
 		if (collections && collections.length > 0) {

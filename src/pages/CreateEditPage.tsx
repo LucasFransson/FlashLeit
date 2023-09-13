@@ -6,6 +6,7 @@ import CollectionSelector from '../components/CollectionSelector/CollectionSelec
 import {
 	useGetCollectionsByUserIdQuery,
 	useGetCollectionByIdAndUserIdQuery,
+	useGetAuthoredCollectionsQuery,
 } from '../redux/api/collectionsSlice';
 import { useEffect, useState } from 'react';
 import { useDeleteCard } from '../utils/cardUtility';
@@ -58,7 +59,7 @@ function EditCardPage() {
 		data: collectionData,
 		error: collectionError,
 		isLoading: collectionLoading,
-	} = useGetCollectionsByUserIdQuery(userId);
+	} = useGetAuthoredCollectionsQuery(userId);
 
 	// API call for getting all the cards of the currently selected collection;
 	const {
@@ -129,7 +130,7 @@ function EditCardPage() {
 
 		if(flashCards?.length <= 1){
 			// --- TODO --- Error handeling: (1) Show error modal? (2) Show modal explaining that continuing to delete last card will delete the entire collection?
-			
+
 			deleteCollection(selectedCollectionId, userId);
 		} else {
 			deleteCard(cardDetails);
