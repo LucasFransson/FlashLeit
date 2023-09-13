@@ -6,8 +6,10 @@ interface ErrorMsgProps {
 }
 
 const ErrorMsg: React.FC<ErrorMsgProps> = ({ error }) => {
-	let errMsg;
 	let errCode = null;
+	let errMsg;
+	let errTitle;
+	let errDetails;
 
 	if (error) {
 		if ("status" in error) {
@@ -17,6 +19,16 @@ const ErrorMsg: React.FC<ErrorMsgProps> = ({ error }) => {
 			// If the status is a string, then a predefined error will be in error.error
 			// And when its a number, the response message from our api will be in error.data
 			errMsg = "error" in error ? error.error : JSON.stringify(error.data);
+			// Uses regular expression to extract the title from errMsg
+			const errTitleArray = errMsg.match(/"title"\s*:("([^"]*)")/);
+			// Uses regular expression to extract relevant details about the error from errMsg
+			errDetails = errMsg.match(/(?<=\[").+?(?="])/);
+
+			if (errTitleArray === null) {
+				errTitle = "Something went wrong";
+			} else {
+				errTitle = errTitleArray[2];
+			}
 		} else {
 			// Message is only a property on SerializedError
 			errMsg = error.message;
@@ -25,10 +37,11 @@ const ErrorMsg: React.FC<ErrorMsgProps> = ({ error }) => {
 
 	return (
 		<div>
-			{errCode ? (
+			{errCode && errTitle ? (
 				<>
 					<p className="card__text">{errCode}</p>
-					<p className="card__text">{errMsg}</p>
+					<p className="card__text">{errTitle}</p>
+					<p className="card__text">{errDetails}</p>
 				</>
 			) : (
 				<p className="card__text">{errMsg}</p>
