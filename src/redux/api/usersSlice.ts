@@ -14,7 +14,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 		updateUser: builder.mutation<void, UserTypes>({
 			query: user => ({
 				url: `api/users/${user.id}`,
-				method: "PATCH",
+				method: "PUT",
 				body: user,
 			}),
 			invalidatesTags: (result, error, user) => [{ type: "Users", id: user.id }],

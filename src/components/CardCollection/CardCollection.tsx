@@ -48,7 +48,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
 		} else {
 			setAnimationType('wrong');
-			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
+			updateCollectionsCounter(id, 'IncrementIncorrectAnswers');
 			// setAnswerStatus('wrong');
 			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'wrong' }));
 		}
