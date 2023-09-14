@@ -1,23 +1,19 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import CardGrid from '../components/CardGrid/CardGrid';
-import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
-import { useEffect, useState } from 'react';
-import { useGetCollectionsByUserIdQuery } from '../redux/api/collectionsSlice';
-
-import { getRandomColorClass } from '../utils/getRandomColorClass';
-import ColorClassContext from '../context/ColorClassContext';
-import useFetch from '../hooks/useFetch';
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import CardGrid from "../components/CardGrid/CardGrid";
+import CollectionPreview from "../components/CollectionPreview/CollectionPreview";
+import { useEffect, useState } from "react";
+import { useGetCollectionsByUserIdQuery } from "../redux/api/collectionsSlice";
+import { getRandomColorClass } from "../utils/getRandomColorClass";
+import ColorClassContext from "../context/ColorClassContext";
+import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 
 function UserCollectionsPage() {
 	const { userId } = useSelector((state: RootState) => state.userId);
 
 	const [skip, setSkip] = useState(true);
-	const {
-		data: collections,
-		isLoading,
-		isError,
-	} = useGetCollectionsByUserIdQuery(userId, { skip });
+	const { data: collections, isLoading, isError, error } = useGetCollectionsByUserIdQuery(userId, { skip });
 
 	console.log(collections);
 
@@ -28,25 +24,17 @@ function UserCollectionsPage() {
 	}, [userId]);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <LoadingIcon />;
 	}
 
 	if (isError) {
-		return <div>Error: Something went wrong!</div>;
+		return <ErrorMsg error={error} />;
 	}
 
 	const colorClass = getRandomColorClass();
 	return (
 		<div className="user-collections-page">
-			<ColorClassContext.Provider value={colorClass}>
-				{collections && (
-					<CardGrid
-						items={collections}
-						Component={CollectionPreview}
-						linkPrefix={'collection'}
-					></CardGrid>
-				)}
-			</ColorClassContext.Provider>
+			<ColorClassContext.Provider value={colorClass}>{collections && <CardGrid items={collections} Component={CollectionPreview} linkPrefix={"collection"}></CardGrid>}</ColorClassContext.Provider>
 		</div>
 	);
 }

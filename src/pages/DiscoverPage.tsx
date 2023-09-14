@@ -12,7 +12,6 @@ function DiscoverPage() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [coloredCollections, setColoredCollections] = useState<any[]>([]);
 
-
 	const { data: collections, isLoading, isError, error } = useGetAllCollectionsQuery();
 
 	useEffect(() => {
