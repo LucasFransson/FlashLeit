@@ -13,4 +13,8 @@
         object-fit: cover;
       }
   }
+
+  &__wrapper:hover {
+    cursor: pointer;
+  }
 }
