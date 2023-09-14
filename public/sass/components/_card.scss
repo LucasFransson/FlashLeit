@@ -3,6 +3,14 @@
 	-moz-perspective: 100rem;
 	position: relative;
 
+	&.animate-render {
+		&-draw {
+			animation: moveInBottomLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+		}
+		&-fade-in {
+			animation: draw-fade-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+		}
+	}
 	&.animate-out {
 		// animation: dropCard 400ms cubic-bezier(0.35, 0.05, 0.36, 1) forwards;
 		// animation: throwCard 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
@@ -22,7 +30,7 @@
 		transform-style: preserve-3d;
 		// animation: moveInBottomLeft 0.8s cubic-bezier(0.72, 0.26, 0, 1.04);
 
-		animation: moveInBottomLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+		//animation: moveInBottomLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 		// animation: correctAnswer 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 		// animation: livelyCorrectAnswer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)forwards;
 		// animation: subduedCorrectCard 1s ease-in-out forwards;

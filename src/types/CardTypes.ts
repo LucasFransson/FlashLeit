@@ -8,5 +8,6 @@ interface CardTypes {
 	leitnerIndex: 1 | 2 | 3;
 	lastReviewedDate: Date | null;
 	colorClass: string | null;
+	animationOnRendering: 'draw' | 'fade-in';
 }
 export default CardTypes;

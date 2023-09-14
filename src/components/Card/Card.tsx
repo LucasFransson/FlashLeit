@@ -16,6 +16,7 @@ const Card: React.FC<CardProps> = ({
 	colorClass,
 	animateOut,
 	animationType,
+	animationOnRendering,
 }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 
@@ -24,17 +25,15 @@ const Card: React.FC<CardProps> = ({
 	};
 
 	return (
-		// <div className={`card ${isFlipped ? 'is-flipped' : ''}`}>
-		// <div
-		// 	className={`card ${isFlipped ? 'is-flipped' : ''} ${
-		// 		animateOut ? 'animate-out' : ''
-		// 	}`}
-		// >
 		<div
 			className={`card ${isFlipped ? 'is-flipped' : ''} ${
 				animateOut ? 'animate-out' : ''
 			} ${animationType === 'correct' ? 'animate-correct' : ''} ${
 				animationType === 'wrong' ? 'animate-wrong' : ''
+			} ${
+				animationOnRendering != null
+					? `animate-render-${animationOnRendering}`
+					: ''
 			}`}
 		>
 			<div className="card__content">
@@ -75,3 +74,28 @@ const Card: React.FC<CardProps> = ({
 };
 
 export default Card;
+
+// <div className={`card ${isFlipped ? 'is-flipped' : ''}`}>
+// <div
+// 	className={`card ${isFlipped ? 'is-flipped' : ''} ${
+// 		animateOut ? 'animate-out' : ''
+// 	}`}
+// >
+// <div
+// 	className={`card ${isFlipped ? 'is-flipped' : ''} ${
+// 		animateOut ? 'animate-out' : ''
+// 	} ${animationType === 'correct' ? 'animate-correct' : ''} ${
+// 		animationType === 'wrong' ? 'animate-wrong' : ''
+// 	} `}
+// >
+
+// <div
+// 	className={`card ${isFlipped ? 'is-flipped' : ''} ${
+// 		animateOut ? 'animate-out' : ''
+// 	} ${animationType === 'correct' ? 'animate-correct' : ''} ${
+// 		animationType === 'wrong' ? 'animate-wrong' : ''
+// 	}
+// 	${animationOnRendering != null
+// 		? `animate-render-${animationOnRendering}`
+// 		: ''}
+// 	`>

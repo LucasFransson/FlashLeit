@@ -46,3 +46,52 @@
 		// Bottom-left shadow
 		1px 1px 0 #000; // Bottom-right shadow
 }
+
+.user-page {
+	grid-column: 1/-1;
+}
+.message-displayer {
+	background-color: gray;
+	width: 100rem; // TODO: Remove, testing only
+	height: 50rem; // TODO: Remove, testing only
+	margin: 20rem auto; // TODO: Remove, testing only
+	display: flex;
+	flex-flow: column wrap;
+	text-align: center;
+	border: 5px double black;
+
+	&__top {
+		background-color: darken(gray, 10);
+		height: 13%;
+	}
+
+	&__main-content {
+		display: flex;
+		// align-items: center;
+		align-items: center;
+		// margin: auto;
+	}
+
+	&__text-content {
+		text-align: start;
+		width: 50rem;
+
+		margin-left: 5rem;
+	}
+
+	&__svg {
+		background-color: rgb(142, 216, 205);
+		width: 20rem;
+		height: 20rem;
+		// margin-right: auto;
+		margin-left: 5rem;
+	}
+
+	&__bottom {
+		background-color: lighten(gray, 10);
+		margin-top: auto;
+		display: flex;
+		justify-content: end;
+		height: 20%;
+	}
+}
