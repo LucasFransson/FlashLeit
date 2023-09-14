@@ -1,4 +1,4 @@
-import { useAddCardMutation, useDeleteCardMutation, useUpdateCardMutation } from "../redux/api/cardsSlice";
+import { useAddCardMutation, useDeleteCardMutation, useUpdateCardMutation, useUpdateLastReviewedDateMutation } from "../redux/api/cardsSlice";
 import CardTypes from "../types/CardTypes";
 
 export const useAddCard = () => {
@@ -20,6 +20,17 @@ export const useUpdateCard = () => {
   }
 
   return updateCard;
+}
+
+export const useUpdateLastReviewedDate = () => {
+  
+  const [mutate] = useUpdateLastReviewedDateMutation();
+
+  const updateLastReviewedDate = (card: CardTypes) => {
+    mutate(card);
+  }
+
+  return updateLastReviewedDate;
 }
 
 export const useDeleteCard = () => {

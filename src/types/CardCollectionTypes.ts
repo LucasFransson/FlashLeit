@@ -4,6 +4,7 @@ interface CardCollectionTypes {
 	id: number;
 	title: string;
 	userId: number;
+	description: string;
 	publicKey: number;
 	flashCards: CardProps[] | null;
 	isPublic: boolean;
