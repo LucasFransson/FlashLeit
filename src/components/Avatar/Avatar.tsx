@@ -13,11 +13,10 @@ function Avatar({url, showModal, updateAvatar, caller}) {
 
   return (
     <div className="avatar__wrapper" onClick={avatarClickHandler}>
-      <img src={url} />
+      <img src={url} alt="Flashleit blob avatar" />
     </div>
 
   )
-
 }
 
 export default Avatar;
