@@ -76,15 +76,15 @@ function LeitnerBoxes({collection, selectBox}) {
 			<div className='leitnerbox__top'>
 				<h2>Leitner Boxes</h2>
 			</div>
-			<div className='leitnerbox__1' onClick={() => {selectLeitnerBox(leitnerBox1)}}>
+			<div className={`leitnerbox__1 ${isLeitnerBox1Empty ? 'leitnerbox__isDisabled' : ''}`} onClick={() => {isLeitnerBox1Empty ? null : selectLeitnerBox(leitnerBox1)}}>
 				<h2>Box 1</h2>
 				<h3>Cards: {amountOfCardsToPlayBox1}</h3>
 			</div>
-			<div className='leitnerbox__2' onClick={() => {selectLeitnerBox(leitnerBox2)}}>
+			<div className={`leitnerbox__2 ${isLeitnerBox2Empty ? 'leinterbox__isDisabled' : ''}`} onClick={() => {isLeitnerBox2Empty ? null : selectLeitnerBox(leitnerBox2)}}>
 				<h2>Box 2</h2>
 				<h3>Cards: {amountOfCardsToPlayBox2}</h3>
 			</div>
-			<div className='leitnerbox__3' onClick={() => {selectLeitnerBox(leitnerBox3)}}>
+			<div className={`leitnerbox__3 ${isLeitnerBox3Empty ? 'leitnerbox__isDisabled' : ''}` } onClick={() => {isLeitnerBox3Empty ? null : selectLeitnerBox(leitnerBox3)}}>
 				<h2>Box 3</h2>
 				<h3>Cards: {amountOfCardsToPlayBox3}</h3>
 			</div>
