@@ -71,7 +71,6 @@ function EditCardPage() {
 		},
 		{ skip }
 	);
-
 	// useEffect to set the selected collection after API call:
 	useEffect(() => {
 		if (collectionData?.length > 0) {
@@ -152,50 +151,95 @@ function EditCardPage() {
 		);
 
 	return (
-		// <AnimationClassContext.Provider value="fade-in">
 		<div className="create-edit-page">
 			<div className="create-edit-page__collection-selector">
-				{collectionData && collectionData.length > 0 && !isChecked ? (
+				{collectionData && collectionData.length > 0 && (
 					<>
 						<Toggler onToggle={handleToggle} isChecked={isChecked} />
-						<CollectionSelector
-							className=""
-							collections={collectionData}
-							onCollectionChange={handleCollectionChange}
-						/>
-						<div className="create-edit-page__wrapper">
-							<div className="create-edit-page__card-grid">
-								<CardGrid
-									items={flashCards}
-									Component={Card}
-									onCardClick={selectCard}
-									onDeleteClick={deleteSelectedCard}
-									animationOnRendering={'fade-in'}
-								/>
-							</div>
-							<div className="create-edit-page__card-editor">
-								<CardEditor
-									card={selectedCard}
-									userId={userId}
-									collectionId={selectedCollectionId}
-								/>
-							</div>
-						</div>
-					</>
-				) : collectionData && collectionData.length > 0 && isChecked ? (
-					<>
-						<Toggler onToggle={handleToggle} isChecked={isChecked} />
-						<AddCollection userId={userId} collectionAdded={collectionAdded} />
-					</>
-				) : (
-					<>
-						<AddCollection userId={userId} collectionAdded={collectionAdded} />
+						{!isChecked ? (
+							<CollectionSelector
+								className=""
+								collections={collectionData}
+								onCollectionChange={handleCollectionChange}
+							/>
+						) : (
+							<AddCollection
+								userId={userId}
+								collectionAdded={collectionAdded}
+							/>
+						)}
 					</>
 				)}
 			</div>
-			{/* </AnimationClassContext.Provider> */}
+
+			{collectionData && collectionData.length > 0 && !isChecked && (
+				<div className="create-edit-page__wrapper">
+					<div className="create-edit-page__card-grid">
+						<CardGrid
+							items={flashCards}
+							Component={Card}
+							onCardClick={selectCard}
+							onDeleteClick={deleteSelectedCard}
+							animationOnRendering={'fade-in'}
+						/>
+					</div>
+					<div className="create-edit-page__card-editor">
+						<CardEditor
+							card={selectedCard}
+							userId={userId}
+							collectionId={selectedCollectionId}
+						/>
+					</div>
+				</div>
+			)}
 		</div>
 	);
+
+	// return (
+	// 	// <AnimationClassContext.Provider value="fade-in">
+	// 	<div className="create-edit-page">
+	// 		<div className="create-edit-page__collection-selector">
+	// 			{collectionData && collectionData.length > 0 && !isChecked ? (
+	// 				<>
+	// 					<Toggler onToggle={handleToggle} isChecked={isChecked} />
+	// 					<CollectionSelector
+	// 						className=""
+	// 						collections={collectionData}
+	// 						onCollectionChange={handleCollectionChange}
+	// 					/>
+	// 					<div className="create-edit-page__wrapper">
+	// 						<div className="create-edit-page__card-grid">
+	// 							<CardGrid
+	// 								items={flashCards}
+	// 								Component={Card}
+	// 								onCardClick={selectCard}
+	// 								onDeleteClick={deleteSelectedCard}
+	// 								animationOnRendering={'fade-in'}
+	// 							/>
+	// 						</div>
+	// 						<div className="create-edit-page__card-editor">
+	// 							<CardEditor
+	// 								card={selectedCard}
+	// 								userId={userId}
+	// 								collectionId={selectedCollectionId}
+	// 							/>
+	// 						</div>
+	// 					</div>
+	// 				</>
+	// 			) : collectionData && collectionData.length > 0 && isChecked ? (
+	// 				<>
+	// 					<Toggler onToggle={handleToggle} isChecked={isChecked} />
+	// 					<AddCollection userId={userId} collectionAdded={collectionAdded} />
+	// 				</>
+	// 			) : (
+	// 				<>
+	// 					<AddCollection userId={userId} collectionAdded={collectionAdded} />
+	// 				</>
+	// 			)}
+	// 		</div>
+	// 		{/* </AnimationClassContext.Provider> */}
+	// 	</div>
+	// );
 }
 
 export default EditCardPage;
