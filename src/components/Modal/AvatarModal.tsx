@@ -1,51 +1,41 @@
+import { useSelector } from "react-redux";
+import { useGetAllAvatarsQuery } from "../../redux/api/avatarsSlice";
 import Avatar from "../Avatar/Avatar";
+import { RootState } from "../../redux/store";
+import { useUpdateUser } from "../../utils/userUtility";
+import UserTypes from "../../types/UsersTypes";
+import LoadingIcon from "../LoadingIcon/LoadingIcon";
+import ErrorMsg from "../ErrorMsg/ErrorMsg";
 
-function AvatarModal() {
 
+function AvatarModal({updateUserAvatar}) {
 
+  const {data: avatars, isError: isAvatarError, error: avatarError, isLoading: isLoadingAvatar } = useGetAllAvatarsQuery();
 
+  const updateAvatar = (url: string) => {  
+    updateUserAvatar(url);
+  }
+  
   return (
+    <>
+    {isLoadingAvatar ? (
+      <LoadingIcon />
+    ) : isAvatarError ? (
+      <ErrorMsg error={avatarError}/>
+    ) : (      
     <div className="modal__backdrop">
-      <div className="modal__content">
-        <div className="modal__header">
-          <h2>Pick a new Avatar:</h2>
+        <div className="modal__content">
+          <div className="modal__header">
+            <h2>Pick your Avatar:</h2>
+          </div>
+          {avatars?.map(avatar => (
+            <div className="modal__avatar__wrapper">
+              <Avatar key={avatar.id} url={avatar.url} caller={"modal"} updateAvatar={updateAvatar}/>
+            </div>
+          ))}
         </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_1.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_2.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_3.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_4.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_5.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_6.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_7.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_8.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_9.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_10.png"} caller={"modal"} />
-        </div>
-        <div className="modal__avatar__wrapper">
-          <Avatar url={"/img/user_avatars/avatar_11.png"} caller={"modal"} />
-        </div>
-      </div>
-    </div>
-
+      </div>)}
+    </>
   );
 }
 

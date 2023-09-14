@@ -1,11 +1,13 @@
 
 
-function Avatar({url, showModal, caller}) {
+function Avatar({url, showModal, updateAvatar, caller}) {
 
   const avatarClickHandler = () => {
 
     if (caller === "user-page") {
       showModal();
+    } else {
+      updateAvatar(url);
     }
   }
 

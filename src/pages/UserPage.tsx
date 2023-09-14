@@ -28,6 +28,10 @@ function UserPage() {
 		setIsShowingAvatarModal(true);
 	};
 
+	const closeAvatarModal = () => {
+		setIsShowingAvatarModal(false);
+	}
+
 	useEffect(() => {
 		if (userId != null) {
 			setSkip(false);
@@ -55,6 +59,23 @@ function UserPage() {
 		}
 	};
 
+	const updateAvatar = (url: string) => {
+		if (authUser) {
+			const updatedUser: UserTypes = {
+				id: authUser[0].id,
+				email: authUser[0].email,
+				accountName: authUser[0].accountName,
+				userName: authUser[0].userName,
+				avatarUrl: url,
+			};
+
+
+			updateUser(updatedUser);
+
+			closeAvatarModal();
+		};
+	}
+
 	return (
 		<>
 			{isLoadingUser || isLoadingCollections ? (
@@ -67,7 +88,7 @@ function UserPage() {
 				authUser &&
 				collections && (
 					<div className="user-page">
-						{showingAvatarModal && <AvatarModal />}
+						{showingAvatarModal && <AvatarModal updateUserAvatar={updateAvatar}/>}
 						<Avatar url={authUser[0].avatarUrl} showModal={showAvatarModal} caller={"user-page"} />
 						<div>
 							<label htmlFor="displayName">Display name</label>
