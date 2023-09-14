@@ -19,12 +19,12 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 			}),
 			invalidatesTags: (result, error, user) => [{ type: "Users", id: user.id }],
 		}),
-		deleteUser: builder.mutation<void, { id: number; objectId: string }>({
-			query: ({ id, objectId }) => ({
-				url: `api/users/${id}/${objectId}`,
+		deleteUser: builder.mutation<void, void>({
+			query: () => ({
+				url: "api/users/",
 				method: "DELETE",
 			}),
-			invalidatesTags: (result, error, args) => [{ type: "Users", id: args.id }],
+			invalidatesTags: (result, error, args) => [{ type: "Users" }],
 		}),
 	}),
 });

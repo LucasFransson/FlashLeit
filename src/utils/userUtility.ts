@@ -14,8 +14,8 @@ export const useUpdateUser = () => {
 export const useDeleteUser = () => {
 	const [mutate] = useDeleteUserMutation();
 
-	const deleteUser = (id: number, objectId: string) => {
-		mutate({ id, objectId });
+	const deleteUser = () => {
+		mutate();
 	};
 
 	return deleteUser;
