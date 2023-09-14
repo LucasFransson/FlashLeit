@@ -32,6 +32,8 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 				const modifiedFlashCards = response.flashCards.map(
 					(item: CardTypes) => ({
 						...item,
+						lastReviewedDate: item.lastReviewedDate
+						? new Date(item.lastReviewedDate) : null,
 						colorClass: getRandomColorClass(),
 					})
 				);

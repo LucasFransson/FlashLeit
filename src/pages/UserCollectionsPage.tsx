@@ -19,12 +19,6 @@ function UserCollectionsPage() {
 		isError,
 	} = useGetCollectionsByUserIdQuery(userId, { skip });
 
-	// const {
-	// 	data: collections,
-	// 	isLoading,
-	// 	isError,
-	// } = useFetch(`https://flashleit.azure-api.net/api/collections/user/${userId}`,[]as Array<any>)
-
 	console.log(collections);
 
 	useEffect(() => {
@@ -40,6 +34,7 @@ function UserCollectionsPage() {
 	if (isError) {
 		return <div>Error: Something went wrong!</div>;
 	}
+
 	const colorClass = getRandomColorClass();
 	return (
 		<div className="user-collections-page">

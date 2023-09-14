@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { useParams } from "react-router-dom";
-import { useGetCollectionByIdAndUserIdQuery } from "../redux/api/collectionsSlice";
-import CardCollection from "../components/CardCollection/CardCollection";
-import CardList from "../components/CardList/CardList";
-import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
-import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { useParams } from 'react-router-dom';
+import { useGetCollectionByIdAndUserIdQuery } from '../redux/api/collectionsSlice';
+import CardCollection from '../components/CardCollection/CardCollection';
+import CardList from '../components/CardList/CardList';
+import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
+import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
 
 interface RouteParams {
 	id: number;
@@ -25,16 +25,17 @@ function CollectionPage() {
 	const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
 	const [markedCards, setMarkedCards] = useState<{
-		[key: number]: "correct" | "wrong";
+		[key: number]: 'correct' | 'wrong';
 	}>({});
 
-	const { data, isLoading, isError, error } = useGetCollectionByIdAndUserIdQuery(
-		{
-			collectionId: id,
-			userId: userId,
-		},
-		{ skip }
-	);
+	const { data, isLoading, isError, error } =
+		useGetCollectionByIdAndUserIdQuery(
+			{
+				collectionId: id,
+				userId: userId,
+			},
+			{ skip }
+		);
 
 	// This useEffect makes sure that userId have a value before allowing any api calls
 	useEffect(() => {
@@ -60,6 +61,7 @@ function CollectionPage() {
 							// setAnswerStatus={setAnswerStatus}
 							setMarkedCards={setMarkedCards}
 							id={data.id}
+							animationOnRendering="draw"
 						/>
 						<CardList
 							flashCards={data.flashCards}

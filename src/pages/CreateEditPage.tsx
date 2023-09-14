@@ -12,13 +12,16 @@ import { useEffect, useState } from 'react';
 import { useDeleteCard } from '../utils/cardUtility';
 import AddCollection from '../components/AddCollection/AddCollection';
 import CardGrid from '../components/CardGrid/CardGrid';
+import CardGridTypes from '../types/CardGridTypes';
 import Card from '../components/Card/Card';
 import CardTypes from '../types/CardTypes';
+import AnimationClassContext from '../context/AnimationContext';
 import Toggler from '../components/Toggler/Toggler';
 import { useDeleteCollection } from '../utils/collectionUtility';
 
 function EditCardPage() {
 	// useState to hold the selected card:
+
 	const [selectedCard, setSelectedCard] = useState<CardTypes>({
 		id: 0,
 		collectionId: 0,
@@ -28,6 +31,7 @@ function EditCardPage() {
 		leitnerIndex: 1,
 		lastReviewed: null,
 		colorClass: null,
+		animationOnRendering: 'fade-in',
 	});
 
 	// useState to hold toggler value:
@@ -43,7 +47,6 @@ function EditCardPage() {
 
 	// useState to hold the cards of the currently selected collection:
 	const [flashCards, setFlashCards] = useState<CardTypes[] | null>([]);
-
 
 	// useState for skip:
 	const [skip, setSkip] = useState(true);
@@ -66,14 +69,15 @@ function EditCardPage() {
 		data: cardsData,
 		error: cardsError,
 		isLoading: cardsLoading,
-	} = useGetCollectionByIdAndUserIdQuery({
-		collectionId: selectedCollectionId,
-		userId: userId
-	}, {skip});
-
+	} = useGetCollectionByIdAndUserIdQuery(
+		{
+			collectionId: selectedCollectionId,
+			userId: userId,
+		},
+		{ skip }
+	);
 	// useEffect to set the selected collection after API call:
 	useEffect(() => {
-
 		if (collectionData?.length > 0) {
 			setSelectedCollectionId(collectionData[0].id);
 		}
@@ -87,7 +91,7 @@ function EditCardPage() {
 	}, [cardsData]);
 
 	// useEffect to set skip:
-		useEffect(() => {
+	useEffect(() => {
 		if (selectedCollectionId != null) {
 			setSkip(false);
 		}
@@ -95,7 +99,7 @@ function EditCardPage() {
 
 	const handleToggle = (toggleChange: boolean) => {
 		setIsChecked(toggleChange);
-	}
+	};
 
 	// Update the selected collection:
 	const handleCollectionChange = (collectionId: number) => {
@@ -144,7 +148,7 @@ function EditCardPage() {
 		// --- TODO --- Show success modal?
 
 		setIsChecked(false);
-	}
+	};
 
 	if (collectionLoading) return <LoadingIcon />;
 	if (collectionError)
@@ -165,46 +169,93 @@ function EditCardPage() {
 	return (
 		<div className="create-edit-page">
 			<div className="create-edit-page__collection-selector">
-				
-				{collectionData && collectionData.length > 0 && !isChecked ?  (
+				{collectionData && collectionData.length > 0 && (
 					<>
-						<Toggler onToggle={handleToggle} isChecked={isChecked}/>
-						<CollectionSelector
-							className=""
-							collections={collectionData}
-							onCollectionChange={handleCollectionChange}
-						/>
-						<div className="create-edit-page__wrapper">
-							<div className="create-edit-page__card-grid">
-								<CardGrid
-									items={flashCards}
-									Component={Card}
-									onCardClick={selectCard}
-									onDeleteClick={deleteSelectedCard}
-								/>
-							</div>
-							<div className="create-edit-page__card-editor">
-								<CardEditor
-									card={selectedCard}
-									userId={userId}
-									collectionId={selectedCollectionId}
-								/>
-							</div>
-			</div>
-					</>
-				) : collectionData && collectionData.length > 0 && isChecked ? (
-					<>
-						<Toggler onToggle={handleToggle} isChecked={isChecked}/>
-						<AddCollection userId={userId} collectionAdded={collectionAdded}/>
-					</>
-				) : (
-					<>
-						<AddCollection userId={userId} collectionAdded={collectionAdded}/>
+						<Toggler onToggle={handleToggle} isChecked={isChecked} />
+						{!isChecked ? (
+							<CollectionSelector
+								className=""
+								collections={collectionData}
+								onCollectionChange={handleCollectionChange}
+							/>
+						) : (
+							<AddCollection
+								userId={userId}
+								collectionAdded={collectionAdded}
+							/>
+						)}
 					</>
 				)}
 			</div>
+
+			{collectionData && collectionData.length > 0 && !isChecked && (
+				<div className="create-edit-page__wrapper">
+					<div className="create-edit-page__card-grid">
+						<CardGrid
+							items={flashCards}
+							Component={Card}
+							onCardClick={selectCard}
+							onDeleteClick={deleteSelectedCard}
+							animationOnRendering={'fade-in'}
+						/>
+					</div>
+					<div className="create-edit-page__card-editor">
+						<CardEditor
+							card={selectedCard}
+							userId={userId}
+							collectionId={selectedCollectionId}
+						/>
+					</div>
+				</div>
+			)}
 		</div>
 	);
+
+	// return (
+	// 	// <AnimationClassContext.Provider value="fade-in">
+	// 	<div className="create-edit-page">
+	// 		<div className="create-edit-page__collection-selector">
+	// 			{collectionData && collectionData.length > 0 && !isChecked ? (
+	// 				<>
+	// 					<Toggler onToggle={handleToggle} isChecked={isChecked} />
+	// 					<CollectionSelector
+	// 						className=""
+	// 						collections={collectionData}
+	// 						onCollectionChange={handleCollectionChange}
+	// 					/>
+	// 					<div className="create-edit-page__wrapper">
+	// 						<div className="create-edit-page__card-grid">
+	// 							<CardGrid
+	// 								items={flashCards}
+	// 								Component={Card}
+	// 								onCardClick={selectCard}
+	// 								onDeleteClick={deleteSelectedCard}
+	// 								animationOnRendering={'fade-in'}
+	// 							/>
+	// 						</div>
+	// 						<div className="create-edit-page__card-editor">
+	// 							<CardEditor
+	// 								card={selectedCard}
+	// 								userId={userId}
+	// 								collectionId={selectedCollectionId}
+	// 							/>
+	// 						</div>
+	// 					</div>
+	// 				</>
+	// 			) : collectionData && collectionData.length > 0 && isChecked ? (
+	// 				<>
+	// 					<Toggler onToggle={handleToggle} isChecked={isChecked} />
+	// 					<AddCollection userId={userId} collectionAdded={collectionAdded} />
+	// 				</>
+	// 			) : (
+	// 				<>
+	// 					<AddCollection userId={userId} collectionAdded={collectionAdded} />
+	// 				</>
+	// 			)}
+	// 		</div>
+	// 		{/* </AnimationClassContext.Provider> */}
+	// 	</div>
+	// );
 }
 
 export default EditCardPage;

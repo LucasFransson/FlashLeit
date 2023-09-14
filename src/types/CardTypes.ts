@@ -5,8 +5,9 @@ interface CardTypes {
 	userId: number;
 	question: string;
 	answer: string;
-	leitnerIndex: number;
-	lastReviewed: Date | null; // Check if Date is the correct type to use
+	leitnerIndex: 1 | 2 | 3;
+	lastReviewedDate: Date | null;
 	colorClass: string | null;
+	animationOnRendering: 'draw' | 'fade-in';
 }
 export default CardTypes;
