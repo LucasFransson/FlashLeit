@@ -35,6 +35,91 @@
 	background-image: $color-gradient-maroon;
 }
 
+.azure-foreground {
+	background-image: $color-gradient-azure;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.skyblue-foreground {
+	background-image: $color-gradient-skyblue;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.navy-foreground {
+	background-image: $color-gradient-navy;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.aquamarine-foreground {
+	background-image: $color-gradient-aqumarine;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.malachite-foreground {
+	background-image: $color-gradient-malachite;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.pink-foreground {
+	background-image: $color-gradient-pink;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.gray-foreground {
+	background-image: $color-gradient-gray;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.yellow-foreground {
+	background-image: $color-gradient-yellow;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.lime-foreground {
+	background-image: $color-gradient-lime;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.purple-foreground {
+	background-image: $color-gradient-purple;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.lilac-foreground {
+	background-image: $color-gradient-lilac;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.maroon-foreground {
+	background-image: $color-gradient-maroon;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 .text-with-stroke {
 	// color: white; // Text color
 	// font-size: 24px;

@@ -38,9 +38,24 @@ const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 
 	return (
 		<>
-			<div className={`collection-preview ${colorClass}`}>
+			<div className={'collection-preview'}>
+				<div className="collection-preview__card-box">
+					<p
+						className={`collection-preview__card-box-count  ${colorClass}-foreground`}
+					>
+						{cardCount}{' '}
+					</p>
+					<p
+						className={`collection-preview__card-box-text  ${colorClass}-foreground`}
+					>
+						Cards
+					</p>
+				</div>
+				<div className={`collection-preview__content ${colorClass}`}></div>
 				<h2 className="collection-preview__title">{title}</h2>
-				<p>Cards: {cardCount} </p>
+				<p className="collection-preview__description">
+					Description: Lorem ipsum dolor sit amet consectetur.
+				</p>
 			</div>
 		</>
 	);
