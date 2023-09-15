@@ -4,19 +4,27 @@ import { getRandomColorClass } from '../../utils/getRandomColorClass';
 import CardCollectionTypes from '../../types/CardCollectionTypes';
 import { useUpdateCollection } from '../../utils/collectionUtility';
 import CardTypes from '../../types/CardTypes';
+import useLeitnerBox from '../../hooks/useLeitnerBox';
 
 interface CardCollectionProps extends CardCollectionTypes {
+  collection: CardCollectionTypes;
 	cardIndex: number;
 	setCardIndex: (index: number) => void;
 	setMarkedCards: React.Dispatch<
 		React.SetStateAction<{ [key: number]: 'correct' | 'wrong' }>
 	>;
 	animationOnRendering: 'draw' | 'fade-in';
+  boxNumber: string;
 	// setAnswerStatus: (status: string) => void;
+
+	// Logic for Leitner:
+	updateLastReviewedDate: (card: CardTypes) => void;
+  selectBox: (leitnerBox: CardTypes, boxNumber: string) => void;
 }
 
-const CardCollection: React.FC<CardCollectionProps> = ({
-	id,
+const LeitnerCollection: React.FC<CardCollectionProps> = ({
+	collection,
+  id,
 	title,
 	cardIndex,
 	setCardIndex,
@@ -24,6 +32,9 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	setMarkedCards,
 	animationOnRendering,
 	flashCards = [],
+  boxNumber,
+	updateLastReviewedDate,
+  selectBox
 }) => {
 	// useState hook for managing current card index
 	// const [cardIndex, setCardIndex] = useState(0);
@@ -48,12 +59,16 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'correct' }));
 			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
 
-
+			// --- LEITNER Update Reviewed Date --- 
+			updateLastReviewedDate(flashCards[cardIndex]);
 		} else {
 			setAnimationType('wrong');
 			updateCollectionsCounter(id, 'IncrementIncorrectAnswers');
 			// setAnswerStatus('wrong');
 			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'wrong' }));
+
+			// --- LEITNER Update Reviewed Date ---
+			updateLastReviewedDate(flashCards[cardIndex]);
 		}
 
 		setAnimateOut(true);
@@ -66,18 +81,34 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				setCardIndex(cardIndex + 1); // Increment the card index to show the next card
 			} else {
 				setIsFinished(true);
-				console.log('Finished answering all cards!');
 			}
 		}, 1300); // ms animation time
-
-		// // Check if the current card is the last card
-		// if (cardIndex < flashCards.length - 1) {
-		// 	// Increment the card index to show the next card
-		// 	setCardIndex(cardIndex + 1);
-		// } else {
-		// 	console.log('Finished answering all cards!');
-		// }
 	};
+
+  const oneDay = 24 * 60 * 60 * 1000;
+	const threeDays = 72 * 60 * 60 * 1000;
+	const sevenDays = 168 * 60 * 60 * 1000;
+
+	const box1 = useLeitnerBox(collection.flashCards, 1, oneDay);
+	const box2 = useLeitnerBox(collection.flashCards, 2, threeDays);
+	const box3 = useLeitnerBox(collection.flashCards, 3, sevenDays);
+
+  const playAnotherBox = () => {
+
+  
+    
+    setIsFinished(false);
+
+
+    if (box1.playableCardCount > 0) {
+      selectBox(box1.box, 'Box No.1');
+    } else if (box2.playableCardCount > 0) {
+      selectBox(box2.box, 'Box No.2');
+    } else {
+      selectBox(box3.box, 'Box No.3');
+    }
+  }
+
 
 	return (
 		<div className="card-collection">
@@ -123,58 +154,22 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			) : (
 				<div className="finished-message">
 					<h1>GREAT JOB!</h1>
-					You've finished the collection! 🎉
+					
+          {box1.playableCardCount > 0 || box2.playableCardCount > 0 || box3.playableCardCount > 0 ? (
+            <>
+              <h3>You've finished your Leitner challenges for {boxNumber}! 🎉</h3>
+              <h3>There are other unfinished Leitner Boxes, would you like to pick another box?</h3>
+              <button onClick={() => {playAnotherBox()}}>Yes! Leit me up!</button>
+            </>
+          ) : (
+            <>
+              <h3>You've finished all your Leitner challenges for {collection.title}! 🎉</h3>
+            </>
+          )}
 				</div>
 			)}
 		</div>
 	);
-
-	// return (
-	// 	<div className="card-collection">
-	// 		<div className="card-collection__heading">
-	// 			<h1 className="card-collection__heading--title">{title}</h1>
-	// 		</div>
-	// 		<p className="card-collection__counter">
-	// 			<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
-	// 		</p>
-	// 		{/* Check if there are any cards AND that the current card index is within bounds */}
-	// 		{flashCards.length > 0 && cardIndex < flashCards.length && (
-	// 			// Render the Card at cardIndex from the cards array
-	// 			<Card
-	// 				key={cardIndex} // This Key Forces a re-mount of the Card Component, causing the useState hook to reset the components initial value, ensuring that the Card starts with the front side facing up
-	// 				id={flashCards[cardIndex].id}
-	// 				question={flashCards[cardIndex].question}
-	// 				answer={flashCards[cardIndex].answer}
-	// 				collectionId={flashCards[cardIndex].collectionId} // Not correct? This is the card id not the collection id
-	// 				leitnerIndex={flashCards[cardIndex].leitnerIndex}
-	// 				lastReviewed={flashCards[cardIndex].lastReviewed}
-	// 				colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
-	// 				animateOut={animateOut} // pass the animateOut state as a prop
-	// 				animationType={animationType} // oass the animation type state as prop
-	// 				animationOnRendering={animationOnRendering}
-	// 			/>
-	// 		)}
-
-	// 		<div className="card-collection__buttons">
-	// 			{/* Div for Buttons */}
-	// 			<button
-	// 				className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong"
-	// 				onClick={() => handleNextCard(false)}
-	// 				//disabled={cardIndex === flashCards.length} // if the Current Card is the last one, Disable the button
-	// 				// 	disabled={isFlipped} !
-	// 			>
-	// 				Wrong
-	// 			</button>
-	// 			<button
-	// 				className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct"
-	// 				onClick={() => handleNextCard(true)}
-	// 				//disabled={cardIndex === flashCards.length} // if the Current Card is the last one, Disable the button
-	// 			>
-	// 				Correct
-	// 			</button>
-	// 		</div>
-	// 	</div>
-	// );
 };
 
-export default CardCollection;
+export default LeitnerCollection;

@@ -10,10 +10,14 @@ import { useGetCollectionByIdAndUserIdQuery } from "../redux/api/collectionsSlic
 import CardTypes from "../types/CardTypes";
 import { useUpdateLastReviewedDate } from "../utils/cardUtility";
 import LeitnerBox from "../components/LeitnerBoxes/LeitnerBoxes";
+import LeitnerCollection from "../components/LeitnerCollection/LeitnerCollection";
 
 
 function LeitnerPage() {
 
+  const [selectedBox, setSelectedBox] = useState<CardTypes[]>([])
+  const [isSelectedBox, setIsSelectedBox] = useState(false);
+  const [leitnerBoxNumber, setLeitnerBoxNumber] = useState('');
 
   const { id } = useParams<RouteParams>();
 
@@ -22,6 +26,8 @@ function LeitnerPage() {
   const [markedCards, setMarkedCards] = useState<{
 		[key: number]: "correct" | "wrong";
 	}>({});
+
+
 
   const { userId } = useSelector((state: RootState) => state.userId);
 
@@ -42,14 +48,14 @@ function LeitnerPage() {
 
   // ------ LEITNER LOGIC ------
 
-  const updateLastReviewDate = useUpdateLastReviewedDate();
+  const updateReviewDate = useUpdateLastReviewedDate();
 
 
 
  
 
   // Call to update the latest review date (WORKS):
-  const updateLastReviewed = (card: CardTypes) => {
+  const updateLastReviewedDate = (card: CardTypes) => {
     const currentDate = new Date().toISOString();
 
     const updatedCard: CardTypes = {
@@ -63,46 +69,75 @@ function LeitnerPage() {
       colorClass: null
     };
 
+    updateReviewDate(updatedCard);
 
-    updateLastReviewDate(updatedCard);
+    // removeCardFromSelectedBox(card);
+
+    // checkIfLeitnerBoxIsEmpty();
   }
 
-  const selectBox = (leitnerBox: CardTypes[]) => {
-    console.log(leitnerBox);
+  const removeCardFromSelectedBox = (cardToRemove: CardTypes) => {
+    const updatedLeitnerBox = selectedBox.filter(card => card.id !== cardToRemove.id);
+
+    setSelectedBox(updatedLeitnerBox);
+
+    console.log(selectedBox);
+  }
+
+  const checkIfLeitnerBoxIsEmpty = () => {
+    console.log(selectedBox);
+  }
+
+  const selectBox = (leitnerBox: CardTypes[], boxNumber: string) => {
+    setSelectedBox(leitnerBox);
+    setIsSelectedBox(true);
+    setLeitnerBoxNumber(boxNumber);
+
+    setMarkedCards({});
+    setCurrentCardIndex(0);
   }
 
 
   return (
-	<>
-			{isLoading ? (
-				<LoadingIcon />
-			) : isError ? (
-				<ErrorMsg error={error} />
-			) : (
-				data && (
-					<div className="cardset-page">
-						<CardCollection
-							flashCards={data.flashCards}
-							title={data.title}
-							cardIndex={currentCardIndex}
-							setCardIndex={setCurrentCardIndex}
-							// setAnswerStatus={setAnswerStatus}
-							setMarkedCards={setMarkedCards}
-							id={data.id}
-						/>
-						<CardList
-							flashCards={data.flashCards}
-							title={data.title}
-							highlightedIndex={currentCardIndex}
-							// answerStatus={answerStatus}
-							markedCards={markedCards}
-						/>
-            <LeitnerBox collection={data} selectBox={selectBox}/>
-					</div>
-				)
-			)}
-		</>
-	);
+    <>
+        {isLoading ? (
+          <LoadingIcon />
+        ) : isError || !data ? (
+          <ErrorMsg error={error} />
+        ) : (
+          <div className="cardset-page">
+          <LeitnerBox collection={data} selectBox={selectBox}/>
+                
+          {isSelectedBox ? (
+            <>
+              <LeitnerCollection
+                collection={data}
+                flashCards={selectedBox}
+                title={`${data.title} (${leitnerBoxNumber})`}
+                boxNumber={leitnerBoxNumber}
+                cardIndex={currentCardIndex}
+                setCardIndex={setCurrentCardIndex}
+                // setAnswerStatus={setAnswerStatus}
+                setMarkedCards={setMarkedCards}
+                id={data.id}
+                updateLastReviewedDate={updateLastReviewedDate}
+                selectBox={selectBox}
+              />
+              <CardList
+                flashCards={selectedBox}
+                title={data.title}
+                highlightedIndex={currentCardIndex}
+                // answerStatus={answerStatus}
+                markedCards={markedCards}
+              />
+          </>
+          ) : (
+          <h1>Pick your desired Leitner Box</h1>)}
+          </div>
+        )} 
+      </>     
+  );
 }
+
 
 export default LeitnerPage;

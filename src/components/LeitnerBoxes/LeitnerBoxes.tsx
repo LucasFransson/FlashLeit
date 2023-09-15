@@ -8,8 +8,6 @@ import CardTypes from '../../types/CardTypes';
 import { use } from 'chai';
 import useLeitnerBox from '../../hooks/useLeitnerBox';
 
-// extend necessary props here
-// interface LeitnerBoxes extends CardCollectionTypes {}
 
 function LeitnerBoxes({ collection, selectBox }) {
 	const oneDay = 24 * 60 * 60 * 1000;
@@ -20,8 +18,8 @@ function LeitnerBoxes({ collection, selectBox }) {
 	const box2 = useLeitnerBox(collection.flashCards, 2, threeDays);
 	const box3 = useLeitnerBox(collection.flashCards, 3, sevenDays);
 
-	const selectLeitnerBox = (leitnerBox) => {
-		selectBox(leitnerBox);
+	const selectLeitnerBox = (leitnerBox: CardTypes[], boxTitle: string) => {
+		selectBox(leitnerBox, boxTitle);
 	};
 
 
@@ -35,7 +33,7 @@ function LeitnerBoxes({ collection, selectBox }) {
 					!box1.playableCardCount ? 'leitnerbox__isDisabled' : ''
 				}`}
 				onClick={() => {
-					box1.playableCardCount ? null : selectLeitnerBox(box1);
+					selectLeitnerBox(box1.box, 'Box No.1');
 				}}
 			>
 				<h2>Box 1</h2>
@@ -46,7 +44,7 @@ function LeitnerBoxes({ collection, selectBox }) {
 					!box2.playableCardCount ? 'leitnerbox__isDisabled' : ''
 				}`}
 				onClick={() => {
-					box2.playableCardCount ? null : selectLeitnerBox(box2);
+					selectLeitnerBox(box2.box, 'Box No.2');
 				}}
 			>
 				<h2>Box 2</h2>
@@ -57,7 +55,7 @@ function LeitnerBoxes({ collection, selectBox }) {
 					!box3.playableCardCount ? 'leitnerbox__isDisabled' : ''
 				}`}
 				onClick={() => {
-					box3.playableCardCount ? null : selectLeitnerBox(box3);
+					selectLeitnerBox(box3.box, 'Box No.3');
 				}}
 			>
 				<h2>Box 3</h2>
