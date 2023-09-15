@@ -508,16 +508,16 @@ a {
   .collection-preview__title {
     grid-row: 2;
     grid-column: 5/10;
-    font-size: 1.7rem;
+    font-size: 2.2rem;
     font-weight: 1000;
     color: #f4f2f6;
-    border-bottom: 1px solid #d7d3db;
+    border-bottom: 1px solid #f4f2f6;
     display: flex;
     align-items: top; }
   .collection-preview__description {
     grid-row: 3;
     grid-column: 5/10;
-    color: #f4f2f6; }
+    color: #d7d3db; }
 
 .footer {
   color: #f4f2f6;
