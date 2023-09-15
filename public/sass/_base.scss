@@ -26,7 +26,7 @@ html {
 	height: 100vh;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 0.1fr 0.4fr 8fr 0.5fr;
+	grid-template-rows: 10rem 1fr 10rem;
 }
 
 button,
@@ -35,14 +35,14 @@ a {
 	text-decoration: none;
 }
 
-@media only screen and (max-height: 56.25em) {
-	html {
-		font-size: 7px;
-	}
-}
+// @media only screen and (max-height: 56.25em) {
+// 	html {
+// 		font-size: 7px;
+// 	}
+// }
 
-@media only screen and (max-height: 37.5em) {
-	html {
-		font-size: 3px;
-	}
-}
+// @media only screen and (max-height: 37.5em) {
+// 	html {
+// 		font-size: 3px;
+// 	}
+// }

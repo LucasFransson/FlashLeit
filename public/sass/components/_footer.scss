@@ -1,11 +1,12 @@
 .footer {
-	color: white;
+	color: $color-neutral-100;
+	//background-color: $color-neutral-900;
 	background-image: linear-gradient(to top, #110d10, #2a2729);
 	// background-color: #110d10;
 	// border-top: 5px solid $color-malachite-light;
-	border-top: 3px solid #0e0b0d;
+	// border-top: 3px solid #0e0b0d;
 	grid-column: 1/-1;
-	grid-row: 4/-1;
+	grid-row: 3;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
