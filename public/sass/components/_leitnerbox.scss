@@ -58,4 +58,10 @@
     background-color: gold;
     cursor: pointer;
   }
+
+  &__isDisabled {
+    background-color: gray;
+    pointer-events: none !important;
+    opacity: 0.5;
+  }
 }

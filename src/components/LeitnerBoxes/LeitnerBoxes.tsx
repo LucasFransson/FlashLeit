@@ -77,29 +77,52 @@ function LeitnerBoxes({ collection, selectBox }) {
 				<h2>Leitner Boxes</h2>
 			</div>
 			<div
-				className="leitnerbox__1"
+				className={`leitnerbox__1 ${
+					!box1.playableCardCount ? 'leitnerbox__isDisabled' : ''
+				}`}
 				onClick={() => {
-					selectLeitnerBox(box1.box);
+					box1.playableCardCount ? null : selectLeitnerBox(box1);
 				}}
 			>
+				{/* className="leitnerbox__1"
+				onClick={() => {
+					selectLeitnerBox(leitnerBox1);
+				}}
+			> */}
 				<h2>Box 1</h2>
 				<h3>Cards: {box1.playableCardCount}</h3>
 			</div>
 			<div
-				className="leitnerbox__2"
+				className={`leitnerbox__2 ${
+					!box2.playableCardCount ? 'leitnerbox__isDisabled' : ''
+				}`}
 				onClick={() => {
-					selectLeitnerBox(box2.box);
+					box2.playableCardCount ? null : selectLeitnerBox(box2);
 				}}
 			>
+				{/* <div
+				className="leitnerbox__2"
+				onClick={() => {
+					selectLeitnerBox(leitnerBox2);
+				}}
+			> */}
 				<h2>Box 2</h2>
 				<h3>Cards: {box2.playableCardCount}</h3>
 			</div>
 			<div
-				className="leitnerbox__3"
+				className={`leitnerbox__3 ${
+					!box3.playableCardCount ? 'leitnerbox__isDisabled' : ''
+				}`}
 				onClick={() => {
-					selectLeitnerBox(box3.box);
+					box3.playableCardCount ? null : selectLeitnerBox(box3);
 				}}
 			>
+				{/* <div
+				className="leitnerbox__3"
+				onClick={() => {
+					selectLeitnerBox(leitnerBox3);
+				}}
+			> */}
 				<h2>Box 3</h2>
 				<h3>Cards: {box3.playableCardCount}</h3>
 			</div>
