@@ -20,7 +20,7 @@ function App({ instance }) {
 			<Provider store={store}>
 				<Router>
 					<div className="app">
-						<Header />
+						{/* <Header /> */}
 						<Navbar />
 						<Suspense fallback={<LoadingIcon />}>
 							<RoutesConfig />
