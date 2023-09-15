@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import Card from '../Card/Card';
-import { getRandomColorClass } from '../../utils/getRandomColorClass';
-import CardCollectionTypes from '../../types/CardCollectionTypes';
-import { useUpdateCollection } from '../../utils/collectionUtility';
+import React, { useState } from "react";
+import Card from "../Card/Card";
+import { getRandomColorClass } from "../../utils/getRandomColorClass";
+import CardCollectionTypes from "../../types/CardCollectionTypes";
+import { useUpdateCollection } from "../../utils/collectionUtility";
+import { useAchievementService } from "../../utils/achievementsUtility";
 
 interface CardCollectionProps extends CardCollectionTypes {
 	cardIndex: number;
 	setCardIndex: (index: number) => void;
-	setMarkedCards: React.Dispatch<
-		React.SetStateAction<{ [key: number]: 'correct' | 'wrong' }>
-	>;
-	animationOnRendering: 'draw' | 'fade-in';
+	setMarkedCards: React.Dispatch<React.SetStateAction<{ [key: number]: "correct" | "wrong" }>>;
+	animationOnRendering: "draw" | "fade-in";
 	// setAnswerStatus: (status: string) => void;
 }
 
@@ -24,6 +23,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	animationOnRendering,
 	flashCards = [],
 }) => {
+	const { unlockCorrectAnswersAchievement, unlockInCorrectAnswersAchievement, unlockCompletedRunsAchievement } = useAchievementService();
 	// useState hook for managing current card index
 	// const [cardIndex, setCardIndex] = useState(0);
 	const updateCollectionsCounter = useUpdateCollection();
@@ -33,9 +33,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	// state for tracking card animation for "Dropping card" / unmounting
 	const [animateOut, setAnimateOut] = useState(false);
 	// state for tracking card animation for Wrong or Correct btn
-	const [animationType, setAnimationType] = useState<
-		'correct' | 'wrong' | null
-	>(null);
+	const [animationType, setAnimationType] = useState<"correct" | "wrong" | null>(null);
 
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
@@ -43,14 +41,16 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
-			setAnimationType('correct');
-			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'correct' }));
-			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
+			setAnimationType("correct");
+			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "correct" }));
+			updateCollectionsCounter(id, "IncrementCorrectAnswers");
+			unlockCorrectAnswersAchievement();
 		} else {
-			setAnimationType('wrong');
-			updateCollectionsCounter(id, 'IncrementIncorrectAnswers');
+			setAnimationType("wrong");
+			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
+			unlockInCorrectAnswersAchievement();
 			// setAnswerStatus('wrong');
-			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'wrong' }));
+			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
 		}
 
 		setAnimateOut(true);
@@ -63,7 +63,15 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				setCardIndex(cardIndex + 1); // Increment the card index to show the next card
 			} else {
 				setIsFinished(true);
-				console.log('Finished answering all cards!');
+				updateCollectionsCounter(id, "IncrementCompletedRuns");
+				console.log("Finished answering all cards!");
+
+				const isAchievementUnlocked = unlockCompletedRunsAchievement();
+				if (isAchievementUnlocked) {
+					console.log("Hello");
+				} else {
+					console.log("Bye");
+				}
 			}
 		}, 1300); // ms animation time
 
@@ -104,16 +112,10 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 
 			{!isFinished ? (
 				<div className="card-collection__buttons">
-					<button
-						className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong"
-						onClick={() => handleNextCard(false)}
-					>
+					<button className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong" onClick={() => handleNextCard(false)}>
 						Wrong
 					</button>
-					<button
-						className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct"
-						onClick={() => handleNextCard(true)}
-					>
+					<button className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct" onClick={() => handleNextCard(true)}>
 						Correct
 					</button>
 				</div>
