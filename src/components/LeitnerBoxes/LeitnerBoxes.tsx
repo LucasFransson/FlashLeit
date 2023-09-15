@@ -8,8 +8,6 @@ import CardTypes from '../../types/CardTypes';
 import { use } from 'chai';
 import useLeitnerBox from '../../hooks/useLeitnerBox';
 
-// extend necessary props here
-// interface LeitnerBoxes extends CardCollectionTypes {}
 
 function LeitnerBoxes({ collection, selectBox }) {
 	const oneDay = 24 * 60 * 60 * 1000;
@@ -20,56 +18,10 @@ function LeitnerBoxes({ collection, selectBox }) {
 	const box2 = useLeitnerBox(collection.flashCards, 2, threeDays);
 	const box3 = useLeitnerBox(collection.flashCards, 3, sevenDays);
 
-	const selectLeitnerBox = (leitnerBox) => {
-		selectBox(leitnerBox);
+	const selectLeitnerBox = (leitnerBox: CardTypes[], boxTitle: string) => {
+		selectBox(leitnerBox, boxTitle);
 	};
 
-	// const [leitnerBox1, setLeitnerBox1] = useState<CardTypes[]>([]);
-	// const [leitnerBox2, setLeitnerBox2] = useState<CardTypes[]>([]);
-	// const [leitnerBox3, setLeitnerBox3] = useState<CardTypes[]>([]);
-
-	// const [amountOfCardsToPlayBox1, setAmountOfCardsToPlayBox1] = useState(0);
-	// const [amountOfCardsToPlayBox2, setAmountOfCardsToPlayBox2] = useState(0);
-	// const [amountOfCardsToPlayBox3, setAmountOfCardsToPlayBox3] = useState(0);
-
-	// const [isLeitnerBox1Empty, setIsLeitnerBox1Empty] = useState(true);
-	// const [isLeitnerBox2Empty, setIsLeitnerBox2Empty] = useState(true);
-	// const [isLeitnerBox3Empty, setIsLeitnerBox3Empty] = useState(true);
-
-	// Date variables:
-
-	// const currentDate = new Date();
-
-	// useEffect(() => {
-	// 	const box1Cards = collection.flashCards.filter(
-	// 		(card) =>
-	// 			card.leitnerIndex === 1 &&
-	// 			currentDate.getTime() - card.lastReviewedDate.getTime() >= oneDay
-	// 	);
-	// 	const box2Cards = collection.flashCards.filter(
-	// 		(card) =>
-	// 			card.leitnerIndex === 2 &&
-	// 			currentDate.getTime() - card.lastReviewedDate.getTime() >= threeDays
-	// 	);
-	// 	const box3Cards = collection.flashCards.filter(
-	// 		(card) =>
-	// 			card.leitnerIndex === 3 &&
-	// 			currentDate.getTime() - card.lastReviewedDate.getTime() >= sevenDays
-	// 	);
-
-	// 	// setLeitnerBox1(box1Cards);
-	// 	// setLeitnerBox2(box2Cards);
-	// 	// setLeitnerBox3(box3Cards);
-
-	// 	// setAmountOfCardsToPlayBox1(box1Cards.length);
-	// 	// setAmountOfCardsToPlayBox2(box2Cards.length);
-	// 	// setAmountOfCardsToPlayBox3(box3Cards.length);
-
-	// }, [collection]);
-
-	// const selectLeitnerBox = (leitnerBox: CardTypes[]) => {
-	// 	selectBox(leitnerBox);
-	// };
 
 	return (
 		<div className="leitnerbox__wrapper">
@@ -81,50 +33,36 @@ function LeitnerBoxes({ collection, selectBox }) {
 					!box1.playableCardCount ? 'leitnerbox__isDisabled' : ''
 				}`}
 				onClick={() => {
-					box1.playableCardCount ? null : selectLeitnerBox(box1);
+					selectLeitnerBox(box1.box, 'Box No.1');
 				}}
 			>
-				{/* className="leitnerbox__1"
-				onClick={() => {
-					selectLeitnerBox(leitnerBox1);
-				}}
-			> */}
 				<h2>Box 1</h2>
-				<h3>Cards: {box1.playableCardCount}</h3>
+				<h3>Playable cards: {box1.playableCardCount}</h3>
+				<h3>Total cards: {box1.totalCardCount}</h3>
 			</div>
 			<div
 				className={`leitnerbox__2 ${
 					!box2.playableCardCount ? 'leitnerbox__isDisabled' : ''
 				}`}
 				onClick={() => {
-					box2.playableCardCount ? null : selectLeitnerBox(box2);
+					selectLeitnerBox(box2.box, 'Box No.2');
 				}}
 			>
-				{/* <div
-				className="leitnerbox__2"
-				onClick={() => {
-					selectLeitnerBox(leitnerBox2);
-				}}
-			> */}
 				<h2>Box 2</h2>
-				<h3>Cards: {box2.playableCardCount}</h3>
+				<h3>Playable cards: {box2.playableCardCount}</h3>
+				<h3>Total cards: {box2.totalCardCount}</h3>
 			</div>
 			<div
 				className={`leitnerbox__3 ${
 					!box3.playableCardCount ? 'leitnerbox__isDisabled' : ''
 				}`}
 				onClick={() => {
-					box3.playableCardCount ? null : selectLeitnerBox(box3);
+					selectLeitnerBox(box3.box, 'Box No.3');
 				}}
 			>
-				{/* <div
-				className="leitnerbox__3"
-				onClick={() => {
-					selectLeitnerBox(leitnerBox3);
-				}}
-			> */}
 				<h2>Box 3</h2>
-				<h3>Cards: {box3.playableCardCount}</h3>
+				<h3>Playable cards: {box3.playableCardCount}</h3>
+				<h3>Total cards: {box3.totalCardCount}</h3>
 			</div>
 		</div>
 	);

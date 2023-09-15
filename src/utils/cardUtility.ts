@@ -1,4 +1,4 @@
-import { useAddCardMutation, useDeleteCardMutation, useUpdateCardMutation, useUpdateLastReviewedDateMutation } from "../redux/api/cardsSlice";
+import { useAddCardMutation, useDeleteCardMutation, useUpdateCardMutation, useUpdateLastReviewedDateMutation, useUpdateLeitnerIndexMutation } from "../redux/api/cardsSlice";
 import CardTypes from "../types/CardTypes";
 
 export const useAddCard = () => {
@@ -31,6 +31,16 @@ export const useUpdateLastReviewedDate = () => {
   }
 
   return updateLastReviewedDate;
+}
+
+export const useUpdateLeitnerIndex = () => {
+  const [mutate] = useUpdateLeitnerIndexMutation();
+
+  const updateLeitnerIndex = (card: CardTypes) => {
+    mutate(card);
+  }
+
+  return updateLeitnerIndex;
 }
 
 export const useDeleteCard = () => {

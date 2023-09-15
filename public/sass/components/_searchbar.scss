@@ -2,7 +2,7 @@
 	display: flex; // set to flex for aligning child components
 	align-items: center; // center
 	justify-content: center; // center
-	margin-top: 5rem;
+	// margin-top: 5rem;
 	// margin-right: auto;
 	&__input {
 		font-family: inherit; // Since input types doesnt inherit font properties, explicitly set them to inherit
@@ -13,7 +13,7 @@
 		padding: 0.7rem 2rem;
 		border-radius: 100px;
 		width: 40%; // Set to 40 % width of available space to allow searchbar to grow on focus
-		margin-right: -3.5rem;
+		// margin-right: -3.5rem;
 		transition: all 0.2s;
 
 		@include responsive(tab-port) {
@@ -23,7 +23,7 @@
 		@include responsive(phone) {
 			width: 70%;
 		}
-        
+
 		&:focus {
 			outline: none;
 			width: 50%; // grow from 30 to 50% on focus
