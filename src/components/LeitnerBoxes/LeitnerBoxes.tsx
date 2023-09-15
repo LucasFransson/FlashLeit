@@ -37,11 +37,15 @@ function LeitnerBoxes({ collection, selectBox }) {
 				card.leitnerIndex === 1 &&
 				currentDate.getTime() - card.lastReviewedDate.getTime() >= oneDay
 		);
+		
 		const box2Cards = collection.flashCards.filter(
 			(card) =>
 				card.leitnerIndex === 2 &&
 				currentDate.getTime() - card.lastReviewedDate.getTime() >= threeDays
 		);
+	
+
+
 		const box3Cards = collection.flashCards.filter(
 			(card) =>
 				card.leitnerIndex === 3 &&
@@ -55,14 +59,21 @@ function LeitnerBoxes({ collection, selectBox }) {
 		setAmountOfCardsToPlayBox1(box1Cards.length);
 		setAmountOfCardsToPlayBox2(box2Cards.length);
 		setAmountOfCardsToPlayBox3(box3Cards.length);
+
+		// Comment this 
+
+
+		if(amountOfCardsToPlayBox1 > 0) setIsLeitnerBox1Empty(false);
+		if(amountOfCardsToPlayBox2 > 0) setIsLeitnerBox2Empty(false);
+		if(amountOfCardsToPlayBox3 > 0) setIsLeitnerBox3Empty(false);
+
 	}, [collection]);
 
 	const selectLeitnerBox = (leitnerBox: CardTypes[]) => {
 		selectBox(leitnerBox);
 	};
 
-	console.log(leitnerBox1, leitnerBox2, leitnerBox3);
-	console.log(collection);
+
 	return (
 		<div className="leitnerbox__wrapper">
 			<div className="leitnerbox__top">
@@ -73,7 +84,7 @@ function LeitnerBoxes({ collection, selectBox }) {
 				<h2>Box 1</h2>
 				<h3>Cards: {amountOfCardsToPlayBox1}</h3>
 			</div>
-			<div className={`leitnerbox__2 ${isLeitnerBox2Empty ? 'leinterbox__isDisabled' : ''}`} onClick={() => {isLeitnerBox2Empty ? null : selectLeitnerBox(leitnerBox2)}}>
+			<div className={`leitnerbox__2 ${isLeitnerBox2Empty ? 'leitnerbox__isDisabled' : ''}`} onClick={() => {isLeitnerBox2Empty ? null : selectLeitnerBox(leitnerBox2)}}>
 				<h2>Box 2</h2>
 				<h3>Cards: {amountOfCardsToPlayBox2}</h3>
 			</div>
