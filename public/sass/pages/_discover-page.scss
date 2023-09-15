@@ -2,13 +2,14 @@
 	grid-column: 1/-1;
 	grid-row: 2;
 	overflow: scroll;
+
 	&__top {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		height: 10vh;
 		// background-image: $color-gradient-green-primary;
-		// background-color: $color-neutral-100;
+		background-color: $color-neutral-100;
 		box-shadow: $box-shadow-subtle;
 	}
 	&__bottom {

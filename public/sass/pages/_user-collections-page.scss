@@ -1,9 +1,77 @@
-.user-collections-page {
+.collections-page {
+	background-color: $color-neutral-200;
 	grid-column: 1/-1;
-	// display: grid;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	// grid-template-columns: repeat(1fr, 4);
-	// grid-template-rows: repeat(1fr, 4);
+	grid-row: 2;
+
+	display: grid;
+	// grid-template-rows: 1.6rem calc(min-content + 5rem) 3.2rem 6.4rem 1fr;
+	grid-template-rows: 1.6rem auto 1.6rem 6.4rem 1fr;
+	grid-template-columns: minmax(50rem, 1fr) 2.5fr;
+	gap: 1rem;
+
+	& > div {
+		background-color: $color-neutral-100;
+	}
+
+	&__favorites {
+		grid-column: 1/-1;
+		grid-row: 2/3;
+		padding: 3rem 0;
+		// min-height: calc(min-content + 5rem);
+	}
+
+	&__user-collections {
+		grid-column: 2/-1;
+		grid-row: 4/-1;
+	}
+
+	&__public {
+		grid-column: 1/2;
+		grid-row: 4/-1;
+		display: grid;
+		grid-template-columns: 0.1fr 1fr 1fr 0.1fr;
+		grid-template-rows: 5rem 5rem repeat(auto-fit, minmax(5rem, max-content));
+
+		// & > .collection-preview > * {
+		// 	grid-column: 2/4;
+		// }
+
+		& > .collection-preview {
+			grid-column: 2/4;
+			padding: 0 2rem;
+		}
+
+		// Set all Collection preview childrens to be at col 2 and 3
+		// & > .collection-preview:not(.collection-preview)* {
+		// 	grid-column: 2/4;
+		// }
+
+		// & *:not {
+
+		// }
+		// & *:not(.collections-page__h3):not(.collections-page__search),
+		// .__public *:not(.collections-page__h3) *,
+		// .__public *:not(.collections-page__search) * {
+		// 	grid-column: 2/4;
+		// }
+	}
+
+	&__h3 {
+		font-size: 2.8rem;
+		&--public {
+			grid-column: 3/4;
+			white-space: nowrap;
+		}
+	}
+	// Searchbars
+	&__search {
+		&bar {
+			&--user-collections {
+			}
+			&--public-collections {
+				grid-column: 2/4;
+				grid-row: 2;
+			}
+		}
+	}
 }

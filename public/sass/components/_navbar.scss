@@ -5,6 +5,7 @@
 	display: grid;
 	grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr;
 	box-shadow: $box-shadow-subtle;
+	z-index: 100;
 
 	&__item {
 		display: flex;

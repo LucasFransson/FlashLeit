@@ -1,11 +1,11 @@
 // import { ReactComponent as SearchIcon } from '/public/svg/SVG/search.svg';
 
-function SearchBar({ searchTerm, setSearchTerm }) {
+function SearchBar({ searchTerm, setSearchTerm, className }) {
 	return (
-		<form className="search">
+		<form className={`search ${className}`}>
 			<input
 				type="text"
-				className="search__input"
+				className={`search__input `}
 				placeholder="Search"
 				value={searchTerm}
 				onChange={(e) => setSearchTerm(e.target.value)}
