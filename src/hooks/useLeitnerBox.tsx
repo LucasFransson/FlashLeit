@@ -8,7 +8,7 @@ function useLeitnerBox(initialCards, leitnerIndex, reviewInterval) {
 		const dueCards = initialCards.filter(
 			(card) =>
 				card.leitnerIndex === leitnerIndex &&
-				currentDate.getTime() - card.lastReviewedDate.getTime() >=
+				currentDate.getTime() - new Date (card.lastReviewedDate).getTime() >=
 					reviewInterval
 		);
 		setBox(dueCards);
