@@ -1,4 +1,5 @@
 import CardTypes from "../types/CardTypes";
+import { useUpdateLeitnerIndex } from "./cardUtility";
 
 const moveCardUp = (cardId: number, cards: CardTypes[]): CardTypes[] => {
   return cards.map(card => {
@@ -19,3 +20,5 @@ const resetCard = (cardId: number, cards: CardTypes[]): CardTypes[] => {
     return card;
   });
 }
+
+const updateLeitnerIndex = useUpdateLeitnerIndex();

@@ -5,6 +5,9 @@ import CardCollectionTypes from '../../types/CardCollectionTypes';
 import { useUpdateCollection } from '../../utils/collectionUtility';
 import CardTypes from '../../types/CardTypes';
 import useLeitnerBox from '../../hooks/useLeitnerBox';
+import { useUpdateLeitnerIndex } from '../../utils/cardUtility';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 interface CardCollectionProps extends CardCollectionTypes {
   collection: CardCollectionTypes;
@@ -49,8 +52,13 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 		'correct' | 'wrong' | null
 	>(null);
 
+  const { userId } = useSelector((state: RootState) => state.userId);
+
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
+
+  // Leitner Index update hook:
+  const updateLeitnerIndex = useUpdateLeitnerIndex();
 
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
@@ -59,8 +67,30 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'correct' }));
 			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
 
-			// --- LEITNER Update Reviewed Date --- 
+			// --- Update card reviewed date --- 
 			updateLastReviewedDate(flashCards[cardIndex]);
+
+      // Update card leitner index:
+      
+      if (flashCards[cardIndex].leitnerIndex <= 2) {
+        const newIndex = flashCards[cardIndex].leitnerIndex + 1;
+
+        const cardToIncrementLeitner: CardTypes = {
+          id: flashCards[cardIndex].id,
+          collectionId: flashCards[cardIndex].collectionId,
+          userId: userId,
+          question: flashCards[cardIndex].question,
+          answer: flashCards[cardIndex].answer,
+          leitnerIndex: newIndex,
+          colorClass: null,
+          lastReviewedDate: flashCards[cardIndex].lastReviewedDate,
+          animationOnRendering: "fade-in"
+        };
+
+        updateLeitnerIndex(cardToIncrementLeitner);
+      }
+
+
 		} else {
 			setAnimationType('wrong');
 			updateCollectionsCounter(id, 'IncrementIncorrectAnswers');
@@ -69,7 +99,21 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 
 			// --- LEITNER Update Reviewed Date ---
 			updateLastReviewedDate(flashCards[cardIndex]);
-		}
+
+      const cardToResetLeitner: CardTypes = {
+          id: flashCards[cardIndex].id,
+          collectionId: flashCards[cardIndex].collectionId,
+          userId: userId,
+          question: flashCards[cardIndex].question,
+          answer: flashCards[cardIndex].answer,
+          leitnerIndex: 1,
+          colorClass: null,
+          lastReviewedDate: flashCards[cardIndex].lastReviewedDate,
+          animationOnRendering: "fade-in"
+        };
+
+        updateLeitnerIndex(cardToResetLeitner);
+      }
 
 		setAnimateOut(true);
 
@@ -95,8 +139,6 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 
   const playAnotherBox = () => {
 
-  
-    
     setIsFinished(false);
 
 

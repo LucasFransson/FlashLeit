@@ -2,9 +2,16 @@ import { useState, useEffect } from 'react';
 
 function useLeitnerBox(initialCards, leitnerIndex, reviewInterval) {
 	const [box, setBox] = useState([]);
+	const [totalCardCount, setTotalCardCount] = useState(0);
 
 	useEffect(() => {
 		const currentDate = new Date();
+
+		const totalCards = initialCards.filter(
+			(card) => card.leitnerIndex === leitnerIndex).length;
+
+		setTotalCardCount(totalCards);
+
 		const dueCards = initialCards.filter(
 			(card) =>
 				card.leitnerIndex === leitnerIndex &&
@@ -16,6 +23,7 @@ function useLeitnerBox(initialCards, leitnerIndex, reviewInterval) {
 
 	return {
 		box,
+		totalCardCount, 
 		playableCardCount: box.length,
 	};
 }

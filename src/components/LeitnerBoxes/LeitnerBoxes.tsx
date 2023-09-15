@@ -37,7 +37,8 @@ function LeitnerBoxes({ collection, selectBox }) {
 				}}
 			>
 				<h2>Box 1</h2>
-				<h3>Cards: {box1.playableCardCount}</h3>
+				<h3>Playable cards: {box1.playableCardCount}</h3>
+				<h3>Total cards: {box1.totalCardCount}</h3>
 			</div>
 			<div
 				className={`leitnerbox__2 ${
@@ -48,7 +49,8 @@ function LeitnerBoxes({ collection, selectBox }) {
 				}}
 			>
 				<h2>Box 2</h2>
-				<h3>Cards: {box2.playableCardCount}</h3>
+				<h3>Playable cards: {box2.playableCardCount}</h3>
+				<h3>Total cards: {box2.totalCardCount}</h3>
 			</div>
 			<div
 				className={`leitnerbox__3 ${
@@ -59,7 +61,8 @@ function LeitnerBoxes({ collection, selectBox }) {
 				}}
 			>
 				<h2>Box 3</h2>
-				<h3>Cards: {box3.playableCardCount}</h3>
+				<h3>Playable cards: {box3.playableCardCount}</h3>
+				<h3>Total cards: {box3.totalCardCount}</h3>
 			</div>
 		</div>
 	);
