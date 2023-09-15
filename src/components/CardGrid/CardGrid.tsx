@@ -26,8 +26,8 @@ const CardGrid: React.FC<CardGridTypes> = ({
 						>
 							<Component
 								{...item}
-								// animationOnRendering={animationOnRendering}
-								animationOnRendering={restProps.animationOnRendering}
+								// animationOnRendering={restProps.animationOnRendering}
+								{...restProps}
 							/>
 							{/* <Component {...item} /> */}
 						</Link>

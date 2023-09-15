@@ -53,13 +53,16 @@ function UserCollectionsPage() {
 					}
 				></SearchBar>
 				{/* <CollectionPreview></CollectionPreview> */}
-				{collections && (
-					<CardGrid
-						items={collections}
-						Component={CollectionPreview}
-						linkPrefix={'collection'}
-					></CardGrid>
-				)}
+				<div className="collections-page__card-grid collections-page__card-grid--public">
+					{collections && (
+						<CardGrid
+							items={collections}
+							Component={CollectionPreview}
+							linkPrefix={'collection'}
+							className="--public-collections"
+						></CardGrid>
+					)}
+				</div>
 			</div>
 			<div className="collections-page__user-collections">
 				<h3>My Collections</h3>
@@ -74,6 +77,7 @@ function UserCollectionsPage() {
 							items={collections}
 							Component={CollectionPreview}
 							linkPrefix={'collection'}
+							className="--discover-page"
 						></CardGrid>
 					)}
 				</ColorClassContext.Provider>

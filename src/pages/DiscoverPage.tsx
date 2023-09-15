@@ -1,18 +1,23 @@
-import { useState, useEffect } from "react";
-import SearchBar from "../components/Searchbar/Searchbar";
-import CardGrid from "../components/CardGrid/CardGrid";
-import useFetch from "../hooks/useFetch";
-import CardCollection from "../components/CardCollection/CardCollection";
-import CollectionPreview from "../components/CollectionPreview/CollectionPreview";
-import { getRandomColorClass } from "../utils/getRandomColorClass";
-import ColorClassContext from "../context/ColorClassContext";
-import { useGetAllCollectionsQuery } from "../redux/api/collectionsSlice";
+import { useState, useEffect } from 'react';
+import SearchBar from '../components/Searchbar/Searchbar';
+import CardGrid from '../components/CardGrid/CardGrid';
+import useFetch from '../hooks/useFetch';
+import CardCollection from '../components/CardCollection/CardCollection';
+import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
+import { getRandomColorClass } from '../utils/getRandomColorClass';
+import ColorClassContext from '../context/ColorClassContext';
+import { useGetAllCollectionsQuery } from '../redux/api/collectionsSlice';
 
 function DiscoverPage() {
-	const [searchTerm, setSearchTerm] = useState("");
+	const [searchTerm, setSearchTerm] = useState('');
 	const [coloredCollections, setColoredCollections] = useState<any[]>([]);
 
-	const { data: collections, isLoading, isError, error } = useGetAllCollectionsQuery();
+	const {
+		data: collections,
+		isLoading,
+		isError,
+		error,
+	} = useGetAllCollectionsQuery();
 
 	useEffect(() => {
 		if (collections && collections.length > 0) {
@@ -32,7 +37,11 @@ function DiscoverPage() {
 		return <div>Error: {error.message}</div>;
 	}
 
-	const filteredCollections = Array.isArray(coloredCollections) ? coloredCollections.filter(c => c.title.toLowerCase().includes(searchTerm.toLowerCase())) : [];
+	const filteredCollections = Array.isArray(coloredCollections)
+		? coloredCollections.filter((c) =>
+				c.title.toLowerCase().includes(searchTerm.toLowerCase())
+		  )
+		: [];
 	const colorClass = getRandomColorClass();
 
 	return (
@@ -41,12 +50,17 @@ function DiscoverPage() {
 				<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 			</div>
 			<div className="discover-page__bottom">
-				<CardGrid items={filteredCollections} Component={CollectionPreview} linkPrefix="collection" />
+				<CardGrid
+					items={filteredCollections}
+					Component={CollectionPreview}
+					linkPrefix="collection"
+					className="--discover-page"
+				/>
 			</div>
 		</div>
 	);
 }
-
+// collection-preview--${variant}
 export default DiscoverPage;
 
 // const filteredCollections = Array.isArray(collections)

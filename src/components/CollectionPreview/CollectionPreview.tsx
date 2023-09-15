@@ -15,6 +15,7 @@ interface CollectionPreviewTypes {
 	isPublic?: boolean;
 	cardCount: number;
 	colorClass: string | null;
+	className: string | null;
 }
 
 const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
@@ -29,13 +30,18 @@ const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 	isPublic,
 	cardCount,
 	colorClass,
+	className,
+	...restProps
 }) => {
 	if (colorClass == null) {
 		colorClass = useContext(ColorClassContext);
 	}
 	return (
 		<>
-			<div className={'collection-preview'}>
+			<div
+				className={`collection-preview collection-preview${className}`}
+				{...restProps}
+			>
 				<div className="collection-preview__card-box">
 					<p
 						className={`collection-preview__card-box-count  ${colorClass}-foreground`}
