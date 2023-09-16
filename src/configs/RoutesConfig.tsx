@@ -6,7 +6,6 @@ import EditCardPage from "../pages/CreateEditPage";
 import UserCollectionsPage from "../pages/UserCollectionsPage";
 import UserPage from "../pages/UserPage";
 import DiscoverPage from "../pages/DiscoverPage";
-import LeitnerPage from "../pages/LeitnerPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 function RoutesConfig() {
@@ -15,7 +14,6 @@ function RoutesConfig() {
 			<Route path="/" element={<HomePage />} />
 			<Route path="/about" element={<AboutPage />} />
 			<Route path="/collection/:id" element={<CardSetPage />} />
-			<Route path="/leitner/:id" element={<LeitnerPage />} />
 			<Route path="/edit" element={<EditCardPage />} />
 			<Route path="/collections" element={<UserCollectionsPage />} />
 			<Route path="/userpage" element={<UserPage />} />
