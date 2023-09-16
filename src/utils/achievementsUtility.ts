@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useGetAuthoredCollectionsQuery, useGetCollectionsByUserIdQuery } from "../redux/api/collectionsSlice";
 import { useAddAchievementToUserMutation, useGetAchievementsByUserIdQuery, useGetAllAchievementsQuery } from "../redux/api/achievementsSlice";
+import AchievementTypes from "../types/AchievementTypes";
 
 export const useAchievementService = () => {
 	const { userId } = useSelector((state: RootState) => state.userId);
 
 	//const [isAchievementUnlocked, setIsAchievementUnlocked] = useState(false);
-	const [achievement, setAchievement] = useState({});
+	const [achievement, setAchievement] = useState<AchievementTypes | null>(null);
 
 	const { data: achievements } = useGetAllAchievementsQuery();
 	const { data: createdCollections } = useGetAuthoredCollectionsQuery(userId);
