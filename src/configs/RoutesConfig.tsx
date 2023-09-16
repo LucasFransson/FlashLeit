@@ -1,12 +1,13 @@
-import { Routes, Route } from 'react-router-dom';
-import CardSetPage from '../pages/CollectionPage';
-import HomePage from '../pages/HomePage';
-import AboutPage from '../pages/AboutPage';
-import EditCardPage from '../pages/CreateEditPage';
-import UserCollectionsPage from '../pages/UserCollectionsPage';
-import UserPage from '../pages/UserPage';
-import DiscoverPage from '../pages/DiscoverPage';
-import LeitnerPage from '../pages/LeitnerPage';
+import { Routes, Route } from "react-router-dom";
+import CardSetPage from "../pages/CollectionPage";
+import HomePage from "../pages/HomePage";
+import AboutPage from "../pages/AboutPage";
+import EditCardPage from "../pages/CreateEditPage";
+import UserCollectionsPage from "../pages/UserCollectionsPage";
+import UserPage from "../pages/UserPage";
+import DiscoverPage from "../pages/DiscoverPage";
+import LeitnerPage from "../pages/LeitnerPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 function RoutesConfig() {
 	return (
@@ -19,6 +20,7 @@ function RoutesConfig() {
 			<Route path="/collections" element={<UserCollectionsPage />} />
 			<Route path="/userpage" element={<UserPage />} />
 			<Route path="/discover" element={<DiscoverPage />} />
+			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	);
 }
