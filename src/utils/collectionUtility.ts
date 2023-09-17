@@ -1,5 +1,7 @@
-import { useAddCollectionMutation, useDeleteCollectionMutation, useUpdateCollectionCounterMutation } from "../redux/api/collectionsSlice"
+import { useAddCollectionMutation, useCloneCollectionMutation, useDeleteCollectionMutation, useUpdateCollectionCounterMutation } from "../redux/api/collectionsSlice"
+import AddCollectionResponeTypes from "../types/AddCollectionResponseType";
 import CardCollectionTypes from "../types/CardCollectionTypes";
+import CardTypes from "../types/CardTypes";
 
 
 export const useUpdateCollection = () => {
@@ -16,8 +18,21 @@ export const useUpdateCollection = () => {
 export const useAddCollection = () => {
   const [mutate] = useAddCollectionMutation();
 
-  const addCollection = (collection: CardCollectionTypes) => {
-    mutate(collection);
+  const addCollection = (collection: CardCollectionTypes): Promise<AddCollectionResponeTypes> => {
+    
+    return mutate(collection).then(result => {
+
+      console.log("Raw result", result);
+
+      if ('data' in result) {
+        console.log(result.data);
+        return result.data;
+      }
+
+      throw new Error("Failed to add collection");
+      
+      
+    })
   }
 
   return addCollection;
@@ -33,4 +48,14 @@ export const useDeleteCollection = () => {
   }
 
   return deleteCollections;
+}
+
+export const useCloneCollection = () => {
+  const [mutate] = useCloneCollectionMutation();
+
+  const cloneCollection = (userId: number, collection: CardCollectionTypes) => { 
+    mutate({userId: userId, collection: collection});
+  }
+
+  return cloneCollection;
 }
