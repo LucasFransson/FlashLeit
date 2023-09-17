@@ -1,26 +1,65 @@
 import React, { useState, useRef } from 'react';
 import Slider from 'react-slick';
 
-interface CarouselProps {
-	slides: string[];
+export interface CarouselProps {
+	// items: Array<any>;
+	//slides: Array<any>; // Change this to the type of your slides if they're not strings
+	//Component: React.FC<any>; // This will be your Card component or any other component
+	items: Array<any> | null;
+	Component: React.ComponentType<any>;
 	className?: string;
+	linkPrefix?: string; // Optional prop
+	onCardClick?: (item: any) => void; // Optional prop
+	onDeleteClick?: (item: any) => void; // Optional prop
+	[propName: string]: any; // This allows for any additional props
 }
 
-const Carousel: React.FC<CarouselProps> = ({ slides, className }) => {
+const Carousel: React.FC<CarouselProps> = ({
+	//slides,
+	items,
+	Component,
+	className,
+	linkPrefix,
+	onCardClick,
+	onDeleteClick,
+	...restProps
+}) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const mainSliderRef = useRef<Slider | null>(null);
 	const navSliderRef = useRef<Slider | null>(null);
 	const settingsMain = {
 		ref: mainSliderRef,
-		slidesToShow: 1,
+		slidesToShow: 3,
 		slidesToScroll: 1,
 		autoplay: true,
 		dots: true,
 		centerMode: true,
+		centerPadding: '0 auto',
+
+		// responsive: [
+		// 	{
+		// 		breakpoint: 768,
+		// 		settings: {
+		// 			arrows: false,
+		// 			centerMode: true,
+		// 			centerPadding: '40px',
+		// 			slidesToShow: 2,
+		// 		},
+		// 	},
+		// 	{
+		// 		breakpoint: 480,
+		// 		settings: {
+		// 			arrows: false,
+		// 			centerMode: true,
+		// 			centerPadding: '40px',
+		// 			slidesToShow: 1,
+		// 		},
+		// 	},
+		// ],
 		focusOnSelect: true,
 		arrows: true,
 		infinite: true,
-		speed: 400,
+		speed: 240,
 		fade: false,
 		adaptiveHeight: true,
 		afterChange: (current: number) => setCurrentSlide(current),
@@ -29,34 +68,70 @@ const Carousel: React.FC<CarouselProps> = ({ slides, className }) => {
 
 	const settingsNav = {
 		ref: navSliderRef,
-		slidesToShow: 5,
+		slidesToShow: 3,
 		slidesToScroll: 1,
 		dots: false,
 		focusOnSelect: true,
 		infinite: true,
 		centerMode: true,
+		centerPadding: '18px',
 		arrows: false,
 		asNavFor: mainSliderRef.current as Slider | undefined,
 		responsive: [
 			// ... your responsive settings
 		],
 	};
-
+	// console.log('Restprops Inc');
+	// for (let key in slides) {
+	// 	console.log(key, slides[key]);
+	// }
+	console.log(items);
 	return (
 		<div className={className}>
-			<Slider {...settingsMain}>
-				{slides.map((slide, index) => (
-					<div
-						key={index}
-						className={`carousel__slide carousel__slide--${index + 1}`}
-					>
-						<h2>{slide}</h2>
-					</div>
-				))}
-			</Slider>
+			{onCardClick !== null ? (
+				<Slider {...settingsMain}>
+					{items.map((item, index) => (
+						<div
+							key={index}
+							className={`carousel__slide carousel__slide--${index + 1}`}
+						>
+							<button
+								onClick={() => onDeleteClick && onDeleteClick(item)}
+								className="card-editor__item--delete"
+							>
+								X
+							</button>
+							<div
+								onClick={() => onCardClick && onCardClick(item)}
+								className={`card-editor__item ${className}`}
+								//className={`card-editor__item ${animationOnRendering}`}
+							>
+								<Component
+									{...item}
+									{...restProps}
+									//animationOnRendering={restProps.animationOnRendering}
+									//animationOnRendering={animationOnRendering}
+								/>
+								{/* <Component {...item} /> */}
+							</div>
+						</div>
+					))}
+				</Slider>
+			) : (
+				<Slider {...settingsMain}>
+					{items.map((item, index) => (
+						<div
+							key={index}
+							className={`carousel__slide carousel__slide--${index + 1}`}
+						>
+							<Component {...item} {...restProps} />
+						</div>
+					))}
+				</Slider>
+			)}
 
 			<Slider {...settingsNav}>
-				{slides.map((slide, index) => (
+				{items.map((item, index) => (
 					<div
 						key={index}
 						className={`carousel__nav-item carousel__nav-item--${index + 1}`}

@@ -200,10 +200,11 @@ function EditCardPage() {
 							/> */}
 							<Carousel
 								className={'carousel create-edit-page__carousel'}
-								slides={flashCards}
+								items={flashCards}
 								Component={Card}
 								onCardClick={selectCard}
 								onDeleteClick={deleteSelectedCard}
+								animationOnRendering={`fade-in`}
 							/>
 
 							{/* <div className="create-edit-page__card-grid">
