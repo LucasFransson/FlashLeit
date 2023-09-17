@@ -15,6 +15,7 @@ import { useDeleteCollection } from "../utils/collectionUtility";
 import { useAchievementService } from "../utils/achievementsUtility";
 import CardCollectionTypes from "../types/CardCollectionTypes";
 import AchievementTypes from "../types/AchievementTypes";
+import { skipToken } from "@reduxjs/toolkit//query/react";
 function EditCardPage() {
 	// useState to hold the selected card:
 	const [selectedCard, setSelectedCard] = useState<CardTypes>({
@@ -34,19 +35,21 @@ function EditCardPage() {
 	// Retrieve the UserId:
 	const { userId } = useSelector((state: RootState) => state.userId);
 	// useState to hold the id of currently selected collection:
-	const [selectedCollectionId, setSelectedCollectionId] = useState<number | null>(0);
+	const [selectedCollectionId, setSelectedCollectionId] = useState<number | null>(null);
 	// useState to hold the cards of the currently selected collection:
 	const [flashCards, setFlashCards] = useState<CardTypes[] | null>([]);
 	// useState for skip:
-	const [skip, setSkip] = useState(true);
+
 	// Delete card from utility folder:
 	const deleteCard = useDeleteCard();
 	// Delete collections from utility folder:
 	const deleteCollection = useDeleteCollection();
 	// API call for getting all the users collections:
-	const { data: collectionData, error: collectionError, isLoading: collectionLoading } = useGetAuthoredCollectionsQuery(userId);
+	const { data: collectionData, error: collectionError, isLoading: collectionLoading } = useGetAuthoredCollectionsQuery(userId, {skip: userId === null || userId === undefined} );
 
 	const [addedCollectionId, setAddedCollectionId] = useState<number | null>(null);
+
+
 
 	// UseEffet to select the newly added collection:
 	useEffect(() => {
@@ -63,6 +66,7 @@ function EditCardPage() {
 		}
 	}, [collectionData, addedCollectionId]);
 
+	
 	// API call for getting all the cards of the currently selected collection;
 	const {
 		data: cardsData,
@@ -73,7 +77,7 @@ function EditCardPage() {
 			collectionId: selectedCollectionId,
 			userId: userId,
 		},
-		{ skip }
+		{ skip: selectedCollectionId === null || selectedCollectionId === undefined || selectedCollectionId === 0}
 	);
 	// useEffect to set the selected collection after API call:
 	useEffect(() => {
@@ -87,12 +91,7 @@ function EditCardPage() {
 			setFlashCards(cardsData.flashCards);
 		}
 	}, [cardsData]);
-	// useEffect to set skip:
-	useEffect(() => {
-		if (selectedCollectionId != null) {
-			setSkip(false);
-		}
-	}, [selectedCollectionId]);
+
 	const handleToggle = (toggleChange: boolean) => {
 		setIsChecked(toggleChange);
 	};
@@ -140,7 +139,6 @@ function EditCardPage() {
 		console.log(achievement);
 		setIsChecked(false);
 
-		console.log(addedCollectionId);
 
 		// setAddedCollectionId(addedCollectionId);
 		// setSelectedCollectionId(addedCollectionId);
