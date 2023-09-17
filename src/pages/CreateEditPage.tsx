@@ -13,6 +13,7 @@ import CardTypes from "../types/CardTypes";
 import Toggler from "../components/Toggler/Toggler";
 import { useDeleteCollection } from "../utils/collectionUtility";
 import { useAchievementService } from "../utils/achievementsUtility";
+import AchievementTypes from "../types/AchievementTypes";
 function EditCardPage() {
 	// useState to hold the selected card:
 	const [selectedCard, setSelectedCard] = useState<CardTypes>({
@@ -25,7 +26,8 @@ function EditCardPage() {
 		lastReviewed: null,
 		colorClass: null,
 	});
-	const { unlockCreateAchievement } = useAchievementService();
+	const { unlockedAchievement, unlockCreateAchievement } = useAchievementService();
+	const [displayAchievement, setDisplayAchievement] = useState<AchievementTypes | null>(null);
 	// useState to hold toggler value:
 	const [isChecked, setIsChecked] = useState(false);
 	// Retrieve the UserId:
@@ -113,16 +115,27 @@ function EditCardPage() {
 			deleteCard(cardDetails);
 		}
 	};
+
+	// useEffect(() => {
+	// 	//console.log(unlockedAchievement);
+	// 	setDisplayAchievement(unlockedAchievement);
+	// 	//console.log(displayAchievement);
+	// }, [unlockedAchievement]);
+
 	const collectionAdded = () => {
 		// --- TODO --- Show success modal?
-		const isAchievementUnlocked = unlockCreateAchievement();
-		if (isAchievementUnlocked) {
-			console.log("Unlocked");
-		} else {
-			console.log("Not yet");
-		}
+		const achievement = unlockCreateAchievement();
+		console.log(achievement);
+		// if (displayAchievement) {
+		// 	console.log("Unlocked", displayAchievement);
+		// } else {
+		// 	console.log("Not yet");
+		// }
 		setIsChecked(false);
 	};
+	// if (unlockedAchievement) {
+	// 	return <div>{unlockedAchievement.title}</div>;
+	// }
 	if (collectionLoading) return <LoadingIcon />;
 	if (collectionError)
 		return (

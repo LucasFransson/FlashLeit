@@ -44,11 +44,14 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			setAnimationType("correct");
 			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "correct" }));
 			updateCollectionsCounter(id, "IncrementCorrectAnswers");
-			unlockCorrectAnswersAchievement();
+			const achievement = unlockCorrectAnswersAchievement();
+			console.log(achievement);
 		} else {
 			setAnimationType("wrong");
 			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
-			unlockInCorrectAnswersAchievement();
+
+			const achievement = unlockInCorrectAnswersAchievement();
+			console.log(achievement);
 			// setAnswerStatus('wrong');
 			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
 		}
@@ -66,12 +69,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				updateCollectionsCounter(id, "IncrementCompletedRuns");
 				console.log("Finished answering all cards!");
 
-				const isAchievementUnlocked = unlockCompletedRunsAchievement();
-				if (isAchievementUnlocked) {
-					console.log("Hello");
-				} else {
-					console.log("Bye");
-				}
+				const achievement = unlockCompletedRunsAchievement();
+				console.log(achievement);
 			}
 		}, 1300); // ms animation time
 
