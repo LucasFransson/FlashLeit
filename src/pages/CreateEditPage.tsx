@@ -138,11 +138,6 @@ function EditCardPage() {
 		// --- TODO --- Show success modal?
 		const achievement = unlockCreateAchievement();
 		console.log(achievement);
-		// if (displayAchievement) {
-		// 	console.log("Unlocked", displayAchievement);
-		// } else {
-		// 	console.log("Not yet");
-		// }
 		setIsChecked(false);
 
 		console.log(addedCollectionId);
