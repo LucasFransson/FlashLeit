@@ -1,25 +1,35 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { AuthenticatedTemplate, useMsal } from "@azure/msal-react";
-import { useGetUserByIdQuery } from "../redux/api/usersSlice";
-import { useGetCollectionsByUserIdQuery } from "../redux/api/collectionsSlice";
-import { useDeleteUser, useUpdateUser } from "../utils/userUtility";
-import Avatar from "../components/Avatar/Avatar";
-import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
-import AvatarModal from "../components/Modal/AvatarModal";
-import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
-import UserTypes from "../types/UsersTypes";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { AuthenticatedTemplate, useMsal } from '@azure/msal-react';
+import { useGetUserByIdQuery } from '../redux/api/usersSlice';
+import { useGetCollectionsByUserIdQuery } from '../redux/api/collectionsSlice';
+import { useDeleteUser, useUpdateUser } from '../utils/userUtility';
+import Avatar from '../components/Avatar/Avatar';
+import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
+import AvatarModal from '../components/Modal/AvatarModal';
+import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
+import UserTypes from '../types/UsersTypes';
 
 function UserPage() {
 	const [skip, setSkip] = useState(true);
-	const [newDisplayName, setNewDisplayName] = useState("");
+	const [newDisplayName, setNewDisplayName] = useState('');
 	const { userId } = useSelector((state: RootState) => state.userId);
 
 	const { instance } = useMsal();
 
-	const { data: authUser, isLoading: isLoadingUser, isError: isErrorUser, error: errorUser } = useGetUserByIdQuery(userId, { skip });
-	const { data: collections, isLoading: isLoadingCollections, isError: isErrorCollections, error: errorCollections } = useGetCollectionsByUserIdQuery(userId, { skip });
+	const {
+		data: authUser,
+		isLoading: isLoadingUser,
+		isError: isErrorUser,
+		error: errorUser,
+	} = useGetUserByIdQuery(userId, { skip });
+	const {
+		data: collections,
+		isLoading: isLoadingCollections,
+		isError: isErrorCollections,
+		error: errorCollections,
+	} = useGetCollectionsByUserIdQuery(userId, { skip });
 	const updateUser = useUpdateUser();
 	const deleteUser = useDeleteUser();
 
@@ -44,7 +54,7 @@ function UserPage() {
 		instance.logout();
 	};
 
-	const updateDisplayName = e => {
+	const updateDisplayName = (e) => {
 		if (authUser) {
 			const updatedUser: UserTypes = {
 				id: authUser[0].id,
@@ -86,18 +96,47 @@ function UserPage() {
 				) : (
 					authUser &&
 					collections && (
-						<div className="user-page">
-							{showingAvatarModal && <AvatarModal updateUserAvatar={updateAvatar} />}
-							<Avatar url={authUser[0]?.avatarUrl} showModal={showAvatarModal} caller={"user-page"} />
+						<div className="user-page bg-bubbles">
+							{showingAvatarModal && (
+								<AvatarModal updateUserAvatar={updateAvatar} />
+							)}
+							<Avatar
+								url={authUser[0]?.avatarUrl}
+								showModal={showAvatarModal}
+								caller={'user-page'}
+							/>
 							<div>
 								<label htmlFor="displayName">Display name</label>
-								<input type="text" id="displayName" defaultValue={authUser[0]?.userName} onChange={e => setNewDisplayName(e.target.value)} />
+								<input
+									type="text"
+									id="displayName"
+									defaultValue={authUser[0]?.userName}
+									onChange={(e) => setNewDisplayName(e.target.value)}
+								/>
 								<label htmlFor="accountName">Account name</label>
-								<input type="text" id="accountName" value={authUser[0]?.accountName} disabled />
+								<input
+									type="text"
+									id="accountName"
+									value={authUser[0]?.accountName}
+									disabled
+								/>
 								<label htmlFor="email">Email</label>
-								<input type="email" id="email" value={authUser[0]?.email} disabled />
+								<input
+									type="email"
+									id="email"
+									value={authUser[0]?.email}
+									disabled
+								/>
 								<button onClick={updateDisplayName}>Save changes</button>
-								<button onClick={() => instance.loginRedirect({ authority: "https://flashleit.b2clogin.com/flashleit.onmicrosoft.com/B2C_1_PasswordReset", scopes: ["openid"] })}>
+								<button
+									onClick={() =>
+										instance.loginRedirect({
+											authority:
+												'https://flashleit.b2clogin.com/flashleit.onmicrosoft.com/B2C_1_PasswordReset',
+											scopes: ['openid'],
+										})
+									}
+								>
 									Change Password
 								</button>
 								<button onClick={() => instance.logout()}>Log Out</button>

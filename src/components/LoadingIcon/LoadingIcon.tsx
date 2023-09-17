@@ -1,24 +1,22 @@
 import React from 'react';
 
-function LoadingIcon() {
+const LoadingIcon = () => {
 	return (
-		<>
-			<div className="loading__background">
-				{/* <div className="loading__orbit"></div> */}
-				<div className="loading"></div>
-			</div>
-			<span className="loading__text">LOADING...</span>
-		</>
+		<div className="animated-cards">
+			<span className="animated-cards__card-container">
+				<div className="animated-cards__card animated-cards__card--top"></div>
+				<div className="animated-cards__card animated-cards__card--bottom"></div>
+			</span>
+			<span className="animated-cards__card-container">
+				<div className="animated-cards__card animated-cards__card--top"></div>
+				<div className="animated-cards__card animated-cards__card--bottom"></div>
+			</span>
+			<span className="animated-cards__card-container">
+				<div className="animated-cards__card animated-cards__card--top"></div>
+				<div className="animated-cards__card animated-cards__card--bottom"></div>
+			</span>
+		</div>
 	);
-}
+};
 
 export default LoadingIcon;
-
-{
-	/* <>
-<div className="loading__background">
-    <div className="loading__orbit"></div>
-    <div className="loading"></div>
-</div>
-</> */
-}

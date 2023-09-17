@@ -3,8 +3,9 @@
 	grid-template-columns: repeat(auto-fit, minmax(48rem, 1fr));
 	justify-items: center;
 	overflow: scroll;
-	padding: 3rem 2rem;
+	padding: 4rem 0rem;
 	// background-color: rgba(250, 250, 250, 0.209);
+	//
 	gap: 4rem 2rem;
 
 	&__item {

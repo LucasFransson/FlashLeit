@@ -2,7 +2,9 @@
 @import 'variables';
 @import 'base';
 @import 'animations';
+@import './components/button';
 @import './components/btn-login';
+
 @import './components/card-editor';
 @import './components/card';
 @import './components/cardcollection';
@@ -27,3 +29,8 @@
 @import './pages/discover-page';
 @import './pages/user-page';
 @import 'layout';
+@import './components/slick-carousel/slick';
+@import './components/slick-carousel/slick-theme';
+@import './components/carousel';
+//@import '../../node_modules/slick-carousel/slick/slick-theme.scss';
+//@import '../../node_modules/slick-carousel/slick/slick.scss';

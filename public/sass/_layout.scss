@@ -132,6 +132,186 @@
 		1px 1px 0 #000; // Bottom-right shadow
 }
 
+// HOVER EFFECTS
+
+.hover-fill--to-top {
+	position: relative;
+	z-index: 1;
+	// TODO: CHANGE TO COOL CUBIC-Bezier
+	transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+
+	&:after {
+		content: '';
+		display: block;
+		height: 2px;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background-color: $color-primary--500;
+		// transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+		transition: all 0.3s ease-in;
+		z-index: -1;
+	}
+
+	&:hover {
+		color: $color-neutral-100;
+		//TODO: consider Refactor this, this sets ALL childrens color to white!
+		& > * {
+			color: $color-neutral-100;
+		}
+		&:after {
+			right: 0;
+			left: 0;
+			height: 100%;
+		}
+	}
+}
+
+// BORDER TITLE EFFECT TRANSPARENT AT START
+
+.border-hover-effect {
+	position: relative;
+	cursor: pointer;
+	transition: all 0.5s;
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		background: transparent; // Set to transparent initially
+		transition: 0.5s;
+		box-shadow: 1px 1px 20px $color-primary--500;
+	}
+
+	// Top and Bottom borders
+	&::before {
+		left: 0;
+		width: 3px;
+		height: 30%;
+	}
+
+	&:hover::before {
+		height: 100%;
+		background: $color-primary--500;
+	}
+
+	&::after {
+		right: 0;
+		width: 15%;
+		height: 3px;
+	}
+
+	&:hover::after {
+		width: 100%;
+		background: $color-primary--500;
+	}
+
+	// Left and Right borders
+	& > div::before,
+	& > div::after {
+		content: '';
+		position: absolute;
+		background: transparent; // Set to transparent initially
+		transition: 0.5s;
+		box-shadow: 1px 1px 20px$color-primary--500;
+	}
+
+	& > div::before {
+		top: 0;
+		width: 15%;
+		height: 3px;
+	}
+
+	&:hover > div::before {
+		width: 100%;
+		background: $color-primary--500;
+	}
+
+	& > div::after {
+		bottom: 0;
+		width: 3px;
+		height: 30%;
+	}
+
+	&:hover > div::after {
+		height: 100%;
+		background: $color-primary--500;
+	}
+}
+
+// BORDER TITLE EFFECT  SHOWING AT START
+// .border-hover-effect {
+// 	position: relative;
+
+// 	cursor: pointer;
+// 	transition: all 0.5s;
+
+// 	&::before,
+// 	&::after {
+// 		content: '';
+// 		position: absolute;
+// 		background: $color-primary--500;
+// 		transition: 0.5s;
+// 		box-shadow: 1px 1px 20px $color-primary--700;
+// 	}
+
+// 	// Top and Bottom borders
+// 	&::before {
+// 		left: 0;
+// 		width: 3px;
+// 		height: 30%;
+// 	}
+
+// 	&:hover::before {
+// 		height: 100%;
+// 	}
+
+// 	&::after {
+// 		right: 0;
+// 		width: 15%;
+// 		height: 3px;
+// 	}
+
+// 	&:hover::after {
+// 		width: 100%;
+// 	}
+
+// 	// Left and Right borders
+// 	& > div::before,
+// 	& > div::after {
+// 		content: '';
+// 		position: absolute;
+// 		background: $color-primary--500;
+// 		transition: 0.5s;
+// 		box-shadow: 1px 1px 20px $color-primary--700;
+// 	}
+
+// 	& > div::before {
+// 		top: 0;
+// 		width: 15%;
+// 		height: 3px;
+// 	}
+
+// 	&:hover > div::before {
+// 		width: 100%;
+// 	}
+
+// 	& > div::after {
+// 		bottom: 0;
+// 		width: 3px;
+// 		height: 30%;
+// 	}
+
+// 	&:hover > div::after {
+// 		height: 100%;
+// 	}
+// }
+
+////
+///
+///
+///
 .user-page {
 	grid-column: 1/-1;
 }
@@ -178,5 +358,107 @@
 		display: flex;
 		justify-content: end;
 		height: 20%;
+	}
+}
+
+.animated-cards {
+	position: absolute;
+	display: block;
+	width: 60% !important;
+	height: auto;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+
+	&__card-container {
+		display: inline-block;
+		position: relative;
+		width: 70px;
+		height: auto;
+
+		&:nth-child(2) {
+			margin: 0 4%;
+		}
+
+		& .animated-cards__card {
+			display: block;
+			width: 70px;
+			height: 100px;
+			border-radius: 6px;
+
+			&--top {
+				position: absolute;
+				z-index: 10;
+				background-image: $color-gradient-purple;
+			}
+
+			&--bottom {
+				position: absolute;
+				z-index: 9;
+				background-image: $color-gradient-green-dark;
+			}
+
+			&:nth-child(1) {
+				animation-name: load_top;
+				animation-duration: 3.5s;
+				animation-iteration-count: infinite;
+			}
+
+			&:nth-child(2) {
+				animation-name: load_bottom;
+				animation-duration: 3.5s;
+				animation-iteration-count: infinite;
+			}
+		}
+	}
+
+	&__card-container:nth-child(1) .animated-cards__card {
+	}
+	&__card-container:nth-child(2) .animated-cards__card {
+		animation-delay: 300ms;
+	}
+	&__card-container:nth-child(3) .animated-cards__card {
+		animation-delay: 500ms;
+	}
+}
+
+@keyframes load_top {
+	0% {
+		transform: rotateY(0deg);
+		z-index: 10;
+	}
+	33% {
+		transform: rotateY(180deg);
+		z-index: 9;
+		margin-top: -5em;
+	}
+	66% {
+		transform: rotateY(360deg);
+		z-index: 10;
+	}
+	100% {
+		transform: rotateY(360deg);
+		z-index: 10;
+	}
+}
+
+@keyframes load_bottom {
+	0% {
+		transform: rotateY(0deg);
+		z-index: 9;
+	}
+	33% {
+		transform: rotateY(180deg);
+		z-index: 10;
+		margin-top: -5em;
+	}
+	66% {
+		transform: rotateY(360deg);
+		z-index: 9;
+	}
+	100% {
+		transform: rotateY(360deg);
+		z-index: 9;
 	}
 }

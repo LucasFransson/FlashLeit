@@ -5,15 +5,29 @@ import CollectionPreview from '../components/CollectionPreview/CollectionPreview
 import { useEffect, useState } from 'react';
 import { useGetCollectionsByUserIdQuery } from '../redux/api/collectionsSlice';
 import { getRandomColorClass } from '../utils/getRandomColorClass';
-import ColorClassContext from '../context/ColorClassContext';
 import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
 import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
 import SearchBar from '../components/Searchbar/Searchbar';
 
 function UserCollectionsPage() {
 	const { userId } = useSelector((state: RootState) => state.userId);
-
 	const [skip, setSkip] = useState(true);
+
+	// State vars for searcing collections
+	const [searchTermUserCollections, setSearchTermUserCollections] =
+		useState('');
+	const [searchTermPublicCollections, setSearchTermPublicCollections] =
+		useState('');
+	// State var for setting randomized color on the collections
+	const [coloredCollections, setColoredCollections] = useState<any[]>([]);
+
+	useEffect(() => {
+		if (userId != null) {
+			setSkip(false);
+		}
+	}, [userId]);
+
+	// Fetch the Collections that are created by the user
 	const {
 		data: collections,
 		isLoading,
@@ -21,13 +35,33 @@ function UserCollectionsPage() {
 		error,
 	} = useGetCollectionsByUserIdQuery(userId, { skip });
 
-	console.log(collections);
-
+	// UseEffect for random color
 	useEffect(() => {
-		if (userId != null) {
-			setSkip(false);
+		if (collections && collections.length > 0) {
+			// Assign a random color class to each collection
+			const processedData = collections.map((item: any) => ({
+				...item,
+				colorClass: getRandomColorClass(),
+			}));
+			setColoredCollections(processedData);
 		}
-	}, [userId]);
+	}, [collections]);
+
+	// Filter Users own Collections based on searchbar
+	const filteredUserCollections = Array.isArray(coloredCollections)
+		? coloredCollections.filter((c) =>
+				c.title.toLowerCase().includes(searchTermUserCollections.toLowerCase())
+		  )
+		: [];
+
+	// Filter Public Collections based on searchbar
+	const filteredPublicCollections = Array.isArray(coloredCollections)
+		? coloredCollections.filter((c) =>
+				c.title
+					.toLowerCase()
+					.includes(searchTermPublicCollections.toLowerCase())
+		  )
+		: [];
 
 	if (isLoading) {
 		return <LoadingIcon />;
@@ -37,26 +71,28 @@ function UserCollectionsPage() {
 		return <ErrorMsg error={error} />;
 	}
 
-	const colorClass = getRandomColorClass();
 	return (
 		<div className="collections-page">
+			{/* PINNED FAV COLLECTIONS */}
 			<div className="collections-page__favorites">
 				<h3>Pinned Collections</h3>
 			</div>
+			{/* PUBLIC COLLECTIONS */}
 			<div className="collections-page__public">
 				<h3 className="collections-page__h3 collections-page__h3--public">
 					Public Collections
 				</h3>
 				<SearchBar
+					searchTerm={searchTermPublicCollections}
+					setSearchTerm={setSearchTermPublicCollections}
 					className={
 						'collections-page__searchbar collections-page__searchbar--public-collections'
 					}
 				></SearchBar>
-				{/* <CollectionPreview></CollectionPreview> */}
 				<div className="collections-page__card-grid collections-page__card-grid--public">
 					{collections && (
 						<CardGrid
-							items={collections}
+							items={filteredPublicCollections}
 							Component={CollectionPreview}
 							linkPrefix={'collection'}
 							className="--public-collections"
@@ -64,23 +100,27 @@ function UserCollectionsPage() {
 					)}
 				</div>
 			</div>
+			{/* USER COLLECTIONS */}
 			<div className="collections-page__user-collections">
-				<h3>My Collections</h3>
+				<h3 className="collections-page__h3 collections-page__h3--user-collections">
+					My Collections
+				</h3>
 				<SearchBar
+					searchTerm={searchTermUserCollections}
+					setSearchTerm={setSearchTermUserCollections}
 					className={
 						'collections-page__searchbar collections-page__searchbar--user-collections'
 					}
 				></SearchBar>
-				<ColorClassContext.Provider value={colorClass}>
-					{collections && (
-						<CardGrid
-							items={collections}
-							Component={CollectionPreview}
-							linkPrefix={'collection'}
-							className="--discover-page"
-						></CardGrid>
-					)}
-				</ColorClassContext.Provider>
+
+				{collections && (
+					<CardGrid
+						items={filteredUserCollections}
+						Component={CollectionPreview}
+						linkPrefix={'collection'}
+						className="--discover-page"
+					></CardGrid>
+				)}
 			</div>
 		</div>
 	);

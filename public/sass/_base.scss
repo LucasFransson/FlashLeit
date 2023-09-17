@@ -22,6 +22,18 @@ html {
 	/* Is set to 62.5% using this formula : default font-size is 16px while We want 10px. 10/16 = 0.625 aka 62.5 % */
 }
 
+@font-face {
+	font-family: 'slick';
+	font-weight: normal;
+	font-style: normal;
+
+	src: url('/fonts/slick.eot');
+	src: url('/fonts/slick.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/slick.woff') format('woff'),
+		url('/fonts/slick.ttf') format('truetype'),
+		url('/fonts/slick.svg#slick') format('svg');
+}
+
 .app {
 	width: 100vw;
 	height: 100vh;

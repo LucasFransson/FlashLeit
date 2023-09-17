@@ -1,19 +1,23 @@
-import CardEditor from "../components/CardEditor/CardEditor";
-import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import CollectionSelector from "../components/CollectionSelector/CollectionSelector";
-import { useGetCollectionByIdAndUserIdQuery, useGetAuthoredCollectionsQuery } from "../redux/api/collectionsSlice";
-import { useEffect, useState } from "react";
-import { useDeleteCard } from "../utils/cardUtility";
-import AddCollection from "../components/AddCollection/AddCollection";
-import CardGrid from "../components/CardGrid/CardGrid";
-import CardGridTypes from "../types/CardGridTypes";
-import Card from "../components/Card/Card";
-import CardTypes from "../types/CardTypes";
-import AnimationClassContext from "../context/AnimationContext";
-import Toggler from "../components/Toggler/Toggler";
-import { useDeleteCollection } from "../utils/collectionUtility";
+import CardEditor from '../components/CardEditor/CardEditor';
+import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import CollectionSelector from '../components/CollectionSelector/CollectionSelector';
+import {
+	useGetCollectionByIdAndUserIdQuery,
+	useGetAuthoredCollectionsQuery,
+} from '../redux/api/collectionsSlice';
+import { useEffect, useState } from 'react';
+import { useDeleteCard } from '../utils/cardUtility';
+import AddCollection from '../components/AddCollection/AddCollection';
+import CardGrid from '../components/CardGrid/CardGrid';
+import CardGridTypes from '../types/CardGridTypes';
+import Card from '../components/Card/Card';
+import CardTypes from '../types/CardTypes';
+import AnimationClassContext from '../context/AnimationContext';
+import Toggler from '../components/Toggler/Toggler';
+import { useDeleteCollection } from '../utils/collectionUtility';
+import Carousel from '../components/Carousel';
 
 function EditCardPage() {
 	// useState to hold the selected card:
@@ -22,12 +26,12 @@ function EditCardPage() {
 		id: 0,
 		collectionId: 0,
 		userId: 0, // Added userId to get rid of errors // Lucas
-		question: "",
-		answer: "",
+		question: '',
+		answer: '',
 		leitnerIndex: 1,
 		lastReviewed: null,
 		colorClass: null,
-		animationOnRendering: "fade-in",
+		animationOnRendering: 'fade-in',
 	});
 
 	// useState to hold toggler value:
@@ -37,7 +41,9 @@ function EditCardPage() {
 	const { userId } = useSelector((state: RootState) => state.userId);
 
 	// useState to hold the id of currently selected collection:
-	const [selectedCollectionId, setSelectedCollectionId] = useState<number | null>(null);
+	const [selectedCollectionId, setSelectedCollectionId] = useState<
+		number | null
+	>(null);
 
 	// useState to hold the cards of the currently selected collection:
 	const [flashCards, setFlashCards] = useState<CardTypes[] | null>([]);
@@ -53,7 +59,11 @@ function EditCardPage() {
 	const deleteCollection = useDeleteCollection();
 
 	// API call for getting all the users collections:
-	const { data: collectionData, error: collectionError, isLoading: collectionLoading } = useGetAuthoredCollectionsQuery(userId, { skip: skip2 });
+	const {
+		data: collectionData,
+		error: collectionError,
+		isLoading: collectionLoading,
+	} = useGetAuthoredCollectionsQuery(userId, { skip: skip2 });
 
 	// API call for getting all the cards of the currently selected collection;
 	const {
@@ -103,8 +113,8 @@ function EditCardPage() {
 			id: 0,
 			collectionId: 0,
 			userId: userId,
-			question: "",
-			answer: "",
+			question: '',
+			answer: '',
 			leitnerIndex: 1,
 			lastReviewed: null,
 			colorClass: null,
@@ -161,29 +171,59 @@ function EditCardPage() {
 	return (
 		<>
 			{userId && (
-				<div className="create-edit-page">
-					<div className="create-edit-page__collection-selector">
-						{collectionData && collectionData.length > 0 && (
-							<>
-								<Toggler onToggle={handleToggle} isChecked={isChecked} />
-								{!isChecked ? (
-									<CollectionSelector className="" collections={collectionData} onCollectionChange={handleCollectionChange} />
-								) : (
-									<AddCollection userId={userId} collectionAdded={collectionAdded} />
-								)}
-							</>
-						)}
-					</div>
+				<div className="create-edit-page ">
+					{/* <div className="create-edit-page__collection-selector"> */}
+					{collectionData && collectionData.length > 0 && (
+						<>
+							<Toggler onToggle={handleToggle} isChecked={isChecked} />
+							{!isChecked ? (
+								<CollectionSelector
+									collections={collectionData}
+									onCollectionChange={handleCollectionChange}
+								/>
+							) : (
+								<AddCollection
+									userId={userId}
+									collectionAdded={collectionAdded}
+								/>
+							)}
+						</>
+					)}
+					{/* </div> */}
 
 					{collectionData && collectionData.length > 0 && !isChecked && (
-						<div className="create-edit-page__wrapper">
-							<div className="create-edit-page__card-grid">
-								<CardGrid items={flashCards} Component={Card} onCardClick={selectCard} onDeleteClick={deleteSelectedCard} animationOnRendering={"fade-in"} />
-							</div>
+						// <div className="create-edit-page__wrapper">
+						<>
+							{/* <Carousel
+								className={'carousel create-edit-page__carousel'}
+								slides={['Slide 1', 'Slide 2', 'Slide 3', 'Slide 4', 'Slide 5']}
+							/> */}
+							<Carousel
+								className={'carousel create-edit-page__carousel'}
+								slides={flashCards}
+								Component={Card}
+								onCardClick={selectCard}
+								onDeleteClick={deleteSelectedCard}
+							/>
+
+							{/* <div className="create-edit-page__card-grid">
+								<CardGrid
+									items={flashCards}
+									Component={Card}
+									onCardClick={selectCard}
+									onDeleteClick={deleteSelectedCard}
+									animationOnRendering={'fade-in'}
+								/>
+							</div> */}
 							<div className="create-edit-page__card-editor">
-								<CardEditor card={selectedCard} userId={userId} collectionId={selectedCollectionId} />
+								<CardEditor
+									card={selectedCard}
+									userId={userId}
+									collectionId={selectedCollectionId}
+								/>
 							</div>
-						</div>
+							{/* </div> */}
+						</>
 					)}
 				</div>
 			)}

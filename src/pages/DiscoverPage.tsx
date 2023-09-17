@@ -19,6 +19,7 @@ function DiscoverPage() {
 		error,
 	} = useGetAllCollectionsQuery();
 
+	// UseEffect for random color
 	useEffect(() => {
 		if (collections && collections.length > 0) {
 			// Assign a random color class to each collection
@@ -37,16 +38,17 @@ function DiscoverPage() {
 		return <div>Error: {error.message}</div>;
 	}
 
+	// Filter collection based on searchbar
 	const filteredCollections = Array.isArray(coloredCollections)
 		? coloredCollections.filter((c) =>
 				c.title.toLowerCase().includes(searchTerm.toLowerCase())
 		  )
 		: [];
-	const colorClass = getRandomColorClass();
+	//const colorClass = getRandomColorClass();
 
 	return (
 		<div className="discover-page">
-			<div className="discover-page__top">
+			<div className="discover-page__top ">
 				<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 			</div>
 			<div className="discover-page__bottom">

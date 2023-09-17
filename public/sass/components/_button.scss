@@ -1,0 +1,275 @@
+.button__ghost--wavy-fill {
+	display: inline-block;
+	padding: 12px 24px;
+	border: 1px solid #4f4f4f;
+	border-radius: 4px;
+	transition: all 0.2s ease-in;
+	position: relative;
+	overflow: hidden;
+	font-size: 19px;
+	color: black;
+	z-index: 1;
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%) scaleY(1) scaleX(1.25);
+		top: 100%;
+		width: 140%;
+		height: 180%;
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 50%;
+		display: block;
+		transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+		z-index: -1;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 55%;
+		transform: translateX(-50%) scaleY(1) scaleX(1.45);
+		top: 180%;
+		width: 160%;
+		height: 190%;
+		background-color: #39bda7;
+		border-radius: 50%;
+		display: block;
+		transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+		z-index: -1;
+	}
+
+	&:hover {
+		color: #ffffff;
+		border: 1px solid #39bda7;
+	}
+
+	&:hover:before {
+		top: -35%;
+		background-color: #39bda7;
+		transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+	}
+
+	&:hover:after {
+		top: -45%;
+		background-color: #39bda7;
+		transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+	}
+}
+
+// BUTTON BORDER LINES ON HOVER
+// button {
+//     color: white;
+//     text-decoration: none;
+//     font-size: 25px;
+//     border: none;
+//     background: none;
+//     font-weight: 600;
+//     font-family: 'Poppins', sans-serif;
+//   }
+
+//   button::before {
+//     margin-left: auto;
+//   }
+
+//   button::after, button::before {
+//     content: '';
+//     width: 0%;
+//     height: 2px;
+//     background: #f44336;
+//     display: block;
+//     transition: 0.5s;
+//   }
+
+//   button:hover::after, button:hover::before {
+//     width: 100%;
+//   }
+
+// BUTTON DELETE
+// button {
+//     width: 150px;
+//     height: 50px;
+//     cursor: pointer;
+//     display: flex;
+//     align-items: center;
+//     background: red;
+//     border: none;
+//     border-radius: 5px;
+//     box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+//     background: #e62222;
+//    }
+
+//    button, button span {
+//     transition: 200ms;
+//    }
+
+//    button .text {
+//     transform: translateX(35px);
+//     color: white;
+//     font-weight: bold;
+//    }
+
+//    button .icon {
+//     position: absolute;
+//     border-left: 1px solid #c41b1b;
+//     transform: translateX(110px);
+//     height: 40px;
+//     width: 40px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//    }
+
+//    button svg {
+//     width: 15px;
+//     fill: #eee;
+//    }
+
+//    button:hover {
+//     background: #ff3636;
+//    }
+
+//    button:hover .text {
+//     color: transparent;
+//    }
+
+//    button:hover .icon {
+//     width: 150px;
+//     border-left: none;
+//     transform: translateX(0);
+//    }
+
+// BUTTON LOG OUT
+.button-logout {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 45px;
+	height: 45px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition-duration: 0.3s;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+	background-color: rgb(255, 65, 65);
+
+	&:hover {
+		width: 125px;
+		border-radius: 40px;
+		transition-duration: 0.3s;
+	}
+
+	&:active {
+		transform: translate(2px, 2px);
+	}
+
+	&__sign {
+		width: 100%;
+		transition-duration: 0.3s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		svg {
+			width: 17px;
+
+			path {
+				fill: white;
+			}
+		}
+
+		.button-logout:hover & {
+			width: 30%;
+			transition-duration: 0.3s;
+			padding-left: 20px;
+		}
+	}
+
+	&__text {
+		position: absolute;
+		right: 0%;
+		width: 0%;
+		opacity: 0;
+		color: white;
+		font-size: 1.2em;
+		font-weight: 600;
+		transition-duration: 0.3s;
+
+		.button-logout:hover & {
+			opacity: 1;
+			width: 70%;
+			transition-duration: 0.3s;
+			padding-right: 10px;
+		}
+	}
+}
+
+// BUTTON LOGIN
+.button-login {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 45px;
+	height: 45px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition-duration: 0.3s;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+	background-color: $color-primary--400;
+
+	&:hover {
+		width: 125px;
+		border-radius: 40px;
+		transition-duration: 0.3s;
+	}
+
+	&:active {
+		transform: translate(2px, 2px);
+	}
+
+	&__sign {
+		width: 100%;
+		transition-duration: 0.3s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		svg {
+			width: 17px;
+
+			path {
+				fill: white;
+			}
+		}
+
+		.button-login:hover & {
+			width: 30%;
+			transition-duration: 0.3s;
+			padding-left: 20px;
+		}
+	}
+
+	&__text {
+		position: absolute;
+		right: 0%;
+		width: 0%;
+		opacity: 0;
+		color: white;
+		font-size: 1.2em;
+		font-weight: 600;
+		transition-duration: 0.3s;
+
+		.button-login:hover & {
+			opacity: 1;
+			width: 70%;
+			transition-duration: 0.3s;
+			padding-right: 10px;
+		}
+	}
+}
