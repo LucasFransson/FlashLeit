@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Card from "../Card/Card";
 import { getRandomColorClass } from "../../utils/getRandomColorClass";
 import CardCollectionTypes from "../../types/CardCollectionTypes";
-import { useUpdateCollection } from "../../utils/collectionUtility";
+import { useCloneCollection, useUpdateCollection } from "../../utils/collectionUtility";
 import { useAchievementService } from "../../utils/achievementsUtility";
+import { Link } from "react-router-dom";
 
 interface CardCollectionProps extends CardCollectionTypes {
 	cardIndex: number;
@@ -22,6 +23,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	setMarkedCards,
 	animationOnRendering,
 	flashCards = [],
+	...restProps
 }) => {
 	const { unlockCorrectAnswersAchievement, unlockInCorrectAnswersAchievement, unlockCompletedRunsAchievement } = useAchievementService();
 	// useState hook for managing current card index
@@ -35,22 +37,30 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	// state for tracking card animation for Wrong or Correct btn
 	const [animationType, setAnimationType] = useState<"correct" | "wrong" | null>(null);
 
+	const [hasClonedCollection, setHasClonedCollection] = useState(false);
+
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
+
 
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
 			setAnimationType("correct");
 			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "correct" }));
+
+			if(!restProps.isDemo) {
 			updateCollectionsCounter(id, "IncrementCorrectAnswers");
 			unlockCorrectAnswersAchievement();
+			}
+
 		} else {
 			setAnimationType("wrong");
+			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+
+			if(!restProps.isDemo)
 			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
 			unlockInCorrectAnswersAchievement();
-			// setAnswerStatus('wrong');
-			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
 		}
 
 		setAnimateOut(true);
@@ -63,15 +73,18 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				setCardIndex(cardIndex + 1); // Increment the card index to show the next card
 			} else {
 				setIsFinished(true);
-				updateCollectionsCounter(id, "IncrementCompletedRuns");
-				console.log("Finished answering all cards!");
 
-				const isAchievementUnlocked = unlockCompletedRunsAchievement();
-				if (isAchievementUnlocked) {
-					console.log("Hello");
-				} else {
-					console.log("Bye");
+				if(!restProps.isDemo) {
+					updateCollectionsCounter(id, "IncrementCompletedRuns");
+
+					const isAchievementUnlocked = unlockCompletedRunsAchievement();
+					if (isAchievementUnlocked) {
+						console.log("Hello");
+					} else {
+						console.log("Bye");
+					}
 				}
+
 			}
 		}, 1300); // ms animation time
 
@@ -82,7 +95,31 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 		// } else {
 		// 	console.log('Finished answering all cards!');
 		// }
+
 	};
+
+	
+		const cloneCollection = useCloneCollection();
+
+		const cloneUserCollection = () => {
+
+			const clonedCollection: CardCollectionTypes = {
+				id: id,
+				title: title,
+				userId: restProps.authorId,
+				description: restProps.description,
+				amountOfCompletedRuns: 0,
+				amountOfCorrectAnswers: 0,
+				amountOfIncorrectAnswers: 0,
+				publicKey: 0,
+				flashCards: flashCards,
+				isPublic: false,
+				cardCount: flashCards.length
+			}
+
+			cloneCollection(restProps.userId, clonedCollection)
+			setHasClonedCollection(true);
+		}
 
 	return (
 		<div className="card-collection">
@@ -119,12 +156,23 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 						Correct
 					</button>
 				</div>
-			) : (
+			) : !restProps.isDemo ? (
 				<div className="finished-message">
 					<h1>GREAT JOB!</h1>
 					You've finished the collection! 🎉
 				</div>
-			)}
+			) : !hasClonedCollection ? (
+				<div className="finished-message">
+					<h1>GREAT JOB!</h1>
+					You've finished the demo collection! 🎉
+					Click <button onClick={cloneUserCollection}>here</button> to clone it to your collections!
+				</div>
+			) : (
+				<div className="finished-message">
+					<h1>THANK YOU!</h1>
+					You've successfully cloned {title} to your collections! 🎉
+					Click <Link to="/collections">here</Link> to see your collections!
+				</div>)}
 		</div>
 	);
 

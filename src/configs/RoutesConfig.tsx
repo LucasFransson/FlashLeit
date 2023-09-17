@@ -7,6 +7,7 @@ import UserCollectionsPage from "../pages/UserCollectionsPage";
 import UserPage from "../pages/UserPage";
 import DiscoverPage from "../pages/DiscoverPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import CollectionDemoPage from "../pages/CollectionDemoPage";
 
 function RoutesConfig() {
 	return (
@@ -18,6 +19,7 @@ function RoutesConfig() {
 			<Route path="/collections" element={<UserCollectionsPage />} />
 			<Route path="/userpage" element={<UserPage />} />
 			<Route path="/discover" element={<DiscoverPage />} />
+			<Route path="/collection/demo/:authorId/:id" element={<CollectionDemoPage />}/>
 			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	);

@@ -41,7 +41,7 @@ function DiscoverPage() {
 				<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 			</div>
 			<div className="discover-page__bottom">
-				<CardGrid items={filteredCollections} Component={CollectionPreview} linkPrefix="collection" />
+				<CardGrid items={filteredCollections} Component={CollectionPreview} linkPrefix="collection/demo" parent="discover"/>
 			</div>
 		</div>
 	);

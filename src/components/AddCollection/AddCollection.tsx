@@ -30,8 +30,13 @@ function AddCollection({ userId, collectionAdded }) {
 			cardCount: 0,
 		};
 
-		addCollection(collectionDetails);
-		collectionAdded();
+		addCollection(collectionDetails).then(addedCollectionId => {
+
+			collectionAdded(addedCollectionId);
+
+		}).catch(error => {
+			console.log(error);
+		});
 	};
 
 	return (

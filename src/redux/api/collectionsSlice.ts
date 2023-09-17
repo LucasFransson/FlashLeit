@@ -1,3 +1,4 @@
+import AddCollectionResponeTypes from "../../types/AddCollectionResponseType";
 import CardCollectionTypes from "../../types/CardCollectionTypes";
 import CardTypes from "../../types/CardTypes";
 import { getRandomColorClass } from "../../utils/getRandomColorClass";
@@ -33,7 +34,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 			query: userId => `api/collections/author/${userId}`,
 			providesTags: () => [{ type: "UserCollections" }],
 		}),
-		addCollection: builder.mutation<void, CardCollectionTypes>({
+		addCollection: builder.mutation<AddCollectionResponeTypes, CardCollectionTypes>({
 			query: collection => {
 				return {
 					url: "api/collections",
@@ -42,15 +43,18 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 				};
 			},
 			invalidatesTags: () => [{ type: "UserCollections" }],
+			transformResponse: (response: AddCollectionResponeTypes) => {console.log(response)
+			return response},
 		}),
-		CloneCollection: builder.mutation<void, { userId: number; collection: CardCollectionTypes }>({
+		cloneCollection: builder.mutation<void, { userId: number; collection: CardCollectionTypes }>({
 			query: ({ userId, collection }) => {
 				return {
-					url: `api/collections/${userId}`,
+					url: `api/collections/clone/${userId}`,
 					method: "POST",
 					body: collection,
 				};
 			},
+			invalidatesTags: () => [{ type: "UserCollections" }],
 		}),
 		updateCollection: builder.mutation<void, { userId: number; collection: CardCollectionTypes }>({
 			query: ({ userId, collection }) => {

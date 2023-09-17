@@ -30,7 +30,6 @@ const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 	cardCount,
 	colorClass,
 }) => {
-	console.log(cardCount);
 
 	if (colorClass == null) {
 		colorClass = useContext(ColorClassContext);

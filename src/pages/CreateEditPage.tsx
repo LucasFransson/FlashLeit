@@ -13,6 +13,7 @@ import CardTypes from "../types/CardTypes";
 import Toggler from "../components/Toggler/Toggler";
 import { useDeleteCollection } from "../utils/collectionUtility";
 import { useAchievementService } from "../utils/achievementsUtility";
+import CardCollectionTypes from "../types/CardCollectionTypes";
 function EditCardPage() {
 	// useState to hold the selected card:
 	const [selectedCard, setSelectedCard] = useState<CardTypes>({
@@ -31,7 +32,7 @@ function EditCardPage() {
 	// Retrieve the UserId:
 	const { userId } = useSelector((state: RootState) => state.userId);
 	// useState to hold the id of currently selected collection:
-	const [selectedCollectionId, setSelectedCollectionId] = useState<number | null>(null);
+	const [selectedCollectionId, setSelectedCollectionId] = useState<number | null>(0);
 	// useState to hold the cards of the currently selected collection:
 	const [flashCards, setFlashCards] = useState<CardTypes[] | null>([]);
 	// useState for skip:
@@ -42,6 +43,23 @@ function EditCardPage() {
 	const deleteCollection = useDeleteCollection();
 	// API call for getting all the users collections:
 	const { data: collectionData, error: collectionError, isLoading: collectionLoading } = useGetAuthoredCollectionsQuery(userId);
+
+	const [addedCollectionId, setAddedCollectionId] = useState<number | null>(null);
+
+	// UseEffet to select the newly added collection:
+	useEffect(() => {
+			if(selectedCollectionId === addedCollectionId && addedCollectionId !== null) {
+				handleCollectionChange(addedCollectionId);
+				
+				const newCollection = collectionData?.find(collection => collection.id === addedCollectionId);
+
+				console.log(newCollection);
+				
+				setSelectedCard(newCollection?.flashCards[0]);
+
+				console.log(selectedCard);
+			}
+	}, [collectionData, addedCollectionId]);
 
 	// API call for getting all the cards of the currently selected collection;
 	const {
@@ -113,7 +131,8 @@ function EditCardPage() {
 			deleteCard(cardDetails);
 		}
 	};
-	const collectionAdded = () => {
+
+	const collectionAdded = (addedCollectionId: number) => {
 		// --- TODO --- Show success modal?
 		const isAchievementUnlocked = unlockCreateAchievement();
 		if (isAchievementUnlocked) {
@@ -122,7 +141,28 @@ function EditCardPage() {
 			console.log("Not yet");
 		}
 		setIsChecked(false);
+
+		console.log(addedCollectionId);
+
+		// setAddedCollectionId(addedCollectionId);
+		// setSelectedCollectionId(addedCollectionId);
+
 	};
+
+	const resetParameters = () => {
+		setSelectedCard({
+			id: 0,
+			collectionId: 0,
+			userId: userId,
+			question: "",
+			answer: "",
+			leitnerIndex: 1,
+			lastReviewed: null,
+			colorClass: null,
+		});
+	}
+
+
 	if (collectionLoading) return <LoadingIcon />;
 	if (collectionError)
 		return (
@@ -149,7 +189,7 @@ function EditCardPage() {
 								<CardGrid items={flashCards} Component={Card} onCardClick={selectCard} onDeleteClick={deleteSelectedCard} />
 							</div>
 							<div className="create-edit-page__card-editor">
-								<CardEditor card={selectedCard} userId={userId} collectionId={selectedCollectionId} />
+								<CardEditor card={selectedCard} userId={userId} collectionId={selectedCollectionId} resetParameters={resetParameters}/>
 							</div>
 						</div>
 					</>
