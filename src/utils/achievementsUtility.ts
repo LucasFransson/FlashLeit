@@ -22,6 +22,15 @@ export const useAchievementService = () => {
 
 		const achievement = achievements?.filter(achievement => achievement.id === achievementId);
 
+		// call to endpoint to add the reward to the user avatarlist
+
+		// Code related to ahievementPoints:
+
+		// let totalAchievementPoints = 0;
+		// unlockedAchievements?.forEach(achievement => (totalAchievementPoints += achievement.achievementPoints));
+		// totalAchievementPoints += achievement[0].achievementPoints;
+		// console.log(totalAchievementPoints);
+
 		if (achievement && achievement?.length > 0) {
 			return achievement[0];
 		}
