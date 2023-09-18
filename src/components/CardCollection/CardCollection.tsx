@@ -57,7 +57,20 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				console.log(achievement);
 			}
 
-			setAnimateOut(true);
+		} else {
+				setAnimationType("wrong");
+				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+
+				if (!restProps.isDemo) {
+					updateCollectionsCounter(id, "IncrementIncorrectAnswers");
+
+				const achievement = unlockInCorrectAnswersAchievement();
+				console.log(achievement);
+				}
+				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+			}
+
+		setAnimateOut(true);
 
 			setTimeout(() => {
 				setAnimateOut(false);
@@ -76,18 +89,6 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					}
 				}
 			}, 1300); // ms animation time
-		} else {
-				setAnimationType("wrong");
-				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
-
-				if (!restProps.isDemo) {
-					updateCollectionsCounter(id, "IncrementIncorrectAnswers");
-
-				const achievement = unlockInCorrectAnswersAchievement();
-				console.log(achievement);
-				}
-				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
-			}
 	};
 
 	const cloneCollection = useCloneCollection();
