@@ -1,9 +1,5 @@
-import { useSelector } from "react-redux";
 import { useGetAllAvatarsQuery } from "../../redux/api/avatarsSlice";
 import Avatar from "../Avatar/Avatar";
-import { RootState } from "../../redux/store";
-import { useUpdateUser } from "../../utils/userUtility";
-import UserTypes from "../../types/UsersTypes";
 import LoadingIcon from "../LoadingIcon/LoadingIcon";
 import ErrorMsg from "../ErrorMsg/ErrorMsg";
 
