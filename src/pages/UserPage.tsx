@@ -51,7 +51,7 @@ function UserPage() {
 				email: authUser[0].email,
 				accountName: authUser[0].accountName,
 				userName: newDisplayName,
-				avatarUrl: authUser[0].avatarUrl,
+				selectedAvatarUrl: authUser[0].selectedAvatarUrl,
 			};
 
 			updateUser(updatedUser);
@@ -65,7 +65,7 @@ function UserPage() {
 				email: authUser[0].email,
 				accountName: authUser[0].accountName,
 				userName: authUser[0].userName,
-				avatarUrl: url,
+				selectedAvatarUrl: url,
 			};
 
 			updateUser(updatedUser);
@@ -88,7 +88,7 @@ function UserPage() {
 					collections && (
 						<div className="user-page">
 							{showingAvatarModal && <AvatarModal updateUserAvatar={updateAvatar} />}
-							<Avatar url={authUser[0]?.avatarUrl} showModal={showAvatarModal} caller={"user-page"} />
+							<Avatar url={authUser[0]?.selectedAvatarUrl} showModal={showAvatarModal} caller={"user-page"} />
 							<div>
 								<label htmlFor="displayName">Display name</label>
 								<input type="text" id="displayName" defaultValue={authUser[0]?.userName} onChange={e => setNewDisplayName(e.target.value)} />
