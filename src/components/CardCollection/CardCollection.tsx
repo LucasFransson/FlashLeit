@@ -47,6 +47,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
+			
 			setAnimationType("correct");
 			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "correct" }));
 
@@ -54,16 +55,6 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				updateCollectionsCounter(id, "IncrementCorrectAnswers");
 				const achievement = unlockCorrectAnswersAchievement();
 				console.log(achievement);
-			} else {
-				setAnimationType("wrong");
-				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
-
-				if (!restProps.isDemo) updateCollectionsCounter(id, "IncrementIncorrectAnswers");
-
-				const achievement = unlockInCorrectAnswersAchievement();
-				console.log(achievement);
-				// setAnswerStatus('wrong');
-				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
 			}
 
 			setAnimateOut(true);
@@ -85,7 +76,18 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					}
 				}
 			}, 1300); // ms animation time
-		}
+		} else {
+				setAnimationType("wrong");
+				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+
+				if (!restProps.isDemo) {
+					updateCollectionsCounter(id, "IncrementIncorrectAnswers");
+
+				const achievement = unlockInCorrectAnswersAchievement();
+				console.log(achievement);
+				}
+				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+			}
 	};
 
 	const cloneCollection = useCloneCollection();
