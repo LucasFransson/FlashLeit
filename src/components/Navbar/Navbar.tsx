@@ -63,7 +63,7 @@ function Navbar() {
 	return (
 		<div className="navbar">
 			<div className="navbar__item navbar__item--0 ">
-				<div className="border-hover-effect">
+				<div class="border-hover-effect">
 					<Link to={'/'}>
 						<p className="navbar__item-link border-hover-effect">
 							<div>
@@ -99,12 +99,26 @@ function Navbar() {
 				</div>
 				<div className="navbar__item navbar__item--5">
 					<LogoutButton onClick={() => Logout()}></LogoutButton>
+					{/* <button
+						type="button"
+						onClick={() => Logout()}
+						className="navbar__item-link btn-login "
+					>
+						Logout
+					</button> */}
 				</div>
 			</AuthenticatedTemplate>
 			{/* Not Logged in */}
 			<UnauthenticatedTemplate>
 				<div className="navbar__item navbar__item--5">
 					<LoginButton onClick={() => Login()}></LoginButton>
+					{/* <button
+						type="button"
+						onClick={() => Login()}
+						className="navbar__item-link btn-login"
+					>
+						Login
+					</button> */}
 				</div>
 			</UnauthenticatedTemplate>
 		</div>

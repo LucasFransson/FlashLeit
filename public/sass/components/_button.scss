@@ -221,7 +221,7 @@
 	overflow: hidden;
 	transition-duration: 0.3s;
 	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-	background-color: $color-primary--400;
+	background-color: $color-primary--300;
 
 	&:hover {
 		width: 125px;
@@ -244,7 +244,7 @@
 			width: 17px;
 
 			path {
-				fill: white;
+				fill: $color-neutral-100;
 			}
 		}
 
@@ -271,5 +271,161 @@
 			transition-duration: 0.3s;
 			padding-right: 10px;
 		}
+	}
+}
+
+/// BUTTON HEART LIKE
+///
+///
+$heart-color: rgb(189, 91, 255);
+
+.heart-container {
+	position: relative;
+	width: 50px;
+	height: 50px;
+	transition: 0.3s;
+
+	&__checkbox {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		z-index: 20;
+		cursor: pointer;
+	}
+
+	&__svg-container {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__svg-outline,
+	&__svg-filled {
+		fill: $heart-color;
+		position: absolute;
+	}
+
+	&__svg-filled {
+		animation: keyframes-svg-filled 1s;
+		display: none;
+	}
+
+	&__svg-celebrate {
+		position: absolute;
+		animation: keyframes-svg-celebrate 0.5s;
+		animation-fill-mode: forwards;
+		display: none;
+		stroke: $heart-color;
+		fill: $heart-color;
+		stroke-width: 2px;
+	}
+
+	&__checkbox:checked ~ &__svg-container &__svg-filled {
+		display: block;
+	}
+
+	&__checkbox:checked ~ &__svg-container &__svg-celebrate {
+		display: block;
+	}
+}
+
+// DELETE TRASH BUTTON
+
+.button--delete-trash {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: rgb(20, 20, 20);
+	border: none;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+	cursor: pointer;
+	transition-duration: 0.3s;
+	overflow: hidden;
+	position: relative;
+
+	.svgIcon--delete-trash {
+		width: 12px;
+		transition-duration: 0.3s;
+
+		path {
+			fill: white;
+		}
+	}
+
+	&:hover {
+		width: 140px;
+		border-radius: 50px;
+		transition-duration: 0.3s;
+		background-color: rgb(255, 69, 69);
+		align-items: center;
+
+		.svgIcon--delete-trash {
+			width: 50px;
+			transition-duration: 0.3s;
+			transform: translateY(60%);
+		}
+	}
+
+	&::before {
+		position: absolute;
+		top: -20px;
+		content: 'Delete';
+		color: white;
+		transition-duration: 0.3s;
+		font-size: 2px;
+	}
+
+	&:hover::before {
+		font-size: 13px;
+		opacity: 1;
+		transform: translateY(30px);
+		transition-duration: 0.3s;
+	}
+	&.deleted {
+		background-color: rgb(0, 255, 0); // Green color for success
+
+		span {
+			font-size: 2rem; // Adjust as needed
+			color: white;
+		}
+	}
+}
+
+@keyframes keyframes-svg-filled {
+	0% {
+		transform: scale(0);
+	}
+
+	25% {
+		transform: scale(1.2);
+	}
+
+	50% {
+		transform: scale(1);
+		filter: brightness(1.5);
+	}
+}
+
+@keyframes keyframes-svg-celebrate {
+	0% {
+		transform: scale(0);
+	}
+
+	50% {
+		opacity: 1;
+		filter: brightness(1.5);
+	}
+
+	100% {
+		transform: scale(1.4);
+		opacity: 0;
+		display: none;
 	}
 }

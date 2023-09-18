@@ -10,6 +10,11 @@ import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
 import AvatarModal from '../components/Modal/AvatarModal';
 import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
 import UserTypes from '../types/UsersTypes';
+import HeartButton from '../components/HeartButton';
+import Thumbnail from '../components/Thumbnail';
+import { SmallCard } from '../components/Thumbnail';
+import WaveBackground from '../design components/WaveBackground.jsx';
+import DeleteButton from '../components/DeleteSVGButton.js';
 
 function UserPage() {
 	const [skip, setSkip] = useState(true);
@@ -96,7 +101,7 @@ function UserPage() {
 				) : (
 					authUser &&
 					collections && (
-						<div className="user-page bg-bubbles">
+						<div className="user-page ">
 							{showingAvatarModal && (
 								<AvatarModal updateUserAvatar={updateAvatar} />
 							)}
@@ -127,6 +132,7 @@ function UserPage() {
 									value={authUser[0]?.email}
 									disabled
 								/>
+
 								<button onClick={updateDisplayName}>Save changes</button>
 								<button
 									onClick={() =>
@@ -141,6 +147,20 @@ function UserPage() {
 								</button>
 								<button onClick={() => instance.logout()}>Log Out</button>
 								<button onClick={closeAccount}>Close Account</button>
+							</div>
+							<DeleteButton></DeleteButton>
+							<HeartButton></HeartButton>
+							<LoadingIcon></LoadingIcon>
+							{/* <div className="abcdef">
+								<WaveBackground></WaveBackground>
+							</div> */}
+							{/* <Thumbnail></Thumbnail> */}
+							<div className="grid-container--small-card">
+								<SmallCard className={'--dusty-rose small-card'}></SmallCard>
+								<SmallCard className={'--soft-peach small-card'}></SmallCard>
+								<SmallCard className={'--muted-coral small-card'}></SmallCard>
+								<SmallCard className={'--warm-taupe small-card'}></SmallCard>
+								<SmallCard className={' small-card'}></SmallCard>
 							</div>
 						</div>
 					)

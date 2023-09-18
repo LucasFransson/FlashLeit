@@ -181,11 +181,12 @@
 		position: absolute;
 		background: transparent; // Set to transparent initially
 		transition: 0.5s;
-		box-shadow: 1px 1px 20px $color-primary--500;
+		box-shadow: 1px 1px 20px transparent;
 	}
 
 	// Top and Bottom borders
 	&::before {
+		color: transparent;
 		left: 0;
 		width: 3px;
 		height: 30%;
@@ -214,7 +215,7 @@
 		position: absolute;
 		background: transparent; // Set to transparent initially
 		transition: 0.5s;
-		box-shadow: 1px 1px 20px$color-primary--500;
+		box-shadow: 1px 1px 20px transparent;
 	}
 
 	& > div::before {
@@ -423,42 +424,672 @@
 	}
 }
 
-@keyframes load_top {
-	0% {
-		transform: rotateY(0deg);
-		z-index: 10;
+// .thumbnail {
+// 	background-color: white;
+// 	height: 25rem;
+// 	width: 25rem;
+// 	// text-align: center;
+// 	margin-inline: auto;
+// 	display: grid;
+// 	grid-template-rows: 3fr 6fr;
+// 	cursor: pointer;
+// 	box-shadow: $box-shadow-subtle;
+
+// 	&:hover {
+// 	}
+// 	&__top {
+// 		background-color: orange;
+// 		grid-row: 1;
+// 	}
+// 	&__center {
+// 		grid-row: 2;
+// 	}
+// }
+
+.thumbnail {
+	width: 250px;
+	height: 250px;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease background 1s ease;
+	background-image: linear-gradient(45deg, #f06, #9f6);
+	background-size: 400% 400%;
+	animation: gradientBG 5s ease infinite;
+
+	&:hover {
+		transform: translateY(-10px);
+		background: linear-gradient(45deg, #9f6, #f06);
 	}
-	33% {
-		transform: rotateY(180deg);
-		z-index: 9;
-		margin-top: -5em;
+
+	&__image {
+		width: 100%;
+		height: 150px;
+		object-fit: cover;
 	}
-	66% {
-		transform: rotateY(360deg);
-		z-index: 10;
+
+	&__content {
+		padding: 10px;
+		background-color: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(5px);
 	}
-	100% {
-		transform: rotateY(360deg);
-		z-index: 10;
+
+	&__title {
+		font-size: 18px;
+		margin-bottom: 5px;
+	}
+
+	&__description {
+		font-size: 14px;
+		color: #777;
 	}
 }
 
-@keyframes load_bottom {
+/* Responsive Grid */
+.grid-container--small-card {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 20px;
+	padding: 20px;
+}
+
+// .small-card {
+// 	cursor: pointer;
+// 	width: 250px;
+// 	height: 250px;
+// 	border-radius: 10px;
+// 	overflow: hidden;
+// 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// 	transition: transform 0.3s ease, background 1s ease;
+// 	background-color: #f7f7f7;
+
+// 	&:hover {
+// 		transform: translateY(-10px);
+// 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+// 		background: linear-gradient(45deg, #f06, #9f6);
+// 		background-size: 400% 400%;
+// 		animation: gradientBG 5s ease infinite;
+// 	}
+
+// 	&__image {
+// 		width: 100%;
+// 		height: 150px;
+// 		object-fit: cover;
+// 	}
+
+// 	&__content {
+// 		padding: 10px;
+// 	}
+
+// 	&__title {
+// 		font-size: 18px;
+// 		margin-bottom: 5px;
+// 	}
+
+// 	&__description {
+// 		font-size: 14px;
+// 		color: #777;
+// 		margin-bottom: 10px;
+// 	}
+
+// 	&__footer {
+// 		display: flex;
+// 		justify-content: space-between;
+// 		align-items: center;
+// 	}
+
+// 	&__total {
+// 		font-size: 14px;
+// 		color: #555;
+// 	}
+
+// 	&__icon {
+// 		font-size: 20px; /* Adjust based on your SVG icon size */
+// 		color: #f06;
+// 	}
+// }
+
+.small-card-container {
+	cursor: pointer;
+	position: relative;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+	transition: all 1.4s ease-in-out;
+
+	&:hover .small-card {
+		transform: translateY(-1rem);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}
+
+	&::before {
+		content: attr(data-count) ' cards';
+		position: absolute;
+		right: -10rem;
+		top: 50%;
+		width: 100px;
+		height: 40px;
+		background-color: #f06;
+		color: white;
+		text-align: center;
+		line-height: 40px;
+		border-radius: 10px;
+		opacity: 0;
+		transition: right 0.4s ease, opacity 0.3s ease;
+		transform: translateY(-225%);
+	}
+
+	&:hover::before {
+		right: -2rem;
+		opacity: 1;
+		z-index: 1;
+	}
+}
+
+.small-card {
+	//cursor: pointer;
+	// position: relative;
+	// width: 100%;
+	// height: 100%;
+	// border-radius: 10px;
+	// overflow: hidden;
+	// box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	// transition: transform 0.5s ease-in-out 5s ease infinite;
+	// background: linear-gradient(135deg, #f7f7f7, #f7f7f7);
+	// background-size: 400% 400%;
+
+	cursor: pointer;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: transform 0.5s ease-in-out 5s ease infinite;
+
+	@include default-gradient;
+
+	&:hover {
+		transition: all 0.3s ease-out;
+
+		transform: translateY(-5px);
+		// background-image: linear-gradient(45deg, #f06, #f1f1f1); // Gradient colors
+		animation: gradientBG 5s ease infinite;
+	}
+
+	&__image {
+		width: 100%;
+		height: 150px;
+		object-fit: cover;
+	}
+
+	&__content {
+		// padding: 10px;
+		padding: 0 0.7rem;
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+		grid-template-rows: 1fr 4fr;
+		gap: 0px 0px;
+	}
+
+	//   .Title { grid-area: 1 / 1 / 2 / 2; }
+	//   .Icon { grid-area: 1 / 2 / 2 / 3; }
+	//   .Description { grid-area: 2 / 1 / 3 / 4; }
+
+	&__title,
+	:link,
+	:visited {
+		color: $color-primary--800;
+		text-transform: uppercase;
+		font-weight: 600;
+		font-size: 1.6rem;
+		letter-spacing: 0.1rem;
+		grid-area: 1 / 1 / 2 / 3;
+		z-index: 1;
+		// grid-column: 1/3;
+		// grid-row: 1;
+		// margin-bottom: 5px;
+	}
+
+	&__description {
+		justify-self: stretch;
+		align-self: start;
+		font-size: 1.6rem;
+		color: #777;
+		// grid-row: 2;
+		// grid-column: 1/3;
+		grid-area: 2 / 1 / 3 / 2;
+	}
+
+	&__footer {
+		display: grid;
+	}
+
+	&__icon {
+		display: grid;
+		font-size: 2rem;
+		color: #f06;
+		z-index: 2; // Ensure the icon is above the pseudo-element
+		// position: relative;
+		// grid-row: 1;
+		// grid-column: 3;
+		grid-area: 1 / 2 / 2 / 2;
+		opacity: 0;
+
+		justify-self: center;
+		align-self: center;
+
+		// &::before {
+		// 	content: ''; // Set the heart icon as content
+		// 	position: absolute;
+		// 	top: 50%;
+		// 	left: 100%;
+		// 	transform: translate(700%, -200%);
+		// 	//translateY(-250%), translateX(250%)
+		// 	font-size: 20px; // Adjust as needed
+		// 	color: #f06;
+		// 	z-index: 1; // Ensure it's below the heart icon
+		// 	opacity: 0; // Initially hidden
+		// 	transition: opacity 0.5s ease-in-out; // Smooth transition
+		// }
+	}
+	.small-card:hover &__icon {
+		opacity: 1; // Show the heart icon on hover
+	}
+
+	&--dusty-rose {
+		@include dusty-rose;
+	}
+
+	&--soft-peach {
+		@include soft-peach;
+	}
+
+	&--muted-coral {
+		@include muted-coral;
+	}
+
+	&--warm-taupe {
+		@include warm-taupe;
+	}
+}
+/* Responsive Grid */
+.grid-container--small {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	gap: 2rem;
+	padding: 2rem;
+}
+@keyframes gradientBG {
 	0% {
-		transform: rotateY(0deg);
-		z-index: 9;
+		background-position: 0% 50%;
 	}
-	33% {
-		transform: rotateY(180deg);
-		z-index: 10;
-		margin-top: -5em;
-	}
-	66% {
-		transform: rotateY(360deg);
-		z-index: 9;
+	50% {
+		background-position: 100% 50%;
 	}
 	100% {
-		transform: rotateY(360deg);
-		z-index: 9;
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+// ANIMATED GRID
+
+// @import 'compass';
+
+.container {
+	list-style: none;
+	padding: 5px;
+	margin-bottom: 10px;
+	background-color: #f4f4f4;
+	border: #ccc 1px solid;
+	height: 130px;
+	width: 150px;
+	float: left;
+	margin-right: 10px;
+	border-radius: 5px;
+	transform: scale(0);
+	text-align: center;
+
+	[class$='name'] {
+		float: left;
+	}
+
+	[class$='number'] {
+		float: right;
+		padding: 0 5px;
+		background-color: red;
+		color: #fff;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+
+	&:hover {
+		background-color: darken(#f4f4f4, 5%);
+		cursor: pointer;
+	}
+
+	&.scale-in {
+		animation: button 0.5s 1;
+		animation-fill-mode: both;
+	}
+}
+
+@keyframes button {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+// .small-card-container {
+// 	position: relative;
+// 	width: 250px;
+// 	height: 250px;
+// 	margin: 0 auto;
+
+// 	&:hover .small-card {
+// 		transform: translateY(-10px);
+// 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+// 	}
+
+// 	&::before {
+// 		content: attr(data-count) ' cards';
+// 		position: absolute;
+// 		right: -120px;
+// 		top: 50%;
+// 		transform: translateY(-50%);
+// 		width: 100px;
+// 		height: 40px;
+// 		background-color: #f06;
+// 		color: white;
+// 		text-align: center;
+// 		line-height: 40px;
+// 		border-radius: 10px;
+// 		opacity: 0;
+// 		transition: right 0.3s ease, opacity 0.3s ease;
+// 	}
+
+// 	&:hover::before {
+// 		right: -105px;
+// 		opacity: 1;
+// 	}
+
+// 	.small-card {
+// 		position: relative;
+// 		width: 100%;
+// 		height: 100%;
+// 		border-radius: 10px;
+// 		overflow: hidden;
+// 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// 		transition: transform 0.3s ease;
+// 		background-color: #f7f7f7;
+
+// 		z-index: 0; // Ensure the card is at a base level
+
+// 		&:hover {
+// 			transform: translateY(-10px);
+// 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+// 		}
+
+// 		&::before {
+// 			content: attr(data-count) ' cards';
+// 			position: absolute;
+// 			right: -120px;
+// 			top: 50%;
+// 			transform: translateY(-50%);
+// 			width: 100px;
+// 			height: 40px;
+// 			background-color: #f06;
+// 			color: white;
+// 			text-align: center;
+// 			line-height: 40px;
+// 			border-radius: 10px;
+// 			opacity: 0;
+// 			transition: right 0.3s ease, opacity 0.3s ease;
+// 			z-index: -1; // Render behind the main card
+// 		}
+
+// 		&:hover::before {
+// 			right: -105px;
+// 			opacity: 1;
+// 		}
+
+// 		&__image {
+// 			width: 100%;
+// 			height: 150px;
+// 			object-fit: cover;
+// 		}
+
+// 		&__content {
+// 			padding: 10px;
+// 		}
+
+// 		&__title {
+// 			font-size: 18px;
+// 			margin-bottom: 5px;
+// 		}
+
+// 		&__description {
+// 			font-size: 14px;
+// 			color: #777;
+// 			margin-bottom: 10px;
+// 		}
+
+// 		&__icon {
+// 			font-size: 20px; /* Adjust based on your SVG icon size */
+// 			color: #f06;
+// 		}
+// 	}
+// }
+
+// $background-color: #16a085;
+// $wave-color: #1abc9c;
+// $card-bg-color: #161c23;
+// $keyword-var-declaration-color: #ebbc8d;
+// $keyword-operator-color: #fa9028;
+// $keyword-val-color: #ffee99;
+
+// .wave-body {
+// 	background-color: $background-color;
+// 	font-family: 'Montserrat';
+// 	color: white;
+// }
+
+// .container {
+// 	background-color: $background-color;
+// 	font-family: 'Montserrat';
+// 	color: white;
+// 	&__position {
+// 		position: fixed;
+// 		top: 50%;
+// 		left: 50%;
+// 		transform: translate(-50%, -50%);
+// 	}
+
+// 	&__wave {
+// 		width: 2200px;
+// 		height: 2005px;
+// 		position: absolute;
+// 		top: -50%;
+// 		left: 60%;
+// 		margin-left: -1000px;
+// 		margin-top: -1700px;
+// 		border-radius: 40%;
+// 		background: $wave-color;
+// 		animation: wave 50s infinite linear;
+// 		z-index: 1;
+// 	}
+
+// 	&__card {
+// 		background-color: $card-bg-color;
+// 		position: relative;
+// 		border-radius: 15px;
+// 		width: 500px;
+// 		height: 400px;
+// 		animation-duration: 0.6s;
+// 		animation-name: expand;
+// 		z-index: 5;
+// 		box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.2), 0 9px 20px 0 rgba(0, 0, 0, 0.19);
+// 	}
+// }
+
+// .keyword {
+// 	&__var-declaration {
+// 		color: $keyword-var-declaration-color;
+// 	}
+
+// 	&__operator {
+// 		color: $keyword-operator-color;
+// 	}
+
+// 	&__val {
+// 		color: $keyword-val-color;
+// 	}
+// }
+
+// @keyframes expand {
+// 	from {
+// 		width: 0px;
+// 		height: 0px;
+// 		border-radius: 0px;
+// 		background-color: #303036;
+// 	}
+// }
+// 	to {
+// 		border-radius: 15px;
+// 		background-color: $card-bg-color;
+// 	}
+// }
+
+// @keyframes wave {
+// 	from {
+// 		transform: rotate(0deg);
+// 	}
+// 	from {
+// 		transform: rotate(360deg);
+// 	}
+// }
+
+// @keyframes fadeIn {
+// 	from {
+// 		opacity: 0;
+// 	}
+// 	to {
+// 		opacity: 1;
+// 	}
+// }
+// $wave-color: #1abc9c;
+
+// .container {
+// 	&__position {
+// 		position: relative;
+// 		width: 50rem; // 500px
+// 		height: 50rem; // 500px
+// 		overflow: hidden;
+// 	}
+
+// 	&__wave {
+// 		width: 220rem; // 2200px
+// 		height: 200.5rem; // 2005px
+// 		position: absolute;
+// 		top: -25rem; // -250px
+// 		left: 50%;
+// 		margin-left: -110rem; // -1100px
+// 		margin-top: -85rem; // -850px
+// 		border-radius: 40%;
+// 		background: $wave-color;
+// 		animation: wave 50s infinite linear;
+// 		z-index: 1;
+// 	}
+// }
+
+// @keyframes wave {
+// 	from {
+// 		transform: rotate(0deg);
+// 	}
+// 	to {
+// 		transform: rotate(360deg);
+// 	}
+// }
+// $wave-color: #1abc9c;
+
+// .container {
+// 	&__position {
+// 		position: relative;
+// 		width: 50rem; // 500px
+// 		height: 50rem; // 500px
+// 		overflow: hidden;
+// 	}
+
+// 	&__wave {
+// 		width: 220rem; // 2200px
+// 		height: 200.5rem; // 2005px
+// 		position: absolute;
+// 		top: 50%;
+// 		left: 50%;
+// 		margin-left: -110rem; // -1100px
+// 		margin-top: -100.25rem; // -1002.5px
+// 		border-radius: 50%;
+// 		background: $wave-color;
+// 		animation: wave 50s infinite linear;
+// 		z-index: 1;
+// 	}
+// }
+
+// @keyframes wave {
+// 	from {
+// 		transform: rotate(0deg);
+// 	}
+// 	to {
+// 		transform: rotate(360deg);
+// 	}
+// }
+
+$wave-color-start: #16a085;
+$wave-color-end: #1abc9c;
+
+.container {
+	&__position {
+		position: relative;
+		width: 110rem; // 500px
+		height: 110rem; // 500px
+		overflow: hidden;
+	}
+
+	&__wave {
+		width: 90rem; // 1100px
+		height: 90rem; // 1002.5px
+		position: absolute;
+
+		border-radius: 23%;
+		background: linear-gradient($wave-color-start, $wave-color-end);
+		animation: wave 25s infinite linear;
+		z-index: 100;
+	}
+}
+
+@keyframes wave {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
 	}
 }

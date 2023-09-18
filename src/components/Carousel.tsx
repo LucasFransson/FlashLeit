@@ -30,32 +30,32 @@ const Carousel: React.FC<CarouselProps> = ({
 	const settingsMain = {
 		ref: mainSliderRef,
 		slidesToShow: 3,
-		slidesToScroll: 1,
-		autoplay: true,
-		dots: true,
+		slidesToScroll: 10,
+		autoplay: false,
+		dots: false,
 		centerMode: true,
-		centerPadding: '0 auto',
+		// centerPadding: '0 auto',
 
-		// responsive: [
-		// 	{
-		// 		breakpoint: 768,
-		// 		settings: {
-		// 			arrows: false,
-		// 			centerMode: true,
-		// 			centerPadding: '40px',
-		// 			slidesToShow: 2,
-		// 		},
-		// 	},
-		// 	{
-		// 		breakpoint: 480,
-		// 		settings: {
-		// 			arrows: false,
-		// 			centerMode: true,
-		// 			centerPadding: '40px',
-		// 			slidesToShow: 1,
-		// 		},
-		// 	},
-		// ],
+		responsive: [
+			{
+				breakpoint: 768,
+				settings: {
+					arrows: false,
+					centerMode: true,
+					centerPadding: '40px',
+					slidesToShow: 2,
+				},
+			},
+			{
+				breakpoint: 480,
+				settings: {
+					arrows: false,
+					centerMode: true,
+					centerPadding: '40px',
+					slidesToShow: 1,
+				},
+			},
+		],
 		focusOnSelect: true,
 		arrows: true,
 		infinite: true,
@@ -68,23 +68,18 @@ const Carousel: React.FC<CarouselProps> = ({
 
 	const settingsNav = {
 		ref: navSliderRef,
-		slidesToShow: 3,
+		slidesToShow: 5,
 		slidesToScroll: 1,
 		dots: false,
 		focusOnSelect: true,
 		infinite: true,
 		centerMode: true,
-		centerPadding: '18px',
+		centerPadding: '20px',
 		arrows: false,
 		asNavFor: mainSliderRef.current as Slider | undefined,
-		responsive: [
-			// ... your responsive settings
-		],
+		responsive: [],
 	};
-	// console.log('Restprops Inc');
-	// for (let key in slides) {
-	// 	console.log(key, slides[key]);
-	// }
+
 	console.log(items);
 	return (
 		<div className={className}>

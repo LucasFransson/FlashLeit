@@ -32,7 +32,7 @@
 
 	.slick-slide {
 		// max-height: 50rem;
-		background-color: $color-neutral-200;
+		// background-color: $color-neutral-200;
 		& > * .card {
 			// transform: scale(0.4);
 		}
@@ -55,7 +55,7 @@
 	// 	max-height: 20rem;
 	// }
 	.slick-slide {
-		background-color: $color-primary--100;
+		//background-color: $color-primary--100;
 	}
 
 	.slick-dots {
@@ -84,10 +84,10 @@
 	& .carousel__nav-item h2::before {
 		content: '';
 		display: block;
-		padding-top: 4rem;
+		// padding-top: 4rem;
 	}
 	& .carousel__nav-item h2 {
-		padding-bottom: 2rem;
+		// padding-bottom: 2rem;
 	}
 
 	& .slick-arrow {
@@ -104,24 +104,25 @@
 		// background-color: $color-neutral-100;
 
 		// text-align: center;
+		// margin: auto auto;
 		// font-size: 3rem;
-		background-color: $color-primary--100;
+		//background-color: $color-primary--100;
 		h2 {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
 
-			margin-top: 4rem;
-			height: 6rem;
-			width: 6rem;
+			margin-top: 3rem;
+			// height: 6rem;
+			// width: 6rem;
 			padding: 0em 0;
 			text-align: center;
 
-			background-color: $color-primary--300 !important;
+			//background-color: $color-primary--200 !important;
 
 			position: relative;
-			background-color: $color-primary--100;
+			//background-color: $color-primary--100;
 			// color: $color-orange-yellow;
 			font-size: 1.8rem;
 			// padding: 2%;
@@ -132,8 +133,8 @@
 		}
 		span {
 			font-size: 3rem;
-			width: 5rem;
-			height: 5rem;
+			width: 4rem;
+			height: 4rem;
 			// margin: auto;
 			text-align: center;
 			background-color: $color-primary--100;
@@ -149,8 +150,8 @@
 		// background-color: $color-primary--500;
 		grid-row: 5/9;
 		grid-column: 2/3;
-		max-width: 50rem;
-		background-color: $color-primary--100;
+		max-width: 55rem;
+		//	background-color: $color-neutral-100;
 		// max-height: 80%;
 		// align-self: center;
 		// justify-self: center;

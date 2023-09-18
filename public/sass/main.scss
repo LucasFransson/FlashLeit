@@ -1,5 +1,6 @@
 @import 'mixins';
 @import 'variables';
+
 @import 'base';
 @import 'animations';
 @import './components/button';
@@ -25,6 +26,7 @@
 @import './pages/cardset-page';
 @import './pages/create-edit-page';
 @import './pages/home-page';
+@import './pages/user-page';
 @import './pages/user-collections-page';
 @import './pages/discover-page';
 @import './pages/user-page';

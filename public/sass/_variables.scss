@@ -462,6 +462,122 @@ $bg-forest-gradient: linear-gradient(135deg, #005aa7, #fffde4);
 // 	}
 // }
 
+// COLOR VARIABLES FOR THUMBNAILS SMALL CARD
+
+// .--dusty-rose {
+// 	background-color: #e89fa3;
+
+// 	&:hover {
+// 		background-image: linear-gradient(45deg, #e89fa3, #f1f1f1);
+// 	}
+// }
+
+// .--soft-peach {
+// 	background-color: #fbd1c8;
+
+// 	&:hover {
+// 		background-image: linear-gradient(45deg, #fbd1c8, #f1f1f1);
+// 	}
+// }
+
+// .--muted-coral {
+// 	background-color: #f28b82;
+
+// 	&:hover {
+// 		background-image: linear-gradient(45deg, #f28b82, #f1f1f1);
+// 	}
+// }
+
+// .--warm-taupe {
+// 	background-color: #a89f91;
+
+// 	&:hover {
+// 		background-image: linear-gradient(45deg, #a89f91, #f1f1f1);
+// 	}
+// }
+
+// COLOR MIXINS FOR THUMBNAILS SMALL CARD
+
+@mixin default-gradient {
+	background: linear-gradient(135deg, #f7f7f7, #f7f7f7);
+	background-size: 400% 400%;
+
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, rgb(219, 147, 172), #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+// @mixin default-gradient {
+// 	background: linear-gradient(135deg, #f7f7f7, #f7f7f7);
+// 	background-size: 400% 400%;
+
+// 	&:hover {
+// 		transform: translateY(-5px);
+// 		background-image: linear-gradient(45deg, #f06, #f1f1f1);
+// 		animation: gradientShift 4s ease infinite;
+// 	}
+// }
+@mixin dusty-rose {
+	background-color: #e89fa3;
+	background-size: 400% 400%;
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, #e89fa3, #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+
+@mixin soft-peach {
+	background-color: #fbd1c8;
+	background-size: 400% 400%;
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, #fbd1c8, #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+
+@mixin muted-coral {
+	background-color: #f28b82;
+	background-size: 400% 400%;
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, #f28b82, #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+
+@mixin warm-taupe {
+	background-color: #a89f91;
+	background-size: 400% 400%;
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, #a89f91, #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+
+// .small-card {
+// 	// ... (existing styles)
+
+// 	&--dusty-rose {
+// 		@include dusty-rose;
+// 	}
+
+// 	&--soft-peach {
+// 		@include soft-peach;
+// 	}
+
+// 	&--muted-coral {
+// 		@include muted-coral;
+// 	}
+
+// 	&--warm-taupe {
+// 		@include warm-taupe;
+// 	}
+// }
+
 // COLOR VARIABLES FOR FLASHCARDS
 
 $color-azure-light: #eafffe;

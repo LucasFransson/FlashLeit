@@ -7,15 +7,12 @@ const CardGrid: React.FC<CardGridTypes> = ({
 	linkPrefix,
 	onCardClick,
 	onDeleteClick,
-	// animationOnRendering,
 	...restProps
 }) => {
 	return (
 		<div className="grid-container">
 			{items.map((item) => (
-				// <div className={`grid-container__item ${styleClass}`} key={item.id}>
 				<div
-					// className={`grid-container__item ${animationOnRendering}`}
 					className={`grid-container__item ${restProps.animationOnRendering}`}
 					key={item.id}
 				>
@@ -24,12 +21,7 @@ const CardGrid: React.FC<CardGridTypes> = ({
 							to={`/${linkPrefix}/${item.id}`}
 							onClick={() => onCardClick && onCardClick(item)}
 						>
-							<Component
-								{...item}
-								// animationOnRendering={restProps.animationOnRendering}
-								{...restProps}
-							/>
-							{/* <Component {...item} /> */}
+							<Component {...item} {...restProps} />
 						</Link>
 					) : (
 						<>
@@ -42,14 +34,11 @@ const CardGrid: React.FC<CardGridTypes> = ({
 							<div
 								onClick={() => onCardClick && onCardClick(item)}
 								className={`card-editor__item ${restProps.animationOnRendering}`}
-								//className={`card-editor__item ${animationOnRendering}`}
 							>
 								<Component
 									{...item}
 									animationOnRendering={restProps.animationOnRendering}
-									//animationOnRendering={animationOnRendering}
 								/>
-								{/* <Component {...item} /> */}
 							</div>
 						</>
 					)}
