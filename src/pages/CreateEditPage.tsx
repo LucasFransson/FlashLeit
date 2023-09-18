@@ -28,8 +28,7 @@ function EditCardPage() {
 		lastReviewed: null,
 		colorClass: null,
 	});
-	const { unlockedAchievement, unlockCreateAchievement } = useAchievementService();
-	const [displayAchievement, setDisplayAchievement] = useState<AchievementTypes | null>(null);
+	const { unlockCreateAchievement } = useAchievementService();
 	// useState to hold toggler value:
 	const [isChecked, setIsChecked] = useState(false);
 	// Retrieve the UserId:
@@ -45,11 +44,9 @@ function EditCardPage() {
 	// Delete collections from utility folder:
 	const deleteCollection = useDeleteCollection();
 	// API call for getting all the users collections:
-	const { data: collectionData, error: collectionError, isLoading: collectionLoading } = useGetAuthoredCollectionsQuery(userId, {skip: userId === null || userId === undefined} );
+	const { data: collectionData, error: collectionError, isLoading: collectionLoading } = useGetAuthoredCollectionsQuery(userId, { skip: userId === null || userId === undefined });
 
 	const [addedCollectionId, setAddedCollectionId] = useState<number | null>(null);
-
-
 
 	// UseEffet to select the newly added collection:
 	useEffect(() => {
@@ -66,7 +63,6 @@ function EditCardPage() {
 		}
 	}, [collectionData, addedCollectionId]);
 
-	
 	// API call for getting all the cards of the currently selected collection;
 	const {
 		data: cardsData,
@@ -77,7 +73,7 @@ function EditCardPage() {
 			collectionId: selectedCollectionId,
 			userId: userId,
 		},
-		{ skip: selectedCollectionId === null || selectedCollectionId === undefined || selectedCollectionId === 0}
+		{ skip: selectedCollectionId === null || selectedCollectionId === undefined || selectedCollectionId === 0 }
 	);
 	// useEffect to set the selected collection after API call:
 	useEffect(() => {
@@ -138,7 +134,6 @@ function EditCardPage() {
 		const achievement = unlockCreateAchievement();
 		console.log(achievement);
 		setIsChecked(false);
-
 
 		// setAddedCollectionId(addedCollectionId);
 		// setSelectedCollectionId(addedCollectionId);
