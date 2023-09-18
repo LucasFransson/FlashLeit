@@ -1,13 +1,11 @@
 import { useAddUserAvatarRelationshipMutation } from "../redux/api/avatarsSlice";
 
 export const useAddUserAvatarRelationship = () => {
-  
-  const [mutate] = useAddUserAvatarRelationshipMutation();
+	const [mutate] = useAddUserAvatarRelationshipMutation();
 
-  const AddRelationship = (userId: number, avatarId: number) => {
-    
-    mutate({userId, avatarId});
-  }
+	const addRelationship = (userId: number, avatarId: number) => {
+		mutate({ userId, avatarId });
+	};
 
-  return AddRelationship;
-}
+	return addRelationship;
+};
