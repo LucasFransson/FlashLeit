@@ -39,6 +39,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 
 	const [hasClonedCollection, setHasClonedCollection] = useState(false);
 
+	
+
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
 
@@ -83,137 +85,84 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					}
 				}
 			}, 1300); // ms animation time
-
-			// // Check if the current card is the last card
-			// if (cardIndex < flashCards.length - 1) {
-			// 	// Increment the card index to show the next card
-			// 	setCardIndex(cardIndex + 1);
-			// } else {
-			// 	console.log('Finished answering all cards!');
-			// }
 		}
+	};
 
-		const cloneCollection = useCloneCollection();
+	const cloneCollection = useCloneCollection();
 
-		const cloneUserCollection = () => {
-			const clonedCollection: CardCollectionTypes = {
-				id: id,
-				title: title,
-				userId: restProps.authorId,
-				description: restProps.description,
-				amountOfCompletedRuns: 0,
-				amountOfCorrectAnswers: 0,
-				amountOfIncorrectAnswers: 0,
-				publicKey: 0,
-				flashCards: flashCards,
-				isPublic: false,
-				cardCount: flashCards.length,
-			};
-
-			cloneCollection(restProps.userId, clonedCollection);
-			setHasClonedCollection(true);
+	const cloneUserCollection = () => {
+		const clonedCollection: CardCollectionTypes = {
+			id: id,
+			title: title,
+			userId: restProps.authorId,
+			description: restProps.description,
+			amountOfCompletedRuns: 0,
+			amountOfCorrectAnswers: 0,
+			amountOfIncorrectAnswers: 0,
+			publicKey: 0,
+			flashCards: flashCards,
+			isPublic: false,
+			cardCount: flashCards.length,
 		};
 
-		return (
-			<div className="card-collection">
-				<div className="card-collection__heading">
-					<h1 className="card-collection__heading--title">{title}</h1>
-				</div>
-				<p className="card-collection__counter">
-					<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
-				</p>
-				{/* Check if there are any cards AND that the current card index is within bounds */}
-				{flashCards.length > 0 && !isFinished && cardIndex < flashCards.length ? (
-					// Render the Card at cardIndex from the cards array
-					<Card
-						key={cardIndex}
-						id={flashCards[cardIndex].id}
-						question={flashCards[cardIndex].question}
-						answer={flashCards[cardIndex].answer}
-						collectionId={flashCards[cardIndex].collectionId}
-						leitnerIndex={flashCards[cardIndex].leitnerIndex}
-						lastReviewed={flashCards[cardIndex].lastReviewed}
-						colorClass={cardColors[cardIndex]}
-						animateOut={animateOut}
-						animationType={animationType}
-						animationOnRendering={animationOnRendering}
-					/>
-				) : null}
-
-				{!isFinished ? (
-					<div className="card-collection__buttons">
-						<button className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong" onClick={() => handleNextCard(false)}>
-							Wrong
-						</button>
-						<button className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct" onClick={() => handleNextCard(true)}>
-							Correct
-						</button>
-					</div>
-				) : !restProps.isDemo ? (
-					<div className="finished-message">
-						<h1>GREAT JOB!</h1>
-						You've finished the collection! 🎉
-					</div>
-				) : !hasClonedCollection ? (
-					<div className="finished-message">
-						<h1>GREAT JOB!</h1>
-						You've finished the demo collection! 🎉 Click <button onClick={cloneUserCollection}>here</button> to clone it to your collections!
-					</div>
-				) : (
-					<div className="finished-message">
-						<h1>THANK YOU!</h1>
-						You've successfully cloned {title} to your collections! 🎉 Click <Link to="/collections">here</Link> to see your collections!
-					</div>
-				)}
-			</div>
-		);
-
-		// return (
-		// 	<div className="card-collection">
-		// 		<div className="card-collection__heading">
-		// 			<h1 className="card-collection__heading--title">{title}</h1>
-		// 		</div>
-		// 		<p className="card-collection__counter">
-		// 			<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
-		// 		</p>
-		// 		{/* Check if there are any cards AND that the current card index is within bounds */}
-		// 		{flashCards.length > 0 && cardIndex < flashCards.length && (
-		// 			// Render the Card at cardIndex from the cards array
-		// 			<Card
-		// 				key={cardIndex} // This Key Forces a re-mount of the Card Component, causing the useState hook to reset the components initial value, ensuring that the Card starts with the front side facing up
-		// 				id={flashCards[cardIndex].id}
-		// 				question={flashCards[cardIndex].question}
-		// 				answer={flashCards[cardIndex].answer}
-		// 				collectionId={flashCards[cardIndex].collectionId} // Not correct? This is the card id not the collection id
-		// 				leitnerIndex={flashCards[cardIndex].leitnerIndex}
-		// 				lastReviewed={flashCards[cardIndex].lastReviewed}
-		// 				colorClass={cardColors[cardIndex]} // Pass the random color class as a prop
-		// 				animateOut={animateOut} // pass the animateOut state as a prop
-		// 				animationType={animationType} // oass the animation type state as prop
-		// 				animationOnRendering={animationOnRendering}
-		// 			/>
-		// 		)}
-
-		// 		<div className="card-collection__buttons">
-		// 			{/* Div for Buttons */}
-		// 			<button
-		// 				className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong"
-		// 				onClick={() => handleNextCard(false)}
-		// 				//disabled={cardIndex === flashCards.length} // if the Current Card is the last one, Disable the button
-		// 				// 	disabled={isFlipped} !
-		// 			>
-		// 				Wrong
-		// 			</button>
-		// 			<button
-		// 				className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct"
-		// 				onClick={() => handleNextCard(true)}
-		// 				//disabled={cardIndex === flashCards.length} // if the Current Card is the last one, Disable the button
-		// 			>
-		// 				Correct
-		// 			</button>
-		// 		</div>
-		// 	</div>
-		// );
+		cloneCollection(restProps.userId, clonedCollection);
+		setHasClonedCollection(true);
 	};
+
+
+	return (
+		<div className="card-collection">
+			<div className="card-collection__heading">
+				<h1 className="card-collection__heading--title">{title}</h1>
+			</div>
+			<p className="card-collection__counter">
+				<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
+			</p>
+			{/* Check if there are any cards AND that the current card index is within bounds */}
+			{flashCards.length > 0 && !isFinished && cardIndex < flashCards.length ? (
+				// Render the Card at cardIndex from the cards array
+				<Card
+					key={cardIndex}
+					id={flashCards[cardIndex].id}
+					question={flashCards[cardIndex].question}
+					answer={flashCards[cardIndex].answer}
+					collectionId={flashCards[cardIndex].collectionId}
+					leitnerIndex={flashCards[cardIndex].leitnerIndex}
+					lastReviewed={flashCards[cardIndex].lastReviewed}
+					colorClass={cardColors[cardIndex]}
+					animateOut={animateOut}
+					animationType={animationType}
+					animationOnRendering={animationOnRendering}
+				/>
+			) : null}
+
+			{!isFinished ? (
+				<div className="card-collection__buttons">
+					<button className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong" onClick={() => handleNextCard(false)}>
+						Wrong
+					</button>
+					<button className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct" onClick={() => handleNextCard(true)}>
+						Correct
+					</button>
+				</div>
+			) : !restProps.isDemo ? (
+				<div className="finished-message">
+					<h1>GREAT JOB!</h1>
+					You've finished the collection! 🎉
+				</div>
+			) : !hasClonedCollection ? (
+				<div className="finished-message">
+					<h1>GREAT JOB!</h1>
+					You've finished the demo collection! 🎉 Click <button onClick={cloneUserCollection}>here</button> to clone it to your collections!
+				</div>
+			) : (
+				<div className="finished-message">
+					<h1>THANK YOU!</h1>
+					You've successfully cloned {title} to your collections! 🎉 Click <Link to="/collections">here</Link> to see your collections!
+				</div>
+			)}
+		</div>
+	);
+
 };
 export default CardCollection;

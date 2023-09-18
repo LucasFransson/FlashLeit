@@ -15,8 +15,6 @@ function UserCollectionsPage() {
 	const [skip, setSkip] = useState(true);
 	const { data: collections, isLoading, isError, error } = useGetCollectionsByUserIdQuery(userId, { skip });
 
-	console.log(collections);
-
 	useEffect(() => {
 		if (userId != null) {
 			setSkip(false);
