@@ -1,5 +1,9 @@
 const NotFoundPage = () => {
-	return <div>Nothing to see here!</div>;
+	return (
+		<div>
+			<img src="public\img\partyblob.gif" />
+		</div>
+	);
 };
 
 export default NotFoundPage;
