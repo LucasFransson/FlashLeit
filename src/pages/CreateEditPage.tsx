@@ -13,9 +13,7 @@ import CardTypes from "../types/CardTypes";
 import Toggler from "../components/Toggler/Toggler";
 import { useDeleteCollection } from "../utils/collectionUtility";
 import { useAchievementService } from "../utils/achievementsUtility";
-import CardCollectionTypes from "../types/CardCollectionTypes";
-import AchievementTypes from "../types/AchievementTypes";
-import { skipToken } from "@reduxjs/toolkit//query/react";
+
 function EditCardPage() {
 	// useState to hold the selected card:
 	const [selectedCard, setSelectedCard] = useState<CardTypes>({
