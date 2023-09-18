@@ -1,33 +1,32 @@
-import React, { useState } from 'react';
-import Card from '../Card/Card';
-import { getRandomColorClass } from '../../utils/getRandomColorClass';
-import CardCollectionTypes from '../../types/CardCollectionTypes';
-import { useUpdateCollection } from '../../utils/collectionUtility';
-import CardTypes from '../../types/CardTypes';
-import useLeitnerBox from '../../hooks/useLeitnerBox';
-import { useUpdateLeitnerIndex } from '../../utils/cardUtility';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import React, { useState } from "react";
+import Card from "../Card/Card";
+import { getRandomColorClass } from "../../utils/getRandomColorClass";
+import CardCollectionTypes from "../../types/CardCollectionTypes";
+import { useUpdateCollection } from "../../utils/collectionUtility";
+import CardTypes from "../../types/CardTypes";
+import useLeitnerBox from "../../hooks/useLeitnerBox";
+import { useUpdateLeitnerIndex } from "../../utils/cardUtility";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { useAchievementService } from "../../utils/achievementsUtility";
 
 interface CardCollectionProps extends CardCollectionTypes {
-  collection: CardCollectionTypes;
+	collection: CardCollectionTypes;
 	cardIndex: number;
 	setCardIndex: (index: number) => void;
-	setMarkedCards: React.Dispatch<
-		React.SetStateAction<{ [key: number]: 'correct' | 'wrong' }>
-	>;
-	animationOnRendering: 'draw' | 'fade-in';
-  boxNumber: string;
+	setMarkedCards: React.Dispatch<React.SetStateAction<{ [key: number]: "correct" | "wrong" }>>;
+	animationOnRendering: "draw" | "fade-in";
+	boxNumber: string;
 	// setAnswerStatus: (status: string) => void;
 
 	// Logic for Leitner:
 	updateLastReviewedDate: (card: CardTypes) => void;
-  selectBox: (leitnerBox: CardTypes, boxNumber: string) => void;
+	selectBox: (leitnerBox: CardTypes, boxNumber: string) => void;
 }
 
 const LeitnerCollection: React.FC<CardCollectionProps> = ({
 	collection,
-  id,
+	id,
 	title,
 	cardIndex,
 	setCardIndex,
@@ -35,10 +34,11 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 	setMarkedCards,
 	animationOnRendering,
 	flashCards = [],
-  boxNumber,
+	boxNumber,
 	updateLastReviewedDate,
-  selectBox
+	selectBox,
 }) => {
+	const { unlockCorrectAnswersAchievement, unlockInCorrectAnswersAchievement, unlockCompletedRunsAchievement } = useAchievementService();
 	// useState hook for managing current card index
 	// const [cardIndex, setCardIndex] = useState(0);
 	const updateCollectionsCounter = useUpdateCollection();
@@ -48,72 +48,75 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 	// state for tracking card animation for "Dropping card" / unmounting
 	const [animateOut, setAnimateOut] = useState(false);
 	// state for tracking card animation for Wrong or Correct btn
-	const [animationType, setAnimationType] = useState<
-		'correct' | 'wrong' | null
-	>(null);
+	const [animationType, setAnimationType] = useState<"correct" | "wrong" | null>(null);
 
-  const { userId } = useSelector((state: RootState) => state.userId);
+	const { userId } = useSelector((state: RootState) => state.userId);
 
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
 
-  // Leitner Index update hook:
-  const updateLeitnerIndex = useUpdateLeitnerIndex();
+	// Leitner Index update hook:
+	const updateLeitnerIndex = useUpdateLeitnerIndex();
 
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
-			setAnimationType('correct');
-			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'correct' }));
-			updateCollectionsCounter(id, 'IncrementCorrectAnswers');
+			setAnimationType("correct");
+			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "correct" }));
+			updateCollectionsCounter(id, "IncrementCorrectAnswers");
 
-			// --- Update card reviewed date --- 
+			const achievement = unlockCorrectAnswersAchievement();
+			console.log(achievement);
+
+			// --- Update card reviewed date ---
 			updateLastReviewedDate(flashCards[cardIndex]);
 
-      // Update card leitner index:
-      
-      if (flashCards[cardIndex].leitnerIndex <= 2) {
-        const newIndex = flashCards[cardIndex].leitnerIndex + 1;
+			// Update card leitner index:
 
-        const cardToIncrementLeitner: CardTypes = {
-          id: flashCards[cardIndex].id,
-          collectionId: flashCards[cardIndex].collectionId,
-          userId: userId,
-          question: flashCards[cardIndex].question,
-          answer: flashCards[cardIndex].answer,
-          leitnerIndex: newIndex,
-          colorClass: null,
-          lastReviewedDate: flashCards[cardIndex].lastReviewedDate,
-          animationOnRendering: "fade-in"
-        };
+			if (flashCards[cardIndex].leitnerIndex <= 2) {
+				const newIndex = flashCards[cardIndex].leitnerIndex + 1;
 
-        updateLeitnerIndex(cardToIncrementLeitner);
-      }
+				const cardToIncrementLeitner: CardTypes = {
+					id: flashCards[cardIndex].id,
+					collectionId: flashCards[cardIndex].collectionId,
+					userId: userId,
+					question: flashCards[cardIndex].question,
+					answer: flashCards[cardIndex].answer,
+					leitnerIndex: newIndex,
+					colorClass: null,
+					lastReviewedDate: flashCards[cardIndex].lastReviewedDate,
+					animationOnRendering: "fade-in",
+				};
 
-
+				updateLeitnerIndex(cardToIncrementLeitner);
+			}
 		} else {
-			setAnimationType('wrong');
-			updateCollectionsCounter(id, 'IncrementIncorrectAnswers');
+			setAnimationType("wrong");
+			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
+
 			// setAnswerStatus('wrong');
-			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: 'wrong' }));
+			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+
+			const achievement = unlockInCorrectAnswersAchievement();
+			console.log(achievement);
 
 			// --- LEITNER Update Reviewed Date ---
 			updateLastReviewedDate(flashCards[cardIndex]);
 
-      const cardToResetLeitner: CardTypes = {
-          id: flashCards[cardIndex].id,
-          collectionId: flashCards[cardIndex].collectionId,
-          userId: userId,
-          question: flashCards[cardIndex].question,
-          answer: flashCards[cardIndex].answer,
-          leitnerIndex: 1,
-          colorClass: null,
-          lastReviewedDate: flashCards[cardIndex].lastReviewedDate,
-          animationOnRendering: "fade-in"
-        };
+			const cardToResetLeitner: CardTypes = {
+				id: flashCards[cardIndex].id,
+				collectionId: flashCards[cardIndex].collectionId,
+				userId: userId,
+				question: flashCards[cardIndex].question,
+				answer: flashCards[cardIndex].answer,
+				leitnerIndex: 1,
+				colorClass: null,
+				lastReviewedDate: flashCards[cardIndex].lastReviewedDate,
+				animationOnRendering: "fade-in",
+			};
 
-        updateLeitnerIndex(cardToResetLeitner);
-      }
+			updateLeitnerIndex(cardToResetLeitner);
+		}
 
 		setAnimateOut(true);
 
@@ -125,11 +128,14 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 				setCardIndex(cardIndex + 1); // Increment the card index to show the next card
 			} else {
 				setIsFinished(true);
+
+				const achievement = unlockCompletedRunsAchievement();
+				console.log(achievement);
 			}
 		}, 1300); // ms animation time
 	};
 
-  const oneDay = 24 * 60 * 60 * 1000;
+	const oneDay = 24 * 60 * 60 * 1000;
 	const threeDays = 72 * 60 * 60 * 1000;
 	const sevenDays = 168 * 60 * 60 * 1000;
 
@@ -137,20 +143,17 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 	const box2 = useLeitnerBox(collection.flashCards, 2, threeDays);
 	const box3 = useLeitnerBox(collection.flashCards, 3, sevenDays);
 
-  const playAnotherBox = () => {
+	const playAnotherBox = () => {
+		setIsFinished(false);
 
-    setIsFinished(false);
-
-
-    if (box1.playableCardCount > 0) {
-      selectBox(box1.box, 'Box No.1');
-    } else if (box2.playableCardCount > 0) {
-      selectBox(box2.box, 'Box No.2');
-    } else {
-      selectBox(box3.box, 'Box No.3');
-    }
-  }
-
+		if (box1.playableCardCount > 0) {
+			selectBox(box1.box, "Box No.1");
+		} else if (box2.playableCardCount > 0) {
+			selectBox(box2.box, "Box No.2");
+		} else {
+			selectBox(box3.box, "Box No.3");
+		}
+	};
 
 	return (
 		<div className="card-collection">
@@ -180,34 +183,34 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 
 			{!isFinished ? (
 				<div className="card-collection__buttons">
-					<button
-						className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong"
-						onClick={() => handleNextCard(false)}
-					>
+					<button className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong" onClick={() => handleNextCard(false)}>
 						Wrong
 					</button>
-					<button
-						className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct"
-						onClick={() => handleNextCard(true)}
-					>
+					<button className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct" onClick={() => handleNextCard(true)}>
 						Correct
 					</button>
 				</div>
 			) : (
 				<div className="finished-message">
 					<h1>GREAT JOB!</h1>
-					
-          {box1.playableCardCount > 0 || box2.playableCardCount > 0 || box3.playableCardCount > 0 ? (
-            <>
-              <h3>You've finished your Leitner challenges for {boxNumber}! 🎉</h3>
-              <h3>There are other unfinished Leitner Boxes, would you like to pick another box?</h3>
-              <button onClick={() => {playAnotherBox()}}>Yes! Leit me up!</button>
-            </>
-          ) : (
-            <>
-              <h3>You've finished all your Leitner challenges for {collection.title}! 🎉</h3>
-            </>
-          )}
+
+					{box1.playableCardCount > 0 || box2.playableCardCount > 0 || box3.playableCardCount > 0 ? (
+						<>
+							<h3>You've finished your Leitner challenges for {boxNumber}! 🎉</h3>
+							<h3>There are other unfinished Leitner Boxes, would you like to pick another box?</h3>
+							<button
+								onClick={() => {
+									playAnotherBox();
+								}}
+							>
+								Yes! Leit me up!
+							</button>
+						</>
+					) : (
+						<>
+							<h3>You've finished all your Leitner challenges for {collection.title}! 🎉</h3>
+						</>
+					)}
 				</div>
 			)}
 		</div>
