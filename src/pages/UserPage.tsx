@@ -87,8 +87,11 @@ function UserPage() {
 					authUser &&
 					collections && (
 						<div className="user-page">
-							{showingAvatarModal && <AvatarModal updateUserAvatar={updateAvatar} />}
-							<Avatar url={authUser[0]?.selectedAvatarUrl} showModal={showAvatarModal} caller={"user-page"} />
+							{showingAvatarModal && <AvatarModal updateUserAvatar={updateAvatar} userId={authUser[0].id} />}
+							<Avatar 
+								url={authUser[0]?.selectedAvatarUrl}
+								showModal={showAvatarModal}
+								caller={"user-page"} />
 							<div>
 								<label htmlFor="displayName">Display name</label>
 								<input type="text" id="displayName" defaultValue={authUser[0]?.userName} onChange={e => setNewDisplayName(e.target.value)} />
