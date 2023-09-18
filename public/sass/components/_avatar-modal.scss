@@ -30,4 +30,12 @@
   &__avatar__wrapper:hover {
     cursor: pointer;
   }
+
+  &__avatar__wrapper__locked {
+    opacity: 0.3;
+  }
+
+  &__avatar__wrapper__locked:hover {
+    cursor: not-allowed;
+  }
 }

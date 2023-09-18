@@ -746,9 +746,6 @@ a {
     width: 100%;
     object-fit: cover; }
 
-.avatar__wrapper:hover {
-  cursor: pointer; }
-
 .modal__backdrop {
   top: 0;
   left: 0;
@@ -775,6 +772,12 @@ a {
 
 .modal__avatar__wrapper:hover {
   cursor: pointer; }
+
+.modal__avatar__wrapper__locked {
+  opacity: 0.3; }
+
+.modal__avatar__wrapper__locked:hover {
+  cursor: not-allowed; }
 
 .leitnerbox__wrapper {
   border: solid black 2px;
