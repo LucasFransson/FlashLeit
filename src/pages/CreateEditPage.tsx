@@ -13,6 +13,9 @@ import CardTypes from "../types/CardTypes";
 import Toggler from "../components/Toggler/Toggler";
 import { useDeleteCollection } from "../utils/collectionUtility";
 import { useAchievementService } from "../utils/achievementsUtility";
+import AchievementCard from "../components/AchievementCard/AchievementCard";
+import AchievementTypes from "../types/AchievementTypes";
+import AvatarTypes from "../types/AvatarTypes";
 
 function EditCardPage() {
 	// useState to hold the selected card:
@@ -27,6 +30,9 @@ function EditCardPage() {
 		colorClass: null,
 	});
 	const { unlockCreateAchievement } = useAchievementService();
+
+	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
+
 	// useState to hold toggler value:
 	const [isChecked, setIsChecked] = useState(false);
 	// Retrieve the UserId:
@@ -130,7 +136,8 @@ function EditCardPage() {
 	const collectionAdded = (addedCollectionId: number) => {
 		// --- TODO --- Show success modal?
 		const achievement = unlockCreateAchievement();
-		console.log(achievement);
+		setAchievement(achievement);
+
 		setIsChecked(false);
 
 		// setAddedCollectionId(addedCollectionId);
@@ -164,6 +171,13 @@ function EditCardPage() {
 				Error: {cardsError.status} {JSON.stringify(cardsError.data)}
 			</div>
 		);
+	if (achievement) {
+		return (
+			<>
+				<AchievementCard achievement={achievement[0]} avatar={achievement[1]} />
+			</>
+		);
+	}
 	return (
 		<div className="create-edit-page">
 			<div className="create-edit-page__collection-selector">

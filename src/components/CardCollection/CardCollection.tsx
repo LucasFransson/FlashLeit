@@ -5,6 +5,9 @@ import CardCollectionTypes from "../../types/CardCollectionTypes";
 import { useCloneCollection, useUpdateCollection } from "../../utils/collectionUtility";
 import { useAchievementService } from "../../utils/achievementsUtility";
 import { Link } from "react-router-dom";
+import AchievementTypes from "../../types/AchievementTypes";
+import AvatarTypes from "../../types/AvatarTypes";
+import AchievementCard from "../AchievementCard/AchievementCard";
 
 interface CardCollectionProps extends CardCollectionTypes {
 	cardIndex: number;
@@ -26,6 +29,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	...restProps
 }) => {
 	const { unlockCorrectAnswersAchievement, unlockInCorrectAnswersAchievement, unlockCompletedRunsAchievement } = useAchievementService();
+	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
+
 	// useState hook for managing current card index
 	// const [cardIndex, setCardIndex] = useState(0);
 	const updateCollectionsCounter = useUpdateCollection();
@@ -51,7 +56,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			if (!restProps.isDemo) {
 				updateCollectionsCounter(id, "IncrementCorrectAnswers");
 				const achievement = unlockCorrectAnswersAchievement();
-				console.log(achievement);
+				setAchievement(achievement);
 			}
 		} else {
 			setAnimationType("wrong");
@@ -61,7 +66,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				updateCollectionsCounter(id, "IncrementIncorrectAnswers");
 
 				const achievement = unlockInCorrectAnswersAchievement();
-				console.log(achievement);
+				setAchievement(achievement);
 			}
 		}
 
@@ -80,7 +85,12 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 					updateCollectionsCounter(id, "IncrementCompletedRuns");
 
 					const achievement = unlockCompletedRunsAchievement();
-					console.log(achievement);
+					setAchievement(achievement);
+					if (achievement) {
+						console.log("Unlocked");
+					} else {
+						console.log("Nothing to see here");
+					}
 				}
 			}
 		}, 1300); // ms animation time
@@ -115,6 +125,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			<p className="card-collection__counter">
 				<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
 			</p>
+			{achievement && <AchievementCard achievement={achievement[0]} avatar={achievement[1]} />}
 			{/* Check if there are any cards AND that the current card index is within bounds */}
 			{flashCards.length > 0 && !isFinished && cardIndex < flashCards.length ? (
 				// Render the Card at cardIndex from the cards array
