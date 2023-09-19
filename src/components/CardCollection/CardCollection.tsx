@@ -86,11 +86,6 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 
 					const achievement = unlockCompletedRunsAchievement();
 					setAchievement(achievement);
-					if (achievement) {
-						console.log("Unlocked");
-					} else {
-						console.log("Nothing to see here");
-					}
 				}
 			}
 		}, 1300); // ms animation time

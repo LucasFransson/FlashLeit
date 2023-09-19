@@ -9,6 +9,9 @@ import { useUpdateLeitnerIndex } from "../../utils/cardUtility";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useAchievementService } from "../../utils/achievementsUtility";
+import AchievementTypes from "../../types/AchievementTypes";
+import AvatarTypes from "../../types/AvatarTypes";
+import AchievementCard from "../AchievementCard/AchievementCard";
 
 interface CardCollectionProps extends CardCollectionTypes {
 	collection: CardCollectionTypes;
@@ -39,6 +42,7 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 	selectBox,
 }) => {
 	const { unlockCorrectAnswersAchievement, unlockInCorrectAnswersAchievement, unlockCompletedRunsAchievement } = useAchievementService();
+	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
 	// useState hook for managing current card index
 	// const [cardIndex, setCardIndex] = useState(0);
 	const updateCollectionsCounter = useUpdateCollection();
@@ -66,7 +70,7 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 			updateCollectionsCounter(id, "IncrementCorrectAnswers");
 
 			const achievement = unlockCorrectAnswersAchievement();
-			console.log(achievement);
+			setAchievement(achievement);
 
 			// --- Update card reviewed date ---
 			updateLastReviewedDate(flashCards[cardIndex]);
@@ -98,7 +102,7 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
 
 			const achievement = unlockInCorrectAnswersAchievement();
-			console.log(achievement);
+			setAchievement(achievement);
 
 			// --- LEITNER Update Reviewed Date ---
 			updateLastReviewedDate(flashCards[cardIndex]);
@@ -130,7 +134,7 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 				setIsFinished(true);
 
 				const achievement = unlockCompletedRunsAchievement();
-				console.log(achievement);
+				setAchievement(achievement);
 			}
 		}, 1300); // ms animation time
 	};
@@ -163,6 +167,7 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 			<p className="card-collection__counter">
 				<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
 			</p>
+			{achievement && <AchievementCard achievement={achievement[0]} avatar={achievement[1]} />}
 			{/* Check if there are any cards AND that the current card index is within bounds */}
 			{flashCards.length > 0 && !isFinished && cardIndex < flashCards.length ? (
 				// Render the Card at cardIndex from the cards array
