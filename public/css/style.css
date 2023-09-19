@@ -1018,6 +1018,9 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center; }
+  .user-collections-page #spanish__blob {
+    width: 35rem;
+    height: 35rem; }
 
 .discover-page {
   grid-column: 1/-1;

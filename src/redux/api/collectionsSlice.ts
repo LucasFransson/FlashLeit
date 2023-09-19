@@ -74,6 +74,15 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 			},
 			invalidatesTags: () => [{ type: "UserCollections" }],
 		}),
+		deletePrivateCollection: builder.mutation<void, {collectionId: number}>({
+			query: ({collectionId}) => {
+				return {
+					url: `api/collections/delete/${collectionId}`,
+					method: "DELETE",
+				};
+			},
+			invalidatesTags: () => [{type: "UserCollections"}]
+		}),
 		deleteCollection: builder.mutation<void, { collectionId: number; userId: number }>({
 			query: ({ collectionId, userId }) => {
 				return {
@@ -96,5 +105,6 @@ export const {
 	useCloneCollectionMutation,
 	useUpdateCollectionMutation,
 	useUpdateCollectionCounterMutation,
+	useDeletePrivateCollectionMutation,
 	useDeleteCollectionMutation,
 } = extendedApiSlice;
