@@ -1,11 +1,21 @@
 // NEUMORPHISM BUTTON
+.toggle-buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 5rem;
+
+	&__radio {
+		display: none;
+	}
+}
 
 .button--neo {
 	cursor: pointer;
-	padding: 1.5em 5em;
+	// padding: 1.5em 5em;
+
 	background: #efefef;
 	border: none;
-	border-radius: 0.3rem;
+	border-radius: 1.5rem;
 	color: #444;
 	// font-size: 1.6rem;
 	// font-weight: 700;
@@ -18,12 +28,18 @@
 		-6px -6px 10px rgba(255, 255, 255, 0.5),
 		6px 6px 8px rgba(255, 255, 255, 0.075), 6px 6px 10px rgba(0, 0, 0, 0.15);
 
-	&:hover {
-		box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
-			-2px -2px 4px rgba(255, 255, 255, 0.4),
-			2px 2px 2px rgba(255, 255, 255, 0.05), 2px 2px 4px rgba(0, 0, 0, 0.1);
-	}
+	// &:hover {
+	// 	box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
+	// 		-2px -2px 4px rgba(255, 255, 255, 0.4),
+	// 		2px 2px 2px rgba(255, 255, 255, 0.05), 2px 2px 4px rgba(0, 0, 0, 0.1);
+	// }
 	&:active {
+		box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7),
+			inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+			inset 2px 2px 2px rgba(255, 255, 255, 0.075),
+			inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+	}
+	&--selected {
 		box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7),
 			inset -2px -2px 4px rgba(255, 255, 255, 0.5),
 			inset 2px 2px 2px rgba(255, 255, 255, 0.075),
@@ -32,7 +48,10 @@
 }
 
 .button__ghost--wavy-fill {
+	cursor: pointer;
 	display: inline-block;
+	width: 24rem;
+	background-color: $color-success-300;
 	padding: 12px 24px;
 	border: 1px solid #4f4f4f;
 	border-radius: 4px;
@@ -90,6 +109,149 @@
 		transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 	}
 }
+
+.ghost-button--cancel {
+	cursor: pointer;
+	color: $color-danger-500;
+	-webkit-transition: 0.3s all ease;
+	transition: 0.3s ease all;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	display: inline-block;
+	text-align: center;
+	width: 12rem;
+	font-weight: bold;
+	padding: 1.4rem 0px;
+	border: 3px solid $color-danger-300;
+
+	border-radius: 2px;
+	position: relative;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+	&:before {
+		-webkit-transition: 0.5s all ease;
+		transition: 0.5s all ease;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		right: 50%;
+		bottom: 0;
+		opacity: 1;
+		content: '';
+		background-color: $color-danger-500;
+		z-index: -1;
+	}
+	&:hover {
+		color: $color-primary--100;
+		&:before {
+			-webkit-transition: 0.5s all ease;
+			transition: 0.5s all ease;
+			left: 0;
+			right: 0;
+			opacity: 1;
+		}
+	}
+	&:focus {
+		color: #fff;
+		&:before {
+			-webkit-transition: 0.5s all ease;
+			transition: 0.5s all ease;
+			left: 0;
+			right: 0;
+			opacity: 1;
+		}
+	}
+}
+
+.button--confirm {
+	cursor: pointer !important;
+	margin: 2rem;
+
+	background-color: $color-success-300;
+	padding: 0;
+	border: none;
+}
+
+.button--confirm:after,
+.button--confirm:before {
+	position: absolute;
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	content: '';
+}
+.button--confirm:before {
+	height: 0%;
+	width: 2px;
+}
+
+.button--confirm span:first-child {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.button--confirm:after {
+	width: 0%;
+	height: 2px;
+}
+
+.button--confirm:hover:before {
+	height: 100%;
+}
+.button--confirm span:hover:after,
+.button--confirm:hover:after {
+	width: 100%;
+}
+
+.button--confirm span:after {
+	height: 2px;
+	width: 0%;
+}
+.button--confirm {
+	background-color: #f0ecfc;
+	background-image: -o-linear-gradient(135deg, #f0ecfc 0, #c797eb 74%);
+	background-image: linear-gradient(315deg, #f0ecfc 0, #c797eb 74%);
+}
+.button--confirm:after,
+.button--confirm:before {
+	right: 0;
+	bottom: 0;
+	background: #c797eb;
+	transition: 0.3s;
+}
+
+.button--confirm:hover {
+	background: 0 0;
+}
+.button--confirm:hover span {
+	color: #c797eb;
+}
+.button--confirm span:after,
+.button--confirm span:before {
+	position: absolute;
+	content: '';
+	left: 0;
+	top: 0;
+	background: #c797eb;
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+}
+
+// .ghost-button--cancel,
+// .ghost-button__fill--cancel {
+// 	cursor: pointer;
+// 	color: $color-danger-500;
+// 	text-decoration: none;
+// 	-webkit-transition: 0.3s all ease;
+// 	transition: 0.3s ease all;
+// 	&:hover {
+// 		color: #fff;
+// 	}
+// 	&:focus {
+// 		color: #fff;
+// 	}
+// }
 
 // BUTTON BORDER LINES ON HOVER
 // button {
@@ -187,9 +349,10 @@
 	overflow: hidden;
 	transition-duration: 0.3s;
 	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-	background-color: rgb(255, 65, 65);
+	background-color: rgb(218, 79, 79);
 
 	&:hover {
+		background-color: rgb(247, 101, 101);
 		width: 125px;
 		border-radius: 40px;
 		transition-duration: 0.3s;
@@ -254,7 +417,7 @@
 	overflow: hidden;
 	transition-duration: 0.3s;
 	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-	background-color: $color-primary--300;
+	background-color: $color-primary--200;
 
 	&:hover {
 		width: 125px;
@@ -277,7 +440,7 @@
 			width: 17px;
 
 			path {
-				fill: $color-neutral-100;
+				fill: $color-primary--500;
 			}
 		}
 
@@ -293,7 +456,7 @@
 		right: 0%;
 		width: 0%;
 		opacity: 0;
-		color: white;
+		color: $color-primary--400;
 		font-size: 1.2em;
 		font-weight: 600;
 		transition-duration: 0.3s;

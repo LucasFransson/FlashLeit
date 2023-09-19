@@ -18,6 +18,12 @@
 		justify-content: center;
 		background-color: $color-primary--100;
 		background-image: url(../../img/hero-picture-1.jpg);
+		background: linear-gradient(
+				to bottom right,
+				rgba($color-primary--700, 0.4),
+				rgba($color-primary--900, 0.3)
+			),
+			url(../../img/hero-picture-1.jpg);
 		// width: 85%;
 
 		background-size: cover;

@@ -3,6 +3,7 @@ import { useAddCardMutation } from '../../redux/api/cardsSlice';
 import { useAddCard, useUpdateCard } from '../../utils/cardUtility';
 import CardTypes from '../../types/CardTypes';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
+import DeleteButton from '../DeleteSVGButton';
 
 function CardEditor({ card, userId, collectionId }) {
 	// const [id, setCardId] = useState(card.id);
@@ -59,9 +60,10 @@ function CardEditor({ card, userId, collectionId }) {
 	return (
 		<div className="card-editor">
 			{/* Left Side */}
+
 			<div className="card-editor-card card-editor-card--left">
 				{/* <p className="card-editor__heading">Question</p> */}
-
+				<DeleteButton />
 				{/* FRONTSIDE */}
 				{/* <div className="card-editor-card__top"> */}
 				<h3 className="card-editor-card__heading">QUESTION</h3>
@@ -78,7 +80,6 @@ function CardEditor({ card, userId, collectionId }) {
 
 				<div className="card-editor-card__bottom">{/* <p>QUESTION</p> */}</div>
 			</div>
-
 			{/* Right Side */}
 			{/* <div className={`card-editor-card--right ${colorClass}`}> */}
 			<div className="card-editor-card card-editor-card--right ">
@@ -98,21 +99,20 @@ function CardEditor({ card, userId, collectionId }) {
 				<div className="card-editor-card__bottom">{/* <p>ANSWER</p> */}</div>
 			</div>
 			{/* Buttons */}
-
 			<button
 				// className="card-editor__btn card-editor__btn--cancel"
-				className="card-editor__btn card-editor__btn--cancel"
+				className="card-editor__btn card-editor__btn--cancel ghost-button--cancel "
 				onClick={DiscardChanges}
 				disabled={areInputsEmpty}
 			>
-				Discard Changes
+				Cancel
 			</button>
 			<button
-				className="card-editor__btn card-editor__btn--save"
+				className="card-editor__btn card-editor__btn--save button__ghost--wavy-fill"
 				onClick={SaveChanges}
 				disabled={areInputsEmpty}
 			>
-				Save Changes
+				Save
 			</button>
 		</div>
 	);

@@ -19,6 +19,7 @@ import Toggler from '../components/Toggler/Toggler';
 import { useDeleteCollection } from '../utils/collectionUtility';
 import Carousel from '../components/Carousel';
 import Dropdown from '../components/Dropdown';
+import ToggleButtons from '../components/ToggleButtons';
 
 function EditCardPage() {
 	// useState to hold the selected card:
@@ -176,14 +177,8 @@ function EditCardPage() {
 					<aside className="create-edit-page__sidebar sidebar">
 						{collectionData && collectionData.length > 0 && (
 							<>
-								{/* <div className="sidebar__neo-cards"> */}
-								<button className="sidebar__neo-card sidebar__neo-card--left button--neo">
-									edit
-								</button>
-								<button className="sidebar__neo-card sidebar__neo-card--right button--neo">
-									create
-								</button>
-								{/* </div> */}
+								<ToggleButtons onToggle={handleToggle}></ToggleButtons>
+
 								<h3 className="sidebar__h3 sidebar__h3--current-choice">
 									Title of Current Choice
 								</h3>
@@ -194,7 +189,9 @@ function EditCardPage() {
 								<h3 className="sidebar__h3 sidebar__h3--current-collection">
 									Current collection here
 								</h3>
-								{/* <Toggler onToggle={handleToggle} isChecked={isChecked} /> */}
+								<textarea className="sidebar__text-area">
+									Change Name Textarea
+								</textarea>
 
 								{/* {!isChecked ? (
 									<CollectionSelector
@@ -209,7 +206,6 @@ function EditCardPage() {
 								)} */}
 							</>
 						)}
-						{/* </div> */}
 					</aside>
 
 					{collectionData && collectionData.length > 0 && !isChecked && (

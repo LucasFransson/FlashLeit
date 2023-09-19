@@ -50,8 +50,8 @@
 import { useState, useCallback } from 'react';
 
 const data = [
-	{ id: 0, label: 'AAAAen Happy HeatoNN' },
-	{ id: 1, label: 'Ernst' },
+	{ id: 0, label: 'Collection 1' },
+	{ id: 1, label: 'Collection 2' },
 ];
 
 const Dropdown = () => {
@@ -74,7 +74,7 @@ const Dropdown = () => {
 			<div className="dropdown__header" onClick={toggleDropdown}>
 				{selectedItem !== null
 					? items.find((item) => item.id === selectedItem).label
-					: 'VAD SKA DOO HA?!'}
+					: 'Select Collection'}
 				<i
 					className={`fa fa-chevron-right dropdown__icon ${isOpen && 'open'}`}
 				></i>

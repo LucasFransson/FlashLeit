@@ -82,14 +82,17 @@
 	.header-logo-text--main {
 		font-family: 'Inter', sans-serif;
 		font-size: 4rem;
-		letter-spacing: -0.1rem;
-		color: $color-primary--800;
+		font-weight: 700;
+		letter-spacing: -0.2rem;
+		color: $color-primary--600;
 	}
 
 	.header-logo-text--sub {
+		font-family: 'Inter', sans-serif;
 		font-size: 4rem;
-		letter-spacing: -0.1rem;
-		color: $color-primary--800;
+		letter-spacing: -0.2rem;
+		font-weight: 700;
+		color: $color-primary--600;
 	}
 }
 

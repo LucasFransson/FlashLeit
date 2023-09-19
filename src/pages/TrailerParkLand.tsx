@@ -111,6 +111,7 @@ function TrailerParkLand() {
 								caller={'user-page'}
 							/>
 							<div>
+								<p>{authUser[0]?.userName}</p>
 								<label htmlFor="displayName">Display name</label>
 								<input
 									type="text"
@@ -147,6 +148,14 @@ function TrailerParkLand() {
 								</button>
 								<button onClick={() => instance.logout()}>Log Out</button>
 								<button onClick={closeAccount}>Close Account</button>
+							</div>
+							<div className="grid-container--small-card">
+								<SmallCard className={'--dusty-rose small-card'}></SmallCard>
+								<SmallCard className={'--soft-peach small-card'}></SmallCard>
+								<SmallCard className={'--muted-coral small-card'}></SmallCard>
+								<SmallCard className={'--warm-taupe small-card'}></SmallCard>
+								<SmallCard className={' small-card'}></SmallCard>
+								<button className={'button--neo'}> </button>
 							</div>
 						</div>
 					)

@@ -102,8 +102,10 @@ function UserPage() {
 					collections && (
 						<div className="user-dashboard">
 							<div className="user-dashboard__col">
-								<div className="user-dashboard__card user-dashboard__card--flat user-dashboard__card--flat">
-									<h1 className="user-dashboard__title">John Doe</h1>
+								<div className=" user-dashboard__card--flat user-dashboard__card--flat">
+									<h1 className="user-dashboard__title">
+										{authUser[0]?.userName}
+									</h1>
 									<p className="user-dashboard__description">
 										Lorem ipsum dolor sit amet consectetur adipisicing elit.
 										Consectetur, adipisci.

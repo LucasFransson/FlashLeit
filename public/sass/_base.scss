@@ -11,6 +11,7 @@ body {
 	background-color: $color-neutral-100;
 	font-family: 'Poppins', sans-serif;
 	font-size: 1.6rem;
+	-webkit-font-smoothing: antialiased;
 }
 
 *,

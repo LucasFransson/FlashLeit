@@ -1,6 +1,13 @@
 .footer {
 	color: $color-neutral-100;
 	background-image: linear-gradient(to top, #110d10, #2a2729);
+	// background-color: $color-neutral-800;
+	// background-image: linear-gradient(
+	// 	to bottom,
+	// 	// $color-neutral-800,
+	// 	$color-neutral-800,
+	// 	$color-neutral-700
+	// );
 	grid-column: 1/-1;
 	grid-row: 3;
 	display: flex;

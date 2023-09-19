@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Slider from 'react-slick';
+import DeleteButton from '../components/DeleteSVGButton';
 
 export interface CarouselProps {
 	// items: Array<any>;
@@ -30,47 +31,47 @@ const Carousel: React.FC<CarouselProps> = ({
 	const settingsMain = {
 		ref: mainSliderRef,
 		slidesToShow: 3,
-		slidesToScroll: 3,
-		autoplay: true,
-		dots: true,
-		centerMode: true,
+		slidesToScroll: 1,
+		autoplay: false,
+		dots: false,
+		centerMode: false,
 		// centerPadding: '0 auto',
 
-		responsive: [
-			{
-				breakpoint: 768,
-				settings: {
-					arrows: false,
-					centerMode: true,
-					centerPadding: '40px',
-					slidesToShow: 2,
-				},
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					arrows: false,
-					centerMode: true,
-					centerPadding: '40px',
-					slidesToShow: 1,
-				},
-			},
-		],
-		focusOnSelect: true,
+		// responsive: [
+		// 	{
+		// 		breakpoint: 768,
+		// 		settings: {
+		// 			arrows: false,
+		// 			centerMode: true,
+		// 			centerPadding: '40px',
+		// 			slidesToShow: 2,
+		// 		},
+		// 	},
+		// 	{
+		// 		breakpoint: 480,
+		// 		settings: {
+		// 			arrows: false,
+		// 			centerMode: true,
+		// 			centerPadding: '40px',
+		// 			slidesToShow: 1,
+		// 		},
+		// 	},
+		// ],
+		focusOnSelect: false,
 		arrows: true,
 		infinite: true,
-		speed: 150,
+		speed: 350,
 		fade: false,
-		adaptiveHeight: true,
+		// adaptiveHeight: true,
 		afterChange: (current: number) => setCurrentSlide(current),
 		asNavFor: navSliderRef.current as Slider | undefined,
 	};
 
 	const settingsNav = {
 		ref: navSliderRef,
-		slidesToShow: 7,
-		slidesToScroll: 3,
-		dots: false,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		dots: true,
 		focusOnSelect: true,
 		infinite: true,
 		centerMode: true,
@@ -90,12 +91,10 @@ const Carousel: React.FC<CarouselProps> = ({
 							key={index}
 							className={`carousel__slide carousel__slide--${index + 1}`}
 						>
-							<button
+							{/* <DeleteButton
 								onClick={() => onDeleteClick && onDeleteClick(item)}
 								className="card-editor__item--delete"
-							>
-								X
-							</button>
+							></DeleteButton> */}
 							<div
 								onClick={() => onCardClick && onCardClick(item)}
 								className={`card-editor__item ${className}`}
