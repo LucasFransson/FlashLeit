@@ -1,21 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { useParams } from 'react-router-dom';
-import { useGetCollectionByIdAndUserIdQuery } from '../redux/api/collectionsSlice';
-import CardCollection from '../components/CardCollection/CardCollection';
-import CardList from '../components/CardList/CardList';
-import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
-import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
-
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { useParams } from "react-router-dom";
+import { useGetCollectionByIdAndUserIdQuery } from "../redux/api/collectionsSlice";
+import CardCollection from "../components/CardCollection/CardCollection";
+import CardList from "../components/CardList/CardList";
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 interface RouteParams {
-  authorId: number;
+	authorId: number;
 	id: number;
 }
 
 function CollectionDemoPage() {
-	
 	// Get collection id from route parameters:
 	const { authorId, id } = useParams<RouteParams>();
 
@@ -29,17 +28,16 @@ function CollectionDemoPage() {
 	const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
 	const [markedCards, setMarkedCards] = useState<{
-		[key: number]: 'correct' | 'wrong';
+		[key: number]: "correct" | "wrong";
 	}>({});
 
-	const { data, isLoading, isError, error } =
-		useGetCollectionByIdAndUserIdQuery(
-			{
-				collectionId: id,
-				userId: authorId,
-			},
-			{ skip }
-		);
+	const { data, isLoading, isError, error } = useGetCollectionByIdAndUserIdQuery(
+		{
+			collectionId: id,
+			userId: authorId,
+		},
+		{ skip }
+	);
 
 	// This useEffect makes sure that userId have a value before allowing any api calls
 	useEffect(() => {
@@ -50,13 +48,14 @@ function CollectionDemoPage() {
 
 	return (
 		<>
-			{isLoading ? (
-				<LoadingIcon />
-			) : isError || !data ? (
-				<ErrorMsg error={error} />
-			) : (
-				<div className="cardset-page">
-						<>	
+			<AuthenticatedTemplate>
+				{isLoading ? (
+					<LoadingIcon />
+				) : isError || !data ? (
+					<ErrorMsg error={error} />
+				) : (
+					<div className="cardset-page">
+						<>
 							<CardCollection
 								flashCards={data.flashCards}
 								title={data.title}
@@ -66,10 +65,10 @@ function CollectionDemoPage() {
 								setMarkedCards={setMarkedCards}
 								id={data.id}
 								animationOnRendering="draw"
-                isDemo={true}
-                userId={userId}
-                authorId={data.userId}
-                description={data.description}
+								isDemo={true}
+								userId={userId}
+								authorId={data.userId}
+								description={data.description}
 							/>
 							<CardList
 								flashCards={data.flashCards}
@@ -79,8 +78,10 @@ function CollectionDemoPage() {
 								markedCards={markedCards}
 							/>
 						</>
-				</div>
-			)}		
+					</div>
+				)}
+			</AuthenticatedTemplate>
+			<UnauthenticatedTemplate></UnauthenticatedTemplate>
 		</>
 	);
 }

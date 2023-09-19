@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { AuthenticatedTemplate, useMsal } from "@azure/msal-react";
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { useGetUserByIdQuery } from "../redux/api/usersSlice";
 import { useGetAuthoredCollectionsQuery, useGetCollectionsByUserIdQuery } from "../redux/api/collectionsSlice";
 import { useDeleteUser, useUpdateUser } from "../utils/userUtility";
@@ -117,6 +117,7 @@ function UserPage() {
 					)
 				)}
 			</AuthenticatedTemplate>
+			<UnauthenticatedTemplate></UnauthenticatedTemplate>
 		</>
 	);
 }

@@ -16,6 +16,7 @@ import { useAchievementService } from "../utils/achievementsUtility";
 import AchievementCard from "../components/AchievementCard/AchievementCard";
 import AchievementTypes from "../types/AchievementTypes";
 import AvatarTypes from "../types/AvatarTypes";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 function EditCardPage() {
 	// useState to hold the selected card:
@@ -179,33 +180,38 @@ function EditCardPage() {
 		);
 	}
 	return (
-		<div className="create-edit-page">
-			<div className="create-edit-page__collection-selector">
-				{collectionData && collectionData.length > 0 && !isChecked ? (
-					<>
-						<Toggler onToggle={handleToggle} isChecked={isChecked} />
-						<CollectionSelector className="" collections={collectionData} onCollectionChange={handleCollectionChange} />
-						<div className="create-edit-page__wrapper">
-							<div className="create-edit-page__card-grid">
-								<CardGrid items={flashCards} Component={Card} onCardClick={selectCard} onDeleteClick={deleteSelectedCard} />
-							</div>
-							<div className="create-edit-page__card-editor">
-								<CardEditor card={selectedCard} userId={userId} collectionId={selectedCollectionId} resetParameters={resetParameters} />
-							</div>
-						</div>
-					</>
-				) : collectionData && collectionData.length > 0 && isChecked ? (
-					<>
-						<Toggler onToggle={handleToggle} isChecked={isChecked} />
-						<AddCollection userId={userId} collectionAdded={collectionAdded} />
-					</>
-				) : (
-					<>
-						<AddCollection userId={userId} collectionAdded={collectionAdded} />
-					</>
-				)}
-			</div>
-		</div>
+		<>
+			<AuthenticatedTemplate>
+				<div className="create-edit-page">
+					<div className="create-edit-page__collection-selector">
+						{collectionData && collectionData.length > 0 && !isChecked ? (
+							<>
+								<Toggler onToggle={handleToggle} isChecked={isChecked} />
+								<CollectionSelector className="" collections={collectionData} onCollectionChange={handleCollectionChange} />
+								<div className="create-edit-page__wrapper">
+									<div className="create-edit-page__card-grid">
+										<CardGrid items={flashCards} Component={Card} onCardClick={selectCard} onDeleteClick={deleteSelectedCard} />
+									</div>
+									<div className="create-edit-page__card-editor">
+										<CardEditor card={selectedCard} userId={userId} collectionId={selectedCollectionId} resetParameters={resetParameters} />
+									</div>
+								</div>
+							</>
+						) : collectionData && collectionData.length > 0 && isChecked ? (
+							<>
+								<Toggler onToggle={handleToggle} isChecked={isChecked} />
+								<AddCollection userId={userId} collectionAdded={collectionAdded} />
+							</>
+						) : (
+							<>
+								<AddCollection userId={userId} collectionAdded={collectionAdded} />
+							</>
+						)}
+					</div>
+				</div>
+			</AuthenticatedTemplate>
+			<UnauthenticatedTemplate></UnauthenticatedTemplate>
+		</>
 	);
 }
 export default EditCardPage;

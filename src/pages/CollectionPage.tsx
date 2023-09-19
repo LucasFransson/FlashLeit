@@ -12,6 +12,7 @@ import LeitnerBoxes from "../components/LeitnerBoxes/LeitnerBoxes";
 import CardTypes from "../types/CardTypes";
 import LeitnerCollection from "../components/LeitnerCollection/LeitnerCollection";
 import { useUpdateLastReviewedDate } from "../utils/cardUtility";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 
 interface RouteParams {
 	id: number;
@@ -103,67 +104,70 @@ function CollectionPage() {
 
 	return (
 		<>
-			{isLoading ? (
-				<LoadingIcon />
-			) : isError || !data ? (
-				<ErrorMsg error={error} />
-			) : (
-				<div className="cardset-page">
-					<Toggler onToggle={handleToggle} isChecked={isShowingRegularCollection} />
-					{isShowingRegularCollection ? (
-						<>
-							<CardCollection
-								flashCards={data.flashCards}
-								title={data.title}
-								cardIndex={currentCardIndex}
-								setCardIndex={setCurrentCardIndex}
-								// setAnswerStatus={setAnswerStatus}
-								setMarkedCards={setMarkedCards}
-								id={data.id}
-								animationOnRendering="draw"
-							/>
-							<CardList
-								flashCards={data.flashCards}
-								title={data.title}
-								highlightedIndex={currentCardIndex}
-								// answerStatus={answerStatus}
-								markedCards={markedCards}
-							/>
-						</>
-					) : (
-						<>
-							<LeitnerBoxes collection={data} selectBox={selectBox} />
+			<AuthenticatedTemplate>
+				{isLoading ? (
+					<LoadingIcon />
+				) : isError || !data ? (
+					<ErrorMsg error={error} />
+				) : (
+					<div className="cardset-page">
+						<Toggler onToggle={handleToggle} isChecked={isShowingRegularCollection} />
+						{isShowingRegularCollection ? (
+							<>
+								<CardCollection
+									flashCards={data.flashCards}
+									title={data.title}
+									cardIndex={currentCardIndex}
+									setCardIndex={setCurrentCardIndex}
+									// setAnswerStatus={setAnswerStatus}
+									setMarkedCards={setMarkedCards}
+									id={data.id}
+									animationOnRendering="draw"
+								/>
+								<CardList
+									flashCards={data.flashCards}
+									title={data.title}
+									highlightedIndex={currentCardIndex}
+									// answerStatus={answerStatus}
+									markedCards={markedCards}
+								/>
+							</>
+						) : (
+							<>
+								<LeitnerBoxes collection={data} selectBox={selectBox} />
 
-							{isSelectedBox ? (
-								<>
-									<LeitnerCollection
-										collection={data}
-										flashCards={selectedBox}
-										title={`${data.title} (${leitnerBoxNumber})`}
-										boxNumber={leitnerBoxNumber}
-										cardIndex={currentCardIndex}
-										setCardIndex={setCurrentCardIndex}
-										// setAnswerStatus={setAnswerStatus}
-										setMarkedCards={setMarkedCards}
-										id={data.id}
-										updateLastReviewedDate={updateLastReviewedDate}
-										selectBox={selectBox}
-									/>
-									<CardList
-										flashCards={selectedBox}
-										title={data.title}
-										highlightedIndex={currentCardIndex}
-										// answerStatus={answerStatus}
-										markedCards={markedCards}
-									/>
-								</>
-							) : (
-								<h1>Pick your desired Leitner Box</h1>
-							)}
-						</>
-					)}
-				</div>
-			)}
+								{isSelectedBox ? (
+									<>
+										<LeitnerCollection
+											collection={data}
+											flashCards={selectedBox}
+											title={`${data.title} (${leitnerBoxNumber})`}
+											boxNumber={leitnerBoxNumber}
+											cardIndex={currentCardIndex}
+											setCardIndex={setCurrentCardIndex}
+											// setAnswerStatus={setAnswerStatus}
+											setMarkedCards={setMarkedCards}
+											id={data.id}
+											updateLastReviewedDate={updateLastReviewedDate}
+											selectBox={selectBox}
+										/>
+										<CardList
+											flashCards={selectedBox}
+											title={data.title}
+											highlightedIndex={currentCardIndex}
+											// answerStatus={answerStatus}
+											markedCards={markedCards}
+										/>
+									</>
+								) : (
+									<h1>Pick your desired Leitner Box</h1>
+								)}
+							</>
+						)}
+					</div>
+				)}
+			</AuthenticatedTemplate>
+			<UnauthenticatedTemplate></UnauthenticatedTemplate>
 		</>
 	);
 }
