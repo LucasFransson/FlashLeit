@@ -1,4 +1,4 @@
-import { useAddCollectionMutation, useCloneCollectionMutation, useDeleteCollectionMutation, useUpdateCollectionCounterMutation } from "../redux/api/collectionsSlice"
+import { useAddCollectionMutation, useCloneCollectionMutation, useDeleteCollectionMutation, useDeletePrivateCollectionMutation, useUpdateCollectionCounterMutation } from "../redux/api/collectionsSlice"
 import AddCollectionResponeTypes from "../types/AddCollectionResponseType";
 import CardCollectionTypes from "../types/CardCollectionTypes";
 import CardTypes from "../types/CardTypes";
@@ -36,6 +36,16 @@ export const useAddCollection = () => {
   }
 
   return addCollection;
+}
+
+export const useDeletePrivateCollection = () => {
+  const [mutate] = useDeletePrivateCollectionMutation();
+
+  const deletePrivateCollection = (collectionId: number) => {
+    mutate({collectionId});
+  }
+
+  return deletePrivateCollection;
 }
 
 export const useDeleteCollection = () => {
