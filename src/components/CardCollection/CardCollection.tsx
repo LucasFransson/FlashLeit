@@ -64,8 +64,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				if (!restProps.isDemo) {
 					updateCollectionsCounter(id, "IncrementIncorrectAnswers");
 
-				const achievement = unlockInCorrectAnswersAchievement();
-				console.log(achievement);
+					const achievement = unlockInCorrectAnswersAchievement();
+					console.log(achievement);
 				}
 				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
 			}
