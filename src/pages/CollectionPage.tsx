@@ -1,28 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { useParams } from 'react-router-dom';
-import { useGetCollectionByIdAndUserIdQuery } from '../redux/api/collectionsSlice';
-import CardCollection from '../components/CardCollection/CardCollection';
-import CardList from '../components/CardList/CardList';
-import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
-import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
-import Toggler from '../components/Toggler/Toggler';
-import LeitnerBoxes from '../components/LeitnerBoxes/LeitnerBoxes';
-import CardTypes from '../types/CardTypes';
-import LeitnerCollection from '../components/LeitnerCollection/LeitnerCollection';
-import { useUpdateLastReviewedDate } from '../utils/cardUtility';
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { useParams } from "react-router-dom";
+import { useGetCollectionByIdAndUserIdQuery } from "../redux/api/collectionsSlice";
+import CardCollection from "../components/CardCollection/CardCollection";
+import CardList from "../components/CardList/CardList";
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
+import Toggler from "../components/Toggler/Toggler";
+import LeitnerBoxes from "../components/LeitnerBoxes/LeitnerBoxes";
+import CardTypes from "../types/CardTypes";
+import LeitnerCollection from "../components/LeitnerCollection/LeitnerCollection";
+import { useUpdateLastReviewedDate } from "../utils/cardUtility";
 
 interface RouteParams {
 	id: number;
 }
 
 function CollectionPage() {
-	
 	// --- Leitner UseStates ---
-	const [selectedBox, setSelectedBox] = useState<CardTypes[]>([])
-  const [isSelectedBox, setIsSelectedBox] = useState(false);
-  const [leitnerBoxNumber, setLeitnerBoxNumber] = useState('');
+	const [selectedBox, setSelectedBox] = useState<CardTypes[]>([]);
+	const [isSelectedBox, setIsSelectedBox] = useState(false);
+	const [leitnerBoxNumber, setLeitnerBoxNumber] = useState("");
 
 	// Get collection id from route parameters:
 	const { id } = useParams<RouteParams>();
@@ -39,17 +38,16 @@ function CollectionPage() {
 	const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
 	const [markedCards, setMarkedCards] = useState<{
-		[key: number]: 'correct' | 'wrong';
+		[key: number]: "correct" | "wrong";
 	}>({});
 
-	const { data, isLoading, isError, error } =
-		useGetCollectionByIdAndUserIdQuery(
-			{
-				collectionId: id,
-				userId: userId,
-			},
-			{ skip }
-		);
+	const { data, isLoading, isError, error } = useGetCollectionByIdAndUserIdQuery(
+		{
+			collectionId: id,
+			userId: userId,
+		},
+		{ skip }
+	);
 
 	// This useEffect makes sure that userId have a value before allowing any api calls
 	useEffect(() => {
@@ -59,28 +57,23 @@ function CollectionPage() {
 	}, [userId]);
 
 	const handleToggle = (toggleChange: boolean) => {
-		
 		if (toggleChange) {
 			setIsSelectedBox(false);
-			setSelectedBox([])
+			setSelectedBox([]);
 		}
-		
+
 		setIsShowingRegularCollection(toggleChange);
 		setCurrentCardIndex(0);
 		setMarkedCards({});
-
-		
-	}
-
+	};
 
 	// --- Leitner functions ---
 
-		// --- Update last reviewed date --- 
+	// --- Update last reviewed date ---
 
 	const updateReviewDate = useUpdateLastReviewedDate();
 
 	const updateLastReviewedDate = (card: CardTypes) => {
-		
 		const currentDate = new Date().toISOString();
 
 		const updatedCard: CardTypes = {
@@ -91,23 +84,22 @@ function CollectionPage() {
 			answer: card.answer,
 			leitnerIndex: card.leitnerIndex,
 			lastReviewed: currentDate,
-			colorClass: null
+			colorClass: null,
 		};
 
 		updateReviewDate(updatedCard);
-	}
+	};
 
 	// --- Select Leitner box:
 
 	const selectBox = (leitnerBox: CardTypes[], boxNumber: string) => {
-    
 		setSelectedBox(leitnerBox);
-    setIsSelectedBox(true);
-    setLeitnerBoxNumber(boxNumber);
+		setIsSelectedBox(true);
+		setLeitnerBoxNumber(boxNumber);
 
-    setMarkedCards({});
-    setCurrentCardIndex(0);
-  }
+		setMarkedCards({});
+		setCurrentCardIndex(0);
+	};
 
 	return (
 		<>
@@ -117,9 +109,9 @@ function CollectionPage() {
 				<ErrorMsg error={error} />
 			) : (
 				<div className="cardset-page">
-					<Toggler onToggle={handleToggle} isChecked={isShowingRegularCollection}/>
+					<Toggler onToggle={handleToggle} isChecked={isShowingRegularCollection} />
 					{isShowingRegularCollection ? (
-						<>	
+						<>
 							<CardCollection
 								flashCards={data.flashCards}
 								title={data.title}
@@ -140,8 +132,8 @@ function CollectionPage() {
 						</>
 					) : (
 						<>
-							<LeitnerBoxes collection={data} selectBox={selectBox}/>
-                
+							<LeitnerBoxes collection={data} selectBox={selectBox} />
+
 							{isSelectedBox ? (
 								<>
 									<LeitnerCollection
@@ -165,13 +157,13 @@ function CollectionPage() {
 										markedCards={markedCards}
 									/>
 								</>
-          		) : (
-          			<h1>Pick your desired Leitner Box</h1>
+							) : (
+								<h1>Pick your desired Leitner Box</h1>
 							)}
 						</>
 					)}
 				</div>
-			)}		
+			)}
 		</>
 	);
 }
