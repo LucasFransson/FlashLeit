@@ -7,6 +7,10 @@ import CollectionPreview from '../components/CollectionPreview/CollectionPreview
 import { getRandomColorClass } from '../utils/getRandomColorClass';
 import ColorClassContext from '../context/ColorClassContext';
 import { useGetAllCollectionsQuery } from '../redux/api/collectionsSlice';
+import {
+	AuthenticatedTemplate,
+	UnauthenticatedTemplate,
+} from '@azure/msal-react';
 
 function DiscoverPage() {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -60,6 +64,19 @@ function DiscoverPage() {
 				/>
 			</div>
 		</div>
+		// <>
+		// 	<AuthenticatedTemplate>
+		// 		<div className="discover-page">
+		// 			<div className="discover-page__top">
+		// 				<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+		// 			</div>
+		// 			<div className="discover-page__bottom">
+		// 				<CardGrid items={filteredCollections} Component={CollectionPreview} linkPrefix="collection/demo" parent="discover" />
+		// 			</div>
+		// 		</div>
+		// 	</AuthenticatedTemplate>
+		// 	<UnauthenticatedTemplate></UnauthenticatedTemplate>
+		// </>
 	);
 }
 // collection-preview--${variant}

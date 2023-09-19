@@ -5,7 +5,7 @@ import CardTypes from '../../types/CardTypes';
 import { getRandomColorClass } from '../../utils/getRandomColorClass';
 import DeleteButton from '../DeleteSVGButton';
 
-function CardEditor({ card, userId, collectionId }) {
+function CardEditor({ card, userId, collectionId, resetParameters }) {
 	// const [id, setCardId] = useState(card.id);
 	// const [collectionId, setCollectionId] = useState(card.collectionId);
 	const [question, setQuestionInput] = useState(card.question);
@@ -33,6 +33,7 @@ function CardEditor({ card, userId, collectionId }) {
 	// Consider moving to Util for reusability
 	const DiscardChanges = () => {
 		ClearInputFields();
+		resetParameters();
 	};
 	const SaveChanges = () => {
 		const cardDetails: CardTypes = {
@@ -55,6 +56,8 @@ function CardEditor({ card, userId, collectionId }) {
 
 			ClearInputFields();
 		}
+
+		resetParameters();
 	};
 
 	return (

@@ -6,7 +6,8 @@ import EditCardPage from '../pages/CreateEditPage';
 import UserCollectionsPage from '../pages/UserCollectionsPage';
 import UserPage from '../pages/UserPage';
 import DiscoverPage from '../pages/DiscoverPage';
-import LeitnerPage from '../pages/LeitnerPage';
+import NotFoundPage from '../pages/NotFoundPage';
+import CollectionDemoPage from '../pages/CollectionDemoPage';
 import TrailerParkLand from '../pages/TrailerParkLand';
 
 function RoutesConfig() {
@@ -15,12 +16,16 @@ function RoutesConfig() {
 			<Route path="/" element={<HomePage />} />
 			<Route path="/about" element={<AboutPage />} />
 			<Route path="/collection/:id" element={<CardSetPage />} />
-			<Route path="/leitner/:id" element={<LeitnerPage />} />
 			<Route path="/edit" element={<EditCardPage />} />
 			<Route path="/collections" element={<UserCollectionsPage />} />
 			<Route path="/userpage" element={<UserPage />} />
 			<Route path="/discover" element={<DiscoverPage />} />
 			<Route path="/devland" element={<TrailerParkLand />} />
+			<Route
+				path="/collection/demo/:authorId/:id"
+				element={<CollectionDemoPage />}
+			/>
+			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	);
 }

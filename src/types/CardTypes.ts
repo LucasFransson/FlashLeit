@@ -5,7 +5,7 @@ interface CardTypes {
 	userId: number;
 	question: string;
 	answer: string;
-	leitnerIndex: 1 | 2 | 3;
+	leitnerIndex: number;
 	lastReviewedDate: Date | null;
 	colorClass: string | null;
 	animationOnRendering: 'draw' | 'fade-in';

@@ -5,6 +5,7 @@ const CardGrid: React.FC<CardGridTypes> = ({
 	items,
 	Component,
 	linkPrefix,
+	parent,
 	onCardClick,
 	onDeleteClick,
 	...restProps
@@ -16,7 +17,19 @@ const CardGrid: React.FC<CardGridTypes> = ({
 					className={`grid-container__item ${restProps.animationOnRendering}`}
 					key={item.id}
 				>
-					{linkPrefix ? (
+					{linkPrefix && parent === "discover" ? (
+						<Link
+							to={`/${linkPrefix}/${item.userId}/${item.id}`}
+							onClick={() => onCardClick && onCardClick(item)}
+						>
+							<Component
+								{...item}
+								// animationOnRendering={animationOnRendering}
+								animationOnRendering={restProps.animationOnRendering}
+							/>
+							{/* <Component {...item} /> */}
+						</Link>
+					) : linkPrefix ? (
 						<Link
 							to={`/${linkPrefix}/${item.id}`}
 							onClick={() => onCardClick && onCardClick(item)}

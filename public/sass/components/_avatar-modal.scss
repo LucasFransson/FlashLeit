@@ -26,6 +26,12 @@
 		text-align: center;
 	}
 
+	&__header {
+		grid-row-start: 1;
+		grid-column: 1/4;
+		text-align: center;
+	}
+
 	&__avatar__wrapper:hover {
 		cursor: pointer;
 	}

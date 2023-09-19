@@ -23,7 +23,6 @@ import ToggleButtons from '../components/ToggleButtons';
 
 function EditCardPage() {
 	// useState to hold the selected card:
-
 	const [selectedCard, setSelectedCard] = useState<CardTypes>({
 		id: 0,
 		collectionId: 0,
@@ -35,6 +34,9 @@ function EditCardPage() {
 		colorClass: null,
 		animationOnRendering: 'fade-in',
 	});
+	const { unlockCreateAchievement } = useAchievementService();
+
+	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
 
 	// useState to hold toggler value:
 	const [isChecked, setIsChecked] = useState(false);
@@ -43,16 +45,11 @@ function EditCardPage() {
 	const { userId } = useSelector((state: RootState) => state.userId);
 
 	// useState to hold the id of currently selected collection:
-	const [selectedCollectionId, setSelectedCollectionId] = useState<
-		number | null
-	>(null);
-
+	const [selectedCollectionId, setSelectedCollectionId] = useState<number | null>(null);
 	// useState to hold the cards of the currently selected collection:
 	const [flashCards, setFlashCards] = useState<CardTypes[] | null>([]);
 
 	// useState for skip:
-	const [skip, setSkip] = useState(true);
-	const [skip2, setSkip2] = useState(true);
 
 	// Delete card from utility folder:
 	const deleteCard = useDeleteCard();
@@ -61,11 +58,24 @@ function EditCardPage() {
 	const deleteCollection = useDeleteCollection();
 
 	// API call for getting all the users collections:
-	const {
-		data: collectionData,
-		error: collectionError,
-		isLoading: collectionLoading,
-	} = useGetAuthoredCollectionsQuery(userId, { skip: skip2 });
+	const { data: collectionData, error: collectionError, isLoading: collectionLoading } = useGetAuthoredCollectionsQuery(userId, { skip: userId === null || userId === undefined });
+
+	const [addedCollectionId, setAddedCollectionId] = useState<number | null>(null);
+
+	// UseEffet to select the newly added collection:
+	useEffect(() => {
+		if (selectedCollectionId === addedCollectionId && addedCollectionId !== null) {
+			handleCollectionChange(addedCollectionId);
+
+			const newCollection = collectionData?.find(collection => collection.id === addedCollectionId);
+
+			console.log(newCollection);
+
+			setSelectedCard(newCollection?.flashCards[0]);
+
+			console.log(selectedCard);
+		}
+	}, [collectionData, addedCollectionId]);
 
 	// API call for getting all the cards of the currently selected collection;
 	const {
@@ -77,7 +87,7 @@ function EditCardPage() {
 			collectionId: selectedCollectionId,
 			userId: userId,
 		},
-		{ skip }
+		{ skip: selectedCollectionId === null || selectedCollectionId === undefined || selectedCollectionId === 0 }
 	);
 	// useEffect to set the selected collection after API call:
 	useEffect(() => {
@@ -92,17 +102,6 @@ function EditCardPage() {
 			setFlashCards(cardsData.flashCards);
 		}
 	}, [cardsData]);
-
-	// useEffect to set skip:
-	useEffect(() => {
-		if (userId != null) {
-			setSkip2(false);
-		}
-
-		if (selectedCollectionId != null) {
-			setSkip(false);
-		}
-	}, [selectedCollectionId, userId]);
 
 	const handleToggle = (toggleChange: boolean) => {
 		setIsChecked(toggleChange);
@@ -148,10 +147,28 @@ function EditCardPage() {
 		}
 	};
 
-	const collectionAdded = () => {
+	const collectionAdded = (addedCollectionId: number) => {
 		// --- TODO --- Show success modal?
+		const achievement = unlockCreateAchievement();
+		setAchievement(achievement);
 
 		setIsChecked(false);
+
+		// setAddedCollectionId(addedCollectionId);
+		// setSelectedCollectionId(addedCollectionId);
+	};
+
+	const resetParameters = () => {
+		setSelectedCard({
+			id: 0,
+			collectionId: 0,
+			userId: userId,
+			question: "",
+			answer: "",
+			leitnerIndex: 1,
+			lastReviewed: null,
+			colorClass: null,
+		});
 	};
 
 	if (collectionLoading) return <LoadingIcon />;
@@ -169,7 +186,13 @@ function EditCardPage() {
 				Error: {cardsError.status} {JSON.stringify(cardsError.data)}
 			</div>
 		);
-
+	if (achievement) {
+		return (
+			<>
+				<AchievementCard achievement={achievement[0]} avatar={achievement[1]} />
+			</>
+		);
+	}
 	return (
 		<>
 			{userId && (

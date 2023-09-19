@@ -13,9 +13,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 		addAchievementToUser: builder.mutation<void, { userId: number; achievementId: number }>({
 			query: ({ userId, achievementId }) => {
 				return {
-					url: `api/achievements/${userId}`,
+					url: `api/achievements/${userId}/?achievementId=${achievementId}`,
 					method: "POST",
-					body: achievementId,
+					body: JSON.stringify({ achievementId: achievementId }),
 				};
 			},
 			invalidatesTags: (result, error, args) => [{ type: "Achievements", id: args.userId }],

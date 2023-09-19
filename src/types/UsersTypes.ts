@@ -3,7 +3,7 @@ interface UserTypes {
 	email: string;
 	accountName: string;
 	userName: string;
-	avatarUrl: string | null;
+	selectedAvatarUrl: string | null;
 }
 
 export default UserTypes;

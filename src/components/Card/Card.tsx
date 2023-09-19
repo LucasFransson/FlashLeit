@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import CardTypes from '../../types/CardTypes';
+import React, { useState } from "react";
+import CardTypes from "../../types/CardTypes";
 
 interface CardProps extends CardTypes {
 	animateOut?: boolean;
@@ -7,11 +7,15 @@ interface CardProps extends CardTypes {
 }
 
 const Card: React.FC<CardProps> = ({
+	// @ts-ignore: TS6133
 	id,
+	// @ts-ignore: TS6133
 	collectionId,
 	question,
 	answer,
+	// @ts-ignore: TS6133
 	leitnerIndex,
+	// @ts-ignore: TS6133
 	lastReviewed,
 	colorClass,
 	animateOut,
@@ -26,15 +30,9 @@ const Card: React.FC<CardProps> = ({
 
 	return (
 		<div
-			className={`card ${isFlipped ? 'is-flipped' : ''} ${
-				animateOut ? 'animate-out' : ''
-			} ${animationType === 'correct' ? 'animate-correct' : ''} ${
-				animationType === 'wrong' ? 'animate-wrong' : ''
-			} ${
-				animationOnRendering != null
-					? `animate-render-${animationOnRendering}`
-					: ''
-			}`}
+			className={`card ${isFlipped ? "is-flipped" : ""} ${animateOut ? "animate-out" : ""} ${animationType === "correct" ? "animate-correct" : ""} ${
+				animationType === "wrong" ? "animate-wrong" : ""
+			} ${animationOnRendering != null ? `animate-render-${animationOnRendering}` : ""}`}
 		>
 			<div className="card__content">
 				{/* FRONTSIDE */}

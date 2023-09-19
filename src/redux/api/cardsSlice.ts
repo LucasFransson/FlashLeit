@@ -39,6 +39,16 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 			},
 			invalidatesTags: (result, error, card) => [{ type: "Collection", id: card.collectionId}]
 		}),
+		updateLeitnerIndex: builder.mutation<void, CardTypes>({
+			query: card => {
+				return {
+					url: `api/cards/leitner/${card.id}`,
+					method: "PUT",
+					body: card,
+				};
+			},
+			invalidatesTags: (result, error, card) => [{ type: "Collection", id: card.collectionId}]
+		}),
 		deleteCard: builder.mutation<void, CardTypes>({
 			query: card => {
 				return {
@@ -52,4 +62,4 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 	}),
 });
 
-export const { useGetAllCardsQuery, useGetCardByIdQuery, useAddCardMutation, useUpdateCardMutation, useUpdateLastReviewedDateMutation, useDeleteCardMutation } = extendedApiSlice;
+export const { useGetAllCardsQuery, useGetCardByIdQuery, useAddCardMutation, useUpdateCardMutation, useUpdateLastReviewedDateMutation, useUpdateLeitnerIndexMutation, useDeleteCardMutation } = extendedApiSlice;

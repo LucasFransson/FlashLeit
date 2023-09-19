@@ -1,19 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { AuthenticatedTemplate, useMsal } from '@azure/msal-react';
+import {
+	AuthenticatedTemplate,
+	UnauthenticatedTemplate,
+	useMsal,
+} from '@azure/msal-react';
 import { useGetUserByIdQuery } from '../redux/api/usersSlice';
-import { useGetCollectionsByUserIdQuery } from '../redux/api/collectionsSlice';
+import {
+	useGetAuthoredCollectionsQuery,
+	useGetCollectionsByUserIdQuery,
+} from '../redux/api/collectionsSlice';
 import { useDeleteUser, useUpdateUser } from '../utils/userUtility';
 import Avatar from '../components/Avatar/Avatar';
 import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
 import AvatarModal from '../components/Modal/AvatarModal';
 import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
 import UserTypes from '../types/UsersTypes';
-import HeartButton from '../components/HeartButton';
-import Thumbnail from '../components/Thumbnail';
-import { SmallCard } from '../components/Thumbnail';
-import DeleteButton from '../components/DeleteSVGButton.js';
+import {
+	useGetAchievementsByUserIdQuery,
+	useGetAllAchievementsQuery,
+} from '../redux/api/achievementsSlice';
 
 function UserPage() {
 	const [skip, setSkip] = useState(true);
@@ -34,6 +41,25 @@ function UserPage() {
 		isError: isErrorCollections,
 		error: errorCollections,
 	} = useGetCollectionsByUserIdQuery(userId, { skip });
+	const {
+		data: createdCollections,
+		isLoading: isLoadingCreatedCollections,
+		isError: isErrorCreatedCollections,
+		error: errorCreatedCollections,
+	} = useGetAuthoredCollectionsQuery(userId, { skip });
+	const {
+		data: unlockedAchievements,
+		isLoading: isLoadingUnlockedAchievements,
+		isError: isErrorUnlockedAchievements,
+		error: errorUnlockedAchievements,
+	} = useGetAchievementsByUserIdQuery(userId, { skip });
+	const {
+		data: allAchievements,
+		isLoading: isLoadingAllAchievements,
+		isError: isErrorAllAchievements,
+		error: errorAllAchievements,
+	} = useGetAllAchievementsQuery();
+
 	const updateUser = useUpdateUser();
 	const deleteUser = useDeleteUser();
 
@@ -65,7 +91,7 @@ function UserPage() {
 				email: authUser[0].email,
 				accountName: authUser[0].accountName,
 				userName: newDisplayName,
-				avatarUrl: authUser[0].avatarUrl,
+				selectedAvatarUrl: authUser[0].selectedAvatarUrl,
 			};
 
 			updateUser(updatedUser);
@@ -79,7 +105,7 @@ function UserPage() {
 				email: authUser[0].email,
 				accountName: authUser[0].accountName,
 				userName: authUser[0].userName,
-				avatarUrl: url,
+				selectedAvatarUrl: url,
 			};
 
 			updateUser(updatedUser);
@@ -335,6 +361,7 @@ function UserPage() {
 					</div>
 				</div> */}
 			</AuthenticatedTemplate>
+			<UnauthenticatedTemplate></UnauthenticatedTemplate>
 		</>
 	);
 }

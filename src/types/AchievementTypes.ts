@@ -3,6 +3,7 @@ interface AchievementTypes {
 	title: string;
 	description: string;
 	userId: number;
+	achievementPoints: number;
 }
 
 export default AchievementTypes;

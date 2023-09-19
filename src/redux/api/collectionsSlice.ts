@@ -1,107 +1,97 @@
-import CardCollectionTypes from '../../types/CardCollectionTypes';
-import CardTypes from '../../types/CardTypes';
-import { getRandomColorClass } from '../../utils/getRandomColorClass';
-import { apiSlice } from './apiSlice';
+import AddCollectionResponeTypes from "../../types/AddCollectionResponseType";
+import CardCollectionTypes from "../../types/CardCollectionTypes";
+import CardTypes from "../../types/CardTypes";
+import { getRandomColorClass } from "../../utils/getRandomColorClass";
+import { apiSlice } from "./apiSlice";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
-	endpoints: (builder) => ({
+	endpoints: builder => ({
 		getAllCollections: builder.query<CardCollectionTypes[] | null, void>({
-			query: () => 'api/collections',
+			query: () => "api/collections",
 		}),
-		getCollectionsByUserId: builder.query<
-			CardCollectionTypes[] | null,
-			number | null | undefined
-		>({
-			query: (id) => `api/collections/user/${id}`,
-			providesTags: () => [{type: 'UserCollections'}]
+		getCollectionsByUserId: builder.query<CardCollectionTypes[] | null, number | null | undefined>({
+			query: id => `api/collections/user/${id}`,
+			providesTags: () => [{ type: "UserCollections" }],
 		}),
-		getCollectionByIdAndUserId: builder.query<
-			CardCollectionTypes,
-			{ collectionId: number; userId: number }
-		>({
-			query: (args) => {
+		getCollectionByIdAndUserId: builder.query<CardCollectionTypes, { collectionId: number; userId: number }>({
+			query: args => {
 				const { collectionId, userId } = args;
 				return {
 					url: `api/collections/${collectionId}/user/${userId}`,
 				};
 			},
-			providesTags: (result, error, args) => [
-				{ type: 'Collection', id: args.collectionId },
-			],
+			providesTags: (result, error, args) => [{ type: "Collection", id: args.collectionId }],
 			transformResponse: (response: CardCollectionTypes) => {
-				const modifiedFlashCards = response.flashCards.map(
-					(item: CardTypes) => ({
-						...item,
-						colorClass: getRandomColorClass(),
-					})
-				);
+				const modifiedFlashCards = response.flashCards.map((item: CardTypes) => ({
+					...item,
+					colorClass: getRandomColorClass(),
+				}));
 
 				return { ...response, flashCards: modifiedFlashCards };
 			},
 		}),
-		getAuthoredCollections: builder.query<
-		CardCollectionTypes [] | null,
-		 {userId: number}>({
-			query: (userId) => `api/collections/author/${userId}`,
-			providesTags: () => [{type: 'UserCollections'}]
-		 }),
-		addCollection: builder.mutation<void, CardCollectionTypes>({
-			query: (collection) => {
+		getAuthoredCollections: builder.query<CardCollectionTypes[] | null, { userId: number }>({
+			query: userId => `api/collections/author/${userId}`,
+			providesTags: () => [{ type: "UserCollections" }],
+		}),
+		addCollection: builder.mutation<AddCollectionResponeTypes, CardCollectionTypes>({
+			query: collection => {
 				return {
-					url: 'api/collections',
-					method: 'POST',
+					url: "api/collections",
+					method: "POST",
 					body: collection,
 				};
 			},
-			invalidatesTags: () => [{ type: 'UserCollections' }],
+			invalidatesTags: () => [{ type: "UserCollections" }],
+			transformResponse: (response: AddCollectionResponeTypes) => {console.log(response)
+			return response},
 		}),
-		CloneCollection: builder.mutation<
-			void,
-			{ userId: number; collection: CardCollectionTypes }
-		>({
+		cloneCollection: builder.mutation<void, { userId: number; collection: CardCollectionTypes }>({
 			query: ({ userId, collection }) => {
 				return {
-					url: `api/collections/${userId}`,
-					method: 'POST',
+					url: `api/collections/clone/${userId}`,
+					method: "POST",
 					body: collection,
 				};
 			},
+			invalidatesTags: () => [{ type: "UserCollections" }],
 		}),
-		updateCollection: builder.mutation<
-			void,
-			{ userId: number; collection: CardCollectionTypes }
-		>({
+		updateCollection: builder.mutation<void, { userId: number; collection: CardCollectionTypes }>({
 			query: ({ userId, collection }) => {
 				return {
 					url: `api/collections/${userId}/`,
-					method: 'PUT',
+					method: "PUT",
 					body: collection,
 				};
 			},
 		}),
-		updateCollectionCounter: builder.mutation<
-			void,
-			{ id: number; category: string }
-		>({
+		updateCollectionCounter: builder.mutation<void, { id: number; category: string }>({
 			query: ({ id, category }) => {
 				return {
 					url: `api/collections/update-counter/${id}/${category}`,
-					method: 'PUT',
+					method: "PUT",
 				};
 			},
+			invalidatesTags: () => [{ type: "UserCollections" }],
 		}),
-		deleteCollection: builder.mutation<
-			void,
-			{ collectionId: number; userId: number }
-		>({
+		deletePrivateCollection: builder.mutation<void, {collectionId: number}>({
+			query: ({collectionId}) => {
+				return {
+					url: `api/collections/delete/${collectionId}`,
+					method: "DELETE",
+				};
+			},
+			invalidatesTags: () => [{type: "UserCollections"}]
+		}),
+		deleteCollection: builder.mutation<void, { collectionId: number; userId: number }>({
 			query: ({ collectionId, userId }) => {
 				return {
 					url: `api/collections/${collectionId}/?userId=${userId}`,
-					method: 'DELETE',
-					body: JSON.stringify({userId: userId}),
+					method: "DELETE",
+					body: JSON.stringify({ userId: userId }),
 				};
 			},
-			invalidatesTags: () => [{ type: 'UserCollections'}], 
+			invalidatesTags: () => [{ type: "UserCollections" }],
 		}),
 	}),
 });
@@ -115,5 +105,6 @@ export const {
 	useCloneCollectionMutation,
 	useUpdateCollectionMutation,
 	useUpdateCollectionCounterMutation,
+	useDeletePrivateCollectionMutation,
 	useDeleteCollectionMutation,
 } = extendedApiSlice;
