@@ -39,15 +39,12 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 
 	const [hasClonedCollection, setHasClonedCollection] = useState(false);
 
-	
-
 	// Generate random color classes for each card
 	const cardColors = flashCards.map(() => getRandomColorClass());
 
 	// Function for handling/switching to the next card
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
-			
 			setAnimationType("correct");
 			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "correct" }));
 
@@ -56,39 +53,37 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				const achievement = unlockCorrectAnswersAchievement();
 				console.log(achievement);
 			}
-
 		} else {
-				setAnimationType("wrong");
-				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+			setAnimationType("wrong");
+			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
 
-				if (!restProps.isDemo) {
-					updateCollectionsCounter(id, "IncrementIncorrectAnswers");
+			if (!restProps.isDemo) {
+				updateCollectionsCounter(id, "IncrementIncorrectAnswers");
 
-					const achievement = unlockInCorrectAnswersAchievement();
-					console.log(achievement);
-				}
-				setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+				const achievement = unlockInCorrectAnswersAchievement();
+				console.log(achievement);
 			}
+		}
 
 		setAnimateOut(true);
 
-			setTimeout(() => {
-				setAnimateOut(false);
-				setAnimationType(null);
-				if (cardIndex < flashCards.length - 1) {
-					// Check if the current card is the last card
-					setCardIndex(cardIndex + 1); // Increment the card index to show the next card
-				} else {
-					setIsFinished(true);
+		setTimeout(() => {
+			setAnimateOut(false);
+			setAnimationType(null);
+			if (cardIndex < flashCards.length - 1) {
+				// Check if the current card is the last card
+				setCardIndex(cardIndex + 1); // Increment the card index to show the next card
+			} else {
+				setIsFinished(true);
 
-					if (!restProps.isDemo) {
-						updateCollectionsCounter(id, "IncrementCompletedRuns");
+				if (!restProps.isDemo) {
+					updateCollectionsCounter(id, "IncrementCompletedRuns");
 
-						const achievement = unlockCompletedRunsAchievement();
-						console.log(achievement);
-					}
+					const achievement = unlockCompletedRunsAchievement();
+					console.log(achievement);
 				}
-			}, 1300); // ms animation time
+			}
+		}, 1300); // ms animation time
 	};
 
 	const cloneCollection = useCloneCollection();
@@ -111,7 +106,6 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 		cloneCollection(restProps.userId, clonedCollection);
 		setHasClonedCollection(true);
 	};
-
 
 	return (
 		<div className="card-collection">
@@ -166,6 +160,5 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			)}
 		</div>
 	);
-
 };
 export default CardCollection;
