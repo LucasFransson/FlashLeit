@@ -31,12 +31,11 @@ function UserCollectionsPage() {
 				) : isError ? (
 					<ErrorMsg error={error} />
 				) : collections?.length >= 1 ? (
-					
 						<ColorClassContext.Provider value={colorClass}>{collections && <CardGrid items={collections} Component={CollectionPreview} linkPrefix={"collection"}></CardGrid>}</ColorClassContext.Provider>
 				) : (
 					<div className="user-collection-page__wrapper">
 						<img src="/img/user_avatars/spanish_blob.png" id="spanish__blob" />
-						<h3>Spanish blob is trying to tell you that there are currently no collections connected to your account and that he wishes you to try this <Link to="/edit">link (click here)</Link> to create your first collection.</h3>
+						<h3>Spanish blob is trying to tell you that currently, there are no collections connected to your account and that he very much wishes you to try this <Link to="/edit">link (click here)</Link> to create your first collection.</h3>
 					</div>
 				)}
 			</div>

@@ -832,10 +832,35 @@ a {
 
 .about-page {
   grid-column: 1/-1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 0.2fr, 1fr, 1fr; }
+  .about-page__top {
+    text-align: center; }
+  .about-page__blobs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center; }
+  .about-page__blob__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .about-page__image__wrapper {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 10em;
+    height: 10em;
+    border: solid black 2px; }
+    .about-page__image__wrapper img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover; }
+  .about-page h2 {
+    margin-top: 0.5em; }
+  .about-page__about {
+    text-align: center; }
+    .about-page__about h3 {
+      margin-top: 0.5em; }
 
 .cardset-page {
   grid-column: 1/-1;
