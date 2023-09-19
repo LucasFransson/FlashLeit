@@ -18,6 +18,7 @@ import AnimationClassContext from '../context/AnimationContext';
 import Toggler from '../components/Toggler/Toggler';
 import { useDeleteCollection } from '../utils/collectionUtility';
 import Carousel from '../components/Carousel';
+import Dropdown from '../components/Dropdown';
 
 function EditCardPage() {
 	// useState to hold the selected card:
@@ -172,32 +173,48 @@ function EditCardPage() {
 		<>
 			{userId && (
 				<div className="create-edit-page ">
-					{/* <div className="create-edit-page__collection-selector"> */}
-					{collectionData && collectionData.length > 0 && (
-						<>
-							<Toggler onToggle={handleToggle} isChecked={isChecked} />
-							{!isChecked ? (
-								<CollectionSelector
-									collections={collectionData}
-									onCollectionChange={handleCollectionChange}
-								/>
-							) : (
-								<AddCollection
-									userId={userId}
-									collectionAdded={collectionAdded}
-								/>
-							)}
-						</>
-					)}
-					{/* </div> */}
+					<aside className="create-edit-page__sidebar sidebar">
+						{collectionData && collectionData.length > 0 && (
+							<>
+								{/* <div className="sidebar__neo-cards"> */}
+								<button className="sidebar__neo-card sidebar__neo-card--left button--neo">
+									edit
+								</button>
+								<button className="sidebar__neo-card sidebar__neo-card--right button--neo">
+									create
+								</button>
+								{/* </div> */}
+								<h3 className="sidebar__h3 sidebar__h3--current-choice">
+									Title of Current Choice
+								</h3>
+								<p className="sidebar__dropdown--label"></p>
+								<p className="sidebar__dropdown">
+									<Dropdown></Dropdown>
+								</p>
+								<h3 className="sidebar__h3 sidebar__h3--current-collection">
+									Current collection here
+								</h3>
+								{/* <Toggler onToggle={handleToggle} isChecked={isChecked} /> */}
+
+								{/* {!isChecked ? (
+									<CollectionSelector
+										collections={collectionData}
+										onCollectionChange={handleCollectionChange}
+									/>
+								) : (
+									<AddCollection
+										userId={userId}
+										collectionAdded={collectionAdded}
+									/>
+								)} */}
+							</>
+						)}
+						{/* </div> */}
+					</aside>
 
 					{collectionData && collectionData.length > 0 && !isChecked && (
 						// <div className="create-edit-page__wrapper">
 						<>
-							{/* <Carousel
-								className={'carousel create-edit-page__carousel'}
-								slides={['Slide 1', 'Slide 2', 'Slide 3', 'Slide 4', 'Slide 5']}
-							/> */}
 							<Carousel
 								className={'carousel create-edit-page__carousel'}
 								items={flashCards}

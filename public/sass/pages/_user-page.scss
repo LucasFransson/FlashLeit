@@ -1,15 +1,653 @@
-.button--delete-trash {
-	// text-align: center;
-	// float: none;
-	// height: 5rem;
-	// width: 5rem;
-	margin-left: 100rem;
-}
+$pink: #ef85a7;
+$yellow: #dfb333;
+$blue: #46c1da;
+$purple: #9158fb;
+$green: #4de1c4;
 
-.abcdef {
-	max-width: 100vw;
-	display: flex;
-	flex-direction: column;
-	align-items: end;
-	justify-content: end;
+$highlight: $color-primary--400;
+// $bg: #e2e3e9;// $fg: #f7f8f9;
+
+$bg: $color-neutral-200;
+
+$fg: $color-neutral-100;
+$contrast: #3f4948;
+$dashboard-bg: $color-primary--100;
+$h1size: 4rem;
+$h4size: 2.5rem;
+// $hsize3: 2.4rem;
+// $psize: 1.6rem;
+
+.user-dashboard {
+	grid-column: 1/-1;
+	grid-row: 2;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 2rem;
+	overflow-x: hidden;
+	background: $dashboard-bg;
+	line-height: 1.5;
+
+	& > * p,
+	li {
+		line-height: 1.5;
+	}
+	& > * h1 {
+		font-size: 4rem;
+	}
+
+	& > * h4 {
+		line-height: 2.5rem;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
+	&__title,
+	&__subtitle {
+		color: $contrast;
+		margin: 0;
+		padding-bottom: 1.5rem;
+		position: relative;
+	}
+	&__title {
+		font-size: $h1size;
+		font-weight: 700;
+	}
+
+	&__description {
+		opacity: 0.7;
+	}
+
+	&__note {
+		opacity: 0.55;
+		// font-size: 0.8rem;
+		line-height: 1.25rem;
+		display: block;
+		color: $contrast;
+	}
+
+	& * > h1,
+	h2,
+	h4 {
+		padding-bottom: 1.5rem;
+		position: relative;
+		margin: 0;
+
+		&:after {
+			content: '';
+			height: 0.35rem;
+			width: 2.25rem;
+			background: $highlight;
+			display: block;
+			position: absolute;
+			bottom: 0.8rem;
+			transform: skewX(-15deg);
+		}
+	}
+
+	&__col {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+
+		@media screen and (min-width: 96rem) {
+			height: 100%;
+		}
+	}
+
+	&__card {
+		opacity: 0.7;
+		width: 100%;
+		padding: 0.75rem 1.5rem;
+		margin: 0 0 1.5rem;
+		background: $fg;
+		box-shadow: 1px 2px 12px 2px
+				rgba(darken(mix($bg, $highlight, 80%), 20%), 0.15),
+			3px 8px 8px -2px rgba(darken(mix($fg, $bg, 30%), 20%), 0.3);
+		transform: translate3d(0, 0, 0);
+		transition: all 0.325s ease-in;
+
+		&:hover {
+			opacity: 1;
+			box-shadow: 1px 2px 18px 3px
+					rgba(darken(mix($bg, $highlight, 80%), 25%), 0.2),
+				4px 9px 12px -1px rgba(darken(mix($fg, $bg, 30%), 25%), 0.35);
+			transform: translate3d(0, 0, 0) scale(1.025);
+		}
+
+		&--flat {
+			box-shadow: none;
+			background: transparent;
+			opacity: 1;
+		}
+
+		&--small {
+			flex-grow: 1;
+		}
+
+		&--large {
+			flex-grow: 4;
+		}
+
+		&--xl {
+			flex-grow: 6;
+		}
+	}
 }
+// Variables
+// $pink: #ef85a7;
+// $yellow: #dfb333;
+// $blue: #46c1da;
+// $purple: #9158fb;
+// $green: #4de1c4;
+
+// $highlight: $blue;
+// $bg: #e2e3e9;
+// $fg: #f7f8f9;
+// $contrast: #3f4948;
+
+// $dashboard-bg: $bg;
+
+// $hsize1: 4rem;
+// $hsize2: 2.8rem;
+// $hsize3: 2.4rem;
+// $psize: 1.6rem;
+
+// .user-dashboard {
+// 	grid-column: 1/-1;
+// 	grid-row: 2;
+// 	display: grid;
+// 	grid-template-columns: repeat(3, 1fr);
+// 	grid-gap: 1.5rem;
+// 	overflow-x: hidden;
+// 	background: $dashboard-bg;
+
+// 	&__col {
+// 		margin: 0; // Removed margin to ensure grid layout
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 1.5rem;
+
+// 		@media screen and (min-width: 96rem) {
+// 			height: 100%;
+// 		}
+// 	}
+
+// 	&__card {
+// 		opacity: 0.7;
+// 		width: 100%;
+// 		padding: 0.75rem 1.5rem;
+// 		margin: 0 0 1.5rem;
+// 		background: $fg;
+// 		box-shadow: 1px 2px 12px 2px
+// 				rgba(darken(mix($bg, $highlight, 80%), 20%), 0.15),
+// 			3px 8px 8px -2px rgba(darken(mix($fg, $bg, 30%), 20%), 0.3);
+// 		transform: translate3d(0, 0, 0);
+// 		transition: all 0.325s ease-in;
+
+// 		&:hover {
+// 			opacity: 1;
+// 			box-shadow: 1px 2px 18px 3px
+// 					rgba(darken(mix($bg, $highlight, 80%), 25%), 0.2),
+// 				4px 9px 12px -1px rgba(darken(mix($fg, $bg, 30%), 25%), 0.35);
+// 			transform: translate3d(0, 0, 0) scale(1.025);
+// 		}
+
+// 		&--flat {
+// 			box-shadow: none;
+// 			background: transparent;
+// 			opacity: 1;
+// 		}
+// 	}
+
+// 	&__title,
+// 	&__subtitle {
+// 		color: $contrast;
+// 		margin: 0;
+// 		padding-bottom: 1.5rem;
+// 		position: relative;
+
+// 		&:after {
+// 			content: '';
+// 			height: 0.35rem;
+// 			width: 2.25rem;
+// 			background: $highlight;
+// 			display: block;
+// 			position: absolute;
+// 			bottom: 0.8rem;
+// 			transform: skewX(-15deg);
+// 		}
+// 	}
+
+// 	&__title {
+// 		font-size: $hsize1;
+// 		font-weight: 900;
+// 	}
+
+// 	&__subtitle {
+// 		font-size: $hsize2;
+// 	}
+
+// 	&__description {
+// 		line-height: 1.5;
+// 		margin: 0 0 1.5rem;
+// 		opacity: 0.7;
+// 	}
+
+// 	&__note {
+// 		opacity: 0.35;
+// 		font-size: 0.8rem;
+// 		line-height: 1.25rem;
+// 		display: block;
+// 		color: $contrast;
+// 	}
+// }
+
+// // Variables
+// $pink: #ef85a7;
+// $yellow: #dfb333;
+// $blue: #46c1da;
+// $purple: #9158fb;
+// $green: #4de1c4;
+
+// $highlight: $blue;
+// $bg: #e2e3e9;
+// $fg: #f7f8f9;
+// $contrast: #3f4948;
+
+// $dashboard-bg: $bg; // Added this line
+
+// $hsize1: 4rem;
+// $hsize2: 2.8rem;
+// $hsize3: 2.4rem;
+// $psize: 1.6rem;
+
+// .user-dashboard {
+// 	grid-column: 1/-1;
+// 	grid-row: 2;
+// 	display: grid;
+// 	grid-template-columns: repeat(3, 1fr);
+// 	grid-gap: 1.5rem;
+// 	overflow-x: hidden;
+// 	background: $dashboard-bg;
+
+// 	&__col {
+// 		margin: 1.5rem;
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 1.5rem;
+
+// 		@media screen and (min-width: 96rem) {
+// 			height: 100%;
+// 		}
+// 	}
+
+// 	&__card {
+// 		opacity: 0.7;
+// 		width: 100%;
+// 		padding: 0.75rem 1.5rem;
+// 		margin: 0 0 1.5rem;
+// 		background: $fg;
+// 		box-shadow: 1px 2px 12px 2px
+// 				rgba(darken(mix($bg, $highlight, 80%), 20%), 0.15),
+// 			3px 8px 8px -2px rgba(darken(mix($fg, $bg, 30%), 20%), 0.3);
+// 		transform: translate3d(0, 0, 0);
+// 		transition: all 0.325s ease-in;
+
+// 		&:hover {
+// 			opacity: 1;
+// 			box-shadow: 1px 2px 18px 3px
+// 					rgba(darken(mix($bg, $highlight, 80%), 25%), 0.2),
+// 				4px 9px 12px -1px rgba(darken(mix($fg, $bg, 30%), 25%), 0.35);
+// 			transform: translate3d(0, 0, 0) scale(1.025);
+// 		}
+
+// 		&--flat {
+// 			box-shadow: none;
+// 			background: transparent;
+// 			opacity: 1;
+// 		}
+// 	}
+
+// 	&__title,
+// 	&__subtitle {
+// 		color: $contrast;
+// 		margin: 0;
+// 		padding-bottom: 1.5rem;
+// 		position: relative;
+
+// 		&:after {
+// 			content: '';
+// 			height: 0.35rem;
+// 			width: 2.25rem;
+// 			background: $highlight;
+// 			display: block;
+// 			position: absolute;
+// 			bottom: 0.8rem;
+// 			transform: skewX(-15deg);
+// 		}
+// 	}
+
+// 	&__title {
+// 		font-size: $hsize1;
+// 		font-weight: 900;
+// 	}
+
+// 	&__subtitle {
+// 		font-size: $hsize2;
+// 	}
+
+// 	&__description {
+// 		line-height: 1.5;
+// 		margin: 0 0 1.5rem;
+// 		opacity: 0.7;
+// 	}
+
+// 	&__note {
+// 		opacity: 0.35;
+// 		font-size: 0.8rem;
+// 		line-height: 1.25rem;
+// 		display: block;
+// 		color: $contrast;
+// 	}
+// }
+
+// // Colors
+// $pink: #ef85a7;
+// $yellow: #dfb333;
+// $blue: #46c1da;
+// $purple: #9158fb;
+// $green: #4de1c4;
+
+// // Theme
+// $highlight: $blue;
+// $bg: #e2e3e9;
+// $fg: #f7f8f9;
+// $contrast: #3f4948;
+
+// // Colors for Dashboard
+// $dashboard-bg: #e2e3e9;
+// $dashboard-fg: #f7f8f9;
+// $dashboard-contrast: #3f4948;
+// $dashboard-highlight: $blue;
+
+// // Typography
+// $hsize1: 4rem;
+// $hsize2: 2.8rem;
+// $hsize3: 2.4rem;
+// $psize: 1.6rem;
+
+// .user-dashboard {
+// 	grid-column: 1/-1;
+// 	grid-row: 2;
+// 	display: grid;
+// 	grid-template-columns: repeat(3, 1fr);
+// 	grid-gap: 1.5rem;
+// 	overflow-x: hidden;
+// 	background: $dashboard-bg;
+
+// 	&__col {
+// 		margin: 0;
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 1.5rem; // Gap between the cards
+
+// 		@media screen and (min-width: 96rem) {
+// 			height: 100%;
+// 		}
+// 	}
+// 	// &__card {
+// 	// 	opacity: 0.7;
+// 	// 	width: 100%;
+// 	// 	padding: 0.75rem 1.5rem;
+// 	// 	margin: 0 0 1.5rem;
+// 	// 	background: $fg;
+// 	// 	box-shadow: 1px 2px 12px 2px
+// 	// 			rgba(darken(mix($bg, $highlight, 80%), 20%), 0.15),
+// 	// 		3px 8px 8px -2px rgba(darken(mix($fg, $bg, 30%), 20%), 0.3);
+// 	// 	transform: translate3d(0, 0, 0);
+// 	// 	transition: all 0.325s ease-in;
+
+// 	// 	&--flat {
+// 	// 		box-shadow: none;
+// 	// 		background: transparent;
+// 	// 		opacity: 1;
+// 	// 	}
+// 	// }
+// 	&__card {
+// 		opacity: 0.7;
+// 		width: 100%;
+// 		padding: 0.75rem 1.5rem;
+// 		margin: 0 0 1.5rem;
+// 		background: $fg;
+// 		box-shadow: 1px 2px 12px 2px
+// 				rgba(darken(mix($bg, $highlight, 80%), 20%), 0.15),
+// 			3px 8px 8px -2px rgba(darken(mix($fg, $bg, 30%), 20%), 0.3);
+// 		transform: translate3d(0, 0, 0);
+// 		transition: all 0.325s ease-in;
+
+// 		&--flat {
+// 			box-shadow: none;
+// 			background: transparent;
+// 			opacity: 1;
+// 		}
+
+// 		&--small {
+// 			flex-grow: 1;
+// 		}
+
+// 		&--large {
+// 			flex-grow: 4;
+// 		}
+
+// 		&--xl {
+// 			flex-grow: 6;
+// 		}
+// 	}
+
+// 	&__title,
+// 	&__subtitle {
+// 		color: $contrast;
+// 		margin: 0;
+// 		padding-bottom: 1.5rem;
+// 		position: relative;
+
+// 		&:after {
+// 			content: '';
+// 			height: 0.35rem;
+// 			width: 2.25rem;
+// 			background: $highlight;
+// 			display: block;
+// 			position: absolute;
+// 			bottom: 0.8rem;
+// 			transform: skewX(-15deg);
+// 		}
+// 	}
+
+// 	&__title {
+// 		font-size: $hsize1;
+// 		font-weight: 900;
+// 	}
+
+// 	&__subtitle {
+// 		font-size: $hsize2;
+// 	}
+
+// 	&__description {
+// 		line-height: 1.5;
+// 		margin: 0 0 1.5rem;
+// 		opacity: 0.7;
+// 	}
+
+// 	&__note {
+// 		opacity: 0.35;
+// 		font-size: 0.8rem;
+// 		line-height: 1.25rem;
+// 		display: block;
+// 		color: $contrast;
+// 	}
+// }
+
+//////////
+
+// // Variables
+// $pink: #ef85a7;
+// $yellow: #dfb333;
+// $blue: #46c1da;
+// $purple: #9158fb;
+// $green: #4de1c4;
+
+// $highlight: $blue;
+// $bg: #e2e3e9;
+// $fg: #f7f8f9;
+// $contrast: #3f4948;
+
+// $hsize1: 4rem;
+// $hsize2: 2.8rem;
+// $hsize3: 2.4rem;
+// $psize: 1.6rem;
+
+// .user-dashboard {
+// 	grid-column: 1/-1;
+// 	grid-row: 2;
+// 	display: grid;
+// 	grid-template-columns: repeat(3, 1fr);
+// 	grid-gap: 1.5rem;
+// 	overflow-x: hidden;
+// 	background: $dashboard-bg;
+
+// 	&__col {
+// 		margin: 1.5rem;
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 1.5rem;
+
+// 		@media screen and (min-width: 96rem) {
+// 			height: 100%;
+// 		}
+// 	}
+
+// 	&__card {
+// 		opacity: 0.7;
+// 		width: 100%;
+// 		padding: 0.75rem 1.5rem;
+// 		margin: 0 0 1.5rem;
+// 		background: $fg;
+// 		box-shadow: 1px 2px 12px 2px
+// 				rgba(darken(mix($bg, $highlight, 80%), 20%), 0.15),
+// 			3px 8px 8px -2px rgba(darken(mix($fg, $bg, 30%), 20%), 0.3);
+// 		transform: translate3d(0, 0, 0);
+// 		transition: all 0.325s ease-in;
+
+// 		&:hover {
+// 			opacity: 1;
+// 			box-shadow: 1px 2px 18px 3px
+// 					rgba(darken(mix($bg, $highlight, 80%), 25%), 0.2),
+// 				4px 9px 12px -1px rgba(darken(mix($fg, $bg, 30%), 25%), 0.35);
+// 			transform: translate3d(0, 0, 0) scale(1.025);
+// 		}
+
+// 		&--flat {
+// 			box-shadow: none;
+// 			background: transparent;
+// 			opacity: 1;
+// 		}
+// 	}
+
+// 	&__title,
+// 	&__subtitle {
+// 		color: $contrast;
+// 		margin: 0;
+// 		padding-bottom: 1.5rem;
+// 		position: relative;
+
+// 		&:after {
+// 			content: '';
+// 			height: 0.35rem;
+// 			width: 2.25rem;
+// 			background: $highlight;
+// 			display: block;
+// 			position: absolute;
+// 			bottom: 0.8rem;
+// 			transform: skewX(-15deg);
+// 		}
+// 	}
+
+// 	&__title {
+// 		font-size: $hsize1;
+// 		font-weight: 900;
+// 	}
+
+// 	&__subtitle {
+// 		font-size: $hsize2;
+// 	}
+
+// 	&__description {
+// 		line-height: 1.5;
+// 		margin: 0 0 1.5rem;
+// 		opacity: 0.7;
+// 	}
+
+// 	&__note {
+// 		opacity: 0.35;
+// 		font-size: 0.8rem;
+// 		line-height: 1.25rem;
+// 		display: block;
+// 		color: $contrast;
+// 	}
+// }
+
+// WORKING WITH GRID
+
+// .user-dashboard {
+// 	grid-column: 1/-1;
+// 	grid-row: 2;
+// 	display: grid;
+// 	grid-template-columns: repeat(3, 1fr);
+// 	grid-gap: 1.5rem;
+// 	overflow-x: hidden;
+// 	background: $dashboard-bg;
+
+// 	&__col {
+// 		margin: 0;
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 1.5rem; // Gap between the cards
+
+// 		@media screen and (min-width: 96rem) {
+// 			height: 100%;
+// 		}
+// 	}
+
+// 	&__card {
+// 		opacity: 0.7;
+// 		width: 100%;
+// 		padding: 0.75rem 1.5rem;
+// 		margin: 0 0 1.5rem;
+// 		background: $fg;
+// 		box-shadow: 1px 2px 12px 2px
+// 				rgba(darken(mix($bg, $highlight, 80%), 20%), 0.15),
+// 			3px 8px 8px -2px rgba(darken(mix($fg, $bg, 30%), 20%), 0.3);
+// 		transform: translate3d(0, 0, 0);
+// 		transition: all 0.325s ease-in;
+
+// 		&--flat {
+// 			box-shadow: none;
+// 			background: transparent;
+// 			opacity: 1;
+// 		}
+
+// 		&--small {
+// 			flex-grow: 1;
+// 		}
+
+// 		&--large {
+// 			flex-grow: 4;
+// 		}
+
+// 		&--xl {
+// 			flex-grow: 6;
+// 		}
+// 	}
+
+// 	// ... [Remaining .user-dashboard styles]
+// }

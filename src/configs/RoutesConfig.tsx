@@ -7,6 +7,7 @@ import UserCollectionsPage from '../pages/UserCollectionsPage';
 import UserPage from '../pages/UserPage';
 import DiscoverPage from '../pages/DiscoverPage';
 import LeitnerPage from '../pages/LeitnerPage';
+import TrailerParkLand from '../pages/TrailerParkLand';
 
 function RoutesConfig() {
 	return (
@@ -19,6 +20,7 @@ function RoutesConfig() {
 			<Route path="/collections" element={<UserCollectionsPage />} />
 			<Route path="/userpage" element={<UserPage />} />
 			<Route path="/discover" element={<DiscoverPage />} />
+			<Route path="/devland" element={<TrailerParkLand />} />
 		</Routes>
 	);
 }

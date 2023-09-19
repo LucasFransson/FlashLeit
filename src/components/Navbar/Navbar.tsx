@@ -63,7 +63,7 @@ function Navbar() {
 	return (
 		<div className="navbar">
 			<div className="navbar__item navbar__item--0 ">
-				<div class="border-hover-effect">
+				<div className="border-hover-effect">
 					<Link to={'/'}>
 						<p className="navbar__item-link border-hover-effect">
 							<div>

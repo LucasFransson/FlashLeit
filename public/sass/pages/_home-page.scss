@@ -6,21 +6,8 @@
 	grid-template-columns: 0.5fr 2fr 2fr 0.5fr;
 	grid-template-rows: repeat(5, 1fr);
 	background-color: $color-neutral-700;
-	// margin-inline: 15rem;
-	// grid-template-rows: 0.2fr 9fr 1.2fr;
-	//grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
-	// gap: 5rem;
-	// display: flex;
-	// align-items: stretch;
-	// justify-content: center;
 
 	color: rgb(224, 224, 224);
-
-	// &__section {
-	// 	//border: 2px solid green;
-	// 	border: 1px solid rgb(241, 244, 242);
-	// 	box-shadow: 1rem 0px 2rem 2px rgba(0, 0, 0, 0.4);
-	// }
 
 	&__main {
 		grid-column-start: 2;
@@ -49,26 +36,66 @@
 		align-items: center;
 		color: $color-primary--100;
 		&--head {
-			font-size: 16rem;
-			letter-spacing: 0.7rem;
+			font-size: 14.2rem;
+			letter-spacing: 0.8rem;
 			font-weight: 1000;
 			animation: moveInLeft 1s ease-out;
+
+			@media (max-width: 1600px) {
+				font-size: calc(8rem + 3.9vw);
+				letter-spacing: calc(0.4rem + 0.25vw);
+			}
+
+			@media (max-width: 1200px) {
+				font-size: calc(6rem + 3.5vw);
+				letter-spacing: calc(0.3rem + 0.2vw);
+			}
+
+			@media (max-width: 800px) {
+				font-size: calc(4rem + 2.5vw);
+				letter-spacing: 0.2rem;
+			}
+
+			@media (max-width: 500px) {
+				font-size: 4rem;
+				letter-spacing: 0.15rem;
+			}
 		}
+
 		&--sub {
-			font-size: 3.6rem;
-			letter-spacing: 1.8rem;
+			font-size: 3.2rem;
+			letter-spacing: 1.4rem;
 			text-transform: uppercase;
-			font-weight: 500;
+			font-weight: 400;
 			animation: moveInRight 1s ease-out;
 
-			&__span {
-				// color: $color-aquamarine-light;
-				// color: $color-malachite-light;
-				font-weight: 700;
-				animation: changeColorToGreen 0.5s ease-out 1s;
-				animation-fill-mode: backwards;
-				// text-transform: capitalize;
+			@media (max-width: 1600px) {
+				font-size: calc(2rem + 0.8vw);
+				letter-spacing: calc(0.7rem + 0.1vw);
 			}
+
+			@media (max-width: 1200px) {
+				font-size: calc(1.8rem + 0.7vw);
+				letter-spacing: calc(0.6rem + 0.08vw);
+			}
+
+			@media (max-width: 800px) {
+				font-size: calc(1.5rem + 0.5vw);
+				letter-spacing: 0.5rem;
+			}
+
+			@media (max-width: 500px) {
+				font-size: 1.4rem;
+				letter-spacing: 0.4rem;
+			}
+		}
+		&__span {
+			// color: $color-aquamarine-light;
+			// color: $color-malachite-light;
+			// font-weight: 700;
+			// animation: changeColorToGreen 0.5s ease-out 1s;
+			// animation-fill-mode: backwards;
+			// text-transform: capitalize;
 		}
 	}
 

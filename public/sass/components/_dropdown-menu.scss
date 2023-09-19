@@ -1,0 +1,126 @@
+.dropdown {
+	position: relative;
+	// z-index: 1;
+	background-color: $color-neutral-100;
+	width: 30rem; // 300px
+	border-radius: 1rem; // 10px
+	box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.1);
+	font-size: 1.7rem; // 17px
+	color: #4b4d54;
+	font-family: 'Source Sans Pro', sans-serif;
+
+	&__header {
+		padding: 1.5rem; // 15px
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__body {
+		padding: 0.5rem; // 5px
+		border-top: 0.1rem solid $color-neutral-200; // 1px
+		display: none;
+
+		&.open {
+			display: block;
+		}
+	}
+
+	&__item {
+		padding: 1rem; // 10px
+		z-index: 11;
+		&:not(:last-child) {
+			border-bottom: 1px solid $color-primary--100;
+		}
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&__item-dot {
+		opacity: 0;
+		color: #91a5be;
+		transition: all 0.2s ease-in-out;
+
+		&.selected {
+			opacity: 1;
+		}
+	}
+
+	&__icon {
+		font-size: 1.3rem; // 13px
+		color: $color-primary--100;
+		transform: rotate(0deg);
+		transition: all 0.2s ease-in-out;
+
+		&.open {
+			transform: rotate(90deg);
+		}
+	}
+}
+
+// .dropdown {
+// 	background-color: #fac945;
+// 	// justify-content: center;
+// 	// display: flex;
+// 	// flex-direction: column;
+
+// 	// margin-top: 150px;
+// 	font-size: 17px;
+// 	color: #4b4d54;
+// 	font-family: 'Source Sans Pro', sans-serif;
+
+// 	overflow: hidden;
+// 	width: 300px;
+// 	border-radius: 10px;
+// 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+// 	background-color: $color-neutral-100;
+// }
+
+// .dropdown__header {
+// 	padding: 15px;
+// 	cursor: pointer;
+// 	display: flex;
+// 	justify-content: space-between;
+// 	align-items: center;
+// }
+
+// .dropdown__body {
+// 	padding: 5px;
+// 	border-top: 1px solid $color-neutral-200;
+// 	display: none;
+// }
+
+// .dropdown__body.open {
+// 	display: block;
+// }
+
+// .dropdown__item {
+// 	padding: 10px;
+// }
+
+// .dropdown__item:hover {
+// 	cursor: pointer;
+// }
+
+// .dropdown__item-dot {
+// 	opacity: 0;
+// 	color: #91a5be;
+// 	transition: all 0.2s ease-in-out;
+// }
+
+// .dropdown__item-dot.selected {
+// 	opacity: 1;
+// }
+
+// .dropdown__icon {
+// 	font-size: 13px;
+// 	color: $color-primary--100;
+// 	transform: rotate(0deg);
+// 	transition: all 0.2s ease-in-out;
+// }
+
+// .dropdown__icon.open {
+// 	transform: rotate(90deg);
+// }

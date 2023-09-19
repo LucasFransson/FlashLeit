@@ -30,9 +30,9 @@ const Carousel: React.FC<CarouselProps> = ({
 	const settingsMain = {
 		ref: mainSliderRef,
 		slidesToShow: 3,
-		slidesToScroll: 10,
-		autoplay: false,
-		dots: false,
+		slidesToScroll: 3,
+		autoplay: true,
+		dots: true,
 		centerMode: true,
 		// centerPadding: '0 auto',
 
@@ -59,7 +59,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		focusOnSelect: true,
 		arrows: true,
 		infinite: true,
-		speed: 240,
+		speed: 150,
 		fade: false,
 		adaptiveHeight: true,
 		afterChange: (current: number) => setCurrentSlide(current),
@@ -68,8 +68,8 @@ const Carousel: React.FC<CarouselProps> = ({
 
 	const settingsNav = {
 		ref: navSliderRef,
-		slidesToShow: 5,
-		slidesToScroll: 1,
+		slidesToShow: 7,
+		slidesToScroll: 3,
 		dots: false,
 		focusOnSelect: true,
 		infinite: true,
