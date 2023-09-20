@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import CardTypes from '../../types/CardTypes';
-import ColorClassContext from '../../context/ColorClassContext';
-import { getRandomColorClass } from '../../utils/getRandomColorClass';
+import React, { useContext } from "react";
+import CardTypes from "../../types/CardTypes";
+import ColorClassContext from "../../context/ColorClassContext";
+import { getRandomColorClass } from "../../utils/getRandomColorClass";
 
 interface CollectionPreviewTypes {
 	id: number;
@@ -16,6 +16,7 @@ interface CollectionPreviewTypes {
 	cardCount: number;
 	colorClass: string | null;
 	className: string | null;
+	description: string;
 }
 
 const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
@@ -31,6 +32,7 @@ const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 	cardCount,
 	colorClass,
 	className,
+	description,
 	...restProps
 }) => {
 	if (colorClass == null) {
@@ -40,13 +42,13 @@ const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 		<>
 			<div
 				className={`collection-preview collection-preview${className}`}
-				{...restProps}
+				// {...restProps}
 			>
 				<div className="collection-preview__card-box">
 					<p
 						className={`collection-preview__card-box-count  ${colorClass}-foreground`}
 					>
-						{cardCount}{' '}
+						{cardCount}{" "}
 					</p>
 					<p
 						className={`collection-preview__card-box-text  ${colorClass}-foreground`}
@@ -56,9 +58,7 @@ const CollectionPreview: React.FC<CollectionPreviewTypes> = ({
 				</div>
 				<div className={`collection-preview__content ${colorClass}`}></div>
 				<h2 className="collection-preview__title">{title}</h2>
-				<p className="collection-preview__description">
-					Description: Lorem ipsum dolor sit amet consectetur.
-				</p>
+				<p className="collection-preview__description">{description}</p>
 			</div>
 		</>
 	);

@@ -10,14 +10,23 @@
 		justify-content: center;
 		height: 10vh;
 		// background-image: $color-gradient-green-primary;
-		background-color: $color-neutral-100;
+		// background-color: $color-primary--100;
 
 		box-shadow: $box-shadow-subtle;
 	}
 	&__bottom {
 		margin-inline: 5rem;
+		// background-color: $color-neutral-100;
 	}
 
+	& .search__input {
+		width: 30%;
+
+		&:focus {
+			width: 40%;
+			border: 1px solid $color-neutral-100;
+		}
+	}
 	// & .grid-container {
 	// 	&__item {
 	// 	}

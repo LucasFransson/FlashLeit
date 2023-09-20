@@ -7,7 +7,7 @@
 	box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.1);
 	font-size: 1.7rem; // 17px
 	color: #4b4d54;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: "Source Sans Pro", sans-serif;
 
 	&__header {
 		padding: 1.5rem; // 15px
@@ -30,6 +30,7 @@
 	&__item {
 		padding: 1rem; // 10px
 		z-index: 11;
+		overflow: scroll;
 		&:not(:last-child) {
 			border-bottom: 1px solid $color-primary--100;
 		}

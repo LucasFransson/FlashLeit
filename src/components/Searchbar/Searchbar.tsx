@@ -1,7 +1,7 @@
 // import { ReactComponent as SearchIcon } from '/public/svg/SVG/search.svg';
 //import { ReactComponent as SearchIcon } from '/public/svg/SVG/search.svg';
 
-import { ReactComponent as SearchIcon } from '../../../public/svg/SVG/search.svg';
+import { ReactComponent as SearchIcon } from "../../../public/svg/SVG/search.svg";
 
 function SearchBar({ searchTerm, setSearchTerm, className }) {
 	return (

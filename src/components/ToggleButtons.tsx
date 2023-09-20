@@ -1,4 +1,4 @@
-import react, { useState } from 'react';
+import react, { useState } from "react";
 
 interface ToggleButtonsProps {
 	onToggle: (selected: boolean) => void;
@@ -6,44 +6,44 @@ interface ToggleButtonsProps {
 }
 
 const ToggleButtons: React.FC<ToggleButtonsProps> = ({ onToggle }) => {
-	const [selectedOption, setSelectedOption] = useState<'edit' | 'create'>(
-		'edit'
+	const [selectedOption, setSelectedOption] = useState<"edit" | "create">(
+		"edit"
 	);
 
-	const handleChange = (option: 'edit' | 'create') => {
+	const handleChange = (option: "edit" | "create") => {
 		setSelectedOption(option);
-		onToggle(option === 'edit'); // Assuming 'edit' means true and 'create' means false
+		onToggle(option === "edit"); // Assuming 'edit' means true and 'create' means false
 	};
 
 	return (
 		<div className="toggle-buttons">
 			<label
 				className={`button--neo toggle-buttons__button toggle-buttons__button--left ${
-					selectedOption === 'edit' ? 'button--neo--selected' : ''
+					selectedOption === "edit" ? "button--neo--selected" : ""
 				}`}
 			>
 				<input
 					type="radio"
 					value="edit"
-					checked={selectedOption === 'edit'}
-					onChange={() => handleChange('edit')}
+					checked={selectedOption === "edit"}
+					onChange={() => handleChange("edit")}
 					className="toggle-buttons__radio"
 				/>
-				Edit
+				<span className="toggle-buttons__text">Edit Collections</span>
 			</label>
 			<label
 				className={`button--neo toggle-buttons__button toggle-buttons__button--right ${
-					selectedOption === 'create' ? 'button--neo--selected' : ''
+					selectedOption === "create" ? "button--neo--selected" : ""
 				}`}
 			>
 				<input
 					type="radio"
 					value="create"
-					checked={selectedOption === 'create'}
-					onChange={() => handleChange('create')}
+					checked={selectedOption === "create"}
+					onChange={() => handleChange("create")}
 					className="toggle-buttons__radio"
 				/>
-				Create
+				<span className="toggle-buttons__text">Create Collections</span>
 			</label>
 		</div>
 	);

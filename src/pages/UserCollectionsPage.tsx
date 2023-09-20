@@ -1,23 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import SearchBar from '../components/Searchbar/Searchbar';
-import AnimatedGridFade from '../components/AnimatedGridFade';
-import { SmallCard } from '../components/Thumbnail';
+import SearchBar from "../components/Searchbar/Searchbar";
+import AnimatedGridFade from "../components/AnimatedGridFade";
+import { SmallCard } from "../components/Thumbnail";
 
-import { RootState } from '../redux/store';
-import CardGrid from '../components/CardGrid/CardGrid';
-import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
-import { useEffect, useState } from 'react';
-import { useGetCollectionsByUserIdQuery } from '../redux/api/collectionsSlice';
-import { getRandomColorClass } from '../utils/getRandomColorClass';
-import ColorClassContext from '../context/ColorClassContext';
-import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
-import LoadingIcon from '../components/LoadingIcon/LoadingIcon';
-import { Link } from 'react-router-dom';
+import { RootState } from "../redux/store";
+import CardGrid from "../components/CardGrid/CardGrid";
+import CollectionPreview from "../components/CollectionPreview/CollectionPreview";
+import { useEffect, useState } from "react";
+import { useGetCollectionsByUserIdQuery } from "../redux/api/collectionsSlice";
+import { getRandomColorClass } from "../utils/getRandomColorClass";
+import ColorClassContext from "../context/ColorClassContext";
+import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import { Link } from "react-router-dom";
 import {
 	AuthenticatedTemplate,
 	UnauthenticatedTemplate,
-} from '@azure/msal-react';
+} from "@azure/msal-react";
 
 function UserCollectionsPage() {
 	const { userId } = useSelector((state: RootState) => state.userId);
@@ -25,9 +25,9 @@ function UserCollectionsPage() {
 
 	// State vars for searcing collections
 	const [searchTermUserCollections, setSearchTermUserCollections] =
-		useState('');
+		useState("");
 	const [searchTermPublicCollections, setSearchTermPublicCollections] =
-		useState('');
+		useState("");
 	// State var for setting randomized color on the collections
 	const [coloredCollections, setColoredCollections] = useState<any[]>([]);
 
@@ -45,8 +45,6 @@ function UserCollectionsPage() {
 		error,
 	} = useGetCollectionsByUserIdQuery(userId, { skip });
 
-	console.log('Fetched collections:', collections);
-
 	// UseEffect for random color
 	useEffect(() => {
 		if (collections && collections.length > 0) {
@@ -59,15 +57,12 @@ function UserCollectionsPage() {
 		}
 	}, [collections]);
 
-	console.log('Colored collections:', coloredCollections);
-
 	// Filter Users own Collections based on searchbar
 	const filteredUserCollections = Array.isArray(coloredCollections)
 		? coloredCollections.filter((c) =>
 				c.title.toLowerCase().includes(searchTermUserCollections.toLowerCase())
 		  )
 		: [];
-	console.log('Filtered user collections:', filteredUserCollections);
 
 	// Filter Public Collections based on searchbar
 	const filteredPublicCollections = Array.isArray(coloredCollections)
@@ -77,7 +72,6 @@ function UserCollectionsPage() {
 					.includes(searchTermPublicCollections.toLowerCase())
 		  )
 		: [];
-	console.log('Filtered public collections:', filteredPublicCollections);
 
 	if (isLoading) {
 		return <LoadingIcon />;
@@ -86,8 +80,7 @@ function UserCollectionsPage() {
 	if (isError) {
 		return <ErrorMsg error={error} />;
 	}
-	console.log('inside user collection');
-	console.log(collections);
+
 	return (
 		<div className="collections-page">
 			{/* PINNED FAV COLLECTIONS */}
@@ -103,7 +96,7 @@ function UserCollectionsPage() {
 					searchTerm={searchTermPublicCollections}
 					setSearchTerm={setSearchTermPublicCollections}
 					className={
-						'collections-page__searchbar collections-page__searchbar--public-collections'
+						"collections-page__searchbar collections-page__searchbar--public-collections"
 					}
 				></SearchBar>
 				<div className="collections-page__card-grid collections-page__card-grid--public">
@@ -111,8 +104,8 @@ function UserCollectionsPage() {
 						<AnimatedGridFade
 							items={filteredPublicCollections}
 							Component={SmallCard}
-							linkPrefix={'collection'}
-							className={'--muted-coral small-card'}
+							linkPrefix={"collection"}
+							className={"--muted-coral small-card"}
 						></AnimatedGridFade>
 						// <CardGrid
 						// 	items={filteredPublicCollections}
@@ -132,7 +125,7 @@ function UserCollectionsPage() {
 					searchTerm={searchTermUserCollections}
 					setSearchTerm={setSearchTermUserCollections}
 					className={
-						'collections-page__searchbar collections-page__searchbar--user-collections'
+						"collections-page__searchbar collections-page__searchbar--user-collections"
 					}
 				></SearchBar>
 
@@ -140,7 +133,7 @@ function UserCollectionsPage() {
 					<CardGrid
 						items={filteredUserCollections}
 						Component={CollectionPreview}
-						linkPrefix={'collection'}
+						linkPrefix={"collection"}
 						className="--discover-page"
 					></CardGrid>
 				)}

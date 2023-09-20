@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Card from "../Card/Card";
 import { getRandomColorClass } from "../../utils/getRandomColorClass";
 import CardCollectionTypes from "../../types/CardCollectionTypes";
-import { useCloneCollection, useUpdateCollection } from "../../utils/collectionUtility";
+import {
+	useCloneCollection,
+	useUpdateCollection,
+} from "../../utils/collectionUtility";
 import { useAchievementService } from "../../utils/achievementsUtility";
 import { Link } from "react-router-dom";
 import AchievementTypes from "../../types/AchievementTypes";
@@ -12,7 +15,9 @@ import AchievementCard from "../AchievementCard/AchievementCard";
 interface CardCollectionProps extends CardCollectionTypes {
 	cardIndex: number;
 	setCardIndex: (index: number) => void;
-	setMarkedCards: React.Dispatch<React.SetStateAction<{ [key: number]: "correct" | "wrong" }>>;
+	setMarkedCards: React.Dispatch<
+		React.SetStateAction<{ [key: number]: "correct" | "wrong" }>
+	>;
 	animationOnRendering: "draw" | "fade-in";
 	// setAnswerStatus: (status: string) => void;
 }
@@ -28,8 +33,14 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	flashCards = [],
 	...restProps
 }) => {
-	const { unlockCorrectAnswersAchievement, unlockInCorrectAnswersAchievement, unlockCompletedRunsAchievement } = useAchievementService();
-	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
+	const {
+		unlockCorrectAnswersAchievement,
+		unlockInCorrectAnswersAchievement,
+		unlockCompletedRunsAchievement,
+	} = useAchievementService();
+	const [achievement, setAchievement] = useState<
+		[AchievementTypes | AvatarTypes] | null
+	>(null);
 
 	// useState hook for managing current card index
 	// const [cardIndex, setCardIndex] = useState(0);
@@ -40,7 +51,9 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	// state for tracking card animation for "Dropping card" / unmounting
 	const [animateOut, setAnimateOut] = useState(false);
 	// state for tracking card animation for Wrong or Correct btn
-	const [animationType, setAnimationType] = useState<"correct" | "wrong" | null>(null);
+	const [animationType, setAnimationType] = useState<
+		"correct" | "wrong" | null
+	>(null);
 
 	const [hasClonedCollection, setHasClonedCollection] = useState(false);
 
@@ -51,7 +64,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
 			setAnimationType("correct");
-			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "correct" }));
+			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: "correct" }));
 
 			if (!restProps.isDemo) {
 				updateCollectionsCounter(id, "IncrementCorrectAnswers");
@@ -60,7 +73,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			}
 		} else {
 			setAnimationType("wrong");
-			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: "wrong" }));
 
 			if (!restProps.isDemo) {
 				updateCollectionsCounter(id, "IncrementIncorrectAnswers");
@@ -91,6 +104,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 		}, 1300); // ms animation time
 	};
 
+	// Cloning
 	const cloneCollection = useCloneCollection();
 
 	const cloneUserCollection = () => {
@@ -108,6 +122,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			cardCount: flashCards.length,
 		};
 
+		// user logged in
 		cloneCollection(restProps.userId, clonedCollection);
 		setHasClonedCollection(true);
 	};
@@ -120,7 +135,9 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			<p className="card-collection__counter">
 				<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
 			</p>
-			{achievement && <AchievementCard achievement={achievement[0]} avatar={achievement[1]} />}
+			{achievement && (
+				<AchievementCard achievement={achievement[0]} avatar={achievement[1]} />
+			)}
 			{/* Check if there are any cards AND that the current card index is within bounds */}
 			{flashCards.length > 0 && !isFinished && cardIndex < flashCards.length ? (
 				// Render the Card at cardIndex from the cards array
@@ -141,10 +158,16 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 
 			{!isFinished ? (
 				<div className="card-collection__buttons">
-					<button className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong" onClick={() => handleNextCard(false)}>
+					<button
+						className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong"
+						onClick={() => handleNextCard(false)}
+					>
 						Wrong
 					</button>
-					<button className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct" onClick={() => handleNextCard(true)}>
+					<button
+						className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct"
+						onClick={() => handleNextCard(true)}
+					>
 						Correct
 					</button>
 				</div>
@@ -156,12 +179,15 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			) : !hasClonedCollection ? (
 				<div className="finished-message">
 					<h1>GREAT JOB!</h1>
-					You've finished the demo collection! 🎉 Click <button onClick={cloneUserCollection}>here</button> to clone it to your collections!
+					You've finished the demo collection! 🎉 Click{" "}
+					<button onClick={cloneUserCollection}>here</button> to clone it to
+					your collections!
 				</div>
 			) : (
 				<div className="finished-message">
 					<h1>THANK YOU!</h1>
-					You've successfully cloned {title} to your collections! 🎉 Click <Link to="/collections">here</Link> to see your collections!
+					You've successfully cloned {title} to your collections! 🎉 Click{" "}
+					<Link to="/collections">here</Link> to see your collections!
 				</div>
 			)}
 		</div>

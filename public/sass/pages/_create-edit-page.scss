@@ -22,7 +22,7 @@
 	}
 	& .card-editor-card {
 		// background-image: $color-gradient-black;
-
+		background-color: $color-primary--100;
 		box-shadow: $box-shadow-subtle;
 		// box-shadow: 0.4rem 0.4rem 1rem 0.5rem rgba(0, 0, 0, 0.5);
 
@@ -54,6 +54,10 @@
 			grid-row: 1;
 			grid-column: 1/-1;
 
+			&__text {
+				font-size: 2.4rem;
+				font-weight: 500;
+			}
 			&__button {
 				margin-top: 3rem;
 				background-color: $color-neutral-100;
@@ -61,7 +65,10 @@
 				justify-self: center;
 				height: 20rem;
 				width: 20rem;
-
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				&--left {
 					grid-column: 1;
 				}
@@ -69,6 +76,21 @@
 					grid-column: 2;
 				}
 			}
+		}
+		& .sidebar__edit {
+			grid-row: 5;
+			grid-column: 1/-1;
+		}
+		&__dropdown {
+			grid-column: 1/-1;
+		}
+		& .sidebar__bottom--create {
+			grid-row: 6;
+			grid-column: 1/-1;
+		}
+		& .add-collection__wrapper {
+			grid-row: 3;
+			grid-column: 1/-1;
 		}
 		// & .sidebar__neo-card {
 		// 	margin-top: 3rem;

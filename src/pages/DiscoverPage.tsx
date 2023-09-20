@@ -1,19 +1,20 @@
-import { useState, useEffect } from 'react';
-import SearchBar from '../components/Searchbar/Searchbar';
-import CardGrid from '../components/CardGrid/CardGrid';
-import useFetch from '../hooks/useFetch';
-import CardCollection from '../components/CardCollection/CardCollection';
-import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
-import { getRandomColorClass } from '../utils/getRandomColorClass';
-import ColorClassContext from '../context/ColorClassContext';
-import { useGetAllCollectionsQuery } from '../redux/api/collectionsSlice';
+import { useState, useEffect } from "react";
+import SearchBar from "../components/Searchbar/Searchbar";
+import CardGrid from "../components/CardGrid/CardGrid";
+import useFetch from "../hooks/useFetch";
+import CardCollection from "../components/CardCollection/CardCollection";
+import CollectionPreview from "../components/CollectionPreview/CollectionPreview";
+import { getRandomColorClass } from "../utils/getRandomColorClass";
+import ColorClassContext from "../context/ColorClassContext";
+import { useGetAllCollectionsQuery } from "../redux/api/collectionsSlice";
 import {
 	AuthenticatedTemplate,
 	UnauthenticatedTemplate,
-} from '@azure/msal-react';
+} from "@azure/msal-react";
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 
 function DiscoverPage() {
-	const [searchTerm, setSearchTerm] = useState('');
+	const [searchTerm, setSearchTerm] = useState("");
 	const [coloredCollections, setColoredCollections] = useState<any[]>([]);
 
 	const {
@@ -36,10 +37,10 @@ function DiscoverPage() {
 	}, [collections]);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <LoadingIcon />;
 	}
 	if (isError) {
-		return <div>Error: {error.message}</div>;
+		return <div>Error: {error.message}</div>; //TODO: errmsg
 	}
 
 	// Filter collection based on searchbar
@@ -60,6 +61,7 @@ function DiscoverPage() {
 					items={filteredCollections}
 					Component={CollectionPreview}
 					linkPrefix="collection"
+					parent="discover"
 					className="--discover-page"
 				/>
 			</div>

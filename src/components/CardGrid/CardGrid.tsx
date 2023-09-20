@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import CardGridTypes from '../../types/CardGridTypes';
+import { Link } from "react-router-dom";
+import CardGridTypes from "../../types/CardGridTypes";
 
 const CardGrid: React.FC<CardGridTypes> = ({
 	items,
@@ -18,17 +18,21 @@ const CardGrid: React.FC<CardGridTypes> = ({
 					key={item.id}
 				>
 					{linkPrefix && parent === "discover" ? (
-						<Link
-							to={`/${linkPrefix}/${item.userId}/${item.id}`}
-							onClick={() => onCardClick && onCardClick(item)}
-						>
-							<Component
-								{...item}
-								// animationOnRendering={animationOnRendering}
-								animationOnRendering={restProps.animationOnRendering}
-							/>
-							{/* <Component {...item} /> */}
-						</Link>
+						<>
+							<button></button>
+							<Link
+								to={`/${linkPrefix}/${item.userId}/${item.id}`}
+								onClick={() => onCardClick && onCardClick(item)}
+							>
+								<Component
+									{...item}
+									{...restProps}
+									// animationOnRendering={animationOnRendering}
+									// animationOnRendering={restProps.animationOnRendering}
+								/>
+								{/* <Component {...item} /> */}
+							</Link>
+						</>
 					) : linkPrefix ? (
 						<Link
 							to={`/${linkPrefix}/${item.id}`}

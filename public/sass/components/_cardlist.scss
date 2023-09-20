@@ -1,6 +1,9 @@
 .card-list {
-	color: white;
-	border: 7px solid $color-malachite-light;
+	background-color: $color-primary--100;
+	border: 2px solid $color-neutral-300;
+	box-shadow: $box-shadow-subtle;
+	color: $color-primary--700;
+	//border: 7px solid $color-malachite-light;
 	// border: 7px solid rgb(151, 151, 151);
 	overflow: scroll;
 	// height: 60vh;
@@ -14,23 +17,23 @@
 		border: 1px solid white;
 		list-style: none;
 		padding: 0.5rem;
-		color: black;
-		background-color: rgb(150, 151, 156);
+		color: $color-primary--800;
+		background-color: $color-primary--100;
 	}
 	// grid-row: 2 / span 4; // TODO: Refactor cardset page
 	// grid-column: 4; // TODO: Refactor cardset page
 }
 
 .highlight {
-	background-color: rgb(232, 250, 250);
-	border: 3px solid rgb(213, 252, 251);
+	background-color: $color-primary--200;
+	// border: 3px solid rgb(213, 252, 251);
 	font-weight: 500;
 }
 
 .card-list__item--correct {
-	background-color: rgb(161, 244, 161); // or any other styling
+	background-color: $color-success-100; // or any other styling
 }
 
 .card-list__item--wrong {
-	background-color: rgb(244, 139, 139); // or any other styling
+	background-color: $color-danger-100; // or any other styling
 }
