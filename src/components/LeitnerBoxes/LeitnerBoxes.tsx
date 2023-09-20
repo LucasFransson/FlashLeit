@@ -8,7 +8,6 @@ import CardTypes from '../../types/CardTypes';
 import { use } from 'chai';
 import useLeitnerBox from '../../hooks/useLeitnerBox';
 
-
 function LeitnerBoxes({ collection, selectBox }) {
 	const oneDay = 24 * 60 * 60 * 1000;
 	const threeDays = 72 * 60 * 60 * 1000;
@@ -21,7 +20,6 @@ function LeitnerBoxes({ collection, selectBox }) {
 	const selectLeitnerBox = (leitnerBox: CardTypes[], boxTitle: string) => {
 		selectBox(leitnerBox, boxTitle);
 	};
-
 
 	return (
 		<div className="leitnerbox__wrapper">

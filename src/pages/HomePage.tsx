@@ -44,7 +44,8 @@ function HomePage() {
 
 export default HomePage;
 
-{/* <AuthenticatedTemplate>
+{
+	/* <AuthenticatedTemplate>
 {
 	Welcome,{' '}
 						{authUser ? (
@@ -54,4 +55,5 @@ export default HomePage;
 						)}
 					</AuthenticatedTemplate>
 					<UnauthenticatedTemplate>Woop</UnauthenticatedTemplate>
-} */}
+} */
+}

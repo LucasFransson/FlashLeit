@@ -17,11 +17,12 @@ interface CardCollectionProps extends CardCollectionTypes {
 	collection: CardCollectionTypes;
 	cardIndex: number;
 	setCardIndex: (index: number) => void;
-	setMarkedCards: React.Dispatch<React.SetStateAction<{ [key: number]: "correct" | "wrong" }>>;
+	setMarkedCards: React.Dispatch<
+		React.SetStateAction<{ [key: number]: "correct" | "wrong" }>
+	>;
 	animationOnRendering: "draw" | "fade-in";
 	boxNumber: string;
 	// setAnswerStatus: (status: string) => void;
-
 	// Logic for Leitner:
 	updateLastReviewedDate: (card: CardTypes) => void;
 	selectBox: (leitnerBox: CardTypes, boxNumber: string) => void;
@@ -41,8 +42,14 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 	updateLastReviewedDate,
 	selectBox,
 }) => {
-	const { unlockCorrectAnswersAchievement, unlockInCorrectAnswersAchievement, unlockCompletedRunsAchievement } = useAchievementService();
-	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
+	const {
+		unlockCorrectAnswersAchievement,
+		unlockInCorrectAnswersAchievement,
+		unlockCompletedRunsAchievement,
+	} = useAchievementService();
+	const [achievement, setAchievement] = useState<
+		[AchievementTypes | AvatarTypes] | null
+	>(null);
 	// useState hook for managing current card index
 	// const [cardIndex, setCardIndex] = useState(0);
 	const updateCollectionsCounter = useUpdateCollection();
@@ -52,7 +59,9 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 	// state for tracking card animation for "Dropping card" / unmounting
 	const [animateOut, setAnimateOut] = useState(false);
 	// state for tracking card animation for Wrong or Correct btn
-	const [animationType, setAnimationType] = useState<"correct" | "wrong" | null>(null);
+	const [animationType, setAnimationType] = useState<
+		"correct" | "wrong" | null
+	>(null);
 
 	const { userId } = useSelector((state: RootState) => state.userId);
 
@@ -66,7 +75,7 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 	const handleNextCard = (isCorrect: boolean) => {
 		if (isCorrect) {
 			setAnimationType("correct");
-			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "correct" }));
+			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: "correct" }));
 			updateCollectionsCounter(id, "IncrementCorrectAnswers");
 
 			const achievement = unlockCorrectAnswersAchievement();
@@ -99,7 +108,7 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 			updateCollectionsCounter(id, "IncrementIncorrectAnswers");
 
 			// setAnswerStatus('wrong');
-			setMarkedCards(prevState => ({ ...prevState, [cardIndex]: "wrong" }));
+			setMarkedCards((prevState) => ({ ...prevState, [cardIndex]: "wrong" }));
 
 			const achievement = unlockInCorrectAnswersAchievement();
 			setAchievement(achievement);
@@ -167,7 +176,9 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 			<p className="card-collection__counter">
 				<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
 			</p>
-			{achievement && <AchievementCard achievement={achievement[0]} avatar={achievement[1]} />}
+			{achievement && (
+				<AchievementCard achievement={achievement[0]} avatar={achievement[1]} />
+			)}
 			{/* Check if there are any cards AND that the current card index is within bounds */}
 			{flashCards.length > 0 && !isFinished && cardIndex < flashCards.length ? (
 				// Render the Card at cardIndex from the cards array
@@ -188,10 +199,16 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 
 			{!isFinished ? (
 				<div className="card-collection__buttons">
-					<button className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong" onClick={() => handleNextCard(false)}>
+					<button
+						className="card-collection__buttons card-collection__buttons--wrong button-next button-next--wrong"
+						onClick={() => handleNextCard(false)}
+					>
 						Wrong
 					</button>
-					<button className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct" onClick={() => handleNextCard(true)}>
+					<button
+						className="card-collection__buttons card-collection__buttons--correct button-next button-next--correct"
+						onClick={() => handleNextCard(true)}
+					>
 						Correct
 					</button>
 				</div>
@@ -199,10 +216,17 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 				<div className="finished-message">
 					<h1>GREAT JOB!</h1>
 
-					{box1.playableCardCount > 0 || box2.playableCardCount > 0 || box3.playableCardCount > 0 ? (
+					{box1.playableCardCount > 0 ||
+					box2.playableCardCount > 0 ||
+					box3.playableCardCount > 0 ? (
 						<>
-							<h3>You've finished your Leitner challenges for {boxNumber}! 🎉</h3>
-							<h3>There are other unfinished Leitner Boxes, would you like to pick another box?</h3>
+							<h3>
+								You've finished your Leitner challenges for {boxNumber}! 🎉
+							</h3>
+							<h3>
+								There are other unfinished Leitner Boxes, would you like to pick
+								another box?
+							</h3>
 							<button
 								onClick={() => {
 									playAnotherBox();
@@ -213,7 +237,10 @@ const LeitnerCollection: React.FC<CardCollectionProps> = ({
 						</>
 					) : (
 						<>
-							<h3>You've finished all your Leitner challenges for {collection.title}! 🎉</h3>
+							<h3>
+								You've finished all your Leitner challenges for{" "}
+								{collection.title}! 🎉
+							</h3>
 						</>
 					)}
 				</div>

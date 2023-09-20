@@ -1,56 +1,47 @@
 .cardset-page {
 	grid-column: 1/-1;
-
 	grid-row: 2;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	margin-inline: 5rem;
-	margin-top: 3rem;
-	// margin: 5rem;
 
-	// DARK THEME
-	//	background-image: $color-gradient-black;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 2fr 2fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+	justify-items: stretch;
+	align-items: stretch;
+	background-color: $color-neutral-100;
 
-	// LIGHT THEME
-	// background-color: mix($color-dark-primary-1, $color-white-1, 10%);
-	border: 3px solid $color-dark-primary-1;
-	background-color: mix($color-dark-primary-1, $color-white-1, 10%);
 	& .card-collection {
-		flex-basis: 70%;
-		height: 100%;
-
-		// background-image: linear-gradient(
-		// 	to bottom,
-		// 	rgba(111, 109, 109, 0) 11%,
-		// 	rgb(159, 156, 156) 11%,
-		// 	rgb(98, 97, 97) 70%,
-		// 	rgb(39, 38, 38) 90%
-		// );
+		grid-row: 1/4;
+		grid-column: 2;
 
 		&__heading {
-			// color: $color-dark-primary-1;
-			color: $color-dark-primary-1;
-			// background-image: $color-gradient-green-primary;
 		}
 
 		&__counter {
-			color: $color-dark-primary-1;
-			font-weight: 600;
 		}
 	}
 
 	& .card-list {
-		flex-basis: 30%;
-		background-image: linear-gradient(
-			to bottom,
-			rgb(159, 156, 156),
-			rgb(39, 38, 38)
-		);
+		grid-row: 2/4;
+		grid-column: 3;
+		justify-self: center;
+		width: 80%;
 	}
-	// justify-content: space-between;
+	&__toggle-wrapper {
+		grid-row: 1;
+		grid-column: 3;
+	}
 
-	// display: grid;
-	// grid-template-columns: repeat(1fr, 4);
-	// grid-template-rows: repeat(1fr, 4);
+	& .finished-message {
+		border: 2px solid $color-primary--900;
+		padding: 15rem;
+		box-shadow: $box-shadow-subtle;
+		color: $color-neutral-800;
+	}
+
+	& .leitnerbox__wrapper {
+		grid-row: 2;
+		height: 100%;
+	}
 }

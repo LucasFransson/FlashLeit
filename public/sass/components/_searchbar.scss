@@ -8,11 +8,11 @@
 		font-family: inherit; // Since input types doesnt inherit font properties, explicitly set them to inherit
 		font-size: inherit;
 		color: inherit;
-		background-color: $color-gray-light-1;
+		background-color: $color-neutral-200;
 		border: none;
 		padding: 0.7rem 2rem;
 		border-radius: 100px;
-		width: 40%; // Set to 40 % width of available space to allow searchbar to grow on focus
+		width: 80%; // Set to 30 % width of available space to allow searchbar to grow on focus
 		// margin-right: -3.5rem;
 		transition: all 0.2s;
 
@@ -26,25 +26,26 @@
 
 		&:focus {
 			outline: none;
-			width: 50%; // grow from 30 to 50% on focus
-			background-color: $color-gray-light-1;
+			width: 90%; // grow from 30 to 50% on focus
+			// background-color: $color-neutral-100;
+			background-color: #fff;
 		}
 
 		&::placeholder {
 			font-weight: 100;
 
-			color: $color-gray-dark-1;
+			color: $color-neutral-700;
 		}
 	}
 
 	// When input is focused, select the sibling component button and give it same bck-clr as input
 	&__input:focus + &__button {
-		background-color: $color-gray-light-1;
+		background-color: $color-neutral-100;
 	}
 
 	&__button {
 		border: none;
-		background-color: $color-gray-light-1;
+		background-color: $color-neutral-100;
 
 		&:focus {
 			outline: none;

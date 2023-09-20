@@ -1,16 +1,34 @@
-import CardEditor from "../components/CardEditor/CardEditor";
-import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+// Imports
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import CollectionSelector from "../components/CollectionSelector/CollectionSelector";
-import { useGetCollectionByIdAndUserIdQuery, useGetAuthoredCollectionsQuery } from "../redux/api/collectionsSlice";
-import { useEffect, useState } from "react";
+import {
+	useGetCollectionByIdAndUserIdQuery,
+	useGetAuthoredCollectionsQuery,
+} from "../redux/api/collectionsSlice";
 import { useDeleteCard } from "../utils/cardUtility";
+import { useDeleteCollection } from "../utils/collectionUtility";
+import { useAchievementService } from "../utils/achievementsUtility";
+
+// Components
+import CardEditor from "../components/CardEditor/CardEditor";
+import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import CollectionSelector from "../components/CollectionSelector/CollectionSelector";
 import AddCollection from "../components/AddCollection/AddCollection";
 import CardGrid from "../components/CardGrid/CardGrid";
 import Card from "../components/Card/Card";
-import CardTypes from "../types/CardTypes";
 import Toggler from "../components/Toggler/Toggler";
+
+import Carousel from "../components/Carousel";
+import Dropdown from "../components/Dropdown";
+import ToggleButtons from "../components/ToggleButtons";
+
+// Types
+import CardGridTypes from "../types/CardGridTypes";
+import CardTypes from "../types/CardTypes";
+import CardCollectionTypes from "../types/CardCollectionTypes";
+import AnimationClassContext from "../context/AnimationContext";
+
 import { useDeleteCollection } from "../utils/collectionUtility";
 import { useAchievementService } from "../utils/achievementsUtility";
 import AchievementCard from "../components/AchievementCard/AchievementCard";
@@ -19,57 +37,47 @@ import AvatarTypes from "../types/AvatarTypes";
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import AchievementModal from "../components/Modal/AchievementModal";
 
+
 function EditCardPage() {
-	// useState to hold the selected card:
+	// STATE MANAGEMENT TODO:
 	const [selectedCard, setSelectedCard] = useState<CardTypes>({
 		id: 0,
 		collectionId: 0,
-		userId: 0, // Added userId to get rid of errors // Lucas
+		userId: 0,
 		question: "",
 		answer: "",
 		leitnerIndex: 1,
 		lastReviewed: null,
 		colorClass: null,
+		animationOnRendering: "fade-in",
 	});
+
 	const { unlockCreateAchievement } = useAchievementService();
 	const [isShowingAchievementModal, setIsShowingAchievementModal] = useState(false);
 	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
 
-	// useState to hold toggler value:
-	const [isChecked, setIsChecked] = useState(false);
-	// Retrieve the UserId:
-	const { userId } = useSelector((state: RootState) => state.userId);
-	// useState to hold the id of currently selected collection:
-	const [selectedCollectionId, setSelectedCollectionId] = useState<number | null>(null);
-	// useState to hold the cards of the currently selected collection:
+
+	const [isEditMode, setIsEditMode] = useState(true);
+	const [selectedCollectionId, setSelectedCollectionId] = useState<
+		number | null
+	>(null);
 	const [flashCards, setFlashCards] = useState<CardTypes[] | null>([]);
-	// useState for skip:
 
-	// Delete card from utility folder:
+	// SELECTORS AND HOOKS TODO:
+	const { userId } = useSelector((state: RootState) => state.userId);
 	const deleteCard = useDeleteCard();
-	// Delete collections from utility folder:
 	const deleteCollection = useDeleteCollection();
-	// API call for getting all the users collections:
-	const { data: collectionData, error: collectionError, isLoading: collectionLoading } = useGetAuthoredCollectionsQuery(userId, { skip: userId === null || userId === undefined });
+	const { unlockCreateAchievement } = useAchievementService();
 
-	const [addedCollectionId, setAddedCollectionId] = useState<number | null>(null);
+	// API CALLS TODO:
+	const {
+		data: collectionData,
+		error: collectionError,
+		isLoading: collectionLoading,
+	} = useGetAuthoredCollectionsQuery(userId, {
+		skip: userId === null || userId === undefined,
+	});
 
-	// UseEffet to select the newly added collection:
-	useEffect(() => {
-		if (selectedCollectionId === addedCollectionId && addedCollectionId !== null) {
-			handleCollectionChange(addedCollectionId);
-
-			const newCollection = collectionData?.find(collection => collection.id === addedCollectionId);
-
-			console.log(newCollection);
-
-			setSelectedCard(newCollection?.flashCards[0]);
-
-			console.log(selectedCard);
-		}
-	}, [collectionData, addedCollectionId]);
-
-	// API call for getting all the cards of the currently selected collection;
 	const {
 		data: cardsData,
 		error: cardsError,
@@ -79,27 +87,48 @@ function EditCardPage() {
 			collectionId: selectedCollectionId,
 			userId: userId,
 		},
-		{ skip: selectedCollectionId === null || selectedCollectionId === undefined || selectedCollectionId === 0 }
+		{
+			skip:
+				selectedCollectionId === null ||
+				selectedCollectionId === undefined ||
+				selectedCollectionId === 0,
+		}
 	);
-	// useEffect to set the selected collection after API call:
+
+	// EFFECTS TODO:
+
 	useEffect(() => {
 		if (collectionData?.length > 0) {
 			setSelectedCollectionId(collectionData[0].id);
 		}
 	}, [collectionData]);
-	//useEffect to set flashCards to fetched data:
+
 	useEffect(() => {
 		if (cardsData) {
 			setFlashCards(cardsData.flashCards);
 		}
 	}, [cardsData]);
 
+	// HANDLERS TODO:
 	const handleToggle = (toggleChange: boolean) => {
-		setIsChecked(toggleChange);
+		setIsEditMode(toggleChange);
 	};
-	// Update the selected collection:
-	const handleCollectionChange = (collectionId: number) => {
-		setSelectedCollectionId(collectionId);
+
+	// const handleCollectionChange = (collectionId: number) => {
+	// 	setSelectedCollectionId(collectionId);
+	// 	setSelectedCard({
+	// 		id: 0,
+	// 		collectionId: 0,
+	// 		userId: userId,
+	// 		question: "",
+	// 		answer: "",
+	// 		leitnerIndex: 1,
+	// 		lastReviewed: null,
+	// 		colorClass: null,
+	// 	});
+	// };
+	const handleCollectionChange = (selectedCollection: CardCollectionTypes) => {
+		setSelectedCollectionId(selectedCollection.id);
 		setSelectedCard({
 			id: 0,
 			collectionId: 0,
@@ -111,9 +140,15 @@ function EditCardPage() {
 			colorClass: null,
 		});
 	};
+
+	// const handleDropdownSelect = (selectedCollection: CardCollectionTypes) => {
+	// 	setSelectedCollectionId(selectedCollection.id);
+	// };
+
 	const selectCard = (selectedCard: CardTypes) => {
 		setSelectedCard(selectedCard);
 	};
+
 	const deleteSelectedCard = (selectedCard: CardTypes) => {
 		const cardDetails: CardTypes = {
 			id: selectedCard.id,
@@ -127,8 +162,6 @@ function EditCardPage() {
 		};
 
 		if (flashCards?.length <= 1) {
-			// --- TODO --- Error handeling: (1) Show error modal? (2) Show modal explaining that continuing to delete last card will delete the entire collection?
-
 			deleteCollection(selectedCollectionId, userId);
 		} else {
 			deleteCard(cardDetails);
@@ -136,15 +169,12 @@ function EditCardPage() {
 	};
 
 	const collectionAdded = (addedCollectionId: number) => {
-		// --- TODO --- Show success modal?
 		const achievement = unlockCreateAchievement();
 		setAchievement(achievement);
+
 		setIsShowingAchievementModal(true);
 
 		setIsChecked(false);
-
-		// setAddedCollectionId(addedCollectionId);
-		// setSelectedCollectionId(addedCollectionId);
 	};
 
 	const resetParameters = () => {
@@ -159,64 +189,172 @@ function EditCardPage() {
 			colorClass: null,
 		});
 	};
-
+    
 	const closeModal = () => {
 		setIsShowingAchievementModal(false);
 	};
 
-	if (collectionLoading) return <LoadingIcon />;
+	// RENDER LOGIC TODO:
+	if (collectionLoading || cardsLoading) return <LoadingIcon />;
+
+
 	if (collectionError)
 		return (
 			<div>
 				Error: {collectionError.status} {JSON.stringify(collectionError.data)}
 			</div>
 		);
-	if (cardsLoading) return <LoadingIcon />;
 	if (cardsError)
 		return (
 			<div>
 				Error: {cardsError.status} {JSON.stringify(cardsError.data)}
 			</div>
 		);
-	// if (achievement) {
-	// 	return <>{showingAchievementModal && <AchievementModal closeModal={closeModal} achievement={achievement} />}</>;
-	// }
+
+	// if (achievement)
+	// 	return (
+	// 		<AchievementCard achievement={achievement[0]} avatar={achievement[1]} />
+	// 	);
+
 	return (
 		<>
-			<AuthenticatedTemplate>
-				<div className="create-edit-page">
-					<div className="create-edit-page__collection-selector">
-						{collectionData && collectionData.length > 0 && !isChecked ? (
-							<>
-								<Toggler onToggle={handleToggle} isChecked={isChecked} />
+			{/* {userId && ( */}
+			<div className="create-edit-page ">
+				<aside className="create-edit-page__sidebar sidebar">
+					<ToggleButtons onToggle={handleToggle}></ToggleButtons>
+					<h3 className="sidebar__h3 sidebar__h3--current-choice">
+						Title of Current Choice
+					</h3>
+					{/* // EDIT COLLECTION PICKED */}
+					{isEditMode ? (
+						<div className="sidebar__edit">
+							{" "}
+							<p className="sidebar__dropdown--label"></p>
+							<p className="sidebar__dropdown">
+								{collectionData && collectionData.length > 0 && (
+									<Dropdown
+										items={collectionData}
+										displayKey={"title"}
+										idKey="id"
+										onItemSelect={handleCollectionChange}
+									/>
+								)}
+							</p>
+						</div>
+					) : (
+						// CREATE COLLECTION PICKED
+						<div className="sidebar__bottom sidebar__bottom--create">
+							<AddCollection></AddCollection>
+						</div>
+					)}
 
-								<CollectionSelector className="" collections={collectionData} onCollectionChange={handleCollectionChange} />
+					{/* <h3 className="sidebar__h3 sidebar__h3--current-collection">
+						Current collection here
+					</h3>
+					<textarea className="sidebar__text-area">
+						Change Name Textarea
+					</textarea> */}
+				</aside>
 
-								<div className="create-edit-page__wrapper">
-									<div className="create-edit-page__card-grid">
-										<CardGrid items={flashCards} Component={Card} onCardClick={selectCard} onDeleteClick={deleteSelectedCard} />
-									</div>
-									<div className="create-edit-page__card-editor">
-										<CardEditor card={selectedCard} userId={userId} collectionId={selectedCollectionId} resetParameters={resetParameters} />
-									</div>
-								</div>
-							</>
-						) : collectionData && collectionData.length > 0 && isChecked ? (
-							<>
-								<Toggler onToggle={handleToggle} isChecked={isChecked} />
-								<AddCollection userId={userId} collectionAdded={collectionAdded} />
-								{isShowingAchievementModal && <AchievementModal closeModal={closeModal} achievement={achievement} />}
-							</>
-						) : (
-							<>
-								<AddCollection userId={userId} collectionAdded={collectionAdded} />
-							</>
-						)}
-					</div>
+				<Carousel
+					className={"carousel create-edit-page__carousel"}
+					items={flashCards}
+					Component={Card}
+					onCardClick={selectCard}
+					onDeleteClick={deleteSelectedCard}
+					animationOnRendering={`fade-in`}
+				/>
+
+				{/* <div className="create-edit-page__card-grid">
+					<CardGrid
+						items={flashCards}
+						Component={Card}
+						onCardClick={selectCard}
+						onDeleteClick={deleteSelectedCard}
+						animationOnRendering={"fade-in"}
+					/>
+				</div> */}
+				<div className="create-edit-page__card-editor">
+					<CardEditor
+						card={selectedCard}
+						userId={userId}
+						collectionId={selectedCollectionId}
+					/>
+
 				</div>
-			</AuthenticatedTemplate>
-			<UnauthenticatedTemplate></UnauthenticatedTemplate>
+			</div>
 		</>
 	);
+
+	// // ERROR HANDLING
+	// if (collectionLoading) return <LoadingIcon />;
+	// if (collectionError)
+	// 	return (
+	// 		<div>
+	// 			Error: {collectionError.status} {JSON.stringify(collectionError.data)}
+	// 		</div>
+	// 	);
+
+	// if (cardsLoading) return <LoadingIcon />;
+	// if (cardsError)
+	// 	return (
+	// 		<div>
+	// 			Error: {cardsError.status} {JSON.stringify(cardsError.data)}
+	// 		</div>
+	// 	);
+	// if (achievement) {
+	// 	return (
+	// 		<>
+	// 			<AchievementCard achievement={achievement[0]} avatar={achievement[1]} />
+	// 		</>
+	// 	);
+	// }
+
+	// return (
+	// 	// <AnimationClassContext.Provider value="fade-in">
+	// 	<div className="create-edit-page">
+	// 		<div className="create-edit-page__collection-selector">
+	// 			{collectionData && collectionData.length > 0 && !isChecked ? (
+	// 				<>
+	// 					<Toggler onToggle={handleToggle} isChecked={isChecked} />
+	// 					<CollectionSelector
+	// 						className=""
+	// 						collections={collectionData}
+	// 						onCollectionChange={handleCollectionChange}
+	// 					/>
+	// 					<div className="create-edit-page__wrapper">
+	// 						<div className="create-edit-page__card-grid">
+	// 							<CardGrid
+	// 								items={flashCards}
+	// 								Component={Card}
+	// 								onCardClick={selectCard}
+	// 								onDeleteClick={deleteSelectedCard}
+	// 								animationOnRendering={'fade-in'}
+	// 							/>
+	// 						</div>
+	// 						<div className="create-edit-page__card-editor">
+	// 							<CardEditor
+	// 								card={selectedCard}
+	// 								userId={userId}
+	// 								collectionId={selectedCollectionId}
+	// 							/>
+	// 						</div>
+	// 					</div>
+	// 				</>
+	// 			) : collectionData && collectionData.length > 0 && isChecked ? (
+	// 				<>
+	// 					<Toggler onToggle={handleToggle} isChecked={isChecked} />
+	// 					<AddCollection userId={userId} collectionAdded={collectionAdded} />
+	// 				</>
+	// 			) : (
+	// 				<>
+	// 					<AddCollection userId={userId} collectionAdded={collectionAdded} />
+	// 				</>
+	// 			)}
+	// 		</div>
+	// 		{/* </AnimationClassContext.Provider> */}
+	// 	</div>
+	// );
 }
+
 export default EditCardPage;

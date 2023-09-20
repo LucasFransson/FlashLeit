@@ -1,4 +1,4 @@
-import CardProps from './CardTypes';
+import CardProps from "./CardTypes";
 
 interface CardCollectionTypes {
 	id: number;
@@ -6,7 +6,7 @@ interface CardCollectionTypes {
 	userId: number;
 	description: string;
 	publicKey: number;
-	flashCards: CardProps[] | null;
+	flashCards: CardProps[] | null | undefined;
 	isPublic: boolean;
 	amountOfCorrectAnswers: number;
 	amountOfIncorrectAnswers: number;

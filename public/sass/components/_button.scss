@@ -1,0 +1,627 @@
+// NEUMORPHISM BUTTON
+.toggle-buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 5rem;
+
+	&__radio {
+		display: none;
+	}
+}
+
+.button--neo {
+	cursor: pointer;
+	// padding: 1.5em 5em;
+
+	background: #efefef;
+	border: none;
+	border-radius: 1.5rem;
+	color: #444;
+	// font-size: 1.6rem;
+	// font-weight: 700;
+	letter-spacing: 0.2rem;
+	text-align: center;
+	outline: none;
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+	box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.7),
+		-6px -6px 10px rgba(255, 255, 255, 0.5),
+		6px 6px 8px rgba(255, 255, 255, 0.075), 6px 6px 10px rgba(0, 0, 0, 0.15);
+
+	// &:hover {
+	// 	box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
+	// 		-2px -2px 4px rgba(255, 255, 255, 0.4),
+	// 		2px 2px 2px rgba(255, 255, 255, 0.05), 2px 2px 4px rgba(0, 0, 0, 0.1);
+	// }
+	&:active {
+		box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7),
+			inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+			inset 2px 2px 2px rgba(255, 255, 255, 0.075),
+			inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+	}
+	&--selected {
+		box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7),
+			inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+			inset 2px 2px 2px rgba(255, 255, 255, 0.075),
+			inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+	}
+}
+
+.button__ghost--wavy-fill {
+	cursor: pointer;
+	display: inline-block;
+	width: 24rem;
+	background-color: $color-success-300;
+	padding: 12px 24px;
+	border: 1px solid #4f4f4f;
+	border-radius: 4px;
+	transition: all 0.2s ease-in;
+	position: relative;
+	overflow: hidden;
+	font-size: 19px;
+	color: black;
+	z-index: 1;
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%) scaleY(1) scaleX(1.25);
+		top: 100%;
+		width: 140%;
+		height: 180%;
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 50%;
+		display: block;
+		transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+		z-index: -1;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 55%;
+		transform: translateX(-50%) scaleY(1) scaleX(1.45);
+		top: 180%;
+		width: 160%;
+		height: 190%;
+		background-color: #39bda7;
+		border-radius: 50%;
+		display: block;
+		transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+		z-index: -1;
+	}
+
+	&:hover {
+		color: #ffffff;
+		border: 1px solid #39bda7;
+	}
+
+	&:hover:before {
+		top: -35%;
+		background-color: #39bda7;
+		transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+	}
+
+	&:hover:after {
+		top: -45%;
+		background-color: #39bda7;
+		transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+	}
+}
+
+.ghost-button--cancel {
+	cursor: pointer;
+	color: $color-danger-500;
+	-webkit-transition: 0.3s all ease;
+	transition: 0.3s ease all;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	display: inline-block;
+	text-align: center;
+	width: 12rem;
+	font-weight: bold;
+	padding: 1.4rem 0px;
+	border: 3px solid $color-danger-300;
+
+	border-radius: 2px;
+	position: relative;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+	&:before {
+		-webkit-transition: 0.5s all ease;
+		transition: 0.5s all ease;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		right: 50%;
+		bottom: 0;
+		opacity: 1;
+		content: '';
+		background-color: $color-danger-500;
+		z-index: -1;
+	}
+	&:hover {
+		color: $color-primary--100;
+		&:before {
+			-webkit-transition: 0.5s all ease;
+			transition: 0.5s all ease;
+			left: 0;
+			right: 0;
+			opacity: 1;
+		}
+	}
+	&:focus {
+		color: #fff;
+		&:before {
+			-webkit-transition: 0.5s all ease;
+			transition: 0.5s all ease;
+			left: 0;
+			right: 0;
+			opacity: 1;
+		}
+	}
+}
+
+.button--confirm {
+	cursor: pointer !important;
+	margin: 2rem;
+
+	background-color: $color-success-300;
+	padding: 0;
+	border: none;
+}
+
+.button--confirm:after,
+.button--confirm:before {
+	position: absolute;
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	content: '';
+}
+.button--confirm:before {
+	height: 0%;
+	width: 2px;
+}
+
+.button--confirm span:first-child {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.button--confirm:after {
+	width: 0%;
+	height: 2px;
+}
+
+.button--confirm:hover:before {
+	height: 100%;
+}
+.button--confirm span:hover:after,
+.button--confirm:hover:after {
+	width: 100%;
+}
+
+.button--confirm span:after {
+	height: 2px;
+	width: 0%;
+}
+.button--confirm {
+	background-color: #f0ecfc;
+	background-image: -o-linear-gradient(135deg, #f0ecfc 0, #c797eb 74%);
+	background-image: linear-gradient(315deg, #f0ecfc 0, #c797eb 74%);
+}
+.button--confirm:after,
+.button--confirm:before {
+	right: 0;
+	bottom: 0;
+	background: #c797eb;
+	transition: 0.3s;
+}
+
+.button--confirm:hover {
+	background: 0 0;
+}
+.button--confirm:hover span {
+	color: #c797eb;
+}
+.button--confirm span:after,
+.button--confirm span:before {
+	position: absolute;
+	content: '';
+	left: 0;
+	top: 0;
+	background: #c797eb;
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+}
+
+// .ghost-button--cancel,
+// .ghost-button__fill--cancel {
+// 	cursor: pointer;
+// 	color: $color-danger-500;
+// 	text-decoration: none;
+// 	-webkit-transition: 0.3s all ease;
+// 	transition: 0.3s ease all;
+// 	&:hover {
+// 		color: #fff;
+// 	}
+// 	&:focus {
+// 		color: #fff;
+// 	}
+// }
+
+// BUTTON BORDER LINES ON HOVER
+// button {
+//     color: white;
+//     text-decoration: none;
+//     font-size: 25px;
+//     border: none;
+//     background: none;
+//     font-weight: 600;
+//     font-family: 'Poppins', sans-serif;
+//   }
+
+//   button::before {
+//     margin-left: auto;
+//   }
+
+//   button::after, button::before {
+//     content: '';
+//     width: 0%;
+//     height: 2px;
+//     background: #f44336;
+//     display: block;
+//     transition: 0.5s;
+//   }
+
+//   button:hover::after, button:hover::before {
+//     width: 100%;
+//   }
+
+// BUTTON DELETE
+// button {
+//     width: 150px;
+//     height: 50px;
+//     cursor: pointer;
+//     display: flex;
+//     align-items: center;
+//     background: red;
+//     border: none;
+//     border-radius: 5px;
+//     box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+//     background: #e62222;
+//    }
+
+//    button, button span {
+//     transition: 200ms;
+//    }
+
+//    button .text {
+//     transform: translateX(35px);
+//     color: white;
+//     font-weight: bold;
+//    }
+
+//    button .icon {
+//     position: absolute;
+//     border-left: 1px solid #c41b1b;
+//     transform: translateX(110px);
+//     height: 40px;
+//     width: 40px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//    }
+
+//    button svg {
+//     width: 15px;
+//     fill: #eee;
+//    }
+
+//    button:hover {
+//     background: #ff3636;
+//    }
+
+//    button:hover .text {
+//     color: transparent;
+//    }
+
+//    button:hover .icon {
+//     width: 150px;
+//     border-left: none;
+//     transform: translateX(0);
+//    }
+
+// BUTTON LOG OUT
+.button-logout {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 45px;
+	height: 45px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition-duration: 0.3s;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+	background-color: rgb(218, 79, 79);
+
+	&:hover {
+		background-color: rgb(247, 101, 101);
+		width: 125px;
+		border-radius: 40px;
+		transition-duration: 0.3s;
+	}
+
+	&:active {
+		transform: translate(2px, 2px);
+	}
+
+	&__sign {
+		width: 100%;
+		transition-duration: 0.3s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		svg {
+			width: 17px;
+
+			path {
+				fill: white;
+			}
+		}
+
+		.button-logout:hover & {
+			width: 30%;
+			transition-duration: 0.3s;
+			padding-left: 20px;
+		}
+	}
+
+	&__text {
+		position: absolute;
+		right: 0%;
+		width: 0%;
+		opacity: 0;
+		color: white;
+		font-size: 1.2em;
+		font-weight: 600;
+		transition-duration: 0.3s;
+
+		.button-logout:hover & {
+			opacity: 1;
+			width: 70%;
+			transition-duration: 0.3s;
+			padding-right: 10px;
+		}
+	}
+}
+
+// BUTTON LOGIN
+.button-login {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 45px;
+	height: 45px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition-duration: 0.3s;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+	background-color: $color-primary--200;
+
+	&:hover {
+		width: 125px;
+		border-radius: 40px;
+		transition-duration: 0.3s;
+	}
+
+	&:active {
+		transform: translate(2px, 2px);
+	}
+
+	&__sign {
+		width: 100%;
+		transition-duration: 0.3s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		svg {
+			width: 17px;
+
+			path {
+				fill: $color-primary--500;
+			}
+		}
+
+		.button-login:hover & {
+			width: 30%;
+			transition-duration: 0.3s;
+			padding-left: 20px;
+		}
+	}
+
+	&__text {
+		position: absolute;
+		right: 0%;
+		width: 0%;
+		opacity: 0;
+		color: $color-primary--400;
+		font-size: 1.2em;
+		font-weight: 600;
+		transition-duration: 0.3s;
+
+		.button-login:hover & {
+			opacity: 1;
+			width: 70%;
+			transition-duration: 0.3s;
+			padding-right: 10px;
+		}
+	}
+}
+
+/// BUTTON HEART LIKE
+///
+///
+$heart-color: rgb(189, 91, 255);
+
+.heart-container {
+	position: relative;
+	width: 50px;
+	height: 50px;
+	transition: 0.3s;
+
+	&__checkbox {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		z-index: 20;
+		cursor: pointer;
+	}
+
+	&__svg-container {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__svg-outline,
+	&__svg-filled {
+		fill: $heart-color;
+		position: absolute;
+	}
+
+	&__svg-filled {
+		animation: keyframes-svg-filled 1s;
+		display: none;
+	}
+
+	&__svg-celebrate {
+		position: absolute;
+		animation: keyframes-svg-celebrate 0.5s;
+		animation-fill-mode: forwards;
+		display: none;
+		stroke: $heart-color;
+		fill: $heart-color;
+		stroke-width: 2px;
+	}
+
+	&__checkbox:checked ~ &__svg-container &__svg-filled {
+		display: block;
+	}
+
+	&__checkbox:checked ~ &__svg-container &__svg-celebrate {
+		display: block;
+	}
+}
+
+// DELETE TRASH BUTTON
+
+.button--delete-trash {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: rgb(20, 20, 20);
+	border: none;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+	cursor: pointer;
+	transition-duration: 0.3s;
+	overflow: hidden;
+	position: relative;
+
+	.svgIcon--delete-trash {
+		width: 12px;
+		transition-duration: 0.3s;
+
+		path {
+			fill: white;
+		}
+	}
+
+	&:hover {
+		width: 140px;
+		border-radius: 50px;
+		transition-duration: 0.3s;
+		background-color: rgb(255, 69, 69);
+		align-items: center;
+
+		.svgIcon--delete-trash {
+			width: 50px;
+			transition-duration: 0.3s;
+			transform: translateY(60%);
+		}
+	}
+
+	&::before {
+		position: absolute;
+		top: -20px;
+		content: 'Delete';
+		color: white;
+		transition-duration: 0.3s;
+		font-size: 2px;
+	}
+
+	&:hover::before {
+		font-size: 13px;
+		opacity: 1;
+		transform: translateY(30px);
+		transition-duration: 0.3s;
+	}
+	&.deleted {
+		background-color: rgb(0, 255, 0); // Green color for success
+
+		span {
+			font-size: 2rem; // Adjust as needed
+			color: white;
+		}
+	}
+}
+
+@keyframes keyframes-svg-filled {
+	0% {
+		transform: scale(0);
+	}
+
+	25% {
+		transform: scale(1.2);
+	}
+
+	50% {
+		transform: scale(1);
+		filter: brightness(1.5);
+	}
+}
+
+@keyframes keyframes-svg-celebrate {
+	0% {
+		transform: scale(0);
+	}
+
+	50% {
+		opacity: 1;
+		filter: brightness(1.5);
+	}
+
+	100% {
+		transform: scale(1.4);
+		opacity: 0;
+		display: none;
+	}
+}

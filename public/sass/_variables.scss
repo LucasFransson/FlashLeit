@@ -1,5 +1,16 @@
 // Color Palette
 
+$color-primary--100: #f1eefc;
+$color-primary--200: #cdc3ef;
+$color-primary--300: #9d90cc;
+$color-primary--400: #6a5aa5;
+$color-primary--500: #524582;
+$color-primary--600: #524582;
+$color-primary--700: #2b1f53;
+$color-primary--800: #1a113a;
+$color-primary--900: #0d0528;
+
+// NEUTRAL COLORS
 $color-neutral-100: #f4f2f6;
 $color-neutral-200: #d7d3db;
 $color-neutral-300: #b8b1bf;
@@ -9,6 +20,28 @@ $color-neutral-600: #514a59;
 $color-neutral-700: #38323f;
 $color-neutral-800: #26202d;
 $color-neutral-900: #05010a;
+
+$color-success-100: #dffcde;
+$color-success-300: #96f994;
+$color-success-500: #47e244;
+$color-success-700: #044903;
+$color-success-900: #012400;
+
+$color-danger-100: #fbd1d6;
+$color-danger-300: #f8808e;
+$color-danger-500: #cc2f42;
+$color-danger-700: #52030d;
+$color-danger-900: #31000f;
+
+$color-warning-300: #fbf79d;
+$color-warning-500: #cdc73f;
+$color-warning-700: #cdc73f;
+
+$color-information-300: #8addef;
+$color-information-500: #33adc8;
+$color-information-700: #0c7c95;
+// Color consideration
+$color-secondary-500: rgb(229, 183, 98);
 
 ////////////////////////////////
 $box-shadow-subtle: 0px 0.4rem 1rem rgba(0, 0, 0, 0.1),
@@ -20,6 +53,549 @@ $color-dark-primary-1: #242424;
 $color-gray-light-1: #d9d9d9;
 $color-gray-dark-1: #404040;
 $color-gray-dark-2: #6a6d70;
+
+// PATTERN BACKGROUNDS
+
+// $bg-pattern-gradient: linear-gradient(-240deg, #fffc00, #fc00ff, #00fffc);
+// $bg-pattern-overlay: linear-gradient(
+// 		135deg,
+// 		currentColor 25%,
+// 		transparent 25%,
+// 		transparent 50%,
+// 		currentColor 50%,
+// 		currentColor 75%,
+// 		transparent 75%
+// 	),
+// 	linear-gradient(
+// 		225deg,
+// 		currentColor 25%,
+// 		transparent 25%,
+// 		transparent 50%,
+// 		currentColor 50%,
+// 		currentColor 75%,
+// 		transparent 75%
+// 	),
+// 	linear-gradient(
+// 		315deg,
+// 		currentColor 25%,
+// 		transparent 25%,
+// 		transparent 50%,
+// 		currentColor 50%,
+// 		currentColor 75%,
+// 		transparent 75%
+// 	),
+// 	linear-gradient(
+// 		45deg,
+// 		currentColor 25%,
+// 		transparent 25%,
+// 		transparent 50%,
+// 		currentColor 50%,
+// 		currentColor 75%,
+// 		transparent 75%
+// 	);
+
+// .bg-pattern {
+// 	background: $bg-pattern-gradient;
+// 	position: relative;
+// 	color: rgba(0, 0, 0, 0.2); // This sets the color for the pattern
+
+// 	&::before {
+// 		content: '';
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		background-image: $bg-pattern-overlay;
+// 		background-size: calc(10% * 1vw) calc(10% * 1vw);
+// 		z-index: 1;
+// 	}
+// }
+
+$bg-sunset-gradient: linear-gradient(135deg, #ff5f6d, #ffc371);
+
+.bg-sunset {
+	background: $bg-sunset-gradient;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: radial-gradient(
+			circle,
+			rgba(255, 255, 255, 0.4) 10%,
+			transparent 10%
+		);
+		background-size: 10% 10%;
+	}
+}
+
+$bg-ocean-gradient: linear-gradient(45deg, #34e89e, #0f3443);
+
+.bg-ocean {
+	background: $bg-ocean-gradient;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: repeating-linear-gradient(
+			-45deg,
+			rgba(255, 255, 255, 0.4),
+			rgba(255, 255, 255, 0.4) 10px,
+			transparent 10px,
+			transparent 20px
+		);
+	}
+}
+
+$bg-galaxy-gradient: linear-gradient(135deg, #8e2de2, #4a00e0);
+
+.bg-galaxy {
+	background: $bg-galaxy-gradient;
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: radial-gradient(
+			circle,
+			rgba(255, 255, 255, 0.4) 2%,
+			transparent 2%
+		);
+		background-size: 5% 5%;
+		z-index: 1;
+	}
+}
+
+$bg-desert-gradient: linear-gradient(45deg, #ffd200, #f7971e);
+
+.bg-desert {
+	background: $bg-desert-gradient;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: repeating-linear-gradient(
+			45deg,
+			rgba(255, 255, 255, 0.4),
+			rgba(255, 255, 255, 0.4) 5px,
+			transparent 5px,
+			transparent 10px
+		);
+	}
+}
+
+$bg-forest-gradient: linear-gradient(135deg, #005aa7, #fffde4);
+
+.bg-forest {
+	background: $bg-forest-gradient;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: repeating-linear-gradient(
+			45deg,
+			transparent,
+			transparent 20px,
+			rgba(255, 255, 255, 0.4) 20px,
+			rgba(255, 255, 255, 0.4) 40px
+		);
+	}
+}
+
+// ANIMATED BACKGROUNDS
+
+@keyframes waveAnimation {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 400px 0;
+	}
+}
+
+.bg-wavy-ocean {
+	background: linear-gradient(45deg, #34e89e, #0f3443);
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: url('path_to_wave_svg.svg');
+		animation: waveAnimation 5s infinite linear;
+	}
+}
+
+@keyframes rotateSunburst {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.bg-sunburst {
+	background: linear-gradient(135deg, #ff5f6d, #ffc371);
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: url('path_to_sunburst_svg.svg');
+		animation: rotateSunburst 10s infinite linear;
+	}
+}
+
+@keyframes floatBubbles {
+	0% {
+		bottom: -10%;
+	}
+	100% {
+		bottom: 110%;
+	}
+}
+
+.bg-bubbles {
+	background: linear-gradient(45deg, #0077b6, #95d5b2);
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 50px;
+		height: 50px;
+		background: url('path_to_bubble_svg.svg');
+		animation: floatBubbles 5s infinite linear;
+	}
+}
+
+@keyframes shootStar {
+	0% {
+		left: 0;
+		top: 0;
+	}
+	100% {
+		left: 100%;
+		top: 100%;
+	}
+}
+
+.bg-stars {
+	background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 20px;
+		height: 2px;
+		background: white;
+		animation: shootStar 5s infinite linear;
+	}
+}
+
+@keyframes heartbeat {
+	0%,
+	100% {
+		transform: scaleX(1);
+	}
+	50% {
+		transform: scaleX(1.5);
+	}
+}
+
+.bg-heartbeat {
+	background: linear-gradient(45deg, #e63946, #f1faee);
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100px;
+		height: 5px;
+		background: url('path_to_heartbeat_svg.svg');
+		animation: heartbeat 2s infinite linear;
+	}
+}
+
+// $bg-sunset-gradient: linear-gradient(135deg, #ff5f6d, #ffc371);
+
+// .bg-sunset {
+// 	background: $bg-sunset-gradient;
+
+// 	&::after {
+// 		content: '';
+// 		background: radial-gradient(
+// 			circle,
+// 			transparent 20%,
+// 			currentColor 20%,
+// 			currentColor 80%,
+// 			transparent 80%
+// 		);
+// 		background-size: 50px 50px;
+// 		opacity: 0.1;
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		z-index: -1;
+// 	}
+// }
+
+// $bg-ocean-gradient: linear-gradient(45deg, #34e89e, #0f3443);
+
+// .bg-ocean {
+// 	background: $bg-ocean-gradient;
+
+// 	&::after {
+// 		content: '';
+// 		background: repeating-linear-gradient(
+// 			-45deg,
+// 			currentColor,
+// 			currentColor 10px,
+// 			transparent 10px,
+// 			transparent 20px
+// 		);
+// 		opacity: 0.1;
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		z-index: -1;
+// 	}
+// }
+
+// $bg-galaxy-gradient: linear-gradient(135deg, #8e2de2, #4a00e0);
+
+// .bg-galaxy {
+// 	background: $bg-galaxy-gradient;
+
+// 	&::after {
+// 		content: '';
+// 		background: radial-gradient(circle, currentColor 10%, transparent 10%);
+// 		background-size: 50px 50px;
+// 		opacity: 0.2;
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		z-index: -1;
+// 	}
+// }
+
+// $bg-desert-gradient: linear-gradient(45deg, #ffd200, #f7971e);
+
+// .bg-desert {
+// 	background: $bg-desert-gradient;
+
+// 	&::after {
+// 		content: '';
+// 		background: repeating-linear-gradient(
+// 			45deg,
+// 			currentColor,
+// 			currentColor 5px,
+// 			transparent 5px,
+// 			transparent 10px
+// 		);
+// 		opacity: 0.15;
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		z-index: -1;
+// 	}
+// }
+
+// $bg-forest-gradient: linear-gradient(135deg, #005aa7, #fffde4);
+
+// .bg-forest {
+// 	background: $bg-forest-gradient;
+
+// 	&::after {
+// 		content: '';
+// 		background: repeating-linear-gradient(
+// 			45deg,
+// 			transparent,
+// 			transparent 20px,
+// 			currentColor 20px,
+// 			currentColor 40px
+// 		);
+// 		opacity: 0.1;
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		z-index: -1;
+// 	}
+// }
+
+// COLOR VARIABLES FOR THUMBNAILS SMALL CARD
+
+// .--dusty-rose {
+// 	background-color: #e89fa3;
+
+// 	&:hover {
+// 		background-image: linear-gradient(45deg, #e89fa3, #f1f1f1);
+// 	}
+// }
+
+// .--soft-peach {
+// 	background-color: #fbd1c8;
+
+// 	&:hover {
+// 		background-image: linear-gradient(45deg, #fbd1c8, #f1f1f1);
+// 	}
+// }
+
+// .--muted-coral {
+// 	background-color: #f28b82;
+
+// 	&:hover {
+// 		background-image: linear-gradient(45deg, #f28b82, #f1f1f1);
+// 	}
+// }
+
+// .--warm-taupe {
+// 	background-color: #a89f91;
+
+// 	&:hover {
+// 		background-image: linear-gradient(45deg, #a89f91, #f1f1f1);
+// 	}
+// }
+
+// COLOR MIXINS FOR THUMBNAILS SMALL CARD
+
+@mixin default-gradient {
+	background: linear-gradient(135deg, #f7f7f7, #f7f7f7);
+	background-size: 400% 400%;
+
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, rgb(219, 147, 172), #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+// @mixin default-gradient {
+// 	background: linear-gradient(135deg, #f7f7f7, #f7f7f7);
+// 	background-size: 400% 400%;
+
+// 	&:hover {
+// 		transform: translateY(-5px);
+// 		background-image: linear-gradient(45deg, #f06, #f1f1f1);
+// 		animation: gradientShift 4s ease infinite;
+// 	}
+// }
+@mixin dusty-rose {
+	background-color: #e89fa3;
+	background-size: 400% 400%;
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, #e89fa3, #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+
+@mixin soft-peach {
+	background-color: #fbd1c8;
+	background-size: 400% 400%;
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, #fbd1c8, #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+
+@mixin muted-coral {
+	background-color: #f28b82;
+	background-size: 400% 400%;
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, #f28b82, #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+
+@mixin warm-taupe {
+	background-color: #a89f91;
+	background-size: 400% 400%;
+	&:hover {
+		transform: translateY(-5px);
+		background-image: linear-gradient(45deg, #a89f91, #f1f1f1);
+		animation: gradientShift 4s ease infinite;
+	}
+}
+
+// .small-card {
+// 	// ... (existing styles)
+
+// 	&--dusty-rose {
+// 		@include dusty-rose;
+// 	}
+
+// 	&--soft-peach {
+// 		@include soft-peach;
+// 	}
+
+// 	&--muted-coral {
+// 		@include muted-coral;
+// 	}
+
+// 	&--warm-taupe {
+// 		@include warm-taupe;
+// 	}
+// }
 
 // COLOR VARIABLES FOR FLASHCARDS
 

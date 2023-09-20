@@ -11,9 +11,9 @@
 	grid-template-rows: 1fr 1fr 1fr;
 	gap: 1rem;
 	border: 1px solid $color-malachite-dark;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  
+	grid-column-start: 1;
+	grid-column-end: 2;
+
 	&__title {
 		text-transform: uppercase;
 		text-align: center;

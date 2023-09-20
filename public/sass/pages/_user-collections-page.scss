@@ -1,15 +1,90 @@
-.user-collections-page {
+.collections-page {
+	background-color: $color-primary--100;
 	grid-column: 1/-1;
-	// display: grid;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	// grid-template-columns: repeat(1fr, 4);
-	// grid-template-rows: repeat(1fr, 4);
+	grid-row: 2;
+	display: grid;
 
-	
-	#spanish__blob {
-		width: 35rem;
-		height: 35rem;
+	// grid-template-rows: 1.6rem calc(min-content + 5rem) 3.2rem 6.4rem 1fr;
+	grid-template-rows: 6.4rem 1fr;
+	grid-template-columns: minmax(60rem, 1fr) 2.5fr;
+	row-gap: 0.5rem;
+	column-gap: 1rem;
+
+	& > div {
+		margin: 0 1rem;
+		background-color: $color-neutral-100;
+		border: 2px solid $color-neutral-300;
+		box-shadow: $box-shadow-subtle;
+	}
+
+	&__favorites {
+		grid-column: 1/-1;
+		grid-row: 1;
+		padding: 3rem 0;
+		// background-color: $color-neutral-800;
+	}
+
+	&__user-collections {
+		grid-column: 2/-1;
+		grid-row: 2/-1;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 5rem 5rem;
+		overflow: scroll;
+
+		.grid-container {
+			grid-column: 1/-1;
+			grid-row: 3;
+			grid-auto-rows: min-content;
+			.grid-container {
+				grid-template-columns: repeat(auto-fill, minmax(48rem, 1fr));
+			}
+
+			// grid-auto-rows: 25%;
+		}
+	}
+
+	&__public {
+		grid-column: 1/2;
+		grid-row: 2/-1;
+		display: grid;
+		grid-template-columns: 1rem 1fr 1fr 1rem;
+		grid-template-rows: 5rem 5rem 5rem;
+		overflow: scroll;
+	}
+
+	// Typography
+	&__h3 {
+		font-size: 2.8rem;
+		&--public {
+			grid-column: 3/4;
+			white-space: nowrap;
+		}
+		&--user-collections {
+			grid-column: 3/4;
+		}
+	}
+	// Searchbars
+	&__search {
+		&bar {
+			&--user-collections {
+				grid-column: 1/4;
+			}
+			&--public-collections {
+				grid-column: 2/4;
+				grid-row: 2;
+			}
+		}
+	}
+
+	// CardGrids
+	&__card-grid {
+		&--public {
+			grid-column: 2/4;
+			.grid-container {
+				grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+				gap: 1rem;
+			}
+		}
 	}
 }

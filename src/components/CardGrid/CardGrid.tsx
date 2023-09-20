@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import CardGridTypes from '../../types/CardGridTypes';
+import { Link } from "react-router-dom";
+import CardGridTypes from "../../types/CardGridTypes";
 
 const CardGrid: React.FC<CardGridTypes> = ({
 	items,
@@ -8,41 +8,37 @@ const CardGrid: React.FC<CardGridTypes> = ({
 	parent,
 	onCardClick,
 	onDeleteClick,
-	// animationOnRendering,
 	...restProps
 }) => {
 	return (
 		<div className="grid-container">
 			{items.map((item) => (
-				// <div className={`grid-container__item ${styleClass}`} key={item.id}>
 				<div
-					// className={`grid-container__item ${animationOnRendering}`}
 					className={`grid-container__item ${restProps.animationOnRendering}`}
 					key={item.id}
 				>
 					{linkPrefix && parent === "discover" ? (
-						<Link
-							to={`/${linkPrefix}/${item.userId}/${item.id}`}
-							onClick={() => onCardClick && onCardClick(item)}
-						>
-							<Component
-								{...item}
-								// animationOnRendering={animationOnRendering}
-								animationOnRendering={restProps.animationOnRendering}
-							/>
-							{/* <Component {...item} /> */}
-						</Link>
+						<>
+							{/* <button></button> */}
+							<Link
+								to={`/${linkPrefix}/${item.userId}/${item.id}`}
+								onClick={() => onCardClick && onCardClick(item)}
+							>
+								<Component
+									{...item}
+									{...restProps}
+									// animationOnRendering={animationOnRendering}
+									// animationOnRendering={restProps.animationOnRendering}
+								/>
+								{/* <Component {...item} /> */}
+							</Link>
+						</>
 					) : linkPrefix ? (
 						<Link
 							to={`/${linkPrefix}/${item.id}`}
 							onClick={() => onCardClick && onCardClick(item)}
 						>
-							<Component
-								{...item}
-								// animationOnRendering={animationOnRendering}
-								animationOnRendering={restProps.animationOnRendering}
-							/>
-							{/* <Component {...item} /> */}
+							<Component {...item} {...restProps} />
 						</Link>
 					) : (
 						<>
@@ -55,14 +51,11 @@ const CardGrid: React.FC<CardGridTypes> = ({
 							<div
 								onClick={() => onCardClick && onCardClick(item)}
 								className={`card-editor__item ${restProps.animationOnRendering}`}
-								//className={`card-editor__item ${animationOnRendering}`}
 							>
 								<Component
 									{...item}
 									animationOnRendering={restProps.animationOnRendering}
-									//animationOnRendering={animationOnRendering}
 								/>
-								{/* <Component {...item} /> */}
 							</div>
 						</>
 					)}

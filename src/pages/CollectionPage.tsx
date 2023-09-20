@@ -12,7 +12,10 @@ import LeitnerBoxes from "../components/LeitnerBoxes/LeitnerBoxes";
 import CardTypes from "../types/CardTypes";
 import LeitnerCollection from "../components/LeitnerCollection/LeitnerCollection";
 import { useUpdateLastReviewedDate } from "../utils/cardUtility";
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import {
+	AuthenticatedTemplate,
+	UnauthenticatedTemplate,
+} from "@azure/msal-react";
 
 interface RouteParams {
 	id: number;
@@ -27,7 +30,8 @@ function CollectionPage() {
 	// Get collection id from route parameters:
 	const { id } = useParams<RouteParams>();
 
-	const [isShowingRegularCollection, setIsShowingRegularCollection] = useState(true);
+	const [isShowingRegularCollection, setIsShowingRegularCollection] =
+		useState(true);
 
 	// Initializing the userId by getting it from the global state of the userId
 	const { userId } = useSelector((state: RootState) => state.userId);
@@ -42,13 +46,14 @@ function CollectionPage() {
 		[key: number]: "correct" | "wrong";
 	}>({});
 
-	const { data, isLoading, isError, error } = useGetCollectionByIdAndUserIdQuery(
-		{
-			collectionId: id,
-			userId: userId,
-		},
-		{ skip }
-	);
+	const { data, isLoading, isError, error } =
+		useGetCollectionByIdAndUserIdQuery(
+			{
+				collectionId: id,
+				userId: userId,
+			},
+			{ skip }
+		);
 
 	// This useEffect makes sure that userId have a value before allowing any api calls
 	useEffect(() => {
@@ -110,8 +115,14 @@ function CollectionPage() {
 				) : isError || !data ? (
 					<ErrorMsg error={error} />
 				) : (
+					// NORMAL COLLECTION RUN
 					<div className="cardset-page">
-						<Toggler onToggle={handleToggle} isChecked={isShowingRegularCollection} />
+						<div className="cardset-page__toggle-wrapper">
+							<Toggler
+								onToggle={handleToggle}
+								isChecked={isShowingRegularCollection}
+							/>
+						</div>
 						{isShowingRegularCollection ? (
 							<>
 								<CardCollection
@@ -133,6 +144,7 @@ function CollectionPage() {
 								/>
 							</>
 						) : (
+							// LEITNER COLLECTION RUN
 							<>
 								<LeitnerBoxes collection={data} selectBox={selectBox} />
 
