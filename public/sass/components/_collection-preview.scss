@@ -78,4 +78,14 @@
 		grid-column: 5/10;
 		color: $color-neutral-200;
 	}
+	&__avatar {
+		grid-row: 4;
+		grid-column: 5/10;
+		font-size: 2.2rem;
+		font-weight: 1000;
+		color: $color-neutral-100;
+		//border-bottom: 1px solid $color-neutral-100;
+		display: flex;
+		align-items: top;
+	}
 }

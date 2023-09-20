@@ -25,7 +25,7 @@ export const getTotalIncorrectAnswers = (collections: CardCollectionTypes[]) => 
 	let incorrectAnswers = 0;
 
 	collections?.forEach(collection => (incorrectAnswers += collection.amountOfIncorrectAnswers));
-
+	console.log(incorrectAnswers);
 	return incorrectAnswers;
 };
 

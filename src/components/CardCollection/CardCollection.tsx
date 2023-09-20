@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import AchievementTypes from "../../types/AchievementTypes";
 import AvatarTypes from "../../types/AvatarTypes";
 import AchievementCard from "../AchievementCard/AchievementCard";
+import AchievementModal from "../Modal/AchievementModal";
 
 interface CardCollectionProps extends CardCollectionTypes {
 	cardIndex: number;
@@ -29,6 +30,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 	...restProps
 }) => {
 	const { unlockCorrectAnswersAchievement, unlockInCorrectAnswersAchievement, unlockCompletedRunsAchievement } = useAchievementService();
+	const [isShowingAchievementModal, setIsShowingAchievementModal] = useState(false);
 	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
 
 	// useState hook for managing current card index
@@ -57,6 +59,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 				updateCollectionsCounter(id, "IncrementCorrectAnswers");
 				const achievement = unlockCorrectAnswersAchievement();
 				setAchievement(achievement);
+				setIsShowingAchievementModal(true);
 			}
 		} else {
 			setAnimationType("wrong");
@@ -67,6 +70,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 
 				const achievement = unlockInCorrectAnswersAchievement();
 				setAchievement(achievement);
+				setIsShowingAchievementModal(true);
 			}
 		}
 
@@ -86,6 +90,7 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 
 					const achievement = unlockCompletedRunsAchievement();
 					setAchievement(achievement);
+					setIsShowingAchievementModal(true);
 				}
 			}
 		}, 1300); // ms animation time
@@ -112,6 +117,10 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 		setHasClonedCollection(true);
 	};
 
+	const closeModal = () => {
+		setIsShowingAchievementModal(false);
+	};
+
 	return (
 		<div className="card-collection">
 			<div className="card-collection__heading">
@@ -120,7 +129,8 @@ const CardCollection: React.FC<CardCollectionProps> = ({
 			<p className="card-collection__counter">
 				<span>{cardIndex + 1}</span>/<span>{flashCards.length}</span>
 			</p>
-			{achievement && <AchievementCard achievement={achievement[0]} avatar={achievement[1]} />}
+			{isShowingAchievementModal && <AchievementModal closeModal={closeModal} achievement={achievement} />}
+			{/* {achievement && <AchievementCard achievement={achievement[0]} avatar={achievement[1]} />} */}
 			{/* Check if there are any cards AND that the current card index is within bounds */}
 			{flashCards.length > 0 && !isFinished && cardIndex < flashCards.length ? (
 				// Render the Card at cardIndex from the cards array

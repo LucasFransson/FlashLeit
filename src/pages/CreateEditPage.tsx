@@ -17,6 +17,7 @@ import AchievementCard from "../components/AchievementCard/AchievementCard";
 import AchievementTypes from "../types/AchievementTypes";
 import AvatarTypes from "../types/AvatarTypes";
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import AchievementModal from "../components/Modal/AchievementModal";
 
 function EditCardPage() {
 	// useState to hold the selected card:
@@ -31,7 +32,7 @@ function EditCardPage() {
 		colorClass: null,
 	});
 	const { unlockCreateAchievement } = useAchievementService();
-
+	const [isShowingAchievementModal, setIsShowingAchievementModal] = useState(false);
 	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
 
 	// useState to hold toggler value:
@@ -138,6 +139,7 @@ function EditCardPage() {
 		// --- TODO --- Show success modal?
 		const achievement = unlockCreateAchievement();
 		setAchievement(achievement);
+		setIsShowingAchievementModal(true);
 
 		setIsChecked(false);
 
@@ -158,6 +160,10 @@ function EditCardPage() {
 		});
 	};
 
+	const closeModal = () => {
+		setIsShowingAchievementModal(false);
+	};
+
 	if (collectionLoading) return <LoadingIcon />;
 	if (collectionError)
 		return (
@@ -172,13 +178,9 @@ function EditCardPage() {
 				Error: {cardsError.status} {JSON.stringify(cardsError.data)}
 			</div>
 		);
-	if (achievement) {
-		return (
-			<>
-				<AchievementCard achievement={achievement[0]} avatar={achievement[1]} />
-			</>
-		);
-	}
+	// if (achievement) {
+	// 	return <>{showingAchievementModal && <AchievementModal closeModal={closeModal} achievement={achievement} />}</>;
+	// }
 	return (
 		<>
 			<AuthenticatedTemplate>
@@ -187,7 +189,9 @@ function EditCardPage() {
 						{collectionData && collectionData.length > 0 && !isChecked ? (
 							<>
 								<Toggler onToggle={handleToggle} isChecked={isChecked} />
+
 								<CollectionSelector className="" collections={collectionData} onCollectionChange={handleCollectionChange} />
+
 								<div className="create-edit-page__wrapper">
 									<div className="create-edit-page__card-grid">
 										<CardGrid items={flashCards} Component={Card} onCardClick={selectCard} onDeleteClick={deleteSelectedCard} />
@@ -201,6 +205,7 @@ function EditCardPage() {
 							<>
 								<Toggler onToggle={handleToggle} isChecked={isChecked} />
 								<AddCollection userId={userId} collectionAdded={collectionAdded} />
+								{isShowingAchievementModal && <AchievementModal closeModal={closeModal} achievement={achievement} />}
 							</>
 						) : (
 							<>

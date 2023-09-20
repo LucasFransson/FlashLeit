@@ -518,6 +518,14 @@ a {
     grid-row: 3;
     grid-column: 5/10;
     color: #d7d3db; }
+  .collection-preview__avatar {
+    grid-row: 4;
+    grid-column: 5/10;
+    font-size: 2.2rem;
+    font-weight: 1000;
+    color: #f4f2f6;
+    display: flex;
+    align-items: top; }
 
 .footer {
   color: #f4f2f6;
@@ -753,7 +761,7 @@ a {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
-  z-index: 1; }
+  z-index: 999; }
 
 .modal__content {
   width: 40em;

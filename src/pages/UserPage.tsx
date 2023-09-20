@@ -11,6 +11,7 @@ import AvatarModal from "../components/Modal/AvatarModal";
 import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
 import UserTypes from "../types/UsersTypes";
 import { useGetAchievementsByUserIdQuery, useGetAllAchievementsQuery } from "../redux/api/achievementsSlice";
+import { getTotalCompleteRuns, getTotalCorrectAnswers, getTotalIncorrectAnswers, getUserAchievementPoints } from "../utils/statsUtility";
 
 function UserPage() {
 	const [skip, setSkip] = useState(true);
@@ -87,7 +88,7 @@ function UserPage() {
 	return (
 		<>
 			<AuthenticatedTemplate>
-				{isLoadingUser || isLoadingCollections ? (
+				{isLoadingUser || isLoadingCollections || isLoadingCreatedCollections ? (
 					<LoadingIcon />
 				) : isErrorUser ? (
 					<ErrorMsg error={errorUser} />
@@ -112,6 +113,12 @@ function UserPage() {
 								</button>
 								<button onClick={() => instance.logout()}>Log Out</button>
 								<button onClick={closeAccount}>Close Account</button>
+								<p>Achievements Points: {getUserAchievementPoints(unlockedAchievements)}</p>
+								<p>Achievements Points Max: {getUserAchievementPoints(allAchievements)}</p>
+								<p>Total Completed runs: {getTotalCompleteRuns(collections)}</p>
+								<p>Total Incorrect Answers: {getTotalIncorrectAnswers(collections)}</p>
+								<p>Total Correct Answers: {getTotalCorrectAnswers(collections)}</p>
+								<p>Created Collections: {createdCollections?.length}</p>
 							</div>
 						</div>
 					)

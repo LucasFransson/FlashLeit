@@ -1,41 +1,40 @@
 .modal {
+	&__backdrop {
+		top: 0;
+		left: 0;
+		position: fixed;
+		background: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		height: 100%;
+		z-index: 999;
+	}
 
-  &__backdrop {
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: rgba(0,0,0,0.5);
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
+	&__content {
+		width: 40em;
+		padding: 4em;
+		margin: 3em auto;
+		border-radius: 5%;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: 1fr, repeat(3, 1fr);
+		gap: 1em;
+	}
 
-  &__content {
-    width: 40em;
-    padding: 4em;
-    margin: 3em auto;
-    border-radius: 5%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr, repeat(3, 1fr);
-    gap: 1em;
-  }
+	&__header {
+		grid-row-start: 1;
+		grid-column: 1/4;
+		text-align: center;
+	}
 
-    &__header {
-      grid-row-start: 1;
-      grid-column: 1/4;
-      text-align: center;
-  }
+	&__avatar__wrapper:hover {
+		cursor: pointer;
+	}
 
-  &__avatar__wrapper:hover {
-    cursor: pointer;
-  }
+	&__avatar__wrapper__locked {
+		opacity: 0.3;
+	}
 
-  &__avatar__wrapper__locked {
-    opacity: 0.3;
-  }
-
-  &__avatar__wrapper__locked:hover {
-    cursor: not-allowed;
-  }
+	&__avatar__wrapper__locked:hover {
+		cursor: not-allowed;
+	}
 }
