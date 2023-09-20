@@ -4,7 +4,7 @@
 
 	// NEW GRID
 	display: grid;
-	grid-template-columns: 30% 40% 1fr;
+	grid-template-columns: 1fr 40% 1fr;
 	// grid-template-rows: 1fr 2fr 2fr 1fr;	//TODO: change back to responsive grid after testing with %
 	grid-template-rows: 15% 35% 40% 10%;
 	grid-column-gap: 0.5rem;
@@ -43,9 +43,9 @@
 		grid-row: 1/-1;
 		display: grid;
 
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 23rem 23rem;
 		grid-template-rows: 1fr 40px 30px 60px 30px 50px 1fr;
-		grid-column-gap: 5rem;
+		// grid-column-gap: 5rem;
 		grid-row-gap: 5px;
 		justify-items: center;
 		border-left: 4px solid $color-neutral-200;
@@ -85,7 +85,7 @@
 			grid-column: 1/-1;
 		}
 		& .sidebar__bottom--create {
-			grid-row: 6;
+			grid-row: 5;
 			grid-column: 1/-1;
 		}
 		& .add-collection__wrapper {
@@ -155,9 +155,11 @@
 
 	.slick-dots {
 		z-index: 100;
+		margin-bottom: -24rem;
 	}
 	.slick-current h2 {
 		color: $color-secondary-500;
+		// font-size: 3rem;
 	}
 	// .carousel {
 	// 	transform: scale(0.9); /* Adjust the scale value as needed */
@@ -191,14 +193,14 @@
 			align-items: center;
 			justify-content: center;
 
-			margin-top: 3rem; // TODO: SET ABOVE CAROUSEL
+			margin-top: 0rem; // TODO: SET ABOVE CAROUSEL
 
 			// padding: 0em 0;
 			text-align: center;
 
 			// position: relative;
 
-			font-size: 1.8rem;
+			font-size: 2.8rem;
 		}
 		span {
 			// font-size: 3rem;

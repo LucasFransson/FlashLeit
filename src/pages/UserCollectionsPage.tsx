@@ -84,9 +84,9 @@ function UserCollectionsPage() {
 	return (
 		<div className="collections-page">
 			{/* PINNED FAV COLLECTIONS */}
-			<div className="collections-page__favorites">
+			{/* <div className="collections-page__favorites">
 				<h3>Pinned Collections</h3>
-			</div>
+			</div> */}
 			{/* PUBLIC COLLECTIONS */}
 			<div className="collections-page__public">
 				<h3 className="collections-page__h3 collections-page__h3--public">

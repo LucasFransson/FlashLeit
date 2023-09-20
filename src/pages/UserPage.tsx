@@ -216,17 +216,17 @@ function UserPage() {
 											Change Password
 										</button>
 										<button
-											onClick={() => instance.logout()}
-											className="user-card__button--logout"
-										>
-											Log Out
-										</button>
-										<button
 											onClick={closeAccount}
 											className="user-card__button--close-acount"
 										>
 											Close Account
 										</button>
+										{/* <button
+											onClick={() => instance.logout()}
+											className="user-card__button--logout"
+										>
+											Log Out
+										</button> */}
 									</div>
 								</div>
 							</div>
@@ -266,6 +266,13 @@ function UserPage() {
 						</div>
 					)
 				)}
+
+				{/* <p>Achievements Points: {getUserAchievementPoints(unlockedAchievements)}</p>
+								<p>Achievements Points Max: {getUserAchievementPoints(allAchievements)}</p>
+								<p>Total Completed runs: {getTotalCompleteRuns(collections)}</p>
+								<p>Total Incorrect Answers: {getTotalIncorrectAnswers(collections)}</p>
+								<p>Total Correct Answers: {getTotalCorrectAnswers(collections)}</p>
+								<p>Created Collections: {createdCollections?.length}</p> */}
 
 				{/* WORKING */}
 				{/* <div className="user-dashboard">

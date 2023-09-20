@@ -148,6 +148,9 @@ $h4size: 2.5rem;
 		color: $color-primary--100;
 		font-size: 1.8rem;
 
+		& .avatar-modal {
+			// grid-row: 2/-1;
+		}
 		& .avatar__wrapper {
 			cursor: pointer;
 			grid-row: 2;
@@ -187,9 +190,17 @@ $h4size: 2.5rem;
 				grid-column: 2;
 			}
 		}
+		// &__button-close-account {
+		// 	background-color: $color-danger-300;
+		// }
 		&__buttons {
 			grid-row: 6;
 			grid-column: 1/-1;
+
+			& > * {
+				padding: 0.5rem 1rem;
+				margin: 0.5rem;
+			}
 		}
 	}
 }

@@ -19,7 +19,7 @@ const CardGrid: React.FC<CardGridTypes> = ({
 				>
 					{linkPrefix && parent === "discover" ? (
 						<>
-							<button></button>
+							{/* <button></button> */}
 							<Link
 								to={`/${linkPrefix}/${item.userId}/${item.id}`}
 								onClick={() => onCardClick && onCardClick(item)}

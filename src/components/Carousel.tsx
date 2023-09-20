@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import Slider from 'react-slick';
-import DeleteButton from '../components/DeleteSVGButton';
+import React, { useState, useRef } from "react";
+import Slider from "react-slick";
+import DeleteButton from "../components/DeleteSVGButton";
 
 export interface CarouselProps {
 	// items: Array<any>;
@@ -32,7 +32,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		ref: mainSliderRef,
 		slidesToShow: 3,
 		slidesToScroll: 1,
-		autoplay: false,
+		autoplay: true,
 		dots: false,
 		centerMode: false,
 		// centerPadding: '0 auto',
@@ -75,7 +75,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		focusOnSelect: true,
 		infinite: true,
 		centerMode: true,
-		centerPadding: '20px',
+		centerPadding: "20px",
 		arrows: false,
 		asNavFor: mainSliderRef.current as Slider | undefined,
 		responsive: [],
@@ -84,6 +84,18 @@ const Carousel: React.FC<CarouselProps> = ({
 	console.log(items);
 	return (
 		<div className={className}>
+			<Slider {...settingsNav}>
+				{items.map((item, index) => (
+					<div
+						key={index}
+						className={`carousel__nav-item carousel__nav-item--${index + 1}`}
+					>
+						<h2>
+							<span>{index + 1}</span>
+						</h2>
+					</div>
+				))}
+			</Slider>
 			{onCardClick !== null ? (
 				<Slider {...settingsMain}>
 					{items.map((item, index) => (
@@ -124,7 +136,7 @@ const Carousel: React.FC<CarouselProps> = ({
 				</Slider>
 			)}
 
-			<Slider {...settingsNav}>
+			{/* <Slider {...settingsNav}>
 				{items.map((item, index) => (
 					<div
 						key={index}
@@ -135,7 +147,7 @@ const Carousel: React.FC<CarouselProps> = ({
 						</h2>
 					</div>
 				))}
-			</Slider>
+			</Slider> */}
 		</div>
 	);
 };

@@ -32,4 +32,16 @@
 		grid-row: 1;
 		grid-column: 3;
 	}
+
+	& .finished-message {
+		border: 2px solid $color-primary--900;
+		padding: 15rem;
+		box-shadow: $box-shadow-subtle;
+		color: $color-neutral-800;
+	}
+
+	& .leitnerbox__wrapper {
+		grid-row: 2;
+		height: 100%;
+	}
 }

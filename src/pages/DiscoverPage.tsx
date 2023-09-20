@@ -60,7 +60,7 @@ function DiscoverPage() {
 				<CardGrid
 					items={filteredCollections}
 					Component={CollectionPreview}
-					linkPrefix="collection"
+					linkPrefix="collection/demo"
 					parent="discover"
 					className="--discover-page"
 				/>
