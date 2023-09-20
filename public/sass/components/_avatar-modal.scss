@@ -1,12 +1,17 @@
+
 .avatar-modal {
+
+
 	&__backdrop {
 		top: 0;
 		left: 0;
 		position: fixed;
 		background: rgba(0, 0, 0, 0.5);
-		// width: 100%;
-		// height: 100%;
-		z-index: 100;
+
+		width: 100%;
+		height: 100%;
+		z-index: 999;
+
 	}
 
 	&__content {
@@ -26,13 +31,17 @@
 		text-align: center;
 	}
 
-	&__header {
-		grid-row-start: 1;
-		grid-column: 1/4;
-		text-align: center;
-	}
 
 	&__avatar__wrapper:hover {
 		cursor: pointer;
+	}
+
+	&__avatar__wrapper__locked {
+		opacity: 0.3;
+	}
+
+	&__avatar__wrapper__locked:hover {
+		cursor: not-allowed;
+
 	}
 }

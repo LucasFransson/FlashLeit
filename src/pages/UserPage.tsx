@@ -17,10 +17,10 @@ import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 import AvatarModal from "../components/Modal/AvatarModal";
 import ErrorMsg from "../components/ErrorMsg/ErrorMsg";
 import UserTypes from "../types/UsersTypes";
-import {
-	useGetAchievementsByUserIdQuery,
-	useGetAllAchievementsQuery,
-} from "../redux/api/achievementsSlice";
+
+import { useGetAchievementsByUserIdQuery, useGetAllAchievementsQuery } from "../redux/api/achievementsSlice";
+import { getTotalCompleteRuns, getTotalCorrectAnswers, getTotalIncorrectAnswers, getUserAchievementPoints } from "../utils/statsUtility";
+
 
 function UserPage() {
 	const [skip, setSkip] = useState(true);
@@ -118,7 +118,7 @@ function UserPage() {
 	return (
 		<>
 			<AuthenticatedTemplate>
-				{isLoadingUser || isLoadingCollections ? (
+				{isLoadingUser || isLoadingCollections || isLoadingCreatedCollections ? (
 					<LoadingIcon />
 				) : isErrorUser ? (
 					<ErrorMsg error={errorUser} />
@@ -127,6 +127,7 @@ function UserPage() {
 				) : (
 					authUser &&
 					collections && (
+
 						<div className="user-dashboard">
 							<div className="user-dashboard__col">
 								<div className=" user-dashboard__card--flat user-dashboard__card--flat">
@@ -262,150 +263,12 @@ function UserPage() {
 										View Achievements & Information
 									</h4>
 								</div>
+
 							</div>
 						</div>
 					)
 				)}
 
-				{/* <p>Achievements Points: {getUserAchievementPoints(unlockedAchievements)}</p>
-								<p>Achievements Points Max: {getUserAchievementPoints(allAchievements)}</p>
-								<p>Total Completed runs: {getTotalCompleteRuns(collections)}</p>
-								<p>Total Incorrect Answers: {getTotalIncorrectAnswers(collections)}</p>
-								<p>Total Correct Answers: {getTotalCorrectAnswers(collections)}</p>
-								<p>Created Collections: {createdCollections?.length}</p> */}
-
-				{/* WORKING */}
-				{/* <div className="user-dashboard">
-					<div className="user-dashboard__col">
-						<div className="user-dashboard__card user-dashboard__card--flat user-dashboard__card--small">
-							<h1 className="user-dashboard__title">
-								Dashbo<span className="highlight">.</span>
-							</h1>
-							<p className="user-dashboard__description">
-								we're excited you're here, net neutrality syndicated Journal
-								Register shoot a photo hashtag curmudgeon 5% corruption analog.
-							</p>
-							<small className="user-dashboard__note">
-								This Week in Review content is king engagement Romenesko RSS
-								Wikipedia, data visualization advertising privacy discuss
-							</small>
-						</div>
-						<div className="user-dashboard__card user-dashboard__card--xl">
-							<h4 className="user-dashboard__subtitle">Key Indicators</h4>
-						</div>
-					</div>
-					<div className="user-dashboard__col">
-						<div className="user-dashboard__card user-dashboard__card--small">
-							<h4 className="user-dashboard__subtitle">Shoe Size</h4>
-						</div>
-						<div className="user-dashboard__card user-dashboard__card--large">
-							<h4 className="user-dashboard__subtitle">Demographics</h4>
-						</div>
-						<div className="user-dashboard__card">
-							<h4 className="user-dashboard__subtitle">Location</h4>
-						</div>
-					</div>
-					<div className="user-dashboard__col">
-						<div className="user-dashboard__card">
-							<h4 className="user-dashboard__subtitle">Properties</h4>
-						</div>
-						<div className="user-dashboard__card">
-							<h4 className="user-dashboard__subtitle">Directorships</h4>
-						</div>
-						<div className="user-dashboard__card user-dashboard__card--large">
-							<h4 className="user-dashboard__subtitle">Brand Matches</h4>
-						</div>
-					</div>
-				</div> */}
-
-				{/* working with CardGrid
-
-<div className="user-dashboard">
-			<div className="user-dashboard__col">
-				<div className="user-dashboard__card user-dashboard__card--flat user-dashboard__card--small">
-					<h1 className="user-dashboard__title">
-						Dashbo<span className="highlight">.</span>
-					</h1>
-					<p className="user-dashboard__description">
-						we're excited you're here, net neutrality syndicated Journal
-						Register shoot a photo hashtag curmudgeon 5% corruption analog.
-					</p>
-					<small className="user-dashboard__note">
-						This Week in Review content is king engagement Romenesko RSS
-						Wikipedia, data visualization advertising privacy discuss
-					</small>
-				</div>
-				<div className="user-dashboard__card user-dashboard__card--xl">
-					<h2 className="user-dashboard__subtitle">Key Indicators</h2>
-				</div>
-			</div>
-			<div className="user-dashboard__col">
-				<div className="user-dashboard__card user-dashboard__card--small">
-					<h2 className="user-dashboard__subtitle">Shoe Size</h2>
-				</div>
-				<div className="user-dashboard__card user-dashboard__card--large">
-					<h2 className="user-dashboard__subtitle">Demographics</h2>
-				</div>
-				<div className="user-dashboard__card">
-					<h2 className="user-dashboard__subtitle">Location</h2>
-				</div>
-			</div>
-			<div className="user-dashboard__col">
-				<div className="user-dashboard__card">
-					<h2 className="user-dashboard__subtitle">Properties</h2>
-				</div>
-				<div className="user-dashboard__card">
-					<h2 className="user-dashboard__subtitle">Directorships</h2>
-				</div>
-				<div className="user-dashboard__card user-dashboard__card--large">
-					<h2 className="user-dashboard__subtitle">Brand Matches</h2>
-				</div>
-			</div>
-		</div>
- */}
-
-				{/* <div className="user-dashboard">
-					<div className="user-dashboard__col">
-						<div className="user-dashboard__card user-dashboard__card--flat user-dashboard__card--small">
-							<h1 className="user-dashboard__title">
-								Dashbo<span className="highlight">.</span>
-							</h1>
-							<p className="user-dashboard__description">
-								we're excited you're here, net neutrality syndicated Journal
-								Register shoot a photo hashtag curmudgeon 5% corruption analog.
-							</p>
-							<small className="user-dashboard__note">
-								This Week in Review content is king engagement Romenesko RSS
-								Wikipedia, data visualization advertising privacy discuss
-							</small>
-						</div>
-						<div className="user-dashboard__card user-dashboard__card--xl">
-							<h2 className="user-dashboard__subtitle">Key Indicators</h2>
-						</div>
-					</div>
-					<div className="user-dashboard__col">
-						<div className="user-dashboard__card user-dashboard__card--small">
-							<h2 className="user-dashboard__subtitle">Shoe Size</h2>
-						</div>
-						<div className="user-dashboard__card user-dashboard__card--large">
-							<h2 className="user-dashboard__subtitle">Demographics</h2>
-						</div>
-						<div className="user-dashboard__card">
-							<h2 className="user-dashboard__subtitle">Location</h2>
-						</div>
-					</div>
-					<div className="user-dashboard__col">
-						<div className="user-dashboard__card">
-							<h2 className="user-dashboard__subtitle">Properties</h2>
-						</div>
-						<div className="user-dashboard__card">
-							<h2 className="user-dashboard__subtitle">Directorships</h2>
-						</div>
-						<div className="user-dashboard__card user-dashboard__card--large">
-							<h2 className="user-dashboard__subtitle">Brand Matches</h2>
-						</div>
-					</div>
-				</div> */}
 			</AuthenticatedTemplate>
 			<UnauthenticatedTemplate></UnauthenticatedTemplate>
 		</>

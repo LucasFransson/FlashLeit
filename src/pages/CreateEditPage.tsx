@@ -18,6 +18,7 @@ import AddCollection from "../components/AddCollection/AddCollection";
 import CardGrid from "../components/CardGrid/CardGrid";
 import Card from "../components/Card/Card";
 import Toggler from "../components/Toggler/Toggler";
+
 import Carousel from "../components/Carousel";
 import Dropdown from "../components/Dropdown";
 import ToggleButtons from "../components/ToggleButtons";
@@ -27,6 +28,15 @@ import CardGridTypes from "../types/CardGridTypes";
 import CardTypes from "../types/CardTypes";
 import CardCollectionTypes from "../types/CardCollectionTypes";
 import AnimationClassContext from "../context/AnimationContext";
+
+import { useDeleteCollection } from "../utils/collectionUtility";
+import { useAchievementService } from "../utils/achievementsUtility";
+import AchievementCard from "../components/AchievementCard/AchievementCard";
+import AchievementTypes from "../types/AchievementTypes";
+import AvatarTypes from "../types/AvatarTypes";
+import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
+import AchievementModal from "../components/Modal/AchievementModal";
+
 
 function EditCardPage() {
 	// STATE MANAGEMENT TODO:
@@ -41,9 +51,11 @@ function EditCardPage() {
 		colorClass: null,
 		animationOnRendering: "fade-in",
 	});
-	const [achievement, setAchievement] = useState<
-		[AchievementTypes | AvatarTypes] | null
-	>(null);
+
+	const { unlockCreateAchievement } = useAchievementService();
+	const [isShowingAchievementModal, setIsShowingAchievementModal] = useState(false);
+	const [achievement, setAchievement] = useState<[AchievementTypes | AvatarTypes] | null>(null);
+
 
 	const [isEditMode, setIsEditMode] = useState(true);
 	const [selectedCollectionId, setSelectedCollectionId] = useState<
@@ -159,6 +171,9 @@ function EditCardPage() {
 	const collectionAdded = (addedCollectionId: number) => {
 		const achievement = unlockCreateAchievement();
 		setAchievement(achievement);
+
+		setIsShowingAchievementModal(true);
+
 		setIsChecked(false);
 	};
 
@@ -174,9 +189,15 @@ function EditCardPage() {
 			colorClass: null,
 		});
 	};
+    
+	const closeModal = () => {
+		setIsShowingAchievementModal(false);
+	};
 
 	// RENDER LOGIC TODO:
 	if (collectionLoading || cardsLoading) return <LoadingIcon />;
+
+
 	if (collectionError)
 		return (
 			<div>
@@ -189,6 +210,7 @@ function EditCardPage() {
 				Error: {cardsError.status} {JSON.stringify(cardsError.data)}
 			</div>
 		);
+
 	// if (achievement)
 	// 	return (
 	// 		<AchievementCard achievement={achievement[0]} avatar={achievement[1]} />
@@ -258,6 +280,7 @@ function EditCardPage() {
 						userId={userId}
 						collectionId={selectedCollectionId}
 					/>
+
 				</div>
 			</div>
 		</>
